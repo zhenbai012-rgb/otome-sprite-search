@@ -10,10 +10,25 @@
   const roles = new Map(data.characters.map(c => [c.id, c]));
   const records = new Map();
   let all = [...data.official], filtered = [], ready = false, toastTimer;
+  let imageTicket = 0;
   const name = id => roles.get(id)?.display || id;
   const safeUrl = value => { try { const u = new URL(value, location.href); return ['https:', 'http:', 'file:'].includes(u.protocol) ? u.href : ''; } catch { return ''; } };
   const imagePath = value => encodeURI(value).replace(/#/g, '%23');
   const node = (tag, text, cls) => { const el = document.createElement(tag); if (text != null) el.textContent = text; if (cls) el.className = cls; return el; };
+  function loadImage(img, path, fallback) {
+    const ticket = String(++imageTicket); img.dataset.request = ticket;
+    let failures = 0;
+    img.onerror = () => {
+      failures += 1;
+      if (failures > 3) { img.dataset.failed = 'true'; return; }
+      const next = failures === 3 && fallback ? fallback : path;
+      setTimeout(() => {
+        if (img.isConnected && img.dataset.request === ticket && img.getAttribute('src')) img.src = imagePath(next) + (next.includes('?') ? '&' : '?') + 'retry=' + failures;
+      }, failures * 900);
+    };
+    img.onload = () => { delete img.dataset.failed; };
+    img.src = imagePath(path);
+  }
   function link(text, href, downloadName) {
     const a = node('a', text); a.href = safeUrl(href);
     if (downloadName) a.download = downloadName;
@@ -36,8 +51,7 @@
     const card = node('article', null, 'asset-card');
     const preview = node('button', null, 'asset-image'); preview.type = 'button'; preview.setAttribute('aria-label', '预览 ' + r.label + ' ' + r.name);
     const badge = node('span', typeNames[r.kind], 'badge' + (r.kind === 'game' ? '' : ' official'));
-    const img = new Image(); img.src = imagePath(r.thumb); img.alt = r.label; img.loading = 'lazy'; img.decoding = 'async';
-    img.addEventListener('error', () => { if (!img.dataset.fallback) { img.dataset.fallback = '1'; img.src = imagePath(r.file); } });
+    const img = new Image(); img.alt = r.label; img.loading = 'lazy'; img.decoding = 'async'; loadImage(img, r.thumb, r.file);
     preview.append(badge, img); preview.addEventListener('click', () => showImage(r));
     const detail = node('div', null, 'asset-detail');
     const title = node('h3', (r.characters || [r.character]).map(name).join(' / ')); title.title = title.textContent;
@@ -50,7 +64,7 @@
     actions.append(open, action); detail.append(title, subtitle, meta, actions); card.append(preview, detail); return card;
   }
   function showImage(r, update = true) {
-    $('dialog-title').textContent = r.label; $('dialog-image').src = imagePath(r.file); $('dialog-image').alt = r.label;
+    $('dialog-title').textContent = r.label; loadImage($('dialog-image'), r.file); $('dialog-image').alt = r.label;
     const info = $('dialog-info'); info.replaceChildren(); info.append(node('p', r.kind === 'game' ? 'GAME SPRITE' : 'OFFICIAL MATERIAL', 'eyebrow'), node('h3', (r.characters || [r.character]).map(name).join(' / ')), node('p', r.kind === 'game' ? r.outfit : r.label));
     const dl = node('dl'); const item = (k, v, cls) => { dl.append(node('dt', k), node('dd', v, cls)); };
     item('文件', r.name, 'filename'); item('原始尺寸', `${r.width} × ${r.height} px`);
@@ -70,7 +84,7 @@
     info.append(actions, share); if (update) updateUrl(r.id); if (!$('image-dialog').open) $('image-dialog').showModal();
   }
   function renderCharacter(c) {
-    const card = node('article', null, 'character-card'); const img = new Image(); img.src = imagePath(c.thumbnail); img.alt = c.display; img.loading = 'lazy'; img.className = 'character-image';
+    const card = node('article', null, 'character-card'); const img = new Image(); loadImage(img, c.thumbnail); img.alt = c.display; img.loading = 'lazy'; img.className = 'character-image';
     const detail = node('div', null, 'character-detail'); detail.append(node('h3', c.display), node('p', c.id === c.display ? (c.aliases.filter(a => a !== c.id).join(' / ') || '角色立绘') : c.id), node('p', `${c.gameCount.toLocaleString()} 张游戏立绘 · ${c.officialCount} 张官方素材`, 'counts'));
     const actions = node('div', null, 'character-actions'); const browse = node('button', '浏览所有立绘 →'); browse.type = 'button'; browse.addEventListener('click', () => { state.character = c.id; state.source = ''; state.costume = ''; state.scale = ''; state.kind = ''; state.query = ''; syncInputs(); switchTab('search'); });
     actions.append(browse, link(`PNG 原图包 ↓ · ${c.archiveSize}`, c.archiveUrl)); detail.append(actions); card.append(img, detail); return card;
@@ -123,7 +137,7 @@
   $('total-count').textContent = (data.stats.gamePngs + data.official.length).toLocaleString(); $('tab-total').textContent = $('total-count').textContent;
   $('character-count').textContent = data.stats.characterCount; $('tab-characters-count').textContent = data.stats.characterCount;
   const hero = [data.official.find(r => r.character === 'ルナ' && r.kind === 'single_png' && r.sourcePage.includes('2026')), data.official.find(r => r.character === '朝日' && r.kind === 'single_png')];
-  hero.forEach((r, i) => { if (r) $(i ? 'hero-right' : 'hero-left').src = imagePath(r.file); });
+  hero.forEach((r, i) => { if (r) loadImage($(i ? 'hero-right' : 'hero-left'), r.file); });
   for (const id of ['ルナ', '桜小路才華', '朝日', '大蔵りそな', 'エスト']) {
     if (!roles.has(id)) continue;
     const button = node('button', name(id).replace(/^樱小路/, '').replace(/^大藏/, ''), 'quick-role'); button.type = 'button'; button.dataset.role = id; button.addEventListener('click', () => { state.character = state.character === id ? '' : id; state.costume = ''; state.limit = 48; syncInputs(); applyFilters(); }); $('quick-roles').append(button);
@@ -150,15 +164,24 @@
   $('image-dialog').addEventListener('close', () => { updateUrl(); $('dialog-image').removeAttribute('src'); });
   $('image-dialog').addEventListener('click', e => { if (e.target === $('image-dialog')) { const rect = e.target.getBoundingClientRect(); if (e.clientX < rect.left || e.clientX > rect.right || e.clientY < rect.top || e.clientY > rect.bottom) e.target.close(); } });
   syncInputs(); switchTab(state.tab);
-  const script = document.createElement('script'); script.src = data.gameScript;
-  script.onload = () => {
+  function gameLoaded() {
     const games = window.CATALOG_GAME_DATA || []; window.CATALOG_GAME_DATA = null;
     // Show one of every character before the long expression sequences.
     const featured = [], rest = [], seen = new Set();
     games.forEach(r => { indexRecord(r); if (!seen.has(r.character) && roles.get(r.character)?.resourceGroup !== true) { featured.push(r); seen.add(r.character); } else rest.push(r); });
     all = [...data.official, ...featured, ...rest]; ready = true; costumeOptions(); applyFilters();
     const selected = params.get('asset'); if (selected && records.has(selected)) showImage(records.get(selected));
-  };
-  script.onerror = () => { ready = true; $('error').hidden = false; $('error').textContent = '游戏立绘索引载入失败。请刷新重试，或先浏览官方素材。'; applyFilters(); };
-  document.body.append(script);
+  }
+  function loadGames(attempt = 0) {
+    const script = document.createElement('script');
+    script.src = data.gameScript + (attempt ? (data.gameScript.includes('?') ? '&' : '?') + 'retry=' + attempt : '');
+    script.onload = gameLoaded;
+    script.onerror = () => {
+      script.remove();
+      if (attempt < 2) { setTimeout(() => loadGames(attempt + 1), (attempt + 1) * 1200); return; }
+      ready = true; $('error').hidden = false; $('error').textContent = '游戏立绘索引载入失败。请刷新重试，或先浏览官方素材。'; applyFilters();
+    };
+    document.body.append(script);
+  }
+  loadGames();
 })();
