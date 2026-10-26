@@ -1,0 +1,9 @@
+* text=auto
+*.webp binary
+*.png binary
+*.jpg binary
+*.json text eol=lf
+*.js text eol=lf
+*.html text eol=lf
+*.css text eol=lf
+*.yml text eol=lf
