@@ -43,6 +43,14 @@ def main():
     output = args.output.resolve()
     output.mkdir(parents=True, exist_ok=True)
     catalog = read_js(args.source_site / "catalog-data.js", "CATALOG_DATA")
+    excluded = [r for r in catalog["official"] if r["kind"] == "product_preview"]
+    catalog["official"] = [r for r in catalog["official"] if r["kind"] != "product_preview"]
+    for r in excluded:
+        for key in ["file", "thumb"]:
+            unused = (output / r[key]).resolve()
+            if not unused.is_relative_to(output):
+                raise ValueError("Unsafe excluded asset path")
+            unused.unlink(missing_ok=True)
     games = read_js(args.source_site / "game-data.js", "CATALOG_GAME_DATA")
     image_map = {r["raw_sha256"]: r for r in unpack(args.image_map, "images")}
     archives = {r["character"]: r for r in unpack(args.archive_map, "archives")}
@@ -96,10 +104,19 @@ def main():
         c["archiveUrl"] = f"https://github.com/{args.repository}/releases/download/originals-v1/{asset}"
         size = archive.get("size", 0)
         c["archiveSize"] = f"{size / 1024**2:.1f} MB" if size else "全部差分"
-        if c["thumbnail"].startswith("assets/thumbs/"):
+        official_for_role = [r for r in catalog["official"] if c["id"] in r["characters"]]
+        c["officialCount"] = len(official_for_role)
+        c["singleCount"] = sum(r["kind"] == "single_png" for r in official_for_role)
+        c["groupCount"] = sum(r["kind"] == "group" for r in official_for_role)
+        c["previewCount"] = 0
+        if not official_for_role:
             c["thumbnail"] = first_game[c["id"]]["thumb"]
+        else:
+            c["thumbnail"] = official_for_role[0]["thumb"]
 
     catalog["game"] = []
+    catalog["stats"]["officialImages"] = len(catalog["official"])
+    catalog["stats"]["officialRoles"] = sum(c["officialCount"] > 0 and not c["resourceGroup"] for c in catalog["characters"])
     write_js(output / "game-data.js", "CATALOG_GAME_DATA", games)
     game_revision = hashlib.sha256((output / "game-data.js").read_bytes()).hexdigest()[:12]
     catalog["gameScript"] = "game-data.js?v=" + game_revision

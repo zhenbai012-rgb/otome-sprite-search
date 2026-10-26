@@ -16,6 +16,7 @@ def main():
     games = load("game-data.js")
     assert len(games) == catalog["stats"]["gamePngs"]
     assert len(catalog["official"]) == catalog["stats"]["officialImages"]
+    assert all(r["kind"] != "product_preview" for r in catalog["official"])
     paths = set()
     ids = set()
     for r in games + catalog["official"]:

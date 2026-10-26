@@ -6,7 +6,7 @@
   if (!data) { $('error').hidden = false; $('error').textContent = '索引未能载入，请刷新页面重试。'; return; }
   const params = new URLSearchParams(location.search);
   const state = { tab: params.get('tab') === 'characters' ? 'characters' : 'search', query: params.get('q') || '', character: params.get('role') || '', source: params.get('source') || '', costume: params.get('costume') || '', scale: params.get('scale') || '', kind: params.get('type') || '', limit: 48 };
-  const typeNames = { game: '游戏立绘', single_png: '单人全身', group: '组合图', composite: '带背景图', product_preview: '商品预览' };
+  const typeNames = { game: '游戏立绘', single_png: '单人全身', group: '组合图', composite: '带背景图' };
   const roles = new Map(data.characters.map(c => [c.id, c]));
   const records = new Map();
   let all = [...data.official], filtered = [], ready = false, toastTimer;
