@@ -1,0 +1,330 @@
+[
+  {
+    "character": "ルナ",
+    "display": "樱小路露娜",
+    "count": 538,
+    "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/originals-v1/character-d3dc0ece8a8e.zip",
+    "size": 184850384,
+    "sha256": "335038e544a59766739aa0fd728d2fe1f21abca2c3eef7bcf248ff0d311386fe"
+  },
+  {
+    "character": "桜小路才華",
+    "display": "樱小路才华",
+    "count": 504,
+    "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/originals-v1/character-404ddc7d2eca.zip",
+    "size": 127883609,
+    "sha256": "84fc283d36ef028cc4fbdfcca3d646eba83a7bf4f4ccbe96e3db6e304f22ab48"
+  },
+  {
+    "character": "大蔵りそな",
+    "display": "大藏理想奈",
+    "count": 529,
+    "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/originals-v1/character-f97336aa326a.zip",
+    "size": 175058290,
+    "sha256": "5e8051e7b1ea0e6459797d9bf7fc257cbc450bc090c4e52de8925a99ab73eff8"
+  },
+  {
+    "character": "大蔵ルミネ",
+    "display": "大藏露米涅",
+    "count": 702,
+    "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/originals-v1/character-39a7e961c51f.zip",
+    "size": 268215315,
+    "sha256": "ffd27cd28474d9e62e3f8805bc17ce8c27609a383bedad6ce4da49f398183358"
+  },
+  {
+    "character": "朝日",
+    "display": "小仓朝日",
+    "count": 532,
+    "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/originals-v1/character-d5e4a7086fe5.zip",
+    "size": 167459884,
+    "sha256": "03d680ba43c6c9c3299f4f772714168f68bca304acfb8f387fe445d876a7cd74"
+  },
+  {
+    "character": "エスト",
+    "display": "艾斯特",
+    "count": 722,
+    "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/originals-v1/character-3f255dda9faa.zip",
+    "size": 319380091,
+    "sha256": "c049888d7a761250b8d8b3e898f9bd8a1ced46f1c6c88e0f2e4686407760204b"
+  },
+  {
+    "character": "アルタ",
+    "display": "アルタ",
+    "count": 42,
+    "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/originals-v1/character-bc96d5840f49.zip",
+    "size": 11446588,
+    "sha256": "6fafc4011940290833ee11a35b5da7ee40d425a3d277910809708594af54c588"
+  },
+  {
+    "character": "アンソニー",
+    "display": "アンソニー",
+    "count": 90,
+    "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/originals-v1/character-ae2fec74b729.zip",
+    "size": 23975022,
+    "sha256": "6939ef086daa1f8d454fb1636e9214c36158a0ad8264e0ab30cddfa3279708fe"
+  },
+  {
+    "character": "エッテ",
+    "display": "エッテ",
+    "count": 269,
+    "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/originals-v1/character-0a444f33f558.zip",
+    "size": 92426610,
+    "sha256": "fd82291afa24b2db9b3b0a4f6faf99671e9c07b16a025fb3299cbfc279cebc32"
+  },
+  {
+    "character": "カットイン",
+    "display": "カットイン",
+    "count": 9,
+    "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/originals-v1/character-4c6d988d7a32.zip",
+    "size": 635271,
+    "sha256": "1ed8b57fc05df21875fca6c24675008652505e08df2aba4fe59ef955f76e4573"
+  },
+  {
+    "character": "カトリーヌ",
+    "display": "カトリーヌ",
+    "count": 66,
+    "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/originals-v1/character-174413c299c7.zip",
+    "size": 13232979,
+    "sha256": "b99b065cba2fe7d8c662bfa1f5fb1bb65f226912fd2c3d5176c2e179f94095dd"
+  },
+  {
+    "character": "カリン",
+    "display": "カリン",
+    "count": 15,
+    "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/originals-v1/character-b9cc038458da.zip",
+    "size": 3054053,
+    "sha256": "48c9618819fb8509b448c9f893fa91ea7e1b5f59eb49a5216d472d31568ec7a8"
+  },
+  {
+    "character": "サーシャ",
+    "display": "サーシャ",
+    "count": 48,
+    "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/originals-v1/character-a5cfbc0035be.zip",
+    "size": 14355477,
+    "sha256": "582b28f52596b9360b361bf8cd1c940e5555488d8e8e02e7594f0239f25bf55f"
+  },
+  {
+    "character": "ジャスティーヌ",
+    "display": "ジャスティーヌ",
+    "count": 112,
+    "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/originals-v1/character-1969e7ea9ee0.zip",
+    "size": 22212046,
+    "sha256": "6901f0d2dccda09a974b44dc1d2d73f573c049dc07f3588d20518e5983efd9bb"
+  },
+  {
+    "character": "スタンレー",
+    "display": "スタンレー",
+    "count": 88,
+    "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/originals-v1/character-cf33007f3d0f.zip",
+    "size": 24926740,
+    "sha256": "4a715f4507dff5e898ba322f25a82824356074ca9fde2cbf663d3d7fcf96b60a"
+  },
+  {
+    "character": "ディートリンデ",
+    "display": "ディートリンデ",
+    "count": 129,
+    "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/originals-v1/character-766955e07bf7.zip",
+    "size": 34959412,
+    "sha256": "3cf06aea4215e3460fe76e5126675b41afcea23e59fa82e4bfc244dc56256cec"
+  },
+  {
+    "character": "メリル",
+    "display": "メリル",
+    "count": 213,
+    "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/originals-v1/character-d1bba4d673a5.zip",
+    "size": 78698972,
+    "sha256": "df59d68c770e72ca810a348b16dd2d3325455f85f872edc246537a7fd07617ba"
+  },
+  {
+    "character": "ラフォーレ",
+    "display": "ラフォーレ",
+    "count": 58,
+    "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/originals-v1/character-35e0d12d1d83.zip",
+    "size": 19808640,
+    "sha256": "7f5b3f745d297e2a1b284d3fe32dffda4483af83436e539b0d63616caff3dbdd"
+  },
+  {
+    "character": "リリアーヌ",
+    "display": "リリアーヌ",
+    "count": 120,
+    "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/originals-v1/character-6a014dd49b76.zip",
+    "size": 57160642,
+    "sha256": "62f64951b472aa35343612225824d0e28faaec9ed48dbedc3411d7000db4def6"
+  },
+  {
+    "character": "ヴァレリア",
+    "display": "ヴァレリア",
+    "count": 67,
+    "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/originals-v1/character-479b9715c4b3.zip",
+    "size": 18602316,
+    "sha256": "1232c7d17d3bf81e3b0c77ec651789c2a184c88b60e7808841881b9fd4e5f917"
+  },
+  {
+    "character": "一丸弓",
+    "display": "一丸弓",
+    "count": 80,
+    "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/originals-v1/character-c6f565e6e985.zip",
+    "size": 20912745,
+    "sha256": "fc8ddfff9679760374825f60198460290a665f4a240daaf2ccaaff35a8930c4e"
+  },
+  {
+    "character": "伊代",
+    "display": "伊代",
+    "count": 47,
+    "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/originals-v1/character-2a6878fc8def.zip",
+    "size": 12428782,
+    "sha256": "98591c5f3ead375b33e34fc9319b6cc20c00cfd29777626f6b795f4d57685f61"
+  },
+  {
+    "character": "八日堂朔莉",
+    "display": "八日堂朔莉",
+    "count": 668,
+    "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/originals-v1/character-723b2b5981d5.zip",
+    "size": 302521062,
+    "sha256": "a1394851ac626fca235e391f89dccb905710168d462743ffb26f21e71719b819"
+  },
+  {
+    "character": "北斗",
+    "display": "北斗",
+    "count": 36,
+    "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/originals-v1/character-058ba68a9fdc.zip",
+    "size": 9695730,
+    "sha256": "8dfbd55b83032fe50541524456a63b2fa8d1291c092d371a75d589dfcc12a97b"
+  },
+  {
+    "character": "名波七愛",
+    "display": "名波七愛",
+    "count": 62,
+    "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/originals-v1/character-0d53cb105863.zip",
+    "size": 22235694,
+    "sha256": "4e3e0400138ff3032625d833cea1605390b019a5c3a67c66d9ec10c00c52464c"
+  },
+  {
+    "character": "大津賀かぐや",
+    "display": "大津賀かぐや",
+    "count": 86,
+    "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/originals-v1/character-b25e56c89c26.zip",
+    "size": 22961548,
+    "sha256": "3ea8f34ff43509e319e09479583ffbf99a10e4c26f134408c35b10f247321948"
+  },
+  {
+    "character": "大蔵アンソニーjr",
+    "display": "大蔵アンソニーjr",
+    "count": 78,
+    "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/originals-v1/character-fba9ded361ba.zip",
+    "size": 19560468,
+    "sha256": "aa04b9700009e3d21658bdd6505a240fce41c32234eecbf65fbb93ef16abd7db"
+  },
+  {
+    "character": "大蔵衣遠",
+    "display": "大蔵衣遠",
+    "count": 159,
+    "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/originals-v1/character-e64cc54677e8.zip",
+    "size": 47722030,
+    "sha256": "0af33464ccc566940e6993a1f48bf1b01e8224b5f46e6a2b5ca762ff4e381fb0"
+  },
+  {
+    "character": "ユルシュール",
+    "display": "尤希尔",
+    "count": 472,
+    "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/originals-v1/character-8509bfd639e0.zip",
+    "size": 216466009,
+    "sha256": "3c07281cbc5b8cc242f5d924a87faf533066592a0e1dba4e9df7209116a656b1"
+  },
+  {
+    "character": "山吹九千代",
+    "display": "山吹九千代",
+    "count": 142,
+    "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/originals-v1/character-d2b2b7239af3.zip",
+    "size": 37215304,
+    "sha256": "8f5034ce66920c3d79fed25bbcd083ff720dd033c253586a8e002c4b37798c2b"
+  },
+  {
+    "character": "山吹八千代",
+    "display": "山吹八千代",
+    "count": 83,
+    "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/originals-v1/character-d1d2a81fceb0.zip",
+    "size": 16826730,
+    "sha256": "88c786b343d135871b70c3b9b3f3838d8b593d40a28c8473d858ebce621864ef"
+  },
+  {
+    "character": "山県大瑛",
+    "display": "山県大瑛",
+    "count": 91,
+    "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/originals-v1/character-3b79a9288e87.zip",
+    "size": 18399655,
+    "sha256": "53ca56f0c5d1c758c78855b2e77c874fcb3b1beaa87f76a47cf52d6fb29d0d9f"
+  },
+  {
+    "character": "影",
+    "display": "影",
+    "count": 1,
+    "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/originals-v1/character-1cc19d290f3c.zip",
+    "size": 19171,
+    "sha256": "1f42b2db3e187a35ed4f000c6cff755cc2f5a85ee57848a2fdeadc1e68fbdbbf"
+  },
+  {
+    "character": "柳ヶ瀬湊",
+    "display": "柳之濑凑",
+    "count": 627,
+    "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/originals-v1/character-530b9672b38e.zip",
+    "size": 255306934,
+    "sha256": "6b05bcc189b69be203a07c54c3c6f14f4e26899c5b0cfa1f2703afda2641535f"
+  },
+  {
+    "character": "梅宮伊瀬也",
+    "display": "梅宮伊瀬也",
+    "count": 193,
+    "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/originals-v1/character-e95f5db2c2e5.zip",
+    "size": 62142414,
+    "sha256": "89b5812f2fda89b54e0e7893b7bcdf8adb8a7c764051b6839cef24136467f4ae"
+  },
+  {
+    "character": "桜小路アトレ",
+    "display": "樱小路亚十礼",
+    "count": 167,
+    "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/originals-v1/character-a81aa9603036.zip",
+    "size": 46738459,
+    "sha256": "1b998b4a44dfcdc6866f9a786051687ec7cddffb9e87c492cd842cbb62df040b"
+  },
+  {
+    "character": "紅葉",
+    "display": "紅葉",
+    "count": 77,
+    "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/originals-v1/character-5c300a483e98.zip",
+    "size": 21810787,
+    "sha256": "e804e82a68a3a8ac65bd2038803b89ef23a90cf0c7ec89fa08817ddad072a590"
+  },
+  {
+    "character": "花之宮瑞穂",
+    "display": "花之宫瑞穗",
+    "count": 502,
+    "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/originals-v1/character-8192c8afac31.zip",
+    "size": 188738075,
+    "sha256": "9ef82db03a96b65c88aa1a48467b67bf3578f8af300fedb64260c0c7bbdc1032"
+  },
+  {
+    "character": "華花",
+    "display": "華花",
+    "count": 43,
+    "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/originals-v1/character-fdf7ae65fc56.zip",
+    "size": 11148595,
+    "sha256": "23ea13ee44ec1f8769e5d93b3f1ee8cec848f54cf86b71fa51504be1f8ff9f01"
+  },
+  {
+    "character": "銀条春心",
+    "display": "银条春心",
+    "count": 827,
+    "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/originals-v1/character-d5859e28a355.zip",
+    "size": 390339996,
+    "sha256": "a6cd1e7616f8bbed9fb3b6af7be134a1bf4c4a39f5511c0b21ee6ada2c9be9cf"
+  },
+  {
+    "character": "駿我",
+    "display": "駿我",
+    "count": 105,
+    "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/originals-v1/character-0061f800773c.zip",
+    "size": 20330846,
+    "sha256": "28f7e59f59436776f650ad0d74999acf3e13f8038f4adb1947c610444dbf55a3"
+  }
+]

@@ -1,0 +1,324 @@
+{
+  "updated": "2026-10-26",
+  "official": [
+    {
+      "id": "official-a8cf797fb3daf5eb",
+      "character": "ルナ",
+      "characters": [
+        "ルナ"
+      ],
+      "label": "露娜 · 2026 蓝白演出服",
+      "name": "navpa2026_chara01.png",
+      "kind": "single_png",
+      "file": "assets/official/a8cf797fb3daf5eb4d4a98b26a6c5612aefe906eace308fddad8ced1e34b01a2.png",
+      "thumb": "assets/official-thumbs/a8cf797fb3daf5eb4d4a98b26a6c5612aefe906eace308fddad8ced1e34b01a2.png",
+      "width": 450,
+      "height": 835,
+      "visibleHeight": 835,
+      "alpha": true,
+      "facing": "正面或接近正面",
+      "sourcePage": "https://project-navel.com/navpa2026/",
+      "sourceAsset": "https://project-navel.com/navpa2026/images/header/chara01.png",
+      "sourceCss": "https://project-navel.com/navpa2026/css/style.css",
+      "sourceLabel": "Navel · NavPA!!2026",
+      "notes": "官方公开的单人透明 PNG。",
+      "sha256": "a8cf797fb3daf5eb4d4a98b26a6c5612aefe906eace308fddad8ced1e34b01a2",
+      "fullBody": true,
+      "sources": [
+        {
+          "source_page": "https://project-navel.com/navpa2026/",
+          "source_asset": "https://project-navel.com/navpa2026/images/header/chara01.png",
+          "source_css": "https://project-navel.com/navpa2026/css/style.css"
+        }
+      ]
+    },
+    {
+      "id": "official-0fd73cc7422e2210",
+      "character": "朝日",
+      "characters": [
+        "朝日"
+      ],
+      "label": "小仓朝日 · 2026 紫色演出服",
+      "name": "navpa2026_chara04.png",
+      "kind": "single_png",
+      "file": "assets/official/0fd73cc7422e2210f1dce51ad05184a6e67a2246b4baefbe296d2eca5ce901f4.png",
+      "thumb": "assets/official-thumbs/0fd73cc7422e2210f1dce51ad05184a6e67a2246b4baefbe296d2eca5ce901f4.png",
+      "width": 427,
+      "height": 868,
+      "visibleHeight": 868,
+      "alpha": true,
+      "facing": "正面或接近正面",
+      "sourcePage": "https://project-navel.com/navpa2026/",
+      "sourceAsset": "https://project-navel.com/navpa2026/images/header/chara04.png",
+      "sourceCss": "https://project-navel.com/navpa2026/css/style.css",
+      "sourceLabel": "Navel · NavPA!!2026",
+      "notes": "官方公开的单人透明 PNG。",
+      "sha256": "0fd73cc7422e2210f1dce51ad05184a6e67a2246b4baefbe296d2eca5ce901f4",
+      "fullBody": true,
+      "sources": [
+        {
+          "source_page": "https://project-navel.com/navpa2026/",
+          "source_asset": "https://project-navel.com/navpa2026/images/header/chara04.png",
+          "source_css": "https://project-navel.com/navpa2026/css/style.css"
+        }
+      ]
+    },
+    {
+      "id": "official-971e55011e45dfdb",
+      "character": "ルナ",
+      "characters": [
+        "ルナ"
+      ],
+      "label": "露娜 · 2025 粉白演出服",
+      "name": "navpa2025_chara02.png",
+      "kind": "single_png",
+      "file": "assets/official/971e55011e45dfdb3f2a00af25af865186f785a1499618d7263b71c21bae42a0.png",
+      "thumb": "assets/official-thumbs/971e55011e45dfdb3f2a00af25af865186f785a1499618d7263b71c21bae42a0.png",
+      "width": 498,
+      "height": 922,
+      "visibleHeight": 871,
+      "alpha": true,
+      "facing": "正面或接近正面",
+      "sourcePage": "https://project-navel.com/navpa2025/",
+      "sourceAsset": "https://project-navel.com/navpa2025/images/header/chara02.png",
+      "sourceCss": "https://project-navel.com/navpa2025/css/style.css",
+      "sourceLabel": "Navel · NavPA!!2025",
+      "notes": "官方公开的单人透明 PNG。",
+      "sha256": "971e55011e45dfdb3f2a00af25af865186f785a1499618d7263b71c21bae42a0",
+      "fullBody": true,
+      "sources": [
+        {
+          "source_page": "https://project-navel.com/navpa2025/",
+          "source_asset": "https://project-navel.com/navpa2025/images/header/chara02.png",
+          "source_css": "https://project-navel.com/navpa2025/css/style.css"
+        }
+      ]
+    },
+    {
+      "id": "official-4ccfa2781c9a0d6e",
+      "character": "ルナ",
+      "characters": [
+        "ルナ"
+      ],
+      "label": "露娜 · 2024 黑白演出服（组合图）",
+      "name": "navpa2024_bgill.png",
+      "kind": "group",
+      "file": "assets/official/4ccfa2781c9a0d6ec9c8791e027b6c3f959ec88352ed57a52127eb37dcec230f.png",
+      "thumb": "assets/official-thumbs/4ccfa2781c9a0d6ec9c8791e027b6c3f959ec88352ed57a52127eb37dcec230f.png",
+      "width": 1200,
+      "height": 1300,
+      "visibleHeight": 1292,
+      "alpha": true,
+      "facing": "正面或接近正面",
+      "sourcePage": "https://project-navel.com/navpa2024/",
+      "sourceAsset": "https://project-navel.com/navpa2024/images/common/bgill.png",
+      "sourceCss": "https://project-navel.com/navpa2024/css/style.css",
+      "sourceLabel": "Navel · NavPA!!2024",
+      "notes": "官方组合图，包含同框角色。",
+      "sha256": "4ccfa2781c9a0d6ec9c8791e027b6c3f959ec88352ed57a52127eb37dcec230f",
+      "fullBody": true,
+      "sources": [
+        {
+          "source_page": "https://project-navel.com/navpa2024/",
+          "source_asset": "https://project-navel.com/navpa2024/images/common/bgill.png",
+          "source_css": "https://project-navel.com/navpa2024/css/style.css"
+        }
+      ]
+    },
+    {
+      "id": "official-3713059a7da1246e",
+      "character": "大蔵りそな",
+      "characters": [
+        "大蔵りそな"
+      ],
+      "label": "NavPA!!2023 紫黑舞台服｜组合全身",
+      "name": "navpa2023_bgill.png",
+      "kind": "group",
+      "file": "assets/official/3713059a7da1246eaf3393b50ffee6fdfa237a68ebae727b99a6b261f8b037be.png",
+      "thumb": "assets/official-thumbs/3713059a7da1246eaf3393b50ffee6fdfa237a68ebae727b99a6b261f8b037be.png",
+      "width": 1200,
+      "height": 1300,
+      "visibleHeight": 1220,
+      "alpha": true,
+      "facing": "正面偏三分之四；一腿抬起，动态舞台站姿",
+      "sourcePage": "https://project-navel.com/navpa2023/",
+      "sourceAsset": "https://project-navel.com/navpa2023/images/common/bgill.png",
+      "sourceCss": "https://project-navel.com/navpa2023/css/style.css",
+      "sourceLabel": "Navel · NavPA!!2023",
+      "notes": "官方组合图，包含同框角色。",
+      "sha256": "3713059a7da1246eaf3393b50ffee6fdfa237a68ebae727b99a6b261f8b037be",
+      "fullBody": true,
+      "sources": [
+        {
+          "source_page": "https://project-navel.com/navpa2023/",
+          "source_asset": "https://project-navel.com/navpa2023/images/common/bgill.png",
+          "source_css": "https://project-navel.com/navpa2023/css/style.css"
+        }
+      ]
+    },
+    {
+      "id": "official-bf90837d522f54f0",
+      "character": "大蔵りそな",
+      "characters": [
+        "大蔵りそな"
+      ],
+      "label": "NavPA!!2023 紫黑舞台服｜组合全身",
+      "name": "navpa2023_bgill2.png",
+      "kind": "group",
+      "file": "assets/official/bf90837d522f54f0e9506c9e11104b6a3d94b32fa6b149fc78e85890c9be1cd9.png",
+      "thumb": "assets/official-thumbs/bf90837d522f54f0e9506c9e11104b6a3d94b32fa6b149fc78e85890c9be1cd9.png",
+      "width": 750,
+      "height": 1300,
+      "visibleHeight": 1217,
+      "alpha": true,
+      "facing": "正面偏三分之四；一腿抬起，动态舞台站姿",
+      "sourcePage": "https://project-navel.com/navpa2023/",
+      "sourceAsset": "https://project-navel.com/navpa2023/images/common/bgill2.png",
+      "sourceCss": "https://project-navel.com/navpa2023/css/style.css",
+      "sourceLabel": "Navel · NavPA!!2023",
+      "notes": "官方组合图，包含同框角色。",
+      "sha256": "bf90837d522f54f0e9506c9e11104b6a3d94b32fa6b149fc78e85890c9be1cd9",
+      "fullBody": true,
+      "sources": [
+        {
+          "source_page": "https://project-navel.com/navpa2023/",
+          "source_asset": "https://project-navel.com/navpa2023/images/common/bgill2.png",
+          "source_css": "https://project-navel.com/navpa2023/css/style.css"
+        }
+      ]
+    },
+    {
+      "id": "official-ef2d9fef3427015e",
+      "character": "ルナ",
+      "characters": [
+        "ルナ"
+      ],
+      "label": "露娜 · 2022 黑色演出服（组合图）",
+      "name": "navpa2022_bgill2.png",
+      "kind": "group",
+      "file": "assets/official/ef2d9fef3427015ea31cace3653c1cbdef79663de800098f5367f1013fd782b4.png",
+      "thumb": "assets/official-thumbs/ef2d9fef3427015ea31cace3653c1cbdef79663de800098f5367f1013fd782b4.png",
+      "width": 750,
+      "height": 1300,
+      "visibleHeight": 1229,
+      "alpha": true,
+      "facing": "正面或接近正面",
+      "sourcePage": "https://project-navel.com/navpa2022/",
+      "sourceAsset": "https://project-navel.com/navpa2022/images/common/bgill2.png",
+      "sourceCss": "https://project-navel.com/navpa2022/css/style.css",
+      "sourceLabel": "Navel · NavPA!!2022",
+      "notes": "官方组合图，包含同框角色。",
+      "sha256": "ef2d9fef3427015ea31cace3653c1cbdef79663de800098f5367f1013fd782b4",
+      "fullBody": true,
+      "sources": [
+        {
+          "source_page": "https://project-navel.com/navpa2022/",
+          "source_asset": "https://project-navel.com/navpa2022/images/common/bgill2.png",
+          "source_css": "https://project-navel.com/navpa2022/css/style.css"
+        }
+      ]
+    },
+    {
+      "id": "official-706b202c3f2112db",
+      "character": "大蔵りそな",
+      "characters": [
+        "大蔵りそな"
+      ],
+      "label": "NavPA!!2023 亚克力人物官方商品预览",
+      "name": "navpa2023_goods07.jpg",
+      "kind": "product_preview",
+      "file": "assets/official/706b202c3f2112db9b75facd52e8cf1c0c9bf906279cab85ad8b7afb9e6a315b.jpg",
+      "thumb": "assets/official-thumbs/706b202c3f2112db9b75facd52e8cf1c0c9bf906279cab85ad8b7afb9e6a315b.png",
+      "width": 800,
+      "height": 450,
+      "visibleHeight": 450,
+      "alpha": false,
+      "facing": "正面偏三分之四；动态舞台站姿",
+      "sourcePage": "https://project-navel.com/navpa2023/",
+      "sourceAsset": "https://project-navel.com/navpa2023/images/goods/goods07.jpg",
+      "sourceCss": null,
+      "sourceLabel": "Navel · NavPA!!2023",
+      "notes": "官方商品展示图，保留完整页面构图。",
+      "sha256": "706b202c3f2112db9b75facd52e8cf1c0c9bf906279cab85ad8b7afb9e6a315b",
+      "fullBody": true,
+      "sources": [
+        {
+          "source_page": "https://project-navel.com/navpa2023/",
+          "source_asset": "https://project-navel.com/navpa2023/images/goods/goods07.jpg"
+        }
+      ]
+    },
+    {
+      "id": "official-6b25b07951a73617",
+      "character": "エスト",
+      "characters": [
+        "エスト",
+        "大蔵ルミネ",
+        "大蔵りそな",
+        "ルナ"
+      ],
+      "label": "艾斯特 / 大藏露米涅 / 大藏理想奈 / 樱小路露娜 · 官方商品预览",
+      "name": "cafe_poster1_uncropped.jpg",
+      "kind": "product_preview",
+      "file": "assets/official/6b25b07951a7361732bfc9a03af86d57fa25c44bf38b0313b0af8b0a87715776.jpg",
+      "thumb": "assets/official-thumbs/6b25b07951a7361732bfc9a03af86d57fa25c44bf38b0313b0af8b0a87715776.png",
+      "width": 842,
+      "height": 888,
+      "visibleHeight": 888,
+      "alpha": false,
+      "facing": "脸和身体朝向屏幕，略有转体",
+      "sourcePage": "https://navel-store.com/items/69a55c058ab3cb004347fc73",
+      "sourceAsset": "https://imagedelivery.net/QondspN4HIUvB_R16-ddAQ/5efb16cd4adba052c8a43131/35ca074249346d7641f2.jpg/fit=scale-down,w=1920,h=2560",
+      "sourceCss": null,
+      "sourceLabel": "Navel 官方商城",
+      "notes": "官方商品展示图，保留完整页面构图。",
+      "sha256": "6b25b07951a7361732bfc9a03af86d57fa25c44bf38b0313b0af8b0a87715776",
+      "fullBody": true,
+      "sources": [
+        {
+          "source_page": "https://navel-store.com/items/69a55c058ab3cb004347fc73",
+          "source_asset": "https://imagedelivery.net/QondspN4HIUvB_R16-ddAQ/5efb16cd4adba052c8a43131/35ca074249346d7641f2.jpg/fit=scale-down,w=1920,h=2560"
+        }
+      ]
+    },
+    {
+      "id": "official-bab93ee1fa8f68ce",
+      "character": "大蔵ルミネ",
+      "characters": [
+        "大蔵ルミネ",
+        "エスト"
+      ],
+      "label": "大藏露米涅 / 艾斯特 · 官方商品预览",
+      "name": "cafe_poster6_uncropped.jpg",
+      "kind": "product_preview",
+      "file": "assets/official/bab93ee1fa8f68ce4b32738f18d2573aa333e2d6a532ed9e5c5aa6ef77b91b0a.jpg",
+      "thumb": "assets/official-thumbs/bab93ee1fa8f68ce4b32738f18d2573aa333e2d6a532ed9e5c5aa6ef77b91b0a.png",
+      "width": 842,
+      "height": 1191,
+      "visibleHeight": 1191,
+      "alpha": false,
+      "facing": "脸和身体朝向屏幕，略有转体",
+      "sourcePage": "https://navel-store.com/items/673737dc248f8c03a5daa7db",
+      "sourceAsset": "https://imagedelivery.net/QondspN4HIUvB_R16-ddAQ/5efb16cd4adba052c8a43131/cd613b9e586630472ab1.jpg/fit=scale-down,w=1920,h=2560",
+      "sourceCss": null,
+      "sourceLabel": "Navel 官方商城",
+      "notes": "官方商品展示图，保留完整页面构图。",
+      "sha256": "bab93ee1fa8f68ce4b32738f18d2573aa333e2d6a532ed9e5c5aa6ef77b91b0a",
+      "fullBody": true,
+      "sources": [
+        {
+          "source_page": "https://navel-store.com/items/673737dc248f8c03a5daa7db",
+          "source_asset": "https://imagedelivery.net/QondspN4HIUvB_R16-ddAQ/5efb16cd4adba052c8a43131/cd613b9e586630472ab1.jpg/fit=scale-down,w=1920,h=2560"
+        }
+      ]
+    }
+  ],
+  "gameWorks": [
+    "少女理论 Belle Epoque",
+    "少女理论 Ecole de Paris",
+    "近月少女的礼仪",
+    "近月少女的礼仪2",
+    "近月少女的礼仪2.1",
+    "近月少女的礼仪2.2"
+  ]
+}
