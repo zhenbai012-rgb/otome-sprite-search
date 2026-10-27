@@ -1,0 +1,8 @@
+/* Shared, centered switch between the two image collections. */
+html{scroll-padding-top:100px}
+.gallery-switch{position:sticky;top:12px;z-index:20;display:flex;align-items:center;justify-content:center;gap:6px;width:max-content;max-width:100%;margin:8px auto 30px;padding:6px;border:1px solid #ded4e8;border-radius:12px;background:#eee8f4;box-shadow:0 3px 12px #64517808}
+.gallery-switch a{display:flex;align-items:center;justify-content:center;gap:9px;min-height:46px;min-width:180px;padding:10px 24px;border:1px solid transparent;border-radius:8px;font-size:14px;font-weight:550;color:#897696;transition:background .15s,color .15s}
+.gallery-switch a:hover{background:#f8f5fc;color:#624b7a}
+.gallery-switch a[aria-current="page"]{background:#fff;border-color:#ded4e8;color:#624b7a;box-shadow:0 2px 7px #5d417c0a}
+.gallery-switch svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+@media(max-width:520px){.gallery-switch{width:100%;gap:4px;margin-bottom:24px}.gallery-switch a{flex:1;min-width:0;padding:10px 14px;font-size:13px}}

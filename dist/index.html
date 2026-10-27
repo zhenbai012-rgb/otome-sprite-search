@@ -8,13 +8,14 @@
   <title>近月立绘搜索 · 角色、CG与日文标题</title>
   <link rel="canonical" href="https://zhenbai012-rgb.github.io/otome-sprite-search/">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css?v=575d98c6a740">
+  <link rel="stylesheet" href="styles.css?v=36608c2e39bf">
+  <link rel="stylesheet" href="gallery-nav.css?v=5bf5fae50e5f">
 </head>
 <body>
   <a class="skip" href="#search">跳到立绘搜索</a>
   <header class="topbar">
     <a class="brand" href="./"><span class="moon" aria-hidden="true">◔</span><span>近月<span class="brand-divider"> / </span>立绘搜索</span></a>
-    <nav aria-label="主导航"><a href="#archive">搜索立绘</a><a href="#archive" id="nav-characters">角色目录</a><a href="backgrounds/">背景图库</a><a href="https://github.com/zhenbai012-rgb/otome-sprite-search" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav>
+    <nav aria-label="辅助导航"><a href="#archive" id="nav-characters">角色目录</a><a href="https://github.com/zhenbai012-rgb/otome-sprite-search" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav>
   </header>
   <main>
     <section class="hero" aria-labelledby="page-title">
@@ -23,7 +24,7 @@
         <h1 id="page-title">找一张喜欢的<span>立绘。</span></h1>
         <p class="hero-description">从熟悉的角色，到故事中的一幕。<br>系列立绘、剧情 CG 与日文标题原图，集中在这里查找。</p>
         <a class="button primary" href="#archive">开始查找 <span aria-hidden="true">↓</span></a>
-        <div class="stats" aria-label="收录统计"><div><b id="total-count">9,921</b><span>张立绘、CG与素材</span></div><div><b id="character-count">39</b><span>位角色</span></div><div><b>6</b><span>部系列作品</span></div></div>
+        <div class="stats" aria-label="收录统计"><div><b id="total-count">9,910</b><span>张立绘、CG与素材</span></div><div><b id="character-count">39</b><span>位角色</span></div><div><b>6</b><span>部系列作品</span></div></div>
       </div>
       <div class="hero-art" aria-label="露娜与小仓朝日的官方演出服立绘">
         <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><span class="art-label">CHARACTERS, IN EVERY MOOD.</span>
@@ -33,22 +34,24 @@
       </div>
     </section>
 
+    <nav class="gallery-switch" aria-label="图库切换"><a id="collection-sprites" href="#archive" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7" r="4"></circle><path d="M5 21v-3a7 7 0 0 1 14 0v3"></path></svg>角色立绘</a><a href="backgrounds/#collection"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"></rect><circle cx="8" cy="9" r="1.5"></circle><path d="m3 17 5-5 4 4 4-6 5 7"></path></svg>背景图库</a></nav>
     <section class="browser-section" id="archive" aria-labelledby="collection-title">
       <div class="section-title"><div><p class="eyebrow">EXPLORE THE COLLECTION</p><h2 id="collection-title">立绘与 CG 检索</h2></div><span class="update-note">更新于 <time id="updated"></time></span></div>
       <div class="tabs" role="tablist" aria-label="浏览方式"><button class="tab active" id="tab-search" role="tab" aria-selected="true" aria-controls="search-panel" data-tab="search">立绘搜索 <span id="tab-total">9,406</span></button><button class="tab" id="tab-characters" role="tab" aria-selected="false" aria-controls="characters" data-tab="characters">角色目录 <span id="tab-characters-count">39</span></button></div>
       <form class="filterbar" id="filters" role="search">
         <label class="search"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="m15.5 15.5 5 5"></path></svg><span class="sr-only">搜索立绘</span><input id="search" type="search" placeholder="搜索角色、礼服、CG场景、标题或文件名…" autocomplete="off"></label>
-        <label class="select-wrap"><span>角色</span><select id="character"><option value="">全部角色</option></select></label>
+        <label class="select-wrap" id="role-filter"><span>角色</span><select id="character"><option value="">全部角色</option></select></label>
         <label class="select-wrap image-filter"><span>作品</span><select id="work"><option value="">全部作品</option></select></label>
         <label class="select-wrap image-filter"><span>来源</span><select id="source"><option value="">全部来源</option><option value="game">游戏资源</option><option value="official">官方公开素材</option></select></label>
-        <label class="select-wrap image-filter"><span>类型</span><select id="kind"><option value="">全部类型</option><option value="game">游戏立绘</option><option value="cg">游戏 CG</option><option value="title">标题 / Logo</option><option value="single_png">单人全身</option><option value="group">组合图</option></select></label>
-        <label class="select-wrap image-filter"><span>服装</span><select id="costume"><option value="">全部服装</option></select></label>
-        <label class="select-wrap image-filter"><span>镜头</span><select id="scale"><option value="">全部镜头</option><option value="s">远景 · s</option><option value="m">中景 · m</option><option value="l">近景 · l</option></select></label>
+        <label class="select-wrap image-filter"><span>类型</span><select id="kind"><option value="">全部类型</option><option value="game">游戏立绘</option><option value="cg">剧情 CG</option><option value="title">日文标题 / Logo</option><option value="title_character">标题人物图层</option><option value="single_png">官方单人立绘</option><option value="group">官方组合图</option></select></label>
+        <label class="select-wrap image-filter"><span>服装</span><select id="costume" aria-describedby="standing-note"><option value="">全部服装</option></select></label>
+        <label class="select-wrap image-filter"><span>镜头</span><select id="scale" aria-describedby="standing-note"><option value="">全部镜头</option><option value="s">远景</option><option value="m">中景</option><option value="l">近景</option></select></label>
         <label class="select-wrap image-filter"><span>画幅</span><select id="frame"><option value="">全部画幅</option><option value="landscape">横图 / 方图</option><option value="portrait">竖图（含长图）</option><option value="long">竖向长图</option></select></label>
         <button class="reset-button" id="reset" type="button">重置筛选</button>
       </form>
+      <p id="standing-note" class="filter-note" hidden>服装和镜头用于游戏立绘，选用后会自动切换到游戏立绘。</p>
       <div class="quick-roles" id="quick-roles" aria-label="常用角色"></div>
-      <div class="quick-types" aria-label="快捷类型"><button type="button" data-kind="cg">剧情 CG <span id="cg-count"></span></button><button type="button" data-kind="title">日文标题 / Logo <span id="title-count"></span></button></div>
+      <div class="quick-types" aria-label="快捷类型"><button type="button" data-kind="game">游戏立绘</button><button type="button" data-kind="cg">剧情 CG <span id="cg-count"></span></button><button type="button" data-kind="title">日文标题 / Logo <span id="title-count"></span></button><button type="button" data-kind="title_character">标题人物图层</button><a id="title-backgrounds-link" href="backgrounds/?kind=title#collection">标题背景 →</a></div>
       <p id="type-note" class="type-note" hidden></p>
       <div class="results-bar"><span id="result-count" role="status" aria-live="polite">正在载入立绘…</span><button id="share-search" class="text-button" type="button">分享当前搜索 ↗</button></div>
       <div id="search-panel" role="tabpanel" aria-labelledby="tab-search"><div id="gallery" class="gallery"></div></div>
@@ -63,6 +66,6 @@
   <dialog id="image-dialog" aria-labelledby="dialog-title"><div class="dialog-toolbar"><h2 id="dialog-title"></h2><button id="close-dialog" type="button" aria-label="关闭预览">✕</button></div><div class="dialog-body"><div class="dialog-image"><img id="dialog-image" alt=""></div><div class="dialog-info" id="dialog-info"></div></div></dialog>
   <dialog id="download-dialog" class="download-dialog" aria-labelledby="download-title"><div class="dialog-toolbar"><h2 id="download-title"></h2><button id="close-downloads" type="button" aria-label="关闭下载选择">✕</button></div><div class="download-body"><p id="download-summary"></p><div id="download-list"></div></div></dialog>
   <div class="download-status" id="download-status" role="status" hidden></div><div class="toast" id="toast" role="status" hidden></div>
-  <script src="catalog-data.js?v=4b4289120d49"></script><script src="backgrounds/zip-store.js?v=e9944c4ade1a"></script><script src="artwork-downloads.js?v=04454d45cf03"></script><script src="app.js?v=11821b3cb53d"></script>
+  <script src="catalog-data.js?v=3002b7d15bcb"></script><script src="backgrounds/zip-store.js?v=e9944c4ade1a"></script><script src="artwork-downloads.js?v=04454d45cf03"></script><script src="app.js?v=94023b472e97"></script>
 </body>
 </html>

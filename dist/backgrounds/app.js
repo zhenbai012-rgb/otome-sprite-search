@@ -4,22 +4,33 @@
   const data = window.BACKGROUND_DATA;
   const $ = id => document.getElementById(id);
   if (!data) { $('result').textContent = '背景索引未能载入，请刷新重试。'; return; }
+  const titles = window.BACKGROUND_TITLE_DATA;
+  if (titles) {
+    data.images.push(...titles.images);data.packs.push(...titles.packs);Object.assign(data.kinds,titles.kinds);
+    data.originalBases=titles.originalBases;data.artworkAssetBase=titles.assetBase;
+    data.labels.scenes['title-background']='标题背景';
+  }
   const params = new URLSearchParams(location.search);
   const state = { query: params.get('q') || '', game: params.get('game') || '', kind: params.has('kind') ? params.get('kind') : 'background', tab: params.get('tab') === 'packs' ? 'packs' : 'images', scene: params.get('scene') || '', limit: 48 };
   const images = new Map(data.images.map(r => [r.id, r]));
-  const short = text => data.labels?.games?.[text] || data.labels?.scenes?.[text] || text.replace(/^\d+_/, '').replaceAll('_', ' ');
+  const short = text => text === data.kinds.transition ? '过场图层' : data.labels?.games?.[text] || data.labels?.scenes?.[text] || text.replace(/^\d+_/, '').replaceAll('_', ' ');
   const node = (tag, text, cls) => { const el = document.createElement(tag); if (text != null) el.textContent = text; if (cls) el.className = cls; return el; };
   const button = (text, action, cls) => { const el = node('button', text, cls); el.type = 'button'; el.addEventListener('click', action); return el; };
   const size = bytes => bytes < 1_000_000 ? `${Math.ceil(bytes / 1000)} KB` : `${(bytes / 1_000_000).toFixed(1)} MB`;
   const fileName = p => p.file.split('/').pop();
-  const displayName = p => data.labels?.scenes?.[p.scene] && data.labels.scenes[p.scene] !== p.scene ? data.labels.scenes[p.scene] : fileName(p).replace(/__[a-f0-9]{8}\.png$/i, '');
+  const displayName = p => p.category === data.kinds.title ? '标题背景 · '+fileName(p).replace(/__[a-f0-9]{8}\.png$/i, '') : data.labels?.scenes?.[p.scene] && data.labels.scenes[p.scene] !== p.scene ? data.labels.scenes[p.scene] : fileName(p).replace(/__[a-f0-9]{8}\.png$/i, '');
   let filtered = [], busy = false, toastTimer, statusTimer, requestId = 0;
   if (!data.games.includes(state.game)) state.game = '';
   if (!['', 'background', ...Object.keys(data.kinds)].includes(state.kind)) state.kind = 'background';
   function categoryMatches(category) {
-    return !state.kind || (state.kind === 'background' ? [data.kinds.scene, data.kinds.large].includes(category) : category === data.kinds[state.kind]);
+    return !state.kind || (state.kind === 'background' ? [data.kinds.scene, data.kinds.large,data.kinds.title].includes(category) : category === data.kinds[state.kind]);
   }
   function placements(r) { return r.placements.filter(p => (!state.game || p.game === state.game) && categoryMatches(p.category) && (!state.scene || p.scene === state.scene)); }
+  function imagePath(path) {
+    if (!path.startsWith('cg-assets/'))return path;
+    const local=['localhost','127.0.0.1','[::1]'].includes(location.hostname) && location.pathname.includes('/dist/backgrounds/');
+    return local ? new URL('../../'+path,location.href).href : new URL(path,data.artworkAssetBase).href;
+  }
   function loadImage(img, path, fallback) {
     const ticket = String(++requestId); img.dataset.request = ticket; let failed = 0;
     img.onload = () => { delete img.dataset.failed; };
@@ -27,9 +38,9 @@
       failed += 1;
       if (failed > 3) { img.dataset.failed = 'true'; return; }
       const next = failed === 3 && fallback ? fallback : path;
-      setTimeout(() => { if (img.isConnected && img.dataset.request === ticket && img.getAttribute('src')) img.src = next + '?retry=' + failed; }, failed * 900);
+      setTimeout(() => { if (img.isConnected && img.dataset.request === ticket && img.getAttribute('src')) img.src = imagePath(next) + '?retry=' + failed; }, failed * 900);
     };
-    img.src = path;
+    img.src = imagePath(path);
   }
   function updateUrl(asset) {
     const p = new URLSearchParams();
@@ -76,6 +87,7 @@
     document.querySelectorAll('[role="tab"]').forEach(el => { const active = el.dataset.tab === state.tab; el.classList.toggle('active', active); el.setAttribute('aria-selected', String(active)); el.tabIndex = active ? 0 : -1; });
     $('result').textContent = `${state.scene ? '场景 ' + short(state.scene) + ' · ' : ''}找到 ${filtered.length} ${packs ? '个场景包' : '张图片'} · 已显示 ${Math.min(state.limit, filtered.length)}`;
     $('empty').hidden = filtered.length > 0; $('more').hidden = filtered.length <= state.limit;
+    document.querySelectorAll('[data-category]').forEach(el=>{const active=el.dataset.category===state.kind;el.classList.toggle('active',active);el.setAttribute('aria-pressed',String(active));});
     const root = $(packs ? 'packs' : 'gallery'), fragment = document.createDocumentFragment();
     filtered.slice(0, state.limit).forEach(r => fragment.append(packs ? renderPack(r) : renderCard(r))); root.replaceChildren(fragment);
   }
@@ -90,17 +102,17 @@
       state.query = ''; state.game = place.game; state.kind = Object.keys(data.kinds).find(k => data.kinds[k] === place.category) || ''; state.scene = place.scene; state.limit = 48;
       $('image-dialog').close(); syncInputs(); switchTab('packs'); $('collection').scrollIntoView({ block: 'start' });
     }), button('复制图片链接 ↗', () => share(r.id)));
-    info.append(actions); updateUrl(r.id); if (!$('image-dialog').open) $('image-dialog').showModal();
+    const progress=node('p',null,'inline-download-status');progress.hidden=true;progress.setAttribute('role','status');info.append(actions,progress); updateUrl(r.id); if (!$('image-dialog').open) $('image-dialog').showModal();
   }
-  function originalUrl(relative) {
+  function originalUrl(relative, collection = 'backgrounds') {
     const local = ['localhost', '127.0.0.1', '[::1]'].includes(location.hostname) && location.pathname.includes('/dist/backgrounds/');
-    return local ? new URL('../../originals/backgrounds/' + relative, location.href).href : new URL(relative, data.originalBase).href;
+    return local ? new URL('../../originals/'+collection+'/' + relative, location.href).href : new URL(relative, data.originalBases?.[collection] || data.originalBase).href;
   }
   async function originalBytes(file) {
     let last;
     for (let attempt = 0; attempt < 3; attempt++) {
       try {
-        const response = await fetch(originalUrl(file.original), { signal: AbortSignal.timeout(120000) });
+        const response = await fetch(originalUrl(file.original,file.originalCollection), { signal: AbortSignal.timeout(120000) });
         if (!response.ok) throw new Error('原图暂时无法读取，请稍后重试');
         const bytes = new Uint8Array(await response.arrayBuffer());
         if (bytes.length !== file.bytes || ![137, 80, 78, 71, 13, 10, 26, 10].every((b, i) => bytes[i] === b)) throw new Error('原图下载不完整，请重试');
@@ -116,7 +128,7 @@
   function saveBlob(bytes, type, filename) {
     const url = URL.createObjectURL(new Blob([bytes], { type })), a = node('a'); a.href = url; a.download = filename; document.body.append(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(url), 30000);
   }
-  function status(text, error = false) { clearTimeout(statusTimer); $('download-status').hidden = false; $('download-status').textContent = text; $('download-status').classList.toggle('error', error); }
+  function status(text, error = false) { clearTimeout(statusTimer); $('download-status').hidden = false; $('download-status').textContent = text; $('download-status').classList.toggle('error', error);const inline=$('dialog-info').querySelector('.inline-download-status');if(inline && $('image-dialog').open){inline.textContent=text;inline.hidden=false;inline.classList.toggle('error',error);} }
   async function downloadJob(action) {
     if (busy) { toast('正在准备下载，请稍候'); return; }
     busy = true; document.querySelectorAll('[data-download]').forEach(el => { el.disabled = true; });
@@ -125,7 +137,7 @@
     finally { busy = false; document.querySelectorAll('[data-download]').forEach(el => { el.disabled = false; }); }
   }
   function downloadImage(r, place) {
-    return downloadJob(async () => { status('正在下载 PNG 原图…'); const bytes = await originalBytes({ original: r.original, bytes: r.originalBytes, sha256: r.originalSha256 }); saveBlob(bytes, 'image/png', fileName(place)); });
+    return downloadJob(async () => { status('正在下载 PNG 原图…'); const bytes = await originalBytes({ original: r.original, bytes: r.originalBytes, sha256: r.originalSha256,originalCollection:r.originalCollection }); saveBlob(bytes, 'image/png', fileName(place)); });
   }
   function downloadPack(p) {
     return downloadJob(async () => {
@@ -140,9 +152,11 @@
   }
   data.games.forEach(game => $('game').add(new Option(short(game), game)));
   $('updated').textContent = '更新于 ' + data.updated.replaceAll('-', '.'); $('pack-total').textContent = data.packs.length;
+  $('image-total').textContent=data.images.length;$('tab-image-total').textContent=data.images.length;$('scenic-total').textContent=data.images.filter(r=>r.kinds.some(k=>['scene','large','title'].includes(k))).length;$('title-background-total').textContent=titles?.images.length || 0;
   document.querySelector('form').addEventListener('submit', e => e.preventDefault());
   $('search').addEventListener('input', e => { state.query = e.target.value; state.scene = ''; state.limit = 48; applyFilters(); });
   for (const id of ['game', 'kind']) $(id).addEventListener('change', e => { state[id] = e.target.value; state.scene = ''; state.limit = 48; applyFilters(); });
+  document.querySelectorAll('[data-category]').forEach(el=>el.addEventListener('click',()=>{state.kind=el.dataset.category;state.scene='';state.limit=48;syncInputs();applyFilters();}));
   $('reset').addEventListener('click', reset); $('empty-reset').addEventListener('click', reset);
   $('more').addEventListener('click', () => { state.limit += 48; render(); }); $('share').addEventListener('click', () => share());
   document.querySelectorAll('[role="tab"]').forEach(el => {

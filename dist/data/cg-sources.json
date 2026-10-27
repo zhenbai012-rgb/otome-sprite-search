@@ -2,12 +2,14 @@
   "updated": "2026-10-27",
   "stats": {
     "cgImages": 481,
-    "titleImages": 34,
+    "titleImages": 12,
     "nativePngs": 604,
     "packs": 213,
     "cgPacks": 207,
     "titlePacks": 6,
-    "originalBytes": 491473507
+    "originalBytes": 491473507,
+    "titleCharacterImages": 11,
+    "titleBackgroundImages": 11
   },
   "images": [
     {
@@ -10610,7 +10612,7 @@
     },
     {
       "id": "title-d2b6233b82cda229",
-      "kind": "title",
+      "kind": "title_background",
       "name": "Back",
       "characters": [
         "作品素材"
@@ -10646,11 +10648,12 @@
           ],
           "titleType": "标题背景"
         }
-      ]
+      ],
+      "collection": "backgrounds"
     },
     {
       "id": "title-c843118c9224c1b4",
-      "kind": "title",
+      "kind": "title_background",
       "name": "Back02",
       "characters": [
         "作品素材"
@@ -10686,7 +10689,8 @@
           ],
           "titleType": "标题背景"
         }
-      ]
+      ],
+      "collection": "backgrounds"
     },
     {
       "id": "title-ba419a9ed8d5f73d",
@@ -10710,7 +10714,8 @@
           "layers": [],
           "titleType": "日文Logo"
         }
-      ]
+      ],
+      "collection": "characters"
     },
     {
       "id": "title-75172509e37d1781",
@@ -10734,7 +10739,8 @@
           "layers": [],
           "titleType": "日文Logo"
         }
-      ]
+      ],
+      "collection": "characters"
     },
     {
       "id": "title-698e83da4cb2109b",
@@ -10774,11 +10780,12 @@
           ],
           "titleType": "标题画面"
         }
-      ]
+      ],
+      "collection": "characters"
     },
     {
       "id": "title-321c161f73c814d5",
-      "kind": "title",
+      "kind": "title_character",
       "name": "ユルシュール",
       "characters": [
         "ユルシュール"
@@ -10814,11 +10821,12 @@
           ],
           "titleType": "人物图层"
         }
-      ]
+      ],
+      "collection": "characters"
     },
     {
       "id": "title-67bd890678739301",
-      "kind": "title",
+      "kind": "title_character",
       "name": "ルナ",
       "characters": [
         "ルナ",
@@ -10855,7 +10863,8 @@
           ],
           "titleType": "人物图层"
         }
-      ]
+      ],
+      "collection": "characters"
     },
     {
       "id": "title-d2b426ae4302ced3",
@@ -10895,7 +10904,8 @@
           ],
           "titleType": "日文Logo"
         }
-      ]
+      ],
+      "collection": "characters"
     },
     {
       "id": "title-13bb3ac1da229d1a",
@@ -10935,11 +10945,12 @@
           ],
           "titleType": "日文Logo"
         }
-      ]
+      ],
+      "collection": "characters"
     },
     {
       "id": "title-5f148dc6544c89ec",
-      "kind": "title",
+      "kind": "title_character",
       "name": "湊",
       "characters": [
         "柳ヶ瀬湊"
@@ -10975,11 +10986,12 @@
           ],
           "titleType": "人物图层"
         }
-      ]
+      ],
+      "collection": "characters"
     },
     {
       "id": "title-1bd3ae1c5d29c234",
-      "kind": "title",
+      "kind": "title_character",
       "name": "瑞穂",
       "characters": [
         "花之宮瑞穂"
@@ -11015,7 +11027,8 @@
           ],
           "titleType": "人物图层"
         }
-      ]
+      ],
+      "collection": "characters"
     },
     {
       "id": "title-06b30ea76f248d4c",
@@ -11055,11 +11068,12 @@
           ],
           "titleType": "日文Logo"
         }
-      ]
+      ],
+      "collection": "characters"
     },
     {
       "id": "title-1f45f476222a5ac4",
-      "kind": "title",
+      "kind": "title_background",
       "name": "back",
       "characters": [
         "作品素材"
@@ -11093,11 +11107,12 @@
           ],
           "titleType": "标题背景"
         }
-      ]
+      ],
+      "collection": "backgrounds"
     },
     {
       "id": "title-b4e7e1d30e6dd2e8",
-      "kind": "title",
+      "kind": "title_background",
       "name": "Back",
       "characters": [
         "作品素材"
@@ -11120,11 +11135,12 @@
           ],
           "titleType": "标题背景"
         }
-      ]
+      ],
+      "collection": "backgrounds"
     },
     {
       "id": "title-398cad09fce7e44c",
-      "kind": "title",
+      "kind": "title_background",
       "name": "back",
       "characters": [
         "作品素材"
@@ -11147,7 +11163,8 @@
           ],
           "titleType": "标题背景"
         }
-      ]
+      ],
+      "collection": "backgrounds"
     },
     {
       "id": "title-5f8c36d557b9f9f5",
@@ -11174,11 +11191,12 @@
           ],
           "titleType": "日文Logo"
         }
-      ]
+      ],
+      "collection": "characters"
     },
     {
       "id": "title-a9e9b1370deba931",
-      "kind": "title",
+      "kind": "title_background",
       "name": "Back",
       "characters": [
         "作品素材"
@@ -11216,11 +11234,12 @@
           ],
           "titleType": "标题背景"
         }
-      ]
+      ],
+      "collection": "backgrounds"
     },
     {
       "id": "title-4b046e95539f3a29",
-      "kind": "title",
+      "kind": "title_character",
       "name": "Chara_Front",
       "characters": [
         "ルナ",
@@ -11257,11 +11276,12 @@
           ],
           "titleType": "人物图层"
         }
-      ]
+      ],
+      "collection": "characters"
     },
     {
       "id": "title-c871e9c212259fdf",
-      "kind": "title",
+      "kind": "title_background",
       "name": "night",
       "characters": [
         "作品素材"
@@ -11299,7 +11319,8 @@
           ],
           "titleType": "标题图层"
         }
-      ]
+      ],
+      "collection": "backgrounds"
     },
     {
       "id": "title-10bee0aaacd1b0a0",
@@ -11448,7 +11469,8 @@
           ],
           "titleType": "日文Logo"
         }
-      ]
+      ],
+      "collection": "characters"
     },
     {
       "id": "title-5e1e18e4c6e4d0d9",
@@ -11475,7 +11497,8 @@
           ],
           "titleType": "日文Logo"
         }
-      ]
+      ],
+      "collection": "characters"
     },
     {
       "id": "title-dfed9452407b57db",
@@ -11503,11 +11526,12 @@
           ],
           "titleType": "日文Logo"
         }
-      ]
+      ],
+      "collection": "characters"
     },
     {
       "id": "title-b22655287e20e827",
-      "kind": "title",
+      "kind": "title_background",
       "name": "back",
       "characters": [
         "作品素材"
@@ -11530,11 +11554,12 @@
           ],
           "titleType": "标题背景"
         }
-      ]
+      ],
+      "collection": "backgrounds"
     },
     {
       "id": "title-6c1a0889f61b50ee",
-      "kind": "title",
+      "kind": "title_character",
       "name": "chara",
       "characters": [
         "ルナ",
@@ -11559,7 +11584,8 @@
           ],
           "titleType": "人物图层"
         }
-      ]
+      ],
+      "collection": "characters"
     },
     {
       "id": "title-851305036e6ec7a6",
@@ -11601,11 +11627,12 @@
           ],
           "titleType": "日文Logo"
         }
-      ]
+      ],
+      "collection": "characters"
     },
     {
       "id": "title-7bebc6c4aae370cd",
-      "kind": "title",
+      "kind": "title_character",
       "name": "atr",
       "characters": [
         "桜小路アトレ"
@@ -11641,11 +11668,12 @@
           ],
           "titleType": "人物图层"
         }
-      ]
+      ],
+      "collection": "characters"
     },
     {
       "id": "title-8d509bf9c42428b2",
-      "kind": "title",
+      "kind": "title_background",
       "name": "back",
       "characters": [
         "作品素材"
@@ -11668,11 +11696,12 @@
           ],
           "titleType": "标题背景"
         }
-      ]
+      ],
+      "collection": "backgrounds"
     },
     {
       "id": "title-4bfbbc46a373613e",
-      "kind": "title",
+      "kind": "title_background",
       "name": "back",
       "characters": [
         "作品素材"
@@ -11695,11 +11724,12 @@
           ],
           "titleType": "标题背景"
         }
-      ]
+      ],
+      "collection": "backgrounds"
     },
     {
       "id": "title-f871f516563c0295",
-      "kind": "title",
+      "kind": "title_background",
       "name": "back",
       "characters": [
         "作品素材"
@@ -11737,11 +11767,12 @@
           ],
           "titleType": "标题背景"
         }
-      ]
+      ],
+      "collection": "backgrounds"
     },
     {
       "id": "title-b0d5b8c8496f4425",
-      "kind": "title",
+      "kind": "title_character",
       "name": "ext",
       "characters": [
         "桜小路アトレ",
@@ -11781,11 +11812,12 @@
           ],
           "titleType": "人物图层"
         }
-      ]
+      ],
+      "collection": "characters"
     },
     {
       "id": "title-53498e116f738e55",
-      "kind": "title",
+      "kind": "title_character",
       "name": "lum",
       "characters": [
         "大蔵ルミネ"
@@ -11821,11 +11853,12 @@
           ],
           "titleType": "人物图层"
         }
-      ]
+      ],
+      "collection": "characters"
     },
     {
       "id": "title-1d0917fcc2be9b4c",
-      "kind": "title",
+      "kind": "title_character",
       "name": "normal",
       "characters": [
         "桜小路アトレ",
@@ -11865,11 +11898,12 @@
           ],
           "titleType": "人物图层"
         }
-      ]
+      ],
+      "collection": "characters"
     },
     {
       "id": "title-646f56e4edd86ad8",
-      "kind": "title",
+      "kind": "title_character",
       "name": "sak",
       "characters": [
         "八日堂朔莉"
@@ -11905,7 +11939,8 @@
           ],
           "titleType": "人物图层"
         }
-      ]
+      ],
+      "collection": "characters"
     },
     {
       "id": "title-ac3350eecf313f00",
@@ -11945,7 +11980,8 @@
           ],
           "titleType": "日文Logo"
         }
-      ]
+      ],
+      "collection": "characters"
     }
   ]
 }

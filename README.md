@@ -9,11 +9,11 @@
 - 可分享筛选结果和单张图片的链接；手机与电脑均可使用。
 - 网页使用透明 WebP 预览。原尺寸 PNG 按「角色 → 版本 → 服装」细分为 [195 个下载包](https://github.com/zhenbai012-rgb/otome-sprite-search/releases/tag/sprites-costumes-v1)，同款服装的姿态和表情差分放在一起。角色目录可逐包选择；单张预览直接链接到对应服装包。
 - 官方图片保留原始文件，并附来源页和官方图片地址；组合图单独标注。
-- 角色检索同时收录 481 张经核对的普通剧情 CG、34 张日文标题 / Logo / 人物图层。CG 按路线角色整理；露骨成人 CG 与无法确认的亲密场景不收录。
-- 新增作品、类型与画幅筛选。角色、版本、作品与背景场景使用中文显示，原始日文名称保留为搜索别名或来源信息。
+- 角色检索按游戏立绘、剧情 CG、日文标题 / Logo、标题人物图层及官方素材分类，同时收录 481 张经核对的普通剧情 CG、12 张日文标题 / Logo 和 11 张标题人物图层。CG 按路线角色整理；露骨成人 CG 与无法确认的亲密场景不收录。
+- 新增作品、类型与画幅筛选。服装选项随角色和作品联动；服装与镜头始终可选，在 CG / 标题模式选用时自动切换到游戏立绘。角色、版本、作品与背景场景使用中文显示，原始日文名称保留为搜索别名或来源信息。
 - CG 与标题图片均保留完整原始画布。CG 按场景细分为 207 个包，六部作品各有一个标题资源包（合计 213 包），同时提供单张原尺寸 PNG。标题包包含全部 123 张原始组成图层；部分标题由多层动画构成，按原图层导出。
-- [背景图库](https://zhenbai012-rgb.github.io/otome-sprite-search/backgrounds/)收录 641 张独立图片，包含 591 张场景 / 大幅背景。可按作品、类别与场景代码搜索。
-- 背景按「作品 → 类别 → 场景」细分为 453 个包；较大的场景继续分为不超过 32 MiB 的小包。浏览器读取所选原图后生成 ZIP，包含清单与原尺寸 PNG，也可单张下载。
+- [背景图库](https://zhenbai012-rgb.github.io/otome-sprite-search/backgrounds/)收录 652 张独立图片，包含 591 张场景 / 大幅背景和 11 张标题背景。标题背景从角色检索移到此处，保留完整原图与透明图层。可按作品、类别与场景代码搜索。
+- 背景按「作品 → 类别 → 场景」细分为 459 个包（包括 6 个标题背景包）；较大的场景继续分为不超过 32 MiB 的小包。浏览器读取所选原图后生成 ZIP，包含清单与原尺寸 PNG，也可单张下载。
 
 ## 本地运行
 
@@ -37,6 +37,8 @@ dist/                   可直接发布的静态网站
   game-data.js           游戏立绘索引
   cg-data.js             CG、日文标题与场景分包索引
   artwork-downloads.js   原尺寸 PNG 与场景 ZIP 下载
+  gallery-nav.css        页面中间的固定图库切换
+  backgrounds/title-data.js  标题背景与按作品分包索引
   assets/               透明网页预览与缩略图
   data/sources.json     官方来源清单
   data/downloads.json   原图包链接与 SHA-256
@@ -66,6 +68,8 @@ node --check dist/artwork-downloads.js
 `scripts/build-catalog.py --help` 说明如何从外部索引与图片映射更新公共目录。修改索引后也应更新 `dist/data/downloads.json` 中的原图包校验信息。
 
 `scripts/update-costume-packs.py costume-packs.json` 可将 Release 的公共分包清单同步到网页，并核对所有立绘恰好归入一个服装包。此前的整角色下载包保留在 `originals-v1` Release。
+
+`python scripts/classify-title-assets.py` 按素材类别生成标题背景索引，不复制原图；修改后运行 `python scripts/stamp-assets.py` 更新入口页的缓存版本。
 
 ## 来源与许可
 

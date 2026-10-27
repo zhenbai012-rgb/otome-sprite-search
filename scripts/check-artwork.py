@@ -32,7 +32,7 @@ def main():
     payload=load(SITE/'cg-data.js')
     images=payload['images']
     assert len({r['id'] for r in images})==len(images)
-    assert collections.Counter(r['kind'] for r in images)=={'cg':481,'title':34}
+    assert collections.Counter(r['kind'] for r in images)=={'cg':481,'title':12,'title_character':11,'title_background':11}
     assert len(payload['originals'])==604
     originals={r['file']:r for r in payload['originals']}
     expected=set()
@@ -81,9 +81,35 @@ def main():
     assert all(not jp.search(w['label']) for w in catalog['works'])
     background=load(SITE/'backgrounds/catalog.js')
     assert all(not jp.search(label) for label in background['labels']['scenes'].values())
-    assert catalog['stats']['cgImages']==481 and catalog['stats']['titleImages']==34
+    assert catalog['stats']['cgImages']==481 and catalog['stats']['titleImages']==12
+    assert catalog['stats']['titleCharacterImages']==11 and catalog['stats']['titleBackgroundImages']==11
+    titles=load(SITE/'backgrounds/title-data.js')
+    moved={r['id']:r for r in images if r['kind']=='title_background'}
+    assert {r['id'] for r in titles['images']}==set(moved) and len(titles['packs'])==6
+    expected=collections.Counter()
+    for r in titles['images']:
+        source=moved[r['id']]
+        assert source['collection']=='backgrounds' and source['titleType'] in ('标题背景','标题图层')
+        assert r['originalCollection']=='cg' and r['kinds']==['title']
+        for key in ('file','thumb','width','height','original','originalSha256','originalBytes'):
+            assert r[key]==source[key]
+        for p in r['placements']:
+            safe(p['file']);assert p['game'] in works and p['category']==titles['kinds']['title']
+            expected[(p['game'],r['id'],p['file'].split('/')[-1])]+=1
+    covered=collections.Counter()
+    for pack in titles['packs']:
+        safe(pack['filename']);assert pack['game'] in works
+        assert pack['count']==len(pack['files']) and pack['bytes']==sum(f['bytes'] for f in pack['files'])<=32*1024*1024
+        for f in pack['files']:
+            safe(f['name']);assert f['originalCollection']=='cg'
+            source=moved[f['image']]
+            assert (f['original'],f['bytes'],f['sha256'])==(source['original'],source['originalBytes'],source['originalSha256'])
+            covered[(pack['game'],f['image'],f['name'])]+=1
+    assert covered==expected
+    assert all(r.get('titleType')=='人物图层' for r in images if r['kind']=='title_character')
+    assert all(r.get('titleType') in ('日文Logo','标题画面') for r in images if r['kind']=='title')
     assert catalog['cg']['script'].split('?')[0]=='cg-data.js'
     assert catalog['cg']['assetBase']=='https://raw.githubusercontent.com/zhenbai012-rgb/otome-sprite-search/main/'
-    print(json.dumps({'status':'passed','cg':481,'titles':34,'originals':len(originals),'packs':len(payload['packs']),'lunaFullCanvas':'1280x1440 x3','previewAspectRatios':'passed','chineseOptionLabels':'passed'}))
+    print(json.dumps({'status':'passed','cg':481,'titles':12,'titleCharacters':11,'titleBackgrounds':11,'titleBackgroundPacks':6,'originals':len(originals),'packs':len(payload['packs']),'lunaFullCanvas':'1280x1440 x3','previewAspectRatios':'passed','chineseOptionLabels':'passed'}))
 
 if __name__=='__main__':main()
