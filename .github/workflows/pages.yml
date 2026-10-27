@@ -22,7 +22,9 @@ jobs:
         run: |
           python3 scripts/check-site.py
           python3 scripts/check-backgrounds.py
+          python3 scripts/check-artwork.py
           node --check dist/app.js
+          node --check dist/artwork-downloads.js
           node --check dist/backgrounds/app.js
           node --check dist/backgrounds/zip-store.js
       - uses: actions/configure-pages@v5

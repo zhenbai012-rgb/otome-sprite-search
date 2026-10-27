@@ -13,7 +13,8 @@
       "size": 6413092,
       "sha256": "fc65ad396ebd81f4a1b4057a4684dc16447bfab52ca68d9cb06a30ede4b869f8",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-7f1f890f40df43fe.zip",
-      "display": "アルタ"
+      "display": "阿尔塔",
+      "variantLabel": "阿尔塔"
     },
     {
       "character": "アルタ",
@@ -25,7 +26,8 @@
       "size": 5032991,
       "sha256": "2542e25051b4f6efb8e98317fbcb0b92013ed058599d8bf2d86b8e52eccbb7ae",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-0c6f9255dc3eda20.zip",
-      "display": "アルタ"
+      "display": "阿尔塔",
+      "variantLabel": "阿尔塔"
     },
     {
       "character": "アンソニー",
@@ -37,7 +39,8 @@
       "size": 19992403,
       "sha256": "c760ca1fd4a0eb64013ecc952dea884b30e671a65bdf09b23750c81c9c75cdb4",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-5f42ed244bf9c4f6.zip",
-      "display": "アンソニー"
+      "display": "安东尼",
+      "variantLabel": "安东尼"
     },
     {
       "character": "アンソニー",
@@ -49,7 +52,8 @@
       "size": 1342093,
       "sha256": "7d128570d2ed53bc25967225dd6e3579b96fd938a151cc8b3aa33755720f5892",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-b2c652fddc2f6bea.zip",
-      "display": "アンソニー"
+      "display": "安东尼",
+      "variantLabel": "安东尼"
     },
     {
       "character": "アンソニー",
@@ -61,7 +65,8 @@
       "size": 2639184,
       "sha256": "470ae7d77cc8b20f7d95a620b7b976a22df793873a22f48974639b75811363b8",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-8549ff876bc67e3c.zip",
-      "display": "アンソニー"
+      "display": "安东尼",
+      "variantLabel": "安东尼（过去）"
     },
     {
       "character": "エスト",
@@ -73,7 +78,8 @@
       "size": 50464192,
       "sha256": "8186d71b56a45129ac23ba9d6c78e62cd729fb10418db06967533ea0778a8815",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-0e4d28941b8f69a6.zip",
-      "display": "艾斯特"
+      "display": "艾斯特",
+      "variantLabel": "艾斯特"
     },
     {
       "character": "エスト",
@@ -85,7 +91,8 @@
       "size": 50525109,
       "sha256": "e25dcefb45be2b48665ca66b4a7c1772cd2e2ba9525f3177bd1a5c918931e0d1",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-bd64f530d761a878.zip",
-      "display": "艾斯特"
+      "display": "艾斯特",
+      "variantLabel": "艾斯特"
     },
     {
       "character": "エスト",
@@ -97,7 +104,8 @@
       "size": 51338956,
       "sha256": "9a885f937790777db7f916de6a9aafba315b73531be867a18763e8fa423c2e87",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-55f32ca5d1234c88.zip",
-      "display": "艾斯特"
+      "display": "艾斯特",
+      "variantLabel": "艾斯特"
     },
     {
       "character": "エスト",
@@ -109,7 +117,8 @@
       "size": 48774667,
       "sha256": "23a1abf83c569e50f63dc20a9f0cbe10f24e78d5544388cd238ee4052b723fac",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-ac81400a548c7a63.zip",
-      "display": "艾斯特"
+      "display": "艾斯特",
+      "variantLabel": "艾斯特"
     },
     {
       "character": "エスト",
@@ -121,7 +130,8 @@
       "size": 50399566,
       "sha256": "62cf2a9bef5d814189c8e283388577fc8c0043c397bfa39aabd0014ea3924142",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-fb1d9777c75a7585.zip",
-      "display": "艾斯特"
+      "display": "艾斯特",
+      "variantLabel": "艾斯特"
     },
     {
       "character": "エスト",
@@ -133,7 +143,8 @@
       "size": 41424676,
       "sha256": "5763521b410a62d9a6d3d5d767a3a3e65458a6bb6c4ca7248d5c301dc710d24d",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-b50af629ce4597bd.zip",
-      "display": "艾斯特"
+      "display": "艾斯特",
+      "variantLabel": "艾斯特"
     },
     {
       "character": "エスト",
@@ -145,7 +156,8 @@
       "size": 26429802,
       "sha256": "8d6e05ac41a9ec14ae11a5f2f90a4b20c84b24de44f599c95a401f6c56d02416",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-45ac96ad8fef5962.zip",
-      "display": "艾斯特"
+      "display": "艾斯特",
+      "variantLabel": "艾斯特"
     },
     {
       "character": "エッテ",
@@ -157,7 +169,8 @@
       "size": 17637550,
       "sha256": "de227ce623c7baa17885b2d246067ab09f23a032db21c79ede6581a6e108ac06",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-6031032e6d03dfc6.zip",
-      "display": "エッテ"
+      "display": "布琉艾特",
+      "variantLabel": "布琉艾特"
     },
     {
       "character": "エッテ",
@@ -169,7 +182,8 @@
       "size": 8586860,
       "sha256": "e2c94eb0b2a11d9f8af31a86f50192798748696c20e20c23d677e155cf9e07c6",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-c5efd04c9064a787.zip",
-      "display": "エッテ"
+      "display": "布琉艾特",
+      "variantLabel": "布琉艾特"
     },
     {
       "character": "エッテ",
@@ -181,7 +195,8 @@
       "size": 40414726,
       "sha256": "5d4ce81c1b7741fbb1e8750ff66039ef96be8689155a319a7957c743e9f00bcf",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-925793495b9a25e3.zip",
-      "display": "エッテ"
+      "display": "布琉艾特",
+      "variantLabel": "布琉艾特"
     },
     {
       "character": "エッテ",
@@ -193,7 +208,8 @@
       "size": 8827951,
       "sha256": "5b416ce79d54c62432c75f542b0207293b3d1019bfe353ad5334615592b94f8a",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-d05d38d6070c2c72.zip",
-      "display": "エッテ"
+      "display": "布琉艾特",
+      "variantLabel": "布琉艾特"
     },
     {
       "character": "エッテ",
@@ -205,7 +221,8 @@
       "size": 12839871,
       "sha256": "077abb08604a88615f810241e06f0322393035ec96a34c06fd799ffa750ac517",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-9d88f5badb1a5bc7.zip",
-      "display": "エッテ"
+      "display": "布琉艾特",
+      "variantLabel": "布琉艾特"
     },
     {
       "character": "エッテ",
@@ -217,7 +234,8 @@
       "size": 2977434,
       "sha256": "6b45f1b58f996e3f8434b2adde2c021d4f970ec8b38b691d550f1206c9921727",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-1d26a7d51b0c84fd.zip",
-      "display": "エッテ"
+      "display": "布琉艾特",
+      "variantLabel": "布琉艾特"
     },
     {
       "character": "エッテ",
@@ -229,7 +247,8 @@
       "size": 1136051,
       "sha256": "6e0e1df74ac161dea1034c8dbb2ca5cfb51e22d67142a1131116b1e11d083dd1",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-343d0e4ac79dab34.zip",
-      "display": "エッテ"
+      "display": "布琉艾特",
+      "variantLabel": "布琉艾特"
     },
     {
       "character": "カットイン",
@@ -241,7 +260,8 @@
       "size": 635487,
       "sha256": "30d9230e1b698486a755921a8a441babee0ca0c69595ab13153910bd4c1234e5",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-9e9e540047b0edf2.zip",
-      "display": "カットイン"
+      "display": "插入立绘",
+      "variantLabel": "插入立绘"
     },
     {
       "character": "カトリーヌ",
@@ -253,7 +273,8 @@
       "size": 3825377,
       "sha256": "b0eaedff8c8dc30650e63e36d39f105494cd3f69dff465d684c7c48c5e6c1efb",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-cc3ba80d00da5fb6.zip",
-      "display": "カトリーヌ"
+      "display": "卡特琳",
+      "variantLabel": "卡特琳"
     },
     {
       "character": "カトリーヌ",
@@ -265,7 +286,8 @@
       "size": 5574795,
       "sha256": "d4c206fad1d43d077fcc58db9062b9dcaca03232799499064e5d139953eda582",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-92c055855aa38ffc.zip",
-      "display": "カトリーヌ"
+      "display": "卡特琳",
+      "variantLabel": "卡特琳"
     },
     {
       "character": "カトリーヌ",
@@ -277,7 +299,8 @@
       "size": 3832490,
       "sha256": "c7849af0089380660131555945c4b284ea83439d51860d41693c20d4848b0fe0",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-d783f196c1985117.zip",
-      "display": "カトリーヌ"
+      "display": "卡特琳",
+      "variantLabel": "卡特琳"
     },
     {
       "character": "カリン",
@@ -289,7 +312,8 @@
       "size": 1698349,
       "sha256": "ea9d5d43d13c955075e63d1fcffa7b6f4c10084d3b2dd28e680f2e6081ab54bd",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-15374ec243cda68a.zip",
-      "display": "カリン"
+      "display": "卡琳",
+      "variantLabel": "卡琳"
     },
     {
       "character": "カリン",
@@ -301,7 +325,8 @@
       "size": 1356244,
       "sha256": "5affbcf1312727ae82c483b943ffc801a75e51e5a0b9addfc705abedf3aba24a",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-2805e937a65886a2.zip",
-      "display": "カリン"
+      "display": "卡琳",
+      "variantLabel": "卡琳"
     },
     {
       "character": "サーシャ",
@@ -313,7 +338,8 @@
       "size": 7263922,
       "sha256": "67239b576b039522a7e03872a44cf1cc62a0d6a979ce5137d13f78697b649e23",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-ea02dae0d9406cd2.zip",
-      "display": "サーシャ"
+      "display": "莎夏",
+      "variantLabel": "莎夏"
     },
     {
       "character": "サーシャ",
@@ -325,7 +351,8 @@
       "size": 7090858,
       "sha256": "3333669de9ecbf5bcaf0d85d239c1f7d838787377352bffecaf4d7f90e48639f",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-90a965ea8b60c53b.zip",
-      "display": "サーシャ"
+      "display": "莎夏",
+      "variantLabel": "莎夏"
     },
     {
       "character": "ジャスティーヌ",
@@ -337,7 +364,8 @@
       "size": 8969917,
       "sha256": "71edf886c0804dcc196a189426edcf842e991d2be826735a3bbe67cb06aa1475",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-0c36c75107ed64ad.zip",
-      "display": "ジャスティーヌ"
+      "display": "贾斯汀",
+      "variantLabel": "贾斯汀"
     },
     {
       "character": "ジャスティーヌ",
@@ -349,7 +377,8 @@
       "size": 5092359,
       "sha256": "f57bf618358cce59ecb3285e7c93e76d8a3ab849716033054f919a76bb4778b5",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-5f67c876ed25789f.zip",
-      "display": "ジャスティーヌ"
+      "display": "贾斯汀",
+      "variantLabel": "贾斯汀"
     },
     {
       "character": "ジャスティーヌ",
@@ -361,7 +390,8 @@
       "size": 4483622,
       "sha256": "2207239a2c73267d5500420fb797a2a59368b00cb88aec12095e06ead3570315",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-9b4ddf2f243d35a4.zip",
-      "display": "ジャスティーヌ"
+      "display": "贾斯汀",
+      "variantLabel": "贾斯汀"
     },
     {
       "character": "ジャスティーヌ",
@@ -373,7 +403,8 @@
       "size": 3665692,
       "sha256": "64a535a9b71e0f9092fdb23f6cc9013abaaa51757b343a802027093f141e56ed",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-cb5dfc58333e638a.zip",
-      "display": "ジャスティーヌ"
+      "display": "贾斯汀",
+      "variantLabel": "贾斯汀"
     },
     {
       "character": "スタンレー",
@@ -385,7 +416,8 @@
       "size": 8091075,
       "sha256": "b70a840cecfe6456b28aeb5a3959cc45fde38be38741e7eb537fb734f4a221c5",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-8883ee144bbaa280.zip",
-      "display": "スタンレー"
+      "display": "斯坦利",
+      "variantLabel": "斯坦利"
     },
     {
       "character": "スタンレー",
@@ -397,7 +429,8 @@
       "size": 9478445,
       "sha256": "ad83fbbc91fc512f12ee441dd65df2f6959bb4a48bd29a6cafae31707d40a852",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-b8318122d24bb660.zip",
-      "display": "スタンレー"
+      "display": "斯坦利",
+      "variantLabel": "斯坦利"
     },
     {
       "character": "スタンレー",
@@ -409,7 +442,8 @@
       "size": 7356364,
       "sha256": "aa2bea40580c1be7573a8cac7a0987ab934caae67af4c04047028d1f1f75bf59",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-97552ab51807da34.zip",
-      "display": "スタンレー"
+      "display": "斯坦利",
+      "variantLabel": "斯坦利（过去）"
     },
     {
       "character": "ディートリンデ",
@@ -421,7 +455,8 @@
       "size": 9088969,
       "sha256": "2149ffe172580e52bc329bb6f657bc7e7d0201cbf00ac82a2c8d64b67d97f18a",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-9475e18c4b7c5fc7.zip",
-      "display": "ディートリンデ"
+      "display": "迪特琳德",
+      "variantLabel": "迪特琳德"
     },
     {
       "character": "ディートリンデ",
@@ -433,7 +468,8 @@
       "size": 8195598,
       "sha256": "9d7630863120f65550d8b40fd01726336e0d526fb60af0238ee4a1d5115737de",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-ada10333bd919b88.zip",
-      "display": "ディートリンデ"
+      "display": "迪特琳德",
+      "variantLabel": "迪特琳德"
     },
     {
       "character": "ディートリンデ",
@@ -445,7 +481,8 @@
       "size": 4101614,
       "sha256": "add46bce768f544d5973e79291705934884f8e71b38d57556db7fb0e3ebbb24b",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-4071a3b7723a9818.zip",
-      "display": "ディートリンデ"
+      "display": "迪特琳德",
+      "variantLabel": "迪特琳德"
     },
     {
       "character": "ディートリンデ",
@@ -457,7 +494,8 @@
       "size": 6377513,
       "sha256": "5fb468b843f42537f4220a121a0c85682b21dfbd26b8cfece65ba9ec8048c06c",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-bd9aa5045ff7f691.zip",
-      "display": "ディートリンデ"
+      "display": "迪特琳德",
+      "variantLabel": "迪特琳德"
     },
     {
       "character": "ディートリンデ",
@@ -469,7 +507,8 @@
       "size": 7194853,
       "sha256": "0ff50f8f864285bb25e538908e91802f49e090a5cc59e27500c3e49d50bc6423",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-089fdc0fd52197c2.zip",
-      "display": "ディートリンデ"
+      "display": "迪特琳德",
+      "variantLabel": "迪特琳德"
     },
     {
       "character": "メリル",
@@ -481,7 +520,8 @@
       "size": 11186753,
       "sha256": "a64357a891c31bad1d24948cfce6d4523d3535e8a0b56257d39abb4fa401958d",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-360cb14c2295f789.zip",
-      "display": "メリル"
+      "display": "梅丽尔",
+      "variantLabel": "梅丽尔"
     },
     {
       "character": "メリル",
@@ -493,7 +533,8 @@
       "size": 10338698,
       "sha256": "16342a795ac6e5040b796a59e5b51a8f84ad122288e0448c46916c354316fdd7",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-47baccd07ee18af6.zip",
-      "display": "メリル"
+      "display": "梅丽尔",
+      "variantLabel": "梅丽尔"
     },
     {
       "character": "メリル",
@@ -505,7 +546,8 @@
       "size": 27062917,
       "sha256": "14e069fc42358f7a18f1900be594968973b41cbed93708d6cb6fc28ffb98b5ce",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-aae2ccdbfcb15bb9.zip",
-      "display": "メリル"
+      "display": "梅丽尔",
+      "variantLabel": "梅丽尔"
     },
     {
       "character": "メリル",
@@ -517,7 +559,8 @@
       "size": 6756839,
       "sha256": "47fd337c213db60ca0ed38d3a5dadcf73e91f9f076da8cf70f58dd18ee643390",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-18655ff43d190e85.zip",
-      "display": "メリル"
+      "display": "梅丽尔",
+      "variantLabel": "梅丽尔"
     },
     {
       "character": "メリル",
@@ -529,7 +572,8 @@
       "size": 7137035,
       "sha256": "fb2524495368f635487faf60a42eeeae57c51abb9ae598418965749231218d22",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-ed8df0ebecd3ba10.zip",
-      "display": "メリル"
+      "display": "梅丽尔",
+      "variantLabel": "梅丽尔"
     },
     {
       "character": "メリル",
@@ -541,7 +585,8 @@
       "size": 13595955,
       "sha256": "3e6cc55ea954c8600c6ff8923ce1bd1966b7d05ed593bfd3112dec02820df3a6",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-68e67017a8cc8207.zip",
-      "display": "メリル"
+      "display": "梅丽尔",
+      "variantLabel": "梅丽尔"
     },
     {
       "character": "メリル",
@@ -553,7 +598,8 @@
       "size": 2616758,
       "sha256": "8f087c1724b622ac2a101744123f743453b2acece7072586bc5fb1271c87c82a",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-041911ab0bb8ab0c.zip",
-      "display": "メリル"
+      "display": "梅丽尔",
+      "variantLabel": "梅丽尔"
     },
     {
       "character": "ユルシュール",
@@ -565,7 +611,8 @@
       "size": 44278506,
       "sha256": "d0bdae5b6858d5f3a8722d9357062ca6aefff8929b1105aa4b26c83531dab7d8",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-457b94a3e741de16.zip",
-      "display": "尤希尔"
+      "display": "尤希尔",
+      "variantLabel": "尤希尔"
     },
     {
       "character": "ユルシュール",
@@ -577,7 +624,8 @@
       "size": 31410467,
       "sha256": "c51e37cd975185a2e7a5ee088c3b6b5b2f85eef8b23f235de538bec587957545",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-4259664a5a8b9ca5.zip",
-      "display": "尤希尔"
+      "display": "尤希尔",
+      "variantLabel": "尤希尔"
     },
     {
       "character": "ユルシュール",
@@ -589,7 +637,8 @@
       "size": 34829176,
       "sha256": "ebbc513b1515e797a18adbcd7d2685f62e60ff8f4ccf087f2e714016f02f5490",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-fb3c4a2ed08ddc7c.zip",
-      "display": "尤希尔"
+      "display": "尤希尔",
+      "variantLabel": "尤希尔"
     },
     {
       "character": "ユルシュール",
@@ -601,7 +650,8 @@
       "size": 45700382,
       "sha256": "8abb21f1cb6cf26a8116702aefbd900455421cf6ac739d159628ac778fd0714d",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-42b4b9c3066664e4.zip",
-      "display": "尤希尔"
+      "display": "尤希尔",
+      "variantLabel": "尤希尔"
     },
     {
       "character": "ユルシュール",
@@ -613,7 +663,8 @@
       "size": 6638250,
       "sha256": "a52a8a6fd194830958f130b1f1340605a8528a3df67499afcfaba70746da04e7",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-9d4383d01bc13921.zip",
-      "display": "尤希尔"
+      "display": "尤希尔",
+      "variantLabel": "尤希尔"
     },
     {
       "character": "ユルシュール",
@@ -625,7 +676,8 @@
       "size": 48331885,
       "sha256": "de0ef9bd959d3c9ac30eda6b7bde69006146e9664b8d24203862d7140a0e12d2",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-851c38fd2c1ea485.zip",
-      "display": "尤希尔"
+      "display": "尤希尔",
+      "variantLabel": "尤希尔"
     },
     {
       "character": "ユルシュール",
@@ -637,7 +689,8 @@
       "size": 5268250,
       "sha256": "1653e6094487c6bc78ff75f99f8d0fb23cc14857c685d16079452b215af4e0d3",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-025c8528eb7c0eab.zip",
-      "display": "尤希尔"
+      "display": "尤希尔",
+      "variantLabel": "尤希尔"
     },
     {
       "character": "ラフォーレ",
@@ -649,7 +702,8 @@
       "size": 10125657,
       "sha256": "402cb0d7c8eac42d3c93d41da92addf719eed2d393751223710aa1cc749e0767",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-9543cb0036ed6847.zip",
-      "display": "ラフォーレ"
+      "display": "拉福雷",
+      "variantLabel": "拉福雷"
     },
     {
       "character": "ラフォーレ",
@@ -661,7 +715,8 @@
       "size": 9682810,
       "sha256": "1d26e78e53a74ad3a88946f012f61a46e3c1468dd58ba3e69df3c46691df2d27",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-25f0ff9a4281d6ae.zip",
-      "display": "ラフォーレ"
+      "display": "拉福雷",
+      "variantLabel": "拉福雷（过去）"
     },
     {
       "character": "リリアーヌ",
@@ -673,7 +728,8 @@
       "size": 29587187,
       "sha256": "0ae2ded216fcbb6b7317195967934984377753ed14ce1fc0bd7b97bdfe12029c",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-c26ae505ad25234f.zip",
-      "display": "リリアーヌ"
+      "display": "莉莉安",
+      "variantLabel": "莉莉安"
     },
     {
       "character": "リリアーヌ",
@@ -685,7 +741,8 @@
       "size": 3431595,
       "sha256": "a033d9b13247049153a19f5b2b41782d4e78bf9872900da253d00e8e5520196d",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-092a8aa6235c97c8.zip",
-      "display": "リリアーヌ"
+      "display": "莉莉安",
+      "variantLabel": "莉莉安"
     },
     {
       "character": "リリアーヌ",
@@ -697,7 +754,8 @@
       "size": 3490041,
       "sha256": "7bd612006190dd5f63253e3bc92812bd23a5da9041ffdcc0cab3f837fd1a733d",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-4ca749c02ac10e82.zip",
-      "display": "リリアーヌ"
+      "display": "莉莉安",
+      "variantLabel": "莉莉安"
     },
     {
       "character": "リリアーヌ",
@@ -709,7 +767,8 @@
       "size": 2494045,
       "sha256": "f85eaef5e0c4bf79b0bac0777d107482a23afd45cb39e526102bfe21b42da4ff",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-3ce09c201ab037ad.zip",
-      "display": "リリアーヌ"
+      "display": "莉莉安",
+      "variantLabel": "莉莉安"
     },
     {
       "character": "リリアーヌ",
@@ -721,7 +780,8 @@
       "size": 1878726,
       "sha256": "85fd022ad5c03f946864ed737ed69ab60d549a94b2a11c7fe64bd758984e60f5",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-0a17edd9e358d685.zip",
-      "display": "リリアーヌ"
+      "display": "莉莉安",
+      "variantLabel": "莉莉安"
     },
     {
       "character": "リリアーヌ",
@@ -733,7 +793,8 @@
       "size": 16278842,
       "sha256": "26b251735924943c96b8000409005101d39957a8b0481fc09b7b11eb8073a881",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-98e54b015667e810.zip",
-      "display": "リリアーヌ"
+      "display": "莉莉安",
+      "variantLabel": "莉莉安"
     },
     {
       "character": "ルナ",
@@ -745,7 +806,8 @@
       "size": 43599796,
       "sha256": "a668c6e6c97f0c3de615347cd612a3fa15ddf4e05a93cfa4ae64416156ecd377",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-baa70bf134f7c597.zip",
-      "display": "樱小路露娜"
+      "display": "樱小路露娜",
+      "variantLabel": "樱小路露娜"
     },
     {
       "character": "ルナ",
@@ -757,7 +819,8 @@
       "size": 24232419,
       "sha256": "0b2c42a4ca09d1f78bef3bf66e4592224745b634c090f94f2e88531a7edc638a",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-2d38e8a93b1a2f4b.zip",
-      "display": "樱小路露娜"
+      "display": "樱小路露娜",
+      "variantLabel": "樱小路露娜"
     },
     {
       "character": "ルナ",
@@ -769,7 +832,8 @@
       "size": 39467806,
       "sha256": "ee325356c61d6392c464777371d573e44af577c98947cd7fe00cf4e92cf023f6",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-c2e39a8710d5c56f.zip",
-      "display": "樱小路露娜"
+      "display": "樱小路露娜",
+      "variantLabel": "樱小路露娜"
     },
     {
       "character": "ルナ",
@@ -781,7 +845,8 @@
       "size": 25172795,
       "sha256": "a2dcf226905a214ec495d24684571ca5091fc6aac168a9fd1182d1ff8dbfe6a5",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-670d21bdafc98110.zip",
-      "display": "樱小路露娜"
+      "display": "樱小路露娜",
+      "variantLabel": "樱小路露娜"
     },
     {
       "character": "ルナ",
@@ -793,7 +858,8 @@
       "size": 5368127,
       "sha256": "99f30819b6b80025704ddf38314df2a07841e5b4b1c50db369a16ff646e3fafc",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-43647e9c5f03c61a.zip",
-      "display": "樱小路露娜"
+      "display": "樱小路露娜",
+      "variantLabel": "樱小路露娜"
     },
     {
       "character": "ルナ",
@@ -805,7 +871,8 @@
       "size": 40617266,
       "sha256": "e8be07e9fcdf1f8035e9d04da41a5c1076648eaa1d574482d93964b1a5242a14",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-4557bd87f5cc043f.zip",
-      "display": "樱小路露娜"
+      "display": "樱小路露娜",
+      "variantLabel": "樱小路露娜"
     },
     {
       "character": "ルナ",
@@ -817,7 +884,8 @@
       "size": 6377150,
       "sha256": "e06c11326410f6bd89bedf45970cd77d0076fbe622f461ddccd7c2354b38ecdb",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-37c55c84af998a90.zip",
-      "display": "樱小路露娜"
+      "display": "樱小路露娜",
+      "variantLabel": "樱小路露娜"
     },
     {
       "character": "ヴァレリア",
@@ -829,7 +897,8 @@
       "size": 8222358,
       "sha256": "079c98a43210c943fbd9e58b49b3d148ceb859f021fc3b47109cbffc55ac857b",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-fe9461c897c5e518.zip",
-      "display": "ヴァレリア"
+      "display": "瓦蕾莉亚",
+      "variantLabel": "瓦蕾莉亚"
     },
     {
       "character": "ヴァレリア",
@@ -841,7 +910,8 @@
       "size": 4643105,
       "sha256": "2123856b7911f91978f3bcac1244c41fb3c2abcb796b02cd0dca9d4b3bec780a",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-a8b9d5017b1633a1.zip",
-      "display": "ヴァレリア"
+      "display": "瓦蕾莉亚",
+      "variantLabel": "瓦蕾莉亚"
     },
     {
       "character": "ヴァレリア",
@@ -853,7 +923,8 @@
       "size": 5736038,
       "sha256": "23bb2deb22ed6b1e1efe9ebdff3d0f08384e811f0be111a74add011be12d7de9",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-d3172d43bb60351a.zip",
-      "display": "ヴァレリア"
+      "display": "瓦蕾莉亚",
+      "variantLabel": "瓦蕾莉亚"
     },
     {
       "character": "一丸弓",
@@ -865,7 +936,8 @@
       "size": 7271599,
       "sha256": "a97d826be9ba3378c1fce23d52f42a033ef31b5563e8cbdf182d421f82de944f",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-37551a69ab51bdde.zip",
-      "display": "一丸弓"
+      "display": "一丸弓",
+      "variantLabel": "一丸弓"
     },
     {
       "character": "一丸弓",
@@ -877,7 +949,8 @@
       "size": 4080218,
       "sha256": "8d41fd3f74ef0298c9936d6f7d508c4eb190828e6523534d805dc251ac0faea0",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-ccf9c824cf073764.zip",
-      "display": "一丸弓"
+      "display": "一丸弓",
+      "variantLabel": "一丸弓"
     },
     {
       "character": "一丸弓",
@@ -889,7 +962,8 @@
       "size": 2685606,
       "sha256": "6f34079fbd19d5bbbc322d2d24e1601cba2f1413f164b2dae6287242ec88926b",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-64cbb13d92573c97.zip",
-      "display": "一丸弓"
+      "display": "一丸弓",
+      "variantLabel": "一丸弓"
     },
     {
       "character": "一丸弓",
@@ -901,7 +975,8 @@
       "size": 3318175,
       "sha256": "a828f2ba74d404f29c78cd360816df2824fed31ba135fdc08e045e73946e359e",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-2d4f224ea893fbec.zip",
-      "display": "一丸弓"
+      "display": "一丸弓",
+      "variantLabel": "一丸弓"
     },
     {
       "character": "一丸弓",
@@ -913,7 +988,8 @@
       "size": 3557066,
       "sha256": "bb4003deaac903d4c72065f1aabb8d2ec306b89efe68aec29fbd16d99719fb67",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-f5a075d708bf6c4b.zip",
-      "display": "一丸弓"
+      "display": "一丸弓",
+      "variantLabel": "一丸弓"
     },
     {
       "character": "伊代",
@@ -925,7 +1001,8 @@
       "size": 12427182,
       "sha256": "ee941b0c1b84d062fbf0d94d1bc42f80b593f20e8fe4348096c5eba0a78776ac",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-5839026dcfdbfcc5.zip",
-      "display": "伊代"
+      "display": "八十岛壹与",
+      "variantLabel": "八十岛壹与"
     },
     {
       "character": "八日堂朔莉",
@@ -937,7 +1014,8 @@
       "size": 48405080,
       "sha256": "ef305a0c10f3b0db4d021d0fcfa21b5b5d197b1ecf0c66931daf7a8bb1252aef",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-6ff67d2ed38788ba.zip",
-      "display": "八日堂朔莉"
+      "display": "八日堂朔莉",
+      "variantLabel": "八日堂朔莉"
     },
     {
       "character": "八日堂朔莉",
@@ -949,7 +1027,8 @@
       "size": 48322314,
       "sha256": "d2184aee5d363b67c2214fc2cb90b88790c951ea783c980b602cdf2cbcb24058",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-b0365110a445fd56.zip",
-      "display": "八日堂朔莉"
+      "display": "八日堂朔莉",
+      "variantLabel": "八日堂朔莉"
     },
     {
       "character": "八日堂朔莉",
@@ -961,7 +1040,8 @@
       "size": 47344231,
       "sha256": "0b87d6dd408911dc919122ae888af19f63c35be6e09ba9149d48cee7856d0c5c",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-ae08dd6dbf98a5b4.zip",
-      "display": "八日堂朔莉"
+      "display": "八日堂朔莉",
+      "variantLabel": "八日堂朔莉"
     },
     {
       "character": "八日堂朔莉",
@@ -973,7 +1053,8 @@
       "size": 47570713,
       "sha256": "67a9db9fa3feb25f9e82fb67fc160824a97aef0ff9e1e29c7b951d83851b8b93",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-9aaa7aea688ab4c9.zip",
-      "display": "八日堂朔莉"
+      "display": "八日堂朔莉",
+      "variantLabel": "八日堂朔莉"
     },
     {
       "character": "八日堂朔莉",
@@ -985,7 +1066,8 @@
       "size": 45741479,
       "sha256": "1141ada8557dd7545eba19e27be9094379665504c5628a990994b7e28fc3cc6a",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-01cf72234aed31e7.zip",
-      "display": "八日堂朔莉"
+      "display": "八日堂朔莉",
+      "variantLabel": "八日堂朔莉"
     },
     {
       "character": "八日堂朔莉",
@@ -997,7 +1079,8 @@
       "size": 42569207,
       "sha256": "188f7ef1f7846ba56cf4773b9fe0bf83d847bdaa7e7fe886a74d65e5e8dfaf9b",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-03563f10f555f006.zip",
-      "display": "八日堂朔莉"
+      "display": "八日堂朔莉",
+      "variantLabel": "八日堂朔莉"
     },
     {
       "character": "八日堂朔莉",
@@ -1009,7 +1092,8 @@
       "size": 22551224,
       "sha256": "226980c088173fbbeb83e4ff6539dfb0d554e5956df5fb7f1d6513d399c06697",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-668d8e24e5c143ce.zip",
-      "display": "八日堂朔莉"
+      "display": "八日堂朔莉",
+      "variantLabel": "八日堂朔莉"
     },
     {
       "character": "北斗",
@@ -1021,7 +1105,8 @@
       "size": 6733373,
       "sha256": "cfccf8a631c0b856dda0d08b0305cd251bcb44f6871b4ae572a1af2b285a4983",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-4b5fc65588a9a449.zip",
-      "display": "北斗"
+      "display": "杉村北斗",
+      "variantLabel": "杉村北斗"
     },
     {
       "character": "北斗",
@@ -1033,7 +1118,8 @@
       "size": 2961932,
       "sha256": "f131f85b4372acbdf2c16dcd0c3269114ddf6585aec8258762dcdaca87207a35",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-c45401d754c8c490.zip",
-      "display": "北斗"
+      "display": "杉村北斗",
+      "variantLabel": "杉村北斗"
     },
     {
       "character": "名波七愛",
@@ -1045,7 +1131,8 @@
       "size": 13447673,
       "sha256": "c1f9992a54ae174cf9e116186a36076322f836df9b9a4ccde50136df99920adb",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-4f3d0785d8201ce9.zip",
-      "display": "名波七愛"
+      "display": "名波七爱",
+      "variantLabel": "名波七爱"
     },
     {
       "character": "名波七愛",
@@ -1057,7 +1144,8 @@
       "size": 8786939,
       "sha256": "92aaf46a2746af7968132473f109ff8b0fc8211b4081e5892496af2294196572",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-2e1a88b584922e55.zip",
-      "display": "名波七愛"
+      "display": "名波七爱",
+      "variantLabel": "名波七爱"
     },
     {
       "character": "大津賀かぐや",
@@ -1069,7 +1157,8 @@
       "size": 9502764,
       "sha256": "6305a4b8f37de84c65df7b61fcd7477949b8f1d70a6f1926d83f8cf2282c5b9a",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-1c44d09a4fe52ce3.zip",
-      "display": "大津賀かぐや"
+      "display": "大津贺赫映",
+      "variantLabel": "大津贺赫映"
     },
     {
       "character": "大津賀かぐや",
@@ -1081,7 +1170,8 @@
       "size": 7876812,
       "sha256": "545df5ee675c4386e34129511fe6d59fc1c50a570aee8457095d3c79214b399a",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-02ad33b5f04067c9.zip",
-      "display": "大津賀かぐや"
+      "display": "大津贺赫映",
+      "variantLabel": "大津贺赫映"
     },
     {
       "character": "大津賀かぐや",
@@ -1093,7 +1183,8 @@
       "size": 5581308,
       "sha256": "dc6e55f30c43ea684b844c9b739baa3eff41e48a61c030b0d3b24a60facdb08f",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-70f5058ab6d1695a.zip",
-      "display": "大津賀かぐや"
+      "display": "大津贺赫映",
+      "variantLabel": "大津贺赫映"
     },
     {
       "character": "大蔵りそな",
@@ -1105,7 +1196,8 @@
       "size": 45732621,
       "sha256": "38003ea61aff633b2713e233b12b981f426b0ee0015ae91ed1bfc99e09fc94d8",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-f454f6c104786cab.zip",
-      "display": "大藏理想奈"
+      "display": "大藏里想奈",
+      "variantLabel": "大藏里想奈"
     },
     {
       "character": "大蔵りそな",
@@ -1117,7 +1209,8 @@
       "size": 25088883,
       "sha256": "c2f974dffda568d1739c14aedf546cf842792fe69b8445f464a61776b804fe24",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-7ed6fdb6127a47ef.zip",
-      "display": "大藏理想奈"
+      "display": "大藏里想奈",
+      "variantLabel": "大藏里想奈"
     },
     {
       "character": "大蔵りそな",
@@ -1129,7 +1222,8 @@
       "size": 22940496,
       "sha256": "64948a74b1dea4c7d688b9d2ca3380db8e1b7fe014c58204d2647bbcdccbb180",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-b6f8584836b91f98.zip",
-      "display": "大藏理想奈"
+      "display": "大藏里想奈",
+      "variantLabel": "大藏里想奈"
     },
     {
       "character": "大蔵りそな",
@@ -1141,7 +1235,8 @@
       "size": 23909726,
       "sha256": "1d4b2446ad27c3fb8cc6f3ab243733d2bc5665b71f181701622fe4bb6995730e",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-b4b1bcfee0ba02b3.zip",
-      "display": "大藏理想奈"
+      "display": "大藏里想奈",
+      "variantLabel": "大藏里想奈"
     },
     {
       "character": "大蔵りそな",
@@ -1153,7 +1248,8 @@
       "size": 15232490,
       "sha256": "228020afdcd3d7be008ac10ae60ccd4abbe274844ea9e15eb293cffa32499476",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-45f3aa559cb6142b.zip",
-      "display": "大藏理想奈"
+      "display": "大藏里想奈",
+      "variantLabel": "大藏里想奈"
     },
     {
       "character": "大蔵りそな",
@@ -1165,7 +1261,8 @@
       "size": 27394781,
       "sha256": "2ed85eb6f75289d734f17ef0636b5a3076bd38c51d1d3d0f3f50358969565c5c",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-a75694c59c0f7b9b.zip",
-      "display": "大藏理想奈"
+      "display": "大藏里想奈",
+      "variantLabel": "大藏里想奈"
     },
     {
       "character": "大蔵りそな",
@@ -1177,7 +1274,8 @@
       "size": 3990342,
       "sha256": "0897b5b6bec6f73597c6de5275c8a7ce72f32499258f5098c174a7894095a65d",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-542aee695f3941a3.zip",
-      "display": "大藏理想奈"
+      "display": "大藏里想奈",
+      "variantLabel": "大藏里想奈"
     },
     {
       "character": "大蔵りそな",
@@ -1189,7 +1287,8 @@
       "size": 2803983,
       "sha256": "91701f7bc2d797b1174d2e166a56c2dcf6ac9caa1da85af82f1014af8e1472a8",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-e201a3c62b7fab6b.zip",
-      "display": "大藏理想奈"
+      "display": "大藏里想奈",
+      "variantLabel": "大藏里想奈"
     },
     {
       "character": "大蔵りそな",
@@ -1201,7 +1300,8 @@
       "size": 7953161,
       "sha256": "d575b763c396e1c324211e8ab993ca9230d8566fd0bedeefc3d6524350c42d44",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-552457ce903b1d43.zip",
-      "display": "大藏理想奈"
+      "display": "大藏里想奈",
+      "variantLabel": "大藏里想奈"
     },
     {
       "character": "大蔵アンソニーjr",
@@ -1213,7 +1313,8 @@
       "size": 7231632,
       "sha256": "2229afaa3cbf0f71e72cba1d9a5a89480ed0e70f199432f06049ab83d95d70a7",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-21c56a4d1229430c.zip",
-      "display": "大蔵アンソニーjr"
+      "display": "大藏小安东尼",
+      "variantLabel": "大藏小安东尼"
     },
     {
       "character": "大蔵アンソニーjr",
@@ -1225,7 +1326,8 @@
       "size": 7803538,
       "sha256": "a0d8add2d921aae3807944b50dd9f6d6b33f9fb63d8c761995246cf6d006e67c",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-4c35d756652e0dbd.zip",
-      "display": "大蔵アンソニーjr"
+      "display": "大藏小安东尼",
+      "variantLabel": "大藏小安东尼"
     },
     {
       "character": "大蔵アンソニーjr",
@@ -1237,7 +1339,8 @@
       "size": 4525333,
       "sha256": "1b31ed4ba72227ace0800e1e452dc9f556ae6236986d5ba4d31fe9c91bf5a574",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-79b8e049f13386af.zip",
-      "display": "大蔵アンソニーjr"
+      "display": "大藏小安东尼",
+      "variantLabel": "大藏小安东尼"
     },
     {
       "character": "大蔵ルミネ",
@@ -1249,7 +1352,8 @@
       "size": 46906443,
       "sha256": "d3681f41021d48df3a8f8b10fd96a8bca8b5f647d9c4dd9f8cddb0ecadcaec53",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-a2abd43cb9c85eea.zip",
-      "display": "大藏露米涅"
+      "display": "大藏瑠美音",
+      "variantLabel": "大藏瑠美音"
     },
     {
       "character": "大蔵ルミネ",
@@ -1261,7 +1365,8 @@
       "size": 39073228,
       "sha256": "069ef1dc1ea496e8fd52a162b7144ab3b60a5636ed9b36eebdabe9af1e83900e",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-1b7296de0c8cb8d4.zip",
-      "display": "大藏露米涅"
+      "display": "大藏瑠美音",
+      "variantLabel": "大藏瑠美音"
     },
     {
       "character": "大蔵ルミネ",
@@ -1273,7 +1378,8 @@
       "size": 43528823,
       "sha256": "7f496639a7f99396f85d8d70d767add09a9bf1210759e3d10c112e25412a735c",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-608a020aed72166b.zip",
-      "display": "大藏露米涅"
+      "display": "大藏瑠美音",
+      "variantLabel": "大藏瑠美音"
     },
     {
       "character": "大蔵ルミネ",
@@ -1285,7 +1391,8 @@
       "size": 41522358,
       "sha256": "d628f3d63f6409f8c4e4f458728f0fccd590b5c1d58523d1b355c08a7b777706",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-ddcf84d621cd6db2.zip",
-      "display": "大藏露米涅"
+      "display": "大藏瑠美音",
+      "variantLabel": "大藏瑠美音"
     },
     {
       "character": "大蔵ルミネ",
@@ -1297,7 +1404,8 @@
       "size": 41935275,
       "sha256": "0ee1ba7e53384e25e3d2bda0f3b1fc8aea8d66a9687efee9bdb86ae70fb2a1ce",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-681734827c48067f.zip",
-      "display": "大藏露米涅"
+      "display": "大藏瑠美音",
+      "variantLabel": "大藏瑠美音"
     },
     {
       "character": "大蔵ルミネ",
@@ -1309,7 +1417,8 @@
       "size": 35044214,
       "sha256": "8cf273b9aeb6e9cb7a15ca26a04389ae4dab4abcb04488d04fd816a937c5a849",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-f83f107294b03bc3.zip",
-      "display": "大藏露米涅"
+      "display": "大藏瑠美音",
+      "variantLabel": "大藏瑠美音"
     },
     {
       "character": "大蔵ルミネ",
@@ -1321,7 +1430,8 @@
       "size": 20187029,
       "sha256": "8659b6b199d68b8faa6494c42a85e7c63ab25944b3d002c7e8be8a6d66214d85",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-3f2a0c0327387a37.zip",
-      "display": "大藏露米涅"
+      "display": "大藏瑠美音",
+      "variantLabel": "大藏瑠美音"
     },
     {
       "character": "大蔵衣遠",
@@ -1333,7 +1443,8 @@
       "size": 16117997,
       "sha256": "947812dea852e7481d3811d8b4b9f46aa7163e0b59ee89aba33e81b6bf338448",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-7642817a442b9151.zip",
-      "display": "大蔵衣遠"
+      "display": "大藏衣远",
+      "variantLabel": "大藏衣远"
     },
     {
       "character": "大蔵衣遠",
@@ -1345,7 +1456,8 @@
       "size": 4192904,
       "sha256": "a4615fc6ec435005f22cdcc2ff8b164b623fce0bb89f625286b5366466a16659",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-87d74eead8ebbba0.zip",
-      "display": "大蔵衣遠"
+      "display": "大藏衣远",
+      "variantLabel": "大藏衣远"
     },
     {
       "character": "大蔵衣遠",
@@ -1357,7 +1469,8 @@
       "size": 7931999,
       "sha256": "628dc2004021c561b2b83458ba72e5dd55314bc7f00762f41019ff693967e85e",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-752e587218751251.zip",
-      "display": "大蔵衣遠"
+      "display": "大藏衣远",
+      "variantLabel": "大藏衣远（近月2版）"
     },
     {
       "character": "大蔵衣遠",
@@ -1369,7 +1482,8 @@
       "size": 15903058,
       "sha256": "91e93dac055aa654e78acf5cc196682bd68652a0828f2c6573c06887a383c822",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-8d5d901159318e6f.zip",
-      "display": "大蔵衣遠"
+      "display": "大藏衣远",
+      "variantLabel": "大藏衣远（过去）"
     },
     {
       "character": "大蔵衣遠",
@@ -1381,7 +1495,8 @@
       "size": 3575252,
       "sha256": "5f844574d1d44135646943d5375ea083069c4bc06ba7308b71f3d3d67dada6a1",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-edf738ab5125c58b.zip",
-      "display": "大蔵衣遠"
+      "display": "大藏衣远",
+      "variantLabel": "大藏衣远（过去）"
     },
     {
       "character": "山吹九千代",
@@ -1393,7 +1508,8 @@
       "size": 6410791,
       "sha256": "bc225cbcb598cbabe7d36fc6ab56ceae97471eca17ce0586ea2a5508246bfaa9",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-bc7c0c2064ab1785.zip",
-      "display": "山吹九千代"
+      "display": "山吹九千代",
+      "variantLabel": "山吹九千代"
     },
     {
       "character": "山吹九千代",
@@ -1405,7 +1521,8 @@
       "size": 10645756,
       "sha256": "c6156e960dccd3543a37c83a4c1fedf89d191ee43feb445059d8ff3d06fe9e8b",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-556aadf762696fb9.zip",
-      "display": "山吹九千代"
+      "display": "山吹九千代",
+      "variantLabel": "山吹九千代"
     },
     {
       "character": "山吹九千代",
@@ -1417,7 +1534,8 @@
       "size": 11488187,
       "sha256": "e7732d32a9abdc226f73fcf2196c2368b842dd020e161db70c925d9db605df0b",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-c952436fdcb834c7.zip",
-      "display": "山吹九千代"
+      "display": "山吹九千代",
+      "variantLabel": "山吹九千代"
     },
     {
       "character": "山吹九千代",
@@ -1429,7 +1547,8 @@
       "size": 3570343,
       "sha256": "832f21ed19ffa01c75a1ad75a232f532fee7a50bd32ce2f1274b5d46f4e872eb",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-9d26de33760f457e.zip",
-      "display": "山吹九千代"
+      "display": "山吹九千代",
+      "variantLabel": "山吹九千代"
     },
     {
       "character": "山吹九千代",
@@ -1441,7 +1560,8 @@
       "size": 5098728,
       "sha256": "81fc301ca1b3cae64f8ae5ecc35a8e9967561122ac129442d07bb278387a843e",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-960ff75377bde031.zip",
-      "display": "山吹九千代"
+      "display": "山吹九千代",
+      "variantLabel": "山吹九千代"
     },
     {
       "character": "山吹八千代",
@@ -1453,7 +1573,8 @@
       "size": 5883068,
       "sha256": "e182330a1b02cc85acf9a401de1c78015a864e242c0b60dfa8f88d6116b79ad8",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-5e666ea08c277eba.zip",
-      "display": "山吹八千代"
+      "display": "山吹八千代",
+      "variantLabel": "山吹八千代"
     },
     {
       "character": "山吹八千代",
@@ -1465,7 +1586,8 @@
       "size": 4070608,
       "sha256": "e795c6713443767e41de8a9ce6b76807bf456ddd3bf8f6f67872ac4393796f28",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-8daed54fd491833b.zip",
-      "display": "山吹八千代"
+      "display": "山吹八千代",
+      "variantLabel": "山吹八千代"
     },
     {
       "character": "山吹八千代",
@@ -1477,7 +1599,8 @@
       "size": 6873046,
       "sha256": "03924e2587359396d004726ba1681deaaf57b9f82a51e8627349c83e13344780",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-de7699d41119b8dd.zip",
-      "display": "山吹八千代"
+      "display": "山吹八千代",
+      "variantLabel": "山吹八千代（过去）"
     },
     {
       "character": "山県大瑛",
@@ -1489,7 +1612,8 @@
       "size": 5324641,
       "sha256": "6965f0027c5c8e522562829e50b5e248aad1c83dba700941013c793e0b69395f",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-6ae6eabd8e38e8c8.zip",
-      "display": "山県大瑛"
+      "display": "山县大瑛",
+      "variantLabel": "山县大瑛"
     },
     {
       "character": "山県大瑛",
@@ -1501,7 +1625,8 @@
       "size": 4502976,
       "sha256": "949c2c163a94b2160cfd184ba3a7d3eadece1a570a03f42bf3b5317d123df659",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-94187baac01d4d6c.zip",
-      "display": "山県大瑛"
+      "display": "山县大瑛",
+      "variantLabel": "山县大瑛"
     },
     {
       "character": "山県大瑛",
@@ -1513,7 +1638,8 @@
       "size": 4819160,
       "sha256": "08a7e5c7f9ef8b1eb987858777777b2bd2d51d2e018812626d27479e2b6ad50a",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-81258ce151a4e915.zip",
-      "display": "山県大瑛"
+      "display": "山县大瑛",
+      "variantLabel": "山县大瑛"
     },
     {
       "character": "山県大瑛",
@@ -1525,7 +1651,8 @@
       "size": 3751959,
       "sha256": "2baa5c74e44b17795ae70899100c4b40c5888f9f4a4e5798d741d8b34b2d3eea",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-98f89724b2f2db01.zip",
-      "display": "山県大瑛"
+      "display": "山县大瑛",
+      "variantLabel": "山县大瑛"
     },
     {
       "character": "影",
@@ -1537,7 +1664,8 @@
       "size": 19578,
       "sha256": "8b492d94409fb8633f53b2b789d4e268d70a2aff0e464b00a4d027d9cd84b90c",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-d2baf237fda4dc54.zip",
-      "display": "影"
+      "display": "剪影",
+      "variantLabel": "剪影"
     },
     {
       "character": "朝日",
@@ -1549,7 +1677,8 @@
       "size": 265956,
       "sha256": "84470f86b73ad9f0a880ac3feae617622c165e2b01c68d1df9b3d03e4eb5f073",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-daf3d8712c5ff8bd.zip",
-      "display": "小仓朝日"
+      "display": "小仓朝日",
+      "variantLabel": "大藏游星"
     },
     {
       "character": "朝日",
@@ -1561,7 +1690,8 @@
       "size": 22063781,
       "sha256": "222210328e571e1a780c2ca4e176c9f0d13d0f3d7292b149236b549bfe18c8b8",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-679cd52e66b44490.zip",
-      "display": "小仓朝日"
+      "display": "小仓朝日",
+      "variantLabel": "小仓朝日"
     },
     {
       "character": "朝日",
@@ -1573,7 +1703,8 @@
       "size": 29712952,
       "sha256": "3e72dfe96d2068e22bc4b59f207b05ef5032abe296a1e5ba2d570cbbebd8ad66",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-ec1ab7a1452bff1c.zip",
-      "display": "小仓朝日"
+      "display": "小仓朝日",
+      "variantLabel": "小仓朝日"
     },
     {
       "character": "朝日",
@@ -1585,7 +1716,8 @@
       "size": 14484585,
       "sha256": "3bca24fbf59a2f37ed307e77e380d31c836db4c1851d2ec88a6b4ffebbfccbe5",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-93eb9256135e4f6d.zip",
-      "display": "小仓朝日"
+      "display": "小仓朝日",
+      "variantLabel": "小仓朝日"
     },
     {
       "character": "朝日",
@@ -1597,7 +1729,8 @@
       "size": 7362120,
       "sha256": "89c4111077e42b900af864f61161662a7adaa37afb6ad1b65968672b11eed6ae",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-1e0d5026aa2f2d19.zip",
-      "display": "小仓朝日"
+      "display": "小仓朝日",
+      "variantLabel": "小仓朝日"
     },
     {
       "character": "朝日",
@@ -1609,7 +1742,8 @@
       "size": 13193544,
       "sha256": "a0902107e7574b9fe8542949214039dcfcb5508636e231e03e6802da365b78b5",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-df68a3d82444fafb.zip",
-      "display": "小仓朝日"
+      "display": "小仓朝日",
+      "variantLabel": "小仓朝日"
     },
     {
       "character": "朝日",
@@ -1621,7 +1755,8 @@
       "size": 27564332,
       "sha256": "02b3c9de062d6d7e26dcdf8cf828ff69493e62f5d3a3f3fe23fbf6e23014f4ff",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-b26fa740ad7663ea.zip",
-      "display": "小仓朝日"
+      "display": "小仓朝日",
+      "variantLabel": "小仓朝日"
     },
     {
       "character": "朝日",
@@ -1633,7 +1768,8 @@
       "size": 21003601,
       "sha256": "a68c8c6216f71c184591578f12b0633b46c11e5365fc2c2a2dca2ebc5c46f8fe",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-c8652de29a9feefe.zip",
-      "display": "小仓朝日"
+      "display": "小仓朝日",
+      "variantLabel": "小仓朝日"
     },
     {
       "character": "朝日",
@@ -1645,7 +1781,8 @@
       "size": 12306648,
       "sha256": "c5504b620aa9d9e197579f1bec7bcf5bf5e05114c562a806d8bd44bc25af16e9",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-d23a8078470fc5fa.zip",
-      "display": "小仓朝日"
+      "display": "小仓朝日",
+      "variantLabel": "小仓朝日"
     },
     {
       "character": "朝日",
@@ -1657,7 +1794,8 @@
       "size": 5132954,
       "sha256": "66109b8599e6af60106dce71a7b588972ab0d9b614ca81927d743ea59e4b7c43",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-4f1a7cc46786de77.zip",
-      "display": "小仓朝日"
+      "display": "小仓朝日",
+      "variantLabel": "小仓朝日"
     },
     {
       "character": "朝日",
@@ -1669,7 +1807,8 @@
       "size": 585047,
       "sha256": "ffec7239ad93d11534fc0015a7a86b788ef08fed2a8e81e78215f9750d2f5642",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-161f103069010e18.zip",
-      "display": "小仓朝日"
+      "display": "小仓朝日",
+      "variantLabel": "小仓朝日"
     },
     {
       "character": "朝日",
@@ -1681,7 +1820,8 @@
       "size": 6880051,
       "sha256": "1fd2238b0cdae3b465b967266ffc0cfabff4f0017971456c70e3029310a6c07f",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-50514225aae1d899.zip",
-      "display": "小仓朝日"
+      "display": "小仓朝日",
+      "variantLabel": "小仓朝日"
     },
     {
       "character": "朝日",
@@ -1693,7 +1833,8 @@
       "size": 6889992,
       "sha256": "f336cd723d8bfdf166e186c9aa94c383788a723dafa7a0b909417de098a3465e",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-1ced4805ea18e0f9.zip",
-      "display": "小仓朝日"
+      "display": "小仓朝日",
+      "variantLabel": "小仓朝日"
     },
     {
       "character": "柳ヶ瀬湊",
@@ -1705,7 +1846,8 @@
       "size": 31699980,
       "sha256": "27aae8b6dafc04cc82fe99afb7466c258f87e3c4454c4d4132e87ef470cd3d7e",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-0c3e87dc9230f969.zip",
-      "display": "柳之濑凑"
+      "display": "柳之濑凑",
+      "variantLabel": "柳之濑凑"
     },
     {
       "character": "柳ヶ瀬湊",
@@ -1717,7 +1859,8 @@
       "size": 28373252,
       "sha256": "fea6f2b0b5fcedf2fdf38794ede16c64653cafa64b55c6467645995e08a64d8f",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-79afeadb7dfe9b92.zip",
-      "display": "柳之濑凑"
+      "display": "柳之濑凑",
+      "variantLabel": "柳之濑凑"
     },
     {
       "character": "柳ヶ瀬湊",
@@ -1729,7 +1872,8 @@
       "size": 69365615,
       "sha256": "e09272af876a5efd489e33ee64b1e65bc7e036249e1332cb5a0e321cea17c736",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-89b8fcf19a587bb8.zip",
-      "display": "柳之濑凑"
+      "display": "柳之濑凑",
+      "variantLabel": "柳之濑凑"
     },
     {
       "character": "柳ヶ瀬湊",
@@ -1741,7 +1885,8 @@
       "size": 40899433,
       "sha256": "5b68b58a1fdb6e778d728ba734ef18ae5d1626c53b80ffeb8e0f635df5723c23",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-4e1a2b299d551376.zip",
-      "display": "柳之濑凑"
+      "display": "柳之濑凑",
+      "variantLabel": "柳之濑凑"
     },
     {
       "character": "柳ヶ瀬湊",
@@ -1753,7 +1898,8 @@
       "size": 15538843,
       "sha256": "d5ce8d20cace4e1f41d40e07142d782a8d47645068fbb3c577be0a307923b9e2",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-f4fa46729edc6649.zip",
-      "display": "柳之濑凑"
+      "display": "柳之濑凑",
+      "variantLabel": "柳之濑凑"
     },
     {
       "character": "柳ヶ瀬湊",
@@ -1765,7 +1911,8 @@
       "size": 52646358,
       "sha256": "2986b5c75217e5a2071e8cf30abaea7d84a423e2fb26eab59d35707723c892d8",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-5459c913ee17ece5.zip",
-      "display": "柳之濑凑"
+      "display": "柳之濑凑",
+      "variantLabel": "柳之濑凑"
     },
     {
       "character": "柳ヶ瀬湊",
@@ -1777,7 +1924,8 @@
       "size": 16764622,
       "sha256": "4fa735336940987044e5e8565ca31dccc41a0e6704aee2004bf03d7713cac640",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-6a6fb27291d6a591.zip",
-      "display": "柳之濑凑"
+      "display": "柳之濑凑",
+      "variantLabel": "柳之濑凑"
     },
     {
       "character": "桜小路アトレ",
@@ -1789,7 +1937,8 @@
       "size": 14888514,
       "sha256": "851af7e2fcbe8a6a48cfdc3e396dd37399305f4b37e5bf640d235c09280c13f3",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-a3263594c1eac4c3.zip",
-      "display": "樱小路亚十礼"
+      "display": "樱小路亚十礼",
+      "variantLabel": "樱小路亚十礼"
     },
     {
       "character": "桜小路アトレ",
@@ -1801,7 +1950,8 @@
       "size": 4936155,
       "sha256": "72050cca802c93012db76a7a8b04b55262ce4579421a1b4aa305ecb98c8088ba",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-8ef5f3e8296daa23.zip",
-      "display": "樱小路亚十礼"
+      "display": "樱小路亚十礼",
+      "variantLabel": "樱小路亚十礼"
     },
     {
       "character": "桜小路アトレ",
@@ -1813,7 +1963,8 @@
       "size": 13667833,
       "sha256": "c24d41ac8ecafb57a612058847563d3689ba8abd03fe6f9fce1598dd6603780c",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-207928b724189b31.zip",
-      "display": "樱小路亚十礼"
+      "display": "樱小路亚十礼",
+      "variantLabel": "樱小路亚十礼"
     },
     {
       "character": "桜小路アトレ",
@@ -1825,7 +1976,8 @@
       "size": 7698950,
       "sha256": "19ba761c18670b0bb2dfd82814c817f55499aa57b6a2f7f284386db391bcb6c6",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-f252475c66ba913d.zip",
-      "display": "樱小路亚十礼"
+      "display": "樱小路亚十礼",
+      "variantLabel": "樱小路亚十礼"
     },
     {
       "character": "桜小路アトレ",
@@ -1837,7 +1989,8 @@
       "size": 1324812,
       "sha256": "a301fdbd6139445cd567ecb5d4673d621642f0f44fee1bc5c7129234a139a096",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-d6de957b7482dd1f.zip",
-      "display": "樱小路亚十礼"
+      "display": "樱小路亚十礼",
+      "variantLabel": "樱小路亚十礼"
     },
     {
       "character": "桜小路アトレ",
@@ -1849,7 +2002,8 @@
       "size": 4221170,
       "sha256": "0359ee63d34d24bb243edacf275e6b00ca4c26137193ca80318bc62e26b7b2ea",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-0f81bb2515647097.zip",
-      "display": "樱小路亚十礼"
+      "display": "樱小路亚十礼",
+      "variantLabel": "樱小路亚十礼"
     },
     {
       "character": "桜小路才華",
@@ -1861,7 +2015,8 @@
       "size": 19914655,
       "sha256": "2ffa10b7b46735943c2ee323cfd33b53df5f44e2d839d36c54aee73cc9106dad",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-d4ae20b838289d50.zip",
-      "display": "樱小路才华"
+      "display": "樱小路才华",
+      "variantLabel": "樱小路才华"
     },
     {
       "character": "桜小路才華",
@@ -1873,7 +2028,8 @@
       "size": 15881757,
       "sha256": "f71e54763889d857885ed13c84d0fc1d9d065ce1f4e86f728772030655978ffc",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-c49987218ea181a8.zip",
-      "display": "樱小路才华"
+      "display": "樱小路才华",
+      "variantLabel": "樱小路才华"
     },
     {
       "character": "桜小路才華",
@@ -1885,7 +2041,8 @@
       "size": 19843245,
       "sha256": "1d89bed4cfdee1c4bcc98fea6b72c4a1be01c57a8fe582899b99f94d2cb63464",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-96703a394e37b4bf.zip",
-      "display": "樱小路才华"
+      "display": "樱小路才华",
+      "variantLabel": "樱小路才华"
     },
     {
       "character": "桜小路才華",
@@ -1897,7 +2054,8 @@
       "size": 18176441,
       "sha256": "d247d2f4d2541b3db7755c48ab5fc4735c091fc63ca400d930cfa82c1c051a79",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-7e06457f4468396a.zip",
-      "display": "樱小路才华"
+      "display": "樱小路才华",
+      "variantLabel": "樱小路才华"
     },
     {
       "character": "桜小路才華",
@@ -1909,7 +2067,8 @@
       "size": 11268812,
       "sha256": "d0f2ae9b3d8c65c8154f96199b63b740e4a4888e41d4ebc762f636fa96eaabdf",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-ea52fd7b1db4ced4.zip",
-      "display": "樱小路才华"
+      "display": "樱小路才华",
+      "variantLabel": "樱小路才华"
     },
     {
       "character": "桜小路才華",
@@ -1921,7 +2080,8 @@
       "size": 21582872,
       "sha256": "bdab786192c01440bc6d9df0780a0fa55370c8b55e628b6c95008924eb2e4831",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-ba33a7ca0f0b3c24.zip",
-      "display": "樱小路才华"
+      "display": "樱小路才华",
+      "variantLabel": "樱小路才华"
     },
     {
       "character": "桜小路才華",
@@ -1933,7 +2093,8 @@
       "size": 5780606,
       "sha256": "17e7bee56de6a15868b1fa8b72b63efdb6d22cc6b6e3ceeb50d38b4b4024b4e1",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-d171e3da454a538e.zip",
-      "display": "樱小路才华"
+      "display": "樱小路才华",
+      "variantLabel": "樱小路才华"
     },
     {
       "character": "桜小路才華",
@@ -1945,7 +2106,8 @@
       "size": 10985254,
       "sha256": "2317676ec20e7341fe257c34f8690b409cbeb6f63c4163e4375fe51c2540f672",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-985d11c18ba2aaa7.zip",
-      "display": "樱小路才华"
+      "display": "樱小路才华",
+      "variantLabel": "樱小路才华"
     },
     {
       "character": "桜小路才華",
@@ -1957,7 +2119,8 @@
       "size": 820282,
       "sha256": "c7bdc5c46ba4f8d682146bdd7f3f5159cfd263dcb614cb35c4643b1eb07cedc2",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-c148c38923304e06.zip",
-      "display": "樱小路才华"
+      "display": "樱小路才华",
+      "variantLabel": "樱小路才华"
     },
     {
       "character": "桜小路才華",
@@ -1969,7 +2132,8 @@
       "size": 2688760,
       "sha256": "d410dc738d6955f2672777917ef8b31877b4cb0538d008e5a9301124b7b6bad2",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-3f189e033be2cce5.zip",
-      "display": "樱小路才华"
+      "display": "樱小路才华",
+      "variantLabel": "樱小路才华"
     },
     {
       "character": "桜小路才華",
@@ -1981,7 +2145,8 @@
       "size": 933287,
       "sha256": "48eac3c7fcbe2e240a6c27d9da11fc8ff567a01dc3d67d5004584992da073031",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-099dbd86f7e14d5c.zip",
-      "display": "樱小路才华"
+      "display": "樱小路才华",
+      "variantLabel": "樱小路才华"
     },
     {
       "character": "梅宮伊瀬也",
@@ -1993,7 +2158,8 @@
       "size": 15100041,
       "sha256": "b35c1e8e33fd49f3d3487c5b27ce0f0dfaf6d60dd7e6970e686060a7a4860629",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-e4794857c91b0b88.zip",
-      "display": "梅宮伊瀬也"
+      "display": "梅宫伊濑也",
+      "variantLabel": "梅宫伊濑也"
     },
     {
       "character": "梅宮伊瀬也",
@@ -2005,7 +2171,8 @@
       "size": 28034056,
       "sha256": "dbd6eddeb35986fbbc5448dbcd0c232d8ae0e31b4275a17d40037134d9e5a732",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-668ee73b9db26f63.zip",
-      "display": "梅宮伊瀬也"
+      "display": "梅宫伊濑也",
+      "variantLabel": "梅宫伊濑也"
     },
     {
       "character": "梅宮伊瀬也",
@@ -2017,7 +2184,8 @@
       "size": 10079706,
       "sha256": "3ca372214d945bf4023a78cca6da9d8ea95ff386f69ca9315e50034a22e030dd",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-71e0839fb29f212b.zip",
-      "display": "梅宮伊瀬也"
+      "display": "梅宫伊濑也",
+      "variantLabel": "梅宫伊濑也"
     },
     {
       "character": "梅宮伊瀬也",
@@ -2029,7 +2197,8 @@
       "size": 8924498,
       "sha256": "4e4b4904402a37dae214d7b656239b669665de5405ff4e00909e637072258995",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-5ac96af9cdfbb645.zip",
-      "display": "梅宮伊瀬也"
+      "display": "梅宫伊濑也",
+      "variantLabel": "梅宫伊濑也"
     },
     {
       "character": "紅葉",
@@ -2041,7 +2210,8 @@
       "size": 13838143,
       "sha256": "1466798f16ecc5194660b5cc0df94d2625c04241385d7f8ca62284fe55ce4385",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-2dbfb902f40a6dde.zip",
-      "display": "紅葉"
+      "display": "枞山红叶",
+      "variantLabel": "枞山红叶"
     },
     {
       "character": "紅葉",
@@ -2053,7 +2223,8 @@
       "size": 1719894,
       "sha256": "4edb489a8bd6effc0593e78604ce684227ec5cf79e63e6ee049a53b15a7a585b",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-ab3bfd09face2b00.zip",
-      "display": "紅葉"
+      "display": "枞山红叶",
+      "variantLabel": "枞山红叶"
     },
     {
       "character": "紅葉",
@@ -2065,7 +2236,8 @@
       "size": 2177681,
       "sha256": "e922b2c7324e41fa8f7c8c585b889484e62b859ceaff9c449063090048c59e42",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-64bb40cc21cdd215.zip",
-      "display": "紅葉"
+      "display": "枞山红叶",
+      "variantLabel": "枞山红叶"
     },
     {
       "character": "紅葉",
@@ -2077,7 +2249,8 @@
       "size": 4074122,
       "sha256": "2e1a6ea77f41f22c7be78dfa250a8849912c6b0afc4bedab8c4f3b534afc7e98",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-7f6a3952733c4354.zip",
-      "display": "紅葉"
+      "display": "枞山红叶",
+      "variantLabel": "枞山红叶"
     },
     {
       "character": "花之宮瑞穂",
@@ -2089,7 +2262,8 @@
       "size": 36729710,
       "sha256": "9c56aca09006fabdcd0fbb8670c53b61dfe7aefc365783f1405e02ba75b7cf20",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-4542ed8931f46cc3.zip",
-      "display": "花之宫瑞穗"
+      "display": "花之宫瑞穗",
+      "variantLabel": "花之宫瑞穗"
     },
     {
       "character": "花之宮瑞穂",
@@ -2101,7 +2275,8 @@
       "size": 24380939,
       "sha256": "4ae9496cc46f0a77ebab1070b2db5662d0b76fab21873d1e7b32e00d085a613c",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-ceb4e601fe77aa6a.zip",
-      "display": "花之宫瑞穗"
+      "display": "花之宫瑞穗",
+      "variantLabel": "花之宫瑞穗"
     },
     {
       "character": "花之宮瑞穂",
@@ -2113,7 +2288,8 @@
       "size": 45817624,
       "sha256": "e6ac2589a0ea04674db760855d7e8481889e9816a5073433805a08e8db354672",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-42f8a759d1da3957.zip",
-      "display": "花之宫瑞穗"
+      "display": "花之宫瑞穗",
+      "variantLabel": "花之宫瑞穗"
     },
     {
       "character": "花之宮瑞穂",
@@ -2125,7 +2301,8 @@
       "size": 40387054,
       "sha256": "059da3cf0670fde3652902c107d23626b5439875fc7469a06e55990576300033",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-e575d0b284d59fb0.zip",
-      "display": "花之宫瑞穗"
+      "display": "花之宫瑞穗",
+      "variantLabel": "花之宫瑞穗"
     },
     {
       "character": "花之宮瑞穂",
@@ -2137,7 +2314,8 @@
       "size": 10946068,
       "sha256": "6a313df851dbc91ed3b79d58b3b419b765e428ce33fdb82929f103682c54fba9",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-6b9a5b96dd9e4caf.zip",
-      "display": "花之宫瑞穗"
+      "display": "花之宫瑞穗",
+      "variantLabel": "花之宫瑞穗"
     },
     {
       "character": "花之宮瑞穂",
@@ -2149,7 +2327,8 @@
       "size": 21879995,
       "sha256": "15dd865c9bd1661dba13731e1a6291d0081f7b1e1d25e8340a67da0502581d82",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-5c6c78a24cdea921.zip",
-      "display": "花之宫瑞穗"
+      "display": "花之宫瑞穗",
+      "variantLabel": "花之宫瑞穗"
     },
     {
       "character": "花之宮瑞穂",
@@ -2161,7 +2340,8 @@
       "size": 8584079,
       "sha256": "2742148fcbe984b3e8ef3a018e422b5645e6a044eeffa4d98f4c0e07bb1d9b0c",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-d14870072bef7296.zip",
-      "display": "花之宫瑞穗"
+      "display": "花之宫瑞穗",
+      "variantLabel": "花之宫瑞穗"
     },
     {
       "character": "華花",
@@ -2173,7 +2353,8 @@
       "size": 7389371,
       "sha256": "c3369d0831bc126749a8cbd06647d6c98202975b426791c3b6e67edeb22a352f",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-dd95d83afa18dc62.zip",
-      "display": "華花"
+      "display": "华花",
+      "variantLabel": "华花"
     },
     {
       "character": "華花",
@@ -2185,7 +2366,8 @@
       "size": 3758513,
       "sha256": "254872a1801261ed2f74f0f175d5f569c4c55780e888088f5171d685baf255df",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-f712fcfa381ae083.zip",
-      "display": "華花"
+      "display": "华花",
+      "variantLabel": "华花"
     },
     {
       "character": "銀条春心",
@@ -2197,7 +2379,8 @@
       "size": 62537006,
       "sha256": "78a8745f153ce7088c8c00f0518b4282ff334bbecc3a76a1192e393d43e9722f",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-ea3e455256059e56.zip",
-      "display": "银条春心"
+      "display": "银条春心",
+      "variantLabel": "银条春心"
     },
     {
       "character": "銀条春心",
@@ -2209,7 +2392,8 @@
       "size": 60757738,
       "sha256": "29fcac074c7cbd6327b78fafc4b2840de5c0fb065aff3a11a5755c57cd87be6b",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-586f02f5af0a7f7c.zip",
-      "display": "银条春心"
+      "display": "银条春心",
+      "variantLabel": "银条春心"
     },
     {
       "character": "銀条春心",
@@ -2221,7 +2405,8 @@
       "size": 59121435,
       "sha256": "983bad996fe5231fb354f70f9b9f0d5de8f420ff805b02317757ef8b32979b28",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-098647a52d519ea1.zip",
-      "display": "银条春心"
+      "display": "银条春心",
+      "variantLabel": "银条春心"
     },
     {
       "character": "銀条春心",
@@ -2233,7 +2418,8 @@
       "size": 57388514,
       "sha256": "3e1cd5fc51c3dd6fe4713bd9503840200066969dbf44cfa6ed6cf710f8c024f2",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-7debceabb9971f8f.zip",
-      "display": "银条春心"
+      "display": "银条春心",
+      "variantLabel": "银条春心"
     },
     {
       "character": "銀条春心",
@@ -2245,7 +2431,8 @@
       "size": 59515791,
       "sha256": "9e8962e1881cf150f09201b0c10d9c90b8be821e63fb1e59aa68c540b7d4358e",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-219a8f411cf7a5b0.zip",
-      "display": "银条春心"
+      "display": "银条春心",
+      "variantLabel": "银条春心"
     },
     {
       "character": "銀条春心",
@@ -2257,7 +2444,8 @@
       "size": 59597346,
       "sha256": "c87f3eafc4343e3332ba9284c43d1d5fb78a828a926279dc3d0a6aa99fa1bab4",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-7580b1da31433ba2.zip",
-      "display": "银条春心"
+      "display": "银条春心",
+      "variantLabel": "银条春心"
     },
     {
       "character": "銀条春心",
@@ -2269,7 +2457,8 @@
       "size": 31397468,
       "sha256": "5ba190bc8e2c459e0f2da69a4ce6a06f8176ae0122e39089b3775fda08f0122c",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-b9c4950f7c359196.zip",
-      "display": "银条春心"
+      "display": "银条春心",
+      "variantLabel": "银条春心"
     },
     {
       "character": "駿我",
@@ -2281,7 +2470,8 @@
       "size": 9825470,
       "sha256": "c30d5c2d94b7b9aedd3e85b4ec00d7c6872d8d23f1753f3e152d31f6a2de3ca3",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-cc717d21ebe73096.zip",
-      "display": "駿我"
+      "display": "骏我",
+      "variantLabel": "骏我"
     },
     {
       "character": "駿我",
@@ -2293,7 +2483,8 @@
       "size": 3347077,
       "sha256": "a8abc2a189b17b6eb4d703fe394146bdfeef979dad65b322c63ecf9f7e1c40fd",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-f90e54d147d68cc6.zip",
-      "display": "駿我"
+      "display": "骏我",
+      "variantLabel": "骏我"
     },
     {
       "character": "駿我",
@@ -2305,7 +2496,8 @@
       "size": 3573728,
       "sha256": "afba2329e9af0b1644e4638378b60c9ec4e08d341d240bf49f143309a54be2cc",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-90141c3daa4b304b.zip",
-      "display": "駿我"
+      "display": "骏我",
+      "variantLabel": "骏我"
     },
     {
       "character": "駿我",
@@ -2317,7 +2509,8 @@
       "size": 1213620,
       "sha256": "d299d7b2c22b1ae18ba7a6b3b5f7a3f649d2c4668dcc697e1ddb252a8ad4836e",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-fe193f4da301f518.zip",
-      "display": "駿我"
+      "display": "骏我",
+      "variantLabel": "骏我"
     },
     {
       "character": "駿我",
@@ -2329,7 +2522,8 @@
       "size": 1432177,
       "sha256": "53dfd45305fd8606da463f2bf8de1202366aae2b75614b4bd5d7d2cd3b489d47",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-a73e071d28995025.zip",
-      "display": "駿我"
+      "display": "骏我",
+      "variantLabel": "骏我"
     },
     {
       "character": "駿我",
@@ -2341,7 +2535,8 @@
       "size": 937699,
       "sha256": "8a65cbfc5e6cc975ee7d7c82965c67724e628f26dc598b85dd3b20511710c0d3",
       "url": "https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/sprite-9eb9c9eefba8e0ef.zip",
-      "display": "駿我"
+      "display": "骏我",
+      "variantLabel": "骏我（过去）"
     }
   ]
 }

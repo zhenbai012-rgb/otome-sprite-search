@@ -9,6 +9,9 @@
 - 可分享筛选结果和单张图片的链接；手机与电脑均可使用。
 - 网页使用透明 WebP 预览。原尺寸 PNG 按「角色 → 版本 → 服装」细分为 [195 个下载包](https://github.com/zhenbai012-rgb/otome-sprite-search/releases/tag/sprites-costumes-v1)，同款服装的姿态和表情差分放在一起。角色目录可逐包选择；单张预览直接链接到对应服装包。
 - 官方图片保留原始文件，并附来源页和官方图片地址；组合图单独标注。
+- 角色检索同时收录 481 张经核对的普通剧情 CG、34 张日文标题 / Logo / 人物图层。CG 按路线角色整理；露骨成人 CG 与无法确认的亲密场景不收录。
+- 新增作品、类型与画幅筛选。角色、版本、作品与背景场景使用中文显示，原始日文名称保留为搜索别名或来源信息。
+- CG 与标题图片均保留完整原始画布。CG 按场景细分为 207 个包，六部作品各有一个标题资源包（合计 213 包），同时提供单张原尺寸 PNG。标题包包含全部 123 张原始组成图层；部分标题由多层动画构成，按原图层导出。
 - [背景图库](https://zhenbai012-rgb.github.io/otome-sprite-search/backgrounds/)收录 641 张独立图片，包含 591 张场景 / 大幅背景。可按作品、类别与场景代码搜索。
 - 背景按「作品 → 类别 → 场景」细分为 453 个包；较大的场景继续分为不超过 32 MiB 的小包。浏览器读取所选原图后生成 ZIP，包含清单与原尺寸 PNG，也可单张下载。
 
@@ -17,10 +20,10 @@
 无需安装前端依赖，也不需要账号或 API 密钥。
 
 ```sh
-python -m http.server 8789 --directory dist
+python -m http.server 8789
 ```
 
-打开 <http://localhost:8789>。
+打开 <http://localhost:8789/dist/>。
 
 如需本地测试背景原图和场景包，从仓库根目录运行 `python -m http.server 8791`，打开 <http://localhost:8791/dist/backgrounds/>。背景原图在 `originals/backgrounds/`，与网页预览分开保存；公开网站通过仓库原图地址读取。
 
@@ -32,12 +35,16 @@ dist/                   可直接发布的静态网站
   app.js / styles.css   搜索逻辑与样式
   catalog-data.js        角色与官方素材索引
   game-data.js           游戏立绘索引
+  cg-data.js             CG、日文标题与场景分包索引
+  artwork-downloads.js   原尺寸 PNG 与场景 ZIP 下载
   assets/               透明网页预览与缩略图
   data/sources.json     官方来源清单
   data/downloads.json   原图包链接与 SHA-256
   data/costume-packs.json  195 个服装分包与 SHA-256
   backgrounds/          背景检索、WebP 预览与场景分包索引
 originals/backgrounds/  641 张原尺寸 PNG，按内容哈希保存
+originals/cg/           CG 与标题素材的 604 张原尺寸 PNG
+cg-assets/              完整画布的 CG / 标题 WebP 预览与缩略图
 scripts/                索引生成与完整性检查
 .github/workflows/      GitHub Pages 自动部署
 ```
@@ -49,9 +56,11 @@ scripts/                索引生成与完整性检查
 ```sh
 python scripts/check-site.py
 python scripts/check-backgrounds.py
+python scripts/check-artwork.py
 node --check dist/app.js
 node --check dist/backgrounds/app.js
 node --check dist/backgrounds/zip-store.js
+node --check dist/artwork-downloads.js
 ```
 
 `scripts/build-catalog.py --help` 说明如何从外部索引与图片映射更新公共目录。修改索引后也应更新 `dist/data/downloads.json` 中的原图包校验信息。
