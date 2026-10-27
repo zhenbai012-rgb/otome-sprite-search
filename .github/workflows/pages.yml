@@ -21,7 +21,10 @@ jobs:
       - name: Check catalog and assets
         run: |
           python3 scripts/check-site.py
+          python3 scripts/check-backgrounds.py
           node --check dist/app.js
+          node --check dist/backgrounds/app.js
+          node --check dist/backgrounds/zip-store.js
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v4
         with:

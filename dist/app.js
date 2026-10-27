@@ -8,6 +8,9 @@
   const state = { tab: params.get('tab') === 'characters' ? 'characters' : 'search', query: params.get('q') || '', character: params.get('role') || '', source: params.get('source') || '', costume: params.get('costume') || '', scale: params.get('scale') || '', kind: params.get('type') || '', limit: 48 };
   const typeNames = { game: '游戏立绘', single_png: '单人全身', group: '组合图', composite: '带背景图' };
   const roles = new Map(data.characters.map(c => [c.id, c]));
+  const packs = data.costumePacks || [];
+  const packKey = r => JSON.stringify([r.character, r.variant || r.character, r.costume]);
+  const packIndex = new Map(packs.map(p => [packKey(p), p]));
   const records = new Map();
   let all = [...data.official], filtered = [], ready = false, toastTimer;
   let imageTicket = 0;
@@ -60,7 +63,8 @@
     if (r.kind === 'game') { meta.append(node('span', `姿态 ${r.pose} · ${r.scale}`), node('span', `表情 ${r.expression}`)); }
     else { meta.append(node('span', `${r.width} × ${r.height}`), node('span', r.alpha ? '透明背景' : '含背景')); }
     const actions = node('div', null, 'asset-actions'); const open = node('button', '查看立绘 ↗'); open.type = 'button'; open.addEventListener('click', () => showImage(r));
-    const action = r.kind === 'game' ? link('PNG 下载 ↓', roles.get(r.character).archiveUrl) : link('官网出处 ↗', r.sourcePage);
+    const pack = packIndex.get(packKey(r));
+    const action = r.kind === 'game' ? link('服装包 ↓', pack.url) : link('官网出处 ↗', r.sourcePage);
     actions.append(open, action); detail.append(title, subtitle, meta, actions); card.append(preview, detail); return card;
   }
   function showImage(r, update = true) {
@@ -73,8 +77,9 @@
     info.append(dl);
     const actions = node('div', null, 'dialog-links');
     if (r.kind === 'game') {
-      info.append(node('p', '网页显示透明 WebP 预览。该角色的 PNG 原图与全部差分收录在下载包中。'));
-      actions.append(link('下载该角色 PNG 包 ↓', roles.get(r.character).archiveUrl), link('保存 WebP 预览 ↓', r.file, r.name + '.webp'));
+      const pack = packIndex.get(packKey(r));
+      info.append(node('p', `网页显示透明 WebP 预览。此包包含「${r.variant} · ${pack.label}」的 ${pack.count} 张原尺寸 PNG，保留姿态与表情差分。`));
+      actions.append(link(`下载该服装 PNG 包 ↓ · ${(pack.size / 1_000_000).toFixed(1)} MB`, pack.url), link('保存 WebP 预览 ↓', r.file, r.name + '.webp'));
     } else {
       if (r.notes) info.append(node('p', r.notes));
       actions.append(link('保存原图 ↓', r.file, r.name), link('官方来源页面 ↗', r.sourcePage));
@@ -87,7 +92,25 @@
     const card = node('article', null, 'character-card'); const img = new Image(); loadImage(img, c.thumbnail); img.alt = c.display; img.loading = 'lazy'; img.className = 'character-image';
     const detail = node('div', null, 'character-detail'); detail.append(node('h3', c.display), node('p', c.id === c.display ? (c.aliases.filter(a => a !== c.id).join(' / ') || '角色立绘') : c.id), node('p', `${c.gameCount.toLocaleString()} 张游戏立绘 · ${c.officialCount} 张官方素材`, 'counts'));
     const actions = node('div', null, 'character-actions'); const browse = node('button', '浏览所有立绘 →'); browse.type = 'button'; browse.addEventListener('click', () => { state.character = c.id; state.source = ''; state.costume = ''; state.scale = ''; state.kind = ''; state.query = ''; syncInputs(); switchTab('search'); });
-    actions.append(browse, link(`PNG 原图包 ↓ · ${c.archiveSize}`, c.archiveUrl)); detail.append(actions); card.append(img, detail); return card;
+    const download = node('button', `按版本与服装下载 ↓ · ${packs.filter(p => p.character === c.id).length} 个包`); download.type = 'button'; download.addEventListener('click', () => showDownloads(c));
+    actions.append(browse, download); detail.append(actions); card.append(img, detail); return card;
+  }
+  function showDownloads(c) {
+    const selected = packs.filter(p => p.character === c.id), root = $('download-list'); root.replaceChildren();
+    $('download-title').textContent = c.display + ' · PNG 分包下载';
+    $('download-summary').textContent = `按版本与服装分为 ${selected.length} 个包，共 ${selected.reduce((sum, p) => sum + p.count, 0).toLocaleString()} 张原尺寸 PNG。同款服装的姿态与表情差分放在一起。`;
+    const variants = [...new Set(selected.map(p => p.variant))];
+    for (const variant of variants) {
+      const section = node('section', null, 'download-group');
+      section.append(node('h3', variant === c.id ? c.display : variant.replace(/（過去$/, '（过去）')));
+      const list = node('div', null, 'download-grid');
+      selected.filter(p => p.variant === variant).forEach(p => {
+        const a = link('', p.url); a.className = 'download-pack';
+        a.append(node('strong', p.label + ' ↓'), node('span', `${p.count} 张 PNG · ${(p.size / 1_000_000).toFixed(1)} MB`)); list.append(a);
+      });
+      section.append(list); root.append(section);
+    }
+    $('download-dialog').showModal();
   }
   function applyFilters() {
     const words = state.query.toLowerCase().trim().split(/\s+/).filter(Boolean);
@@ -161,6 +184,8 @@
   $('load-more').addEventListener('click', () => { state.limit += 48; render(); });
   $('share-search').addEventListener('click', () => copyLink());
   $('close-dialog').addEventListener('click', () => $('image-dialog').close());
+  $('close-downloads').addEventListener('click', () => $('download-dialog').close());
+  $('download-dialog').addEventListener('click', e => { if (e.target === $('download-dialog')) { const rect = e.target.getBoundingClientRect(); if (e.clientX < rect.left || e.clientX > rect.right || e.clientY < rect.top || e.clientY > rect.bottom) e.target.close(); } });
   $('image-dialog').addEventListener('close', () => { updateUrl(); $('dialog-image').removeAttribute('src'); });
   $('image-dialog').addEventListener('click', e => { if (e.target === $('image-dialog')) { const rect = e.target.getBoundingClientRect(); if (e.clientX < rect.left || e.clientX > rect.right || e.clientY < rect.top || e.clientY > rect.bottom) e.target.close(); } });
   syncInputs(); switchTab(state.tab);

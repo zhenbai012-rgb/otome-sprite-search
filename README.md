@@ -7,8 +7,10 @@
 - 收录 9,399 张游戏立绘和 7 张有官方出处的公开图片，涵盖 39 位角色。
 - 支持角色中文名、日文名、常用简称、服装、镜头、表情代码和文件名搜索。
 - 可分享筛选结果和单张图片的链接；手机与电脑均可使用。
-- 网页使用透明 WebP 预览。完整原始 PNG 按角色分类放在 [Releases](https://github.com/zhenbai012-rgb/otome-sprite-search/releases/tag/originals-v1)，共 41 个包（39 位角色与 2 个资源组），包含全部差分和校验清单。
+- 网页使用透明 WebP 预览。原尺寸 PNG 按「角色 → 版本 → 服装」细分为 [195 个下载包](https://github.com/zhenbai012-rgb/otome-sprite-search/releases/tag/sprites-costumes-v1)，同款服装的姿态和表情差分放在一起。角色目录可逐包选择；单张预览直接链接到对应服装包。
 - 官方图片保留原始文件，并附来源页和官方图片地址；组合图单独标注。
+- [背景图库](https://zhenbai012-rgb.github.io/otome-sprite-search/backgrounds/)收录 641 张独立图片，包含 591 张场景 / 大幅背景。可按作品、类别与场景代码搜索。
+- 背景按「作品 → 类别 → 场景」细分为 453 个包；较大的场景继续分为不超过 32 MiB 的小包。浏览器读取所选原图后生成 ZIP，包含清单与原尺寸 PNG，也可单张下载。
 
 ## 本地运行
 
@@ -19,6 +21,8 @@ python -m http.server 8789 --directory dist
 ```
 
 打开 <http://localhost:8789>。
+
+如需本地测试背景原图和场景包，从仓库根目录运行 `python -m http.server 8791`，打开 <http://localhost:8791/dist/backgrounds/>。背景原图在 `originals/backgrounds/`，与网页预览分开保存；公开网站通过仓库原图地址读取。
 
 ## 项目结构
 
@@ -31,6 +35,9 @@ dist/                   可直接发布的静态网站
   assets/               透明网页预览与缩略图
   data/sources.json     官方来源清单
   data/downloads.json   原图包链接与 SHA-256
+  data/costume-packs.json  195 个服装分包与 SHA-256
+  backgrounds/          背景检索、WebP 预览与场景分包索引
+originals/backgrounds/  641 张原尺寸 PNG，按内容哈希保存
 scripts/                索引生成与完整性检查
 .github/workflows/      GitHub Pages 自动部署
 ```
@@ -41,10 +48,15 @@ scripts/                索引生成与完整性检查
 
 ```sh
 python scripts/check-site.py
+python scripts/check-backgrounds.py
 node --check dist/app.js
+node --check dist/backgrounds/app.js
+node --check dist/backgrounds/zip-store.js
 ```
 
 `scripts/build-catalog.py --help` 说明如何从外部索引与图片映射更新公共目录。修改索引后也应更新 `dist/data/downloads.json` 中的原图包校验信息。
+
+`scripts/update-costume-packs.py costume-packs.json` 可将 Release 的公共分包清单同步到网页，并核对所有立绘恰好归入一个服装包。此前的整角色下载包保留在 `originals-v1` Release。
 
 ## 来源与许可
 
