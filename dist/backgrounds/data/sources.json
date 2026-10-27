@@ -11950,6 +11950,418 @@
           "file": "04_近月少女的礼仪2/06_背景特效/bg2nd/bg eff202s/bg eff202s__0500153f.png"
         }
       ]
+    },
+    {
+      "id": "title-d2b6233b82cda229",
+      "width": 1400,
+      "height": 996,
+      "pngSha256": "838ca7facd79aad430faee159eae60a1f77295fc3927bb3350d4a353103fb583",
+      "placements": [
+        {
+          "game": "01_近月少女的礼仪",
+          "category": "07_标题背景",
+          "scene": "title-background",
+          "file": "近月少女的礼仪/标题背景/Back__d2b6233b.png"
+        }
+      ],
+      "originalUrl": "https://raw.githubusercontent.com/zhenbai012-rgb/otome-sprite-search/main/originals/cg/d2/d2b6233b82cda2297b6535615e8c1d0d4dd622413ce7654b4c7bc4d9b347f316.png",
+      "sourcePlacements": [
+        {
+          "game": "01_近月少女的礼仪",
+          "sourceGame": "01_近月少女的礼仪",
+          "scene": "标题与Logo",
+          "role": "作品素材",
+          "archive": "data11.pack",
+          "resource": "script\\title\\back.b",
+          "layers": [
+            "Back_Compo.b",
+            "Back.jpg"
+          ],
+          "titleType": "标题背景"
+        },
+        {
+          "game": "01_近月少女的礼仪",
+          "sourceGame": "01_近月少女的礼仪",
+          "scene": "标题与Logo",
+          "role": "作品素材",
+          "archive": "data7.pack",
+          "resource": "script\\title\\back.b",
+          "layers": [
+            "Back_Compo.b",
+            "Back.jpg"
+          ],
+          "titleType": "标题背景"
+        }
+      ]
+    },
+    {
+      "id": "title-c843118c9224c1b4",
+      "width": 1400,
+      "height": 996,
+      "pngSha256": "1f4a5f311f9281928de0f21fb379f8fe3e84b3700b7ac130120cf37ea9f8dfcf",
+      "placements": [
+        {
+          "game": "01_近月少女的礼仪",
+          "category": "07_标题背景",
+          "scene": "title-background",
+          "file": "近月少女的礼仪/标题背景/Back02__c843118c.png"
+        }
+      ],
+      "originalUrl": "https://raw.githubusercontent.com/zhenbai012-rgb/otome-sprite-search/main/originals/cg/c8/c843118c9224c1b4c3bfbbe0a93798b423a1b6535cf61784fbc414b975aba22f.png",
+      "sourcePlacements": [
+        {
+          "game": "01_近月少女的礼仪",
+          "sourceGame": "01_近月少女的礼仪",
+          "scene": "标题与Logo",
+          "role": "作品素材",
+          "archive": "data11.pack",
+          "resource": "script\\title\\back.b",
+          "layers": [
+            "Back_Compo.b",
+            "Back02.jpg"
+          ],
+          "titleType": "标题背景"
+        },
+        {
+          "game": "01_近月少女的礼仪",
+          "sourceGame": "01_近月少女的礼仪",
+          "scene": "标题与Logo",
+          "role": "作品素材",
+          "archive": "data7.pack",
+          "resource": "script\\title\\back.b",
+          "layers": [
+            "Back_Compo.b",
+            "Back02.jpg"
+          ],
+          "titleType": "标题背景"
+        }
+      ]
+    },
+    {
+      "id": "title-1f45f476222a5ac4",
+      "width": 1280,
+      "height": 720,
+      "pngSha256": "29496719eec0161bf4c30b6a6802fa7c63473154149170aece8912f4741ee014",
+      "placements": [
+        {
+          "game": "02_少女理论_Ecole_de_Paris",
+          "category": "07_标题背景",
+          "scene": "title-background",
+          "file": "少女理论及其周边（巴黎篇）/标题背景/back__1f45f476.png"
+        }
+      ],
+      "originalUrl": "https://raw.githubusercontent.com/zhenbai012-rgb/otome-sprite-search/main/originals/cg/1f/1f45f476222a5ac4f118a496cdc40b9c775479cf2925bbf3dbef85f8754f0995.png",
+      "sourcePlacements": [
+        {
+          "game": "02_少女理论_Ecole_de_Paris",
+          "sourceGame": "02_少女理论_Ecole_de_Paris",
+          "scene": "标题与Logo",
+          "role": "作品素材",
+          "archive": "data10.pack",
+          "resource": "script\\title\\back.b",
+          "layers": [
+            "back.png"
+          ],
+          "titleType": "标题背景"
+        },
+        {
+          "game": "02_少女理论_Ecole_de_Paris",
+          "sourceGame": "02_少女理论_Ecole_de_Paris",
+          "scene": "标题与Logo",
+          "role": "作品素材",
+          "archive": "data7.pack",
+          "resource": "script\\title\\back.b",
+          "layers": [
+            "back.png"
+          ],
+          "titleType": "标题背景"
+        }
+      ]
+    },
+    {
+      "id": "title-b4e7e1d30e6dd2e8",
+      "width": 2560,
+      "height": 1842,
+      "pngSha256": "3310e2f637c6ef4547aaae41cff0a02db2d07cef0fbf8b1c4c95ff90a189a17f",
+      "placements": [
+        {
+          "game": "03_少女理论_Belle_Epoque",
+          "category": "07_标题背景",
+          "scene": "title-background",
+          "file": "少女理论之后的周边（美好时代）/标题背景/Back__b4e7e1d3.png"
+        }
+      ],
+      "originalUrl": "https://raw.githubusercontent.com/zhenbai012-rgb/otome-sprite-search/main/originals/cg/b4/b4e7e1d30e6dd2e8abbc70c1525780889c9ab664d6b3c108ec0d35a7fba7917f.png",
+      "sourcePlacements": [
+        {
+          "game": "03_少女理论_Belle_Epoque",
+          "sourceGame": "03_少女理论_Belle_Epoque",
+          "scene": "标题与Logo",
+          "role": "作品素材",
+          "archive": "Data7.pack",
+          "resource": "script\\title\\titleback.b",
+          "layers": [
+            "bg.b",
+            "Back"
+          ],
+          "titleType": "标题背景"
+        }
+      ]
+    },
+    {
+      "id": "title-398cad09fce7e44c",
+      "width": 1280,
+      "height": 720,
+      "pngSha256": "ed51f44c647bb22f574f0e3cbfed827d8878c1a88f5c5d9dd2a584179d7ce426",
+      "placements": [
+        {
+          "game": "03_少女理论_Belle_Epoque",
+          "category": "07_标题背景",
+          "scene": "title-background",
+          "file": "少女理论之后的周边（美好时代）/标题背景/back__398cad09.png"
+        }
+      ],
+      "originalUrl": "https://raw.githubusercontent.com/zhenbai012-rgb/otome-sprite-search/main/originals/cg/39/398cad09fce7e44c121d1c1eacef6cd5882d4678d5fca7e2fb71a1b5df68c842.png",
+      "sourcePlacements": [
+        {
+          "game": "03_少女理论_Belle_Epoque",
+          "sourceGame": "03_少女理论_Belle_Epoque",
+          "scene": "标题与Logo",
+          "role": "作品素材",
+          "archive": "Data7.pack",
+          "resource": "script\\title\\titleback.b",
+          "layers": [
+            "bg.b",
+            "back.png"
+          ],
+          "titleType": "标题背景"
+        }
+      ]
+    },
+    {
+      "id": "title-a9e9b1370deba931",
+      "width": 1157,
+      "height": 819,
+      "pngSha256": "fe6be0a54db112cedd419a38e661528cd95073cf1b37701955b1bafa687a2610",
+      "placements": [
+        {
+          "game": "04_近月少女的礼仪2",
+          "category": "07_标题背景",
+          "scene": "title-background",
+          "file": "近月少女的礼仪2/标题背景/Back__a9e9b137.png"
+        }
+      ],
+      "originalUrl": "https://raw.githubusercontent.com/zhenbai012-rgb/otome-sprite-search/main/originals/cg/a9/a9e9b1370deba931b6f9e1c547574c1bb25ea19752273953d232560a0867d1a0.png",
+      "sourcePlacements": [
+        {
+          "game": "04_近月少女的礼仪2",
+          "sourceGame": "04_近月少女的礼仪2",
+          "scene": "标题与Logo",
+          "role": "作品素材",
+          "archive": "data16.pack",
+          "resource": "script\\title\\titleback_day.b",
+          "layers": [
+            "Scene.b",
+            "Back.b",
+            "Back.jpg"
+          ],
+          "titleType": "标题背景"
+        },
+        {
+          "game": "04_近月少女的礼仪2",
+          "sourceGame": "04_近月少女的礼仪2",
+          "scene": "标题与Logo",
+          "role": "作品素材",
+          "archive": "data7.pack",
+          "resource": "script\\title\\titleback_day.b",
+          "layers": [
+            "Scene.b",
+            "Back.b",
+            "Back.jpg"
+          ],
+          "titleType": "标题背景"
+        }
+      ]
+    },
+    {
+      "id": "title-c871e9c212259fdf",
+      "width": 1157,
+      "height": 819,
+      "pngSha256": "16fa3b95f737c1079ce60c41b65e993043cb6135f41e4386d878d1efb6d0411e",
+      "placements": [
+        {
+          "game": "04_近月少女的礼仪2",
+          "category": "07_标题背景",
+          "scene": "title-background",
+          "file": "近月少女的礼仪2/标题背景/night__c871e9c2.png"
+        }
+      ],
+      "originalUrl": "https://raw.githubusercontent.com/zhenbai012-rgb/otome-sprite-search/main/originals/cg/c8/c871e9c212259fdf4fec074c22508871e8694c0d1e7e826187cb7deab5ef6f95.png",
+      "sourcePlacements": [
+        {
+          "game": "04_近月少女的礼仪2",
+          "sourceGame": "04_近月少女的礼仪2",
+          "scene": "标题与Logo",
+          "role": "作品素材",
+          "archive": "data16.pack",
+          "resource": "script\\title\\titleback_day.b",
+          "layers": [
+            "Scene.b",
+            "Back.b",
+            "night.jpg"
+          ],
+          "titleType": "标题图层"
+        },
+        {
+          "game": "04_近月少女的礼仪2",
+          "sourceGame": "04_近月少女的礼仪2",
+          "scene": "标题与Logo",
+          "role": "作品素材",
+          "archive": "data7.pack",
+          "resource": "script\\title\\titleback_day.b",
+          "layers": [
+            "Scene.b",
+            "Back.b",
+            "night.jpg"
+          ],
+          "titleType": "标题图层"
+        }
+      ]
+    },
+    {
+      "id": "title-b22655287e20e827",
+      "width": 1194,
+      "height": 1659,
+      "pngSha256": "4c2ec60134a69b9bac5e80901ab11f5c8b29ee9a484bcab5b9362922c94873a0",
+      "placements": [
+        {
+          "game": "05_近月少女的礼仪2.1",
+          "category": "07_标题背景",
+          "scene": "title-background",
+          "file": "近月少女的礼仪2.1/标题背景/back__b2265528.png"
+        }
+      ],
+      "originalUrl": "https://raw.githubusercontent.com/zhenbai012-rgb/otome-sprite-search/main/originals/cg/b2/b22655287e20e827b4b12b5727d9563b8c03fc6c1060dbdd8646d8a79b9411ab.png",
+      "sourcePlacements": [
+        {
+          "game": "05_近月少女的礼仪2.1",
+          "sourceGame": "05_近月少女的礼仪2.1",
+          "scene": "标题与Logo",
+          "role": "作品素材",
+          "archive": "data7.pack",
+          "resource": "script\\title\\back.b",
+          "layers": [
+            "back.b",
+            "back"
+          ],
+          "titleType": "标题背景"
+        }
+      ]
+    },
+    {
+      "id": "title-8d509bf9c42428b2",
+      "width": 1310,
+      "height": 1356,
+      "pngSha256": "757911eebdb6749012bb1b6c27c8a8323850911caeae57701678acdf42b66bb5",
+      "placements": [
+        {
+          "game": "06_近月少女的礼仪2.2",
+          "category": "07_标题背景",
+          "scene": "title-background",
+          "file": "近月少女的礼仪2.2/标题背景/back__8d509bf9.png"
+        }
+      ],
+      "originalUrl": "https://raw.githubusercontent.com/zhenbai012-rgb/otome-sprite-search/main/originals/cg/8d/8d509bf9c42428b2f996b92fc11ab689e20d29badcffa3ed5feb80f3afaacded.png",
+      "sourcePlacements": [
+        {
+          "game": "06_近月少女的礼仪2.2",
+          "sourceGame": "06_近月少女的礼仪2.2",
+          "scene": "标题与Logo",
+          "role": "作品素材",
+          "archive": "data11.pack",
+          "resource": "script\\title\\back.b",
+          "layers": [
+            "back.b",
+            "back"
+          ],
+          "titleType": "标题背景"
+        }
+      ]
+    },
+    {
+      "id": "title-4bfbbc46a373613e",
+      "width": 1310,
+      "height": 1356,
+      "pngSha256": "fcee4333553a5e41bb6c8b9e87d699787a0607072bdcc4d823905974120bff7c",
+      "placements": [
+        {
+          "game": "06_近月少女的礼仪2.2",
+          "category": "07_标题背景",
+          "scene": "title-background",
+          "file": "近月少女的礼仪2.2/标题背景/back__4bfbbc46.png"
+        }
+      ],
+      "originalUrl": "https://raw.githubusercontent.com/zhenbai012-rgb/otome-sprite-search/main/originals/cg/4b/4bfbbc46a373613eca0cd5674a2957a9ed89f5103730c8ee52f3761fe3acd707.png",
+      "sourcePlacements": [
+        {
+          "game": "06_近月少女的礼仪2.2",
+          "sourceGame": "06_近月少女的礼仪2.2",
+          "scene": "标题与Logo",
+          "role": "作品素材",
+          "archive": "data7.pack",
+          "resource": "script\\title\\back.b",
+          "layers": [
+            "back.b",
+            "back.png"
+          ],
+          "titleType": "标题背景"
+        }
+      ]
+    },
+    {
+      "id": "title-f871f516563c0295",
+      "width": 1280,
+      "height": 720,
+      "pngSha256": "cfa540e7cc18bb3bb76e159f46dd547be2fe006049761f8ca2547a88ada8c3c8",
+      "placements": [
+        {
+          "game": "06_近月少女的礼仪2.2",
+          "category": "07_标题背景",
+          "scene": "title-background",
+          "file": "近月少女的礼仪2.2/标题背景/back__f871f516.png"
+        }
+      ],
+      "originalUrl": "https://raw.githubusercontent.com/zhenbai012-rgb/otome-sprite-search/main/originals/cg/f8/f871f516563c0295e0bbbe680c25a0ab60e10e99946bca1488157e410885117d.png",
+      "sourcePlacements": [
+        {
+          "game": "06_近月少女的礼仪2.2",
+          "sourceGame": "06_近月少女的礼仪2.2",
+          "scene": "标题与Logo",
+          "role": "作品素材",
+          "archive": "data11.pack",
+          "resource": "script\\title\\back.b",
+          "layers": [
+            "back.b",
+            "main.b",
+            "back.png"
+          ],
+          "titleType": "标题背景"
+        },
+        {
+          "game": "06_近月少女的礼仪2.2",
+          "sourceGame": "06_近月少女的礼仪2.2",
+          "scene": "标题与Logo",
+          "role": "作品素材",
+          "archive": "data7.pack",
+          "resource": "script\\title\\back.b",
+          "layers": [
+            "back.b",
+            "main.b",
+            "back.png"
+          ],
+          "titleType": "标题背景"
+        }
+      ]
     }
   ]
 }

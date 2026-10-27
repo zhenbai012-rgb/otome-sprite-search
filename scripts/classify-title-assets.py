@@ -65,6 +65,12 @@ def main():
         packs.append({'id': 'title-background-' + game.split('_')[0], 'game': game, 'category': category, 'scene': 'title-background', 'title': '标题背景', 'filename': works[game] + '_标题背景.zip', 'count': len(files), 'bytes': sum(f['bytes'] for f in files), 'files': files})
     payload = {'images': images, 'packs': packs, 'kinds': {'title': category}, 'assetBase': BASE, 'originalBases': {'cg': BASE + 'originals/cg/'}}
     script(SITE / 'backgrounds/title-data.js', 'window.BACKGROUND_TITLE_DATA', payload)
+    source_path = SITE / 'backgrounds/data/sources.json'
+    background_sources = json.loads(source_path.read_text(encoding='utf-8'))
+    moved_ids = {r['id'] for r in images}
+    background_sources['images'] = [r for r in background_sources['images'] if r['id'] not in moved_ids]
+    background_sources['images'].extend({'id': r['id'], 'width': r['width'], 'height': r['height'], 'pngSha256': r['originalSha256'], 'placements': r['placements'], 'originalUrl': BASE + 'originals/cg/' + r['original'], 'sourcePlacements': by_id[r['id']]['placements']} for r in images)
+    source_path.write_text(json.dumps(background_sources, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
     print(json.dumps({'categories': dict(counts), 'titleBackgroundPacks': len(packs)}, ensure_ascii=False))
 
 

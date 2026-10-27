@@ -106,6 +106,8 @@ def main():
             assert (f['original'],f['bytes'],f['sha256'])==(source['original'],source['originalBytes'],source['originalSha256'])
             covered[(pack['game'],f['image'],f['name'])]+=1
     assert covered==expected
+    source_index=json.loads((SITE/'backgrounds/data/sources.json').read_text(encoding='utf-8'))
+    assert {r['id'] for r in source_index['images']}=={r['id'] for r in background['images']}|set(moved)
     assert all(r.get('titleType')=='人物图层' for r in images if r['kind']=='title_character')
     assert all(r.get('titleType') in ('日文Logo','标题画面') for r in images if r['kind']=='title')
     assert catalog['cg']['script'].split('?')[0]=='cg-data.js'
