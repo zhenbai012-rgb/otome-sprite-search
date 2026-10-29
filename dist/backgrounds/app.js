@@ -203,18 +203,8 @@
     renderFeatured();
   }
   function initDesktopArchive() {
-    const picks = [], scenes = new Set();
-    const add = r => {
-      if (!r || picks.length >= 8) return;
-      const place = scenePlace(r), key = `${place.game}:${place.scene}`;
-      if (!scenes.has(key)) { scenes.add(key); picks.push(r); }
-    };
-    add(featuredRecords[0]);
-    for (const game of data.games) if (!picks.some(r => scenePlace(r).game === game)) add(scenePool.find(r => scenePlace(r).game === game));
-    featuredRecords.slice(1).forEach(add);
-    scenePool.forEach(add);
     window.GalleryArchive?.mount({
-      records: picks, kind: '场景背景', heading: '风景',
+      records: scenePool, kind: '场景背景', heading: '风景',
       description: '从熟悉的街道到安静的房间，翻开故事里的风景。', href: '#collection', loadImage,
       label: r => displayName(scenePlace(r)), code: r => r.name,
       meta: r => `${short(scenePlace(r).game)} · ${r.width} × ${r.height}`,

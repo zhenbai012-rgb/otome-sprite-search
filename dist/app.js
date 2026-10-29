@@ -285,18 +285,8 @@
     renderFeatured();
   }
   function initDesktopArchive() {
-    const pool = artworkRecords.filter(r => r.kind === 'cg'), picks = [], scenes = new Set();
-    const add = r => {
-      if (!r || picks.length >= 8) return;
-      const key = `${r.gameIds[0]}:${r.scene}`;
-      if (!scenes.has(key)) { scenes.add(key); picks.push(r); }
-    };
-    add(featuredRecords[0]);
-    for (const work of works.keys()) if (!picks.some(r => r.gameIds.includes(work))) add(pool.find(r => r.gameIds.includes(work)));
-    featuredRecords.slice(1).forEach(add);
-    pool.forEach(add);
     window.GalleryArchive?.mount({
-      records: picks, kind: '剧情 CG', heading: '画面',
+      records: artworkRecords.filter(r => r.kind === 'cg'), kind: '剧情 CG', heading: '画面',
       description: '翻阅角色与故事中的瞬间，找到喜欢的一张。', href: '#archive', loadImage,
       label: r => (r.characters || [r.character]).map(name).join(' / '),
       code: r => r.name, meta: r => `${workName(r.gameIds[0])} · 剧情 CG · ${r.name}`,

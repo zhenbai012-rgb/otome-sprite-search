@@ -13,8 +13,19 @@
       const build = () => {
         if (!desktop.matches || initialized) return;
         initialized = true;
-        const records = options.records, markers = [];
+        const records = options.records.slice(), markers = [];
+        for (let i = records.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [records[i], records[j]] = [records[j], records[i]];
+        }
+        // Avoid repeating the opening image when the same tab is refreshed.
+        try {
+          const key = 'archive-opening:' + location.pathname;
+          if (records.length > 1 && sessionStorage.getItem(key) === records[0].id) [records[0], records[1]] = [records[1], records[0]];
+          sessionStorage.setItem(key, records[0].id);
+        } catch (_) { /* Browsing still works when storage is unavailable. */ }
         let current = 0, scene = null;
+        const wrap = index => ((index % records.length) + records.length) % records.length;
         const initialHash = location.hash;
         let interacted = false;
         const noteInteraction = () => { interacted = true; };
@@ -41,34 +52,48 @@
         query('.archive-kind').textContent = options.kind;
         query('.archive-enter').href = options.href;
         const imagePool = document.createElement('div'); imagePool.hidden = true; root.append(imagePool);
-        const images = records.map((record, index) => {
+        const images = new Map();
+        function loadAt(index) {
+          if (images.has(index)) return images.get(index);
+          const record = records[index];
           const image = new Image(); image.crossOrigin = 'anonymous'; image.decoding = 'async'; image.alt = '';
           image.addEventListener('load', () => {
             if (index !== current) return;
             fallbackImage.src = image.currentSrc || image.src;
             if (scene) scene.setImage(image);
           });
-          imagePool.append(image); options.loadImage(image, record.file, record.thumb);
+          images.set(index, image); imagePool.append(image); options.loadImage(image, record.file, record.thumb);
           return image;
-        });
-        records.forEach((record, index) => {
+        }
+        for (let i = 0; i < Math.min(9, records.length); i++) {
           const marker = document.createElement('button');
           marker.type = 'button'; marker.className = 'archive-marker';
-          marker.setAttribute('aria-label', `选择第 ${index + 1} 张：${options.label(record)}`);
-          marker.addEventListener('click', () => select(index));
+          marker.addEventListener('click', () => select(Number(marker.dataset.index)));
           query('.archive-markers').append(marker); markers.push(marker);
-        });
+        }
         function select(index) {
-          current = ((index % records.length) + records.length) % records.length;
+          current = wrap(index);
           const record = records[current];
           query('.archive-name').textContent = options.label(record);
           query('.archive-meta').textContent = options.meta(record);
           query('.archive-scene').setAttribute('aria-label', '三维档案：' + options.label(record));
-          query('.archive-counter').textContent = `${String(current + 1).padStart(2, '0')} / ${String(records.length).padStart(2, '0')}`;
-          markers.forEach((marker, i) => marker.setAttribute('aria-pressed', String(i === current)));
-          const image = images[current], ready = image.complete && image.naturalWidth > 0;
+          const digits = Math.max(2, String(records.length).length);
+          query('.archive-counter').textContent = `${String(current + 1).padStart(digits, '0')} / ${String(records.length).padStart(digits, '0')}`;
+          const firstMarker = Math.max(0, Math.min(current - Math.floor(markers.length / 2), records.length - markers.length));
+          markers.forEach((marker, i) => {
+            const target = firstMarker + i;
+            marker.dataset.index = target;
+            marker.setAttribute('aria-label', `选择第 ${target + 1} 张：${options.label(records[target])}`);
+            marker.setAttribute('aria-pressed', String(target === current));
+          });
+          const nearby = new Set([current, wrap(current - 1), wrap(current + 1), wrap(current - 2), wrap(current + 2)]);
+          for (const [cachedIndex, cachedImage] of images) {
+            if (!nearby.has(cachedIndex)) { cachedImage.remove(); images.delete(cachedIndex); }
+          }
+          const image = loadAt(current), ready = image.complete && image.naturalWidth > 0;
           if (ready) fallbackImage.src = image.currentSrc || image.src; else fallbackImage.removeAttribute('src');
           if (scene) { scene.select(current); scene.setImage(ready ? image : null); }
+          nearby.forEach(loadAt);
         }
         query('.archive-prev').addEventListener('click', () => select(current - 1));
         query('.archive-next').addEventListener('click', () => select(current + 1));
@@ -97,14 +122,15 @@
           if (!interacted && location.hash === initialHash) document.getElementById(initialHash.slice(1))?.scrollIntoView({block: 'start', behavior: 'instant'});
           interactionEvents.forEach(type => window.removeEventListener(type, noteInteraction));
         });
-        const moduleUrl = new URL('archive-scene.js?v=50dc024a385a', scriptUrl);
+        const moduleUrl = new URL('archive-scene.js?v=f356da09eec1', scriptUrl);
         import(moduleUrl.href).then(module => {
           scene = module.createArchiveScene(query('.archive-scene'), {
             count: records.length,
             onSelect: select,
           });
           scene.select(current);
-          if (images[current].complete && images[current].naturalWidth > 0) scene.setImage(images[current]);
+          const image = images.get(current);
+          if (image && image.complete && image.naturalWidth > 0) scene.setImage(image);
           root.classList.add('scene-loaded');
         }).catch(() => { query('.archive-scene canvas')?.remove(); root.classList.add('scene-fallback'); });
       };

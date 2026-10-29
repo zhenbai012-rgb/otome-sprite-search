@@ -5,32 +5,33 @@ export function createArchiveScene(host, options) {
   const renderer = new THREE.WebGLRenderer({antialias: true, alpha: false, powerPreference: 'low-power'});
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.4));
-  renderer.setClearColor(0xe9e6e2, 1);
+  renderer.setClearColor(0xe9e2f0, 1);
   const canvas = renderer.domElement;
   canvas.setAttribute('aria-hidden', 'true');
   host.append(canvas);
 
   const scene = new THREE.Scene();
-  scene.background = new THREE.Color(0xe9e6e2);
-  scene.fog = new THREE.Fog(0xe9e6e2, 34, 67);
+  scene.background = new THREE.Color(0xe9e2f0);
+  scene.fog = new THREE.Fog(0xe9e2f0, 34, 67);
   const camera = new THREE.PerspectiveCamera(30, 1, .1, 100);
-  const ambient = new THREE.HemisphereLight(0xffffff, 0xb4a69b, 2.2);
+  const ambient = new THREE.HemisphereLight(0xfdfaff, 0xa99bb9, 2.2);
   const sun = new THREE.DirectionalLight(0xffffff, 2.4);
   sun.position.set(-8, 18, 12);
   scene.add(ambient, sun);
 
   const columns = 11, rows = 56, total = columns * rows;
   const columnGap = 5.05, rowGap = .62, focusColumn = 5, baseRow = 24;
+  const focusRows = Math.min(4, options.count);
   const bodyGeometry = new THREE.BoxGeometry(4.8, 3.45, .30);
-  const bodyMaterial = new THREE.MeshStandardMaterial({color: 0xf4f0ea, roughness: .82, metalness: .02});
+  const bodyMaterial = new THREE.MeshStandardMaterial({color: 0xece4f3, roughness: .82, metalness: .02});
   const bodies = new THREE.InstancedMesh(bodyGeometry, bodyMaterial, total);
   bodies.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
   const capGeometry = new THREE.BoxGeometry(4.72, .035, .31);
-  const capMaterial = new THREE.MeshStandardMaterial({color: 0xffffff, roughness: .7});
+  const capMaterial = new THREE.MeshStandardMaterial({color: 0xfdf9ff, roughness: .7});
   const caps = new THREE.InstancedMesh(capGeometry, capMaterial, total);
   caps.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
   const detailGeometry = new THREE.BoxGeometry(.24, .08, .012);
-  const detailMaterial = new THREE.MeshStandardMaterial({color: 0xaaa19a, roughness: .8});
+  const detailMaterial = new THREE.MeshStandardMaterial({color: 0x9688a4, roughness: .8});
   const details = new THREE.InstancedMesh(detailGeometry, detailMaterial, total);
   details.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
   scene.add(bodies, caps, details);
@@ -38,7 +39,7 @@ export function createArchiveScene(host, options) {
   const selectedBody = new THREE.Mesh(bodyGeometry, bodyMaterial);
   const selectedCap = new THREE.Mesh(capGeometry, capMaterial); selectedCap.position.y = 1.742;
   const selectedDetail = new THREE.Mesh(detailGeometry, detailMaterial); selectedDetail.position.set(-1.65, 1.29, .157);
-  const imageBacking = new THREE.Mesh(new THREE.PlaneGeometry(4.45, 3.05), new THREE.MeshBasicMaterial({color: 0xe1dcd7}));
+  const imageBacking = new THREE.Mesh(new THREE.PlaneGeometry(4.45, 3.05), new THREE.MeshBasicMaterial({color: 0xe0d7e8}));
   imageBacking.position.set(0, 0, .157);
   const imageMaterial = new THREE.MeshBasicMaterial({color: 0xffffff, toneMapped: false});
   const imagePlane = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), imageMaterial);
@@ -48,7 +49,7 @@ export function createArchiveScene(host, options) {
   const shade = new THREE.Color();
   for (let i = 0; i < total; i++) {
     const variation = (i % rows) % 3;
-    shade.setHex(variation === 0 ? 0xf8f5f0 : variation === 1 ? 0xf3efea : 0xeee9e3);
+    shade.setHex(variation === 0 ? 0xf9f5fc : variation === 1 ? 0xf1eaf7 : 0xeae1f2);
     bodies.setColorAt(i, shade);
   }
 
@@ -81,7 +82,7 @@ export function createArchiveScene(host, options) {
     movingZoom += ((activeMotion ? desiredZoom : 0) - movingZoom) * blend;
     camera.position.set(-23 + movingX * 1.2, 13 + movingY * .7, 18 - movingZoom);
     camera.lookAt(0, .25, 0);
-    const focusRow = baseRow + current, age = (now - selectedAt) / 1000;
+    const focusRow = baseRow + current % focusRows, age = (now - selectedAt) / 1000;
     for (let col = 0; col < columns; col++) {
       for (let row = 0; row < rows; row++) {
         const i = col * rows + row, distance = Math.abs(row - focusRow);
@@ -159,7 +160,8 @@ export function createArchiveScene(host, options) {
     raycaster.setFromCamera(pointer, camera);
     const hit = raycaster.intersectObjects([bodies, selectedFile], true)[0];
     if (!hit) return;
-    const index = hit.object === bodies && hit.instanceId != null ? wrap(hit.instanceId % rows - baseRow, options.count) : current;
+    const focusRow = baseRow + current % focusRows;
+    const index = hit.object === bodies && hit.instanceId != null ? wrap(current + hit.instanceId % rows - focusRow, options.count) : current;
     if (index !== current) options.onSelect(index);
   });
   canvas.addEventListener('pointercancel', () => { drag = null; });
