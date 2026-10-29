@@ -2,7 +2,7 @@ import * as THREE from './vendor/three/three.module.min.js';
 
 /* A lightweight three-dimensional filing array for the desktop landing page. */
 export function createArchiveScene(host, options) {
-  const renderer = new THREE.WebGLRenderer({antialias: true, alpha: false, powerPreference: 'low-power'});
+  const renderer = new THREE.WebGLRenderer({antialias: true, alpha: false, powerPreference: 'high-performance'});
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.4));
   renderer.setClearColor(0xe9e2f0, 1);
@@ -55,10 +55,27 @@ export function createArchiveScene(host, options) {
 
   const dummy = new THREE.Object3D();
   const heights = new Float32Array(total);
+  const bodyMatrices = bodies.instanceMatrix.array, capMatrices = caps.instanceMatrix.array, detailMatrices = details.instanceMatrix.array;
+  const matrixArrays = [bodyMatrices, capMatrices, detailMatrices];
+  const shoulderFalloff = new Float32Array(rows), waveFalloff = new Float32Array(rows);
+  const rowShoulders = new Float32Array(rows), rowWaves = new Float32Array(rows);
+  for (let row = 0; row < rows; row++) {
+    shoulderFalloff[row] = Math.exp(-row * .34);
+    waveFalloff[row] = Math.exp(-row * .17);
+  }
+  // X and Z never change; initialize each matrix once and update only its height.
+  for (let col = 0; col < columns; col++) {
+    for (let row = 0; row < rows; row++) {
+      const i = col * rows + row, x = (col - focusColumn) * columnGap, z = (row - (rows - 1) / 2) * rowGap;
+      dummy.position.set(x, 0, z); dummy.updateMatrix(); bodies.setMatrixAt(i, dummy.matrix);
+      dummy.position.set(x, 1.742, z); dummy.updateMatrix(); caps.setMatrixAt(i, dummy.matrix);
+      dummy.position.set(x - 1.65, 1.29, z + .157); dummy.updateMatrix(); details.setMatrixAt(i, dummy.matrix);
+    }
+  }
   const raycaster = new THREE.Raycaster(), pointer = new THREE.Vector2();
   const desktop = window.matchMedia('(min-width: 960px)');
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
-  let current = 0, selectedAt = 0, visible = true, frame = 0, last = 0;
+  let current = 0, selectedAt = 0, selectedInstance = -1, visible = true, frame = 0, last = 0;
   let desiredX = 0, desiredY = 0, desiredZoom = 0, movingX = 0, movingY = 0, movingZoom = 0;
   let previewTexture = null;
   let drag = null;
@@ -72,6 +89,11 @@ export function createArchiveScene(host, options) {
     camera.aspect = width / height; camera.updateProjectionMatrix();
     invalidate();
   }
+  function scaleInstance(index, scale) {
+    if (index < 0) return;
+    const offset = index * 16;
+    for (const matrices of matrixArrays) matrices[offset] = matrices[offset + 5] = matrices[offset + 10] = scale;
+  }
   function paint(now) {
     const activeMotion = motion();
     const delta = last ? Math.min((now - last) / 1000, .08) : .016;
@@ -83,22 +105,27 @@ export function createArchiveScene(host, options) {
     camera.position.set(-23 + movingX * 1.2, 13 + movingY * .7, 18 - movingZoom);
     camera.lookAt(0, .25, 0);
     const focusRow = baseRow + current % focusRows, age = (now - selectedAt) / 1000;
+    const nextSelected = focusColumn * rows + focusRow;
+    if (nextSelected !== selectedInstance) {
+      scaleInstance(selectedInstance, 1); scaleInstance(nextSelected, .0001); selectedInstance = nextSelected;
+    }
+    const waveStrength = activeMotion && age < 2 ? .22 * Math.exp(-age * 2) : 0;
+    for (let row = 0; row < rows; row++) {
+      const distance = Math.abs(row - focusRow);
+      rowShoulders[row] = shoulderFalloff[distance];
+      rowWaves[row] = waveStrength ? waveStrength * Math.cos(distance * .75 - age * 8) * waveFalloff[distance] : 0;
+    }
     for (let col = 0; col < columns; col++) {
       for (let row = 0; row < rows; row++) {
-        const i = col * rows + row, distance = Math.abs(row - focusRow);
-        const shoulder = Math.exp(-distance * .34) * (col === focusColumn ? .65 : .18);
-        const isSelected = col === focusColumn && row === focusRow;
-        const selected = isSelected ? 3.45 : 0;
-        const wave = activeMotion && age < 2 ? .22 * Math.exp(-age * 2) * Math.cos(distance * .75 - age * 8) * Math.exp(-distance * .17) : 0;
+        const i = col * rows + row, isSelected = i === selectedInstance;
+        const shoulder = rowShoulders[row] * (col === focusColumn ? .65 : .18);
         const breath = activeMotion ? .035 * Math.sin(now / 2400 + row * .18 + col * .3) : 0;
-        const wanted = shoulder + selected + wave + breath;
+        const wanted = shoulder + (isSelected ? 3.45 : 0) + rowWaves[row] + breath;
         heights[i] += (wanted - heights[i]) * (activeMotion ? blend : 1);
-        const x = (col - focusColumn) * columnGap, y = -.45 + heights[i], z = (row - (rows - 1) / 2) * rowGap;
-        dummy.scale.setScalar(isSelected ? .0001 : 1);
-        dummy.position.set(x, y, z); dummy.updateMatrix(); bodies.setMatrixAt(i, dummy.matrix);
-        dummy.position.set(x, y + 1.742, z); dummy.updateMatrix(); caps.setMatrixAt(i, dummy.matrix);
-        dummy.position.set(x - 1.65, y + 1.29, z + .157); dummy.updateMatrix(); details.setMatrixAt(i, dummy.matrix);
+        const offset = i * 16, y = -.45 + heights[i];
+        bodyMatrices[offset + 13] = y; capMatrices[offset + 13] = y + 1.742; detailMatrices[offset + 13] = y + 1.29;
         if (isSelected) {
+          const x = bodyMatrices[offset + 12], z = bodyMatrices[offset + 14];
           selectedFile.position.set(x, y, z);
           const rotation = THREE.MathUtils.smoothstep(heights[i], 2.75, 3.9);
           selectedFile.rotation.y = Math.atan2(camera.position.x - x, camera.position.z - z) * rotation;
@@ -111,7 +138,7 @@ export function createArchiveScene(host, options) {
   function tick(now) {
     frame = 0;
     if (!canDraw()) { last = 0; return; }
-    if (!last || now - last >= 32 || !motion()) paint(now);
+    paint(now);
     if (motion()) frame = requestAnimationFrame(tick);
   }
   function invalidate() { if (canDraw() && !frame) frame = requestAnimationFrame(tick); }

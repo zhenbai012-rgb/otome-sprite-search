@@ -122,7 +122,7 @@
           if (!interacted && location.hash === initialHash) document.getElementById(initialHash.slice(1))?.scrollIntoView({block: 'start', behavior: 'instant'});
           interactionEvents.forEach(type => window.removeEventListener(type, noteInteraction));
         });
-        const moduleUrl = new URL('archive-scene.js?v=f356da09eec1', scriptUrl);
+        const moduleUrl = new URL('archive-scene.js?v=9c33c0e0f741', scriptUrl);
         import(moduleUrl.href).then(module => {
           scene = module.createArchiveScene(query('.archive-scene'), {
             count: records.length,
