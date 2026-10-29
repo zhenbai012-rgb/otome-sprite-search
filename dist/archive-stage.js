@@ -13,11 +13,12 @@
       const build = () => {
         if (!desktop.matches || initialized) return;
         initialized = true;
-        const records = options.records.slice(), markers = [];
-        for (let i = records.length - 1; i > 0; i--) {
-          const j = Math.floor(Math.random() * (i + 1));
-          [records[i], records[j]] = [records[j], records[i]];
+        const pool = options.records.slice(), count = Math.min(10, pool.length), markers = [];
+        for (let i = 0; i < count; i++) {
+          const j = i + Math.floor(Math.random() * (pool.length - i));
+          [pool[i], pool[j]] = [pool[j], pool[i]];
         }
+        const records = pool.slice(0, count);
         // Avoid repeating the opening image when the same tab is refreshed.
         try {
           const key = 'archive-opening:' + location.pathname;
@@ -65,7 +66,7 @@
           images.set(index, image); imagePool.append(image); options.loadImage(image, record.file, record.thumb);
           return image;
         }
-        for (let i = 0; i < Math.min(9, records.length); i++) {
+        for (let i = 0; i < Math.min(10, records.length); i++) {
           const marker = document.createElement('button');
           marker.type = 'button'; marker.className = 'archive-marker';
           marker.addEventListener('click', () => select(Number(marker.dataset.index)));
@@ -86,7 +87,7 @@
             marker.setAttribute('aria-label', `选择第 ${target + 1} 张：${options.label(records[target])}`);
             marker.setAttribute('aria-pressed', String(target === current));
           });
-          const nearby = new Set([current, wrap(current - 1), wrap(current + 1), wrap(current - 2), wrap(current + 2)]);
+          const nearby = new Set([current, wrap(current - 1), wrap(current + 1)]);
           for (const [cachedIndex, cachedImage] of images) {
             if (!nearby.has(cachedIndex)) { cachedImage.remove(); images.delete(cachedIndex); }
           }
@@ -122,7 +123,7 @@
           if (!interacted && location.hash === initialHash) document.getElementById(initialHash.slice(1))?.scrollIntoView({block: 'start', behavior: 'instant'});
           interactionEvents.forEach(type => window.removeEventListener(type, noteInteraction));
         });
-        const moduleUrl = new URL('archive-scene.js?v=9c33c0e0f741', scriptUrl);
+        const moduleUrl = new URL('archive-scene.js?v=25233f0bb1dd', scriptUrl);
         import(moduleUrl.href).then(module => {
           scene = module.createArchiveScene(query('.archive-scene'), {
             count: records.length,

@@ -207,6 +207,15 @@
     document.querySelectorAll('.quick-types button').forEach(b => { b.classList.toggle('active',b.dataset.kind === state.kind); b.setAttribute('aria-pressed',String(b.dataset.kind === state.kind)); });
     updateFavorites();
   }
+  function appendMore() {
+    const start = state.limit;
+    state.limit += 48;
+    const fragment = document.createDocumentFragment();
+    filtered.slice(start, state.limit).forEach(r => fragment.append(renderCard(r)));
+    $('gallery').append(fragment);
+    $('result-count').textContent = `${ready ? '' : '正在载入… · '}找到 ${filtered.length.toLocaleString()} 张 · 已显示 ${Math.min(state.limit, filtered.length)}`;
+    $('load-more').hidden = filtered.length <= state.limit;
+  }
   function updateFavorites() {
     $('favorites-count').textContent = favorites.count(all).toLocaleString();
     $('favorites-toggle').classList.toggle('active', state.favoritesOnly);
@@ -335,14 +344,15 @@
   $('nav-characters').addEventListener('click', () => switchTab('characters'));
   $('collection-sprites').addEventListener('click', () => switchTab('search'));
   $('reset').addEventListener('click', reset); $('empty-reset').addEventListener('click', reset);
-  $('load-more').addEventListener('click', () => { state.limit += 48; render(); });
+  $('load-more').addEventListener('click', appendMore);
   $('share-search').addEventListener('click', () => copyLink());
   $('shuffle-featured').addEventListener('click', () => chooseFeatured());
   $('hero-random').addEventListener('click', () => { const pool = artworkRecords.filter(r => r.kind === 'cg'); if (pool.length) showImage(pool[Math.floor(Math.random() * pool.length)], true, pool); });
   $('random-result').addEventListener('click', () => { if (state.tab === 'search' && filtered.length) showImage(filtered[Math.floor(Math.random() * filtered.length)], true, filtered); });
   $('favorites-toggle').addEventListener('click', () => { state.favoritesOnly = !state.favoritesOnly; state.limit = 48; applyFilters(); });
   document.querySelectorAll('[data-view]').forEach(button => button.addEventListener('click', () => {
-    state.view = button.dataset.view; document.querySelectorAll('[data-view]').forEach(item => item.setAttribute('aria-pressed', String(item === button))); render();
+    state.view = button.dataset.view; document.querySelectorAll('[data-view]').forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+    $('gallery').classList.toggle('large-view', state.view === 'large');
   }));
   favorites.subscribe(persisted => { if (!persisted) toast('当前浏览器无法保存收藏，刷新后会清空'); if (state.favoritesOnly && state.tab === 'search') applyFilters(); else updateFavorites(); });
   $('dialog-prev').addEventListener('click', () => movePreview(-1)); $('dialog-next').addEventListener('click', () => movePreview(1));

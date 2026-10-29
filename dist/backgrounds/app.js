@@ -60,9 +60,18 @@
   function applyFilters() {
     const words = state.query.toLowerCase().trim().split(/\s+/).filter(Boolean);
     filtered = state.tab === 'images' ? data.images.filter(r => {
+      if (state.favoritesOnly && !favorites.has(r.id)) return false;
       const places = placements(r);
-      return places.length && (!state.favoritesOnly || favorites.has(r.id)) && words.every(w => [r.name, ...r.aliases, ...places.flatMap(p => [p.game, short(p.game), p.category, p.scene, short(p.scene), p.file])].join(' ').toLowerCase().includes(w));
-    }) : data.packs.filter(p => (!state.game || p.game === state.game) && categoryMatches(p.category) && (!state.scene || p.scene === state.scene) && words.every(w => [p.game, short(p.game), p.category, p.scene, short(p.scene), p.title, ...p.files.map(f => f.name)].join(' ').toLowerCase().includes(w)));
+      if (!places.length) return false;
+      if (!words.length) return true;
+      const text = [r.name, ...r.aliases, ...places.flatMap(p => [p.game, short(p.game), p.category, p.scene, short(p.scene), p.file])].join(' ').toLowerCase();
+      return words.every(w => text.includes(w));
+    }) : data.packs.filter(p => {
+      if ((state.game && p.game !== state.game) || !categoryMatches(p.category) || (state.scene && p.scene !== state.scene)) return false;
+      if (!words.length) return true;
+      const text = [p.game, short(p.game), p.category, p.scene, short(p.scene), p.title, ...p.files.map(f => f.name)].join(' ').toLowerCase();
+      return words.every(w => text.includes(w));
+    });
     render(); updateUrl();
   }
   function downloadButton(text, action) { const el = button(text, action); el.dataset.download = 'true'; el.disabled = busy; return el; }
@@ -97,6 +106,15 @@
     document.querySelectorAll('[data-category]').forEach(el=>{const active=el.dataset.category===state.kind;el.classList.toggle('active',active);el.setAttribute('aria-pressed',String(active));});
     const root = $(packs ? 'packs' : 'gallery'), fragment = document.createDocumentFragment();
     filtered.slice(0, state.limit).forEach(r => fragment.append(packs ? renderPack(r) : renderCard(r))); root.replaceChildren(fragment); updateFavorites();
+  }
+  function appendMore() {
+    const start = state.limit, packs = state.tab === 'packs';
+    state.limit += 48;
+    const fragment = document.createDocumentFragment();
+    filtered.slice(start, state.limit).forEach(r => fragment.append(packs ? renderPack(r) : renderCard(r)));
+    $(packs ? 'packs' : 'gallery').append(fragment);
+    $('result').textContent = `${state.scene ? '场景 ' + short(state.scene) + ' · ' : ''}找到 ${filtered.length} ${packs ? '个场景包' : '张图片'} · 已显示 ${Math.min(state.limit, filtered.length)}`;
+    $('more').hidden = filtered.length <= state.limit;
   }
   function updateFavorites() {
     $('favorites-count').textContent = favorites.count(data.images).toLocaleString();
@@ -218,11 +236,12 @@
   for (const id of ['game', 'kind']) $(id).addEventListener('change', e => { state[id] = e.target.value; state.scene = ''; state.limit = 48; applyFilters(); });
   document.querySelectorAll('[data-category]').forEach(el=>el.addEventListener('click',()=>{state.kind=el.dataset.category;state.scene='';state.limit=48;syncInputs();applyFilters();}));
   $('reset').addEventListener('click', reset); $('empty-reset').addEventListener('click', reset);
-  $('more').addEventListener('click', () => { state.limit += 48; render(); }); $('share').addEventListener('click', () => share());
+  $('more').addEventListener('click', appendMore); $('share').addEventListener('click', () => share());
   $('random-result').addEventListener('click', () => { if (state.tab === 'images' && filtered.length) showImage(filtered[Math.floor(Math.random() * filtered.length)], filtered); });
   $('favorites-toggle').addEventListener('click', () => { state.favoritesOnly = !state.favoritesOnly; state.limit = 48; applyFilters(); });
   document.querySelectorAll('[data-view]').forEach(button => button.addEventListener('click', () => {
-    state.view = button.dataset.view; document.querySelectorAll('[data-view]').forEach(item => item.setAttribute('aria-pressed', String(item === button))); render();
+    state.view = button.dataset.view; document.querySelectorAll('[data-view]').forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+    $('gallery').classList.toggle('large-view', state.view === 'large');
   }));
   favorites.subscribe(persisted => { if (!persisted) toast('当前浏览器无法保存收藏，刷新后会清空'); if (state.favoritesOnly && state.tab === 'images') applyFilters(); else updateFavorites(); });
   $('bg-hero-preview').addEventListener('click', () => { if (heroRecord) showImage(heroRecord, scenePool); });

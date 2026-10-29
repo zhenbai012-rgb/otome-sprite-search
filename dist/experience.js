@@ -26,7 +26,7 @@
   function notify(persisted = true) { updateButtons(); callbacks.forEach(callback => callback(persisted)); }
   window.GalleryFavorites = {
     has: id => favorites.has(id),
-    count: records => records.reduce((sum, record) => sum + Number(favorites.has(record.id)), 0),
+    count: records => favorites.size ? records.reduce((sum, record) => sum + Number(favorites.has(record.id)), 0) : 0,
     make(id, label, text = false) {
       const button = document.createElement('button');
       button.type = 'button'; button.className = text ? 'favorite-button favorite-text' : 'favorite-button';
@@ -119,7 +119,7 @@
   });
   window.addEventListener('resize', () => { resize(); start(); }, { passive: true });
   window.addEventListener('pointermove', event => {
-    if (!motion || event.pointerType !== 'mouse') return;
+    if (!motion || desktopArchive() || event.pointerType !== 'mouse') return;
     pointer = { x: event.clientX, y: event.clientY };
     const now = performance.now();
     if (now - lastSparkle > 95) { sparkles.push({ x: pointer.x, y: pointer.y, started: now, size: 3 + Math.random() * 3 }); lastSparkle = now; }
@@ -128,6 +128,7 @@
   document.addEventListener('pointerout', event => { if (!event.relatedTarget) pointer = { x: -1000, y: -1000 }; });
   document.addEventListener('visibilitychange', () => { if (document.hidden) { cancelAnimationFrame(frame); frame = 0; } else start(); });
   document.querySelectorAll('[data-parallax]').forEach(surface => {
+    if (surface.id === 'desktop-archive') return;
     surface.addEventListener('pointermove', event => {
       if (!motion || event.pointerType !== 'mouse') return;
       const rect = surface.getBoundingClientRect();

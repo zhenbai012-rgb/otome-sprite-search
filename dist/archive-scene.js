@@ -75,8 +75,10 @@ export function createArchiveScene(host, options) {
   const raycaster = new THREE.Raycaster(), pointer = new THREE.Vector2();
   const desktop = window.matchMedia('(min-width: 960px)');
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
-  let current = 0, selectedAt = 0, selectedInstance = -1, visible = true, frame = 0, last = 0;
+  const frameInterval = 1000 / 120;
+  let current = 0, selectedAt = 0, selectedInstance = -1, visible = true, frame = 0, last = 0, nextFrameAt = 0;
   let desiredX = 0, desiredY = 0, desiredZoom = 0, movingX = 0, movingY = 0, movingZoom = 0;
+  let pointerX = 0, pointerY = 0, pointerPending = false;
   let previewTexture = null;
   let drag = null;
   const wrap = (value, length) => ((value % length) + length) % length;
@@ -96,6 +98,15 @@ export function createArchiveScene(host, options) {
   }
   function paint(now) {
     const activeMotion = motion();
+    if (pointerPending) {
+      pointerPending = false;
+      const rect = host.getBoundingClientRect();
+      if (rect.width && rect.height && pointerX >= rect.left && pointerX <= rect.right && pointerY >= rect.top && pointerY <= rect.bottom) {
+        desiredX = (pointerX - rect.left) / rect.width * 2 - 1;
+        desiredY = -((pointerY - rect.top) / rect.height * 2 - 1);
+        desiredZoom = .8;
+      }
+    }
     const delta = last ? Math.min((now - last) / 1000, .08) : .016;
     last = now;
     const blend = activeMotion ? 1 - Math.exp(-delta * 5) : 1;
@@ -137,8 +148,13 @@ export function createArchiveScene(host, options) {
   }
   function tick(now) {
     frame = 0;
-    if (!canDraw()) { last = 0; return; }
-    paint(now);
+    if (!canDraw()) { last = 0; nextFrameAt = 0; return; }
+    if (!motion()) { nextFrameAt = 0; paint(now); }
+    else if (!nextFrameAt || now + .25 >= nextFrameAt) {
+      paint(now);
+      // Keep a time-based schedule so a 144 Hz display does not fall to 72 fps.
+      nextFrameAt = nextFrameAt ? nextFrameAt + (Math.floor(Math.max(0, now - nextFrameAt) / frameInterval) + 1) * frameInterval : now + frameInterval;
+    }
     if (motion()) frame = requestAnimationFrame(tick);
   }
   function invalidate() { if (canDraw() && !frame) frame = requestAnimationFrame(tick); }
@@ -157,12 +173,8 @@ export function createArchiveScene(host, options) {
   }
 
   document.addEventListener('pointermove', event => {
-    if (event.pointerType !== 'mouse') return;
-    const rect = host.getBoundingClientRect();
-    if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) return;
-    desiredX = (event.clientX - rect.left) / rect.width * 2 - 1;
-    desiredY = -((event.clientY - rect.top) / rect.height * 2 - 1);
-    desiredZoom = .8; invalidate();
+    if (event.pointerType !== 'mouse' || !motion() || !canDraw()) return;
+    pointerX = event.clientX; pointerY = event.clientY; pointerPending = true; invalidate();
   }, {passive: true});
   canvas.addEventListener('pointerdown', event => {
     if (event.button !== 0) return;
@@ -193,12 +205,12 @@ export function createArchiveScene(host, options) {
   });
   canvas.addEventListener('pointercancel', () => { drag = null; });
   canvas.addEventListener('webglcontextlost', event => { event.preventDefault(); if (frame) cancelAnimationFrame(frame); frame = 0; host.classList.add('context-lost'); host.parentElement.classList.add('scene-unavailable'); });
-  canvas.addEventListener('webglcontextrestored', () => { host.classList.remove('context-lost'); host.parentElement.classList.remove('scene-unavailable'); last = 0; resize(); });
-  new MutationObserver(() => { if (!motion() && frame) { cancelAnimationFrame(frame); frame = 0; } last = 0; invalidate(); }).observe(document.body, {attributes: true, attributeFilter: ['class']});
-  new IntersectionObserver(entries => { visible = entries[0].isIntersecting; if (!visible && frame) { cancelAnimationFrame(frame); frame = 0; } last = 0; invalidate(); }, {threshold: .01}).observe(host);
+  canvas.addEventListener('webglcontextrestored', () => { host.classList.remove('context-lost'); host.parentElement.classList.remove('scene-unavailable'); last = 0; nextFrameAt = 0; resize(); });
+  new MutationObserver(() => { if (!motion() && frame) { cancelAnimationFrame(frame); frame = 0; } last = 0; nextFrameAt = 0; invalidate(); }).observe(document.body, {attributes: true, attributeFilter: ['class']});
+  new IntersectionObserver(entries => { visible = entries[0].isIntersecting; if (!visible && frame) { cancelAnimationFrame(frame); frame = 0; } last = 0; nextFrameAt = 0; invalidate(); }, {threshold: .01}).observe(host);
   new ResizeObserver(resize).observe(host);
-  document.addEventListener('visibilitychange', () => { if (document.hidden && frame) { cancelAnimationFrame(frame); frame = 0; } last = 0; invalidate(); });
-  reduced.addEventListener('change', () => { last = 0; invalidate(); });
+  document.addEventListener('visibilitychange', () => { if (document.hidden && frame) { cancelAnimationFrame(frame); frame = 0; } last = 0; nextFrameAt = 0; invalidate(); });
+  reduced.addEventListener('change', () => { last = 0; nextFrameAt = 0; invalidate(); });
   resize();
   return {select: setIndex, setImage};
 }
