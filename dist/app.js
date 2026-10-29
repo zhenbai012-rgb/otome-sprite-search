@@ -5,7 +5,8 @@
   const $ = id => document.getElementById(id);
   if (!data) { $('error').hidden = false; $('error').textContent = '索引未能载入，请刷新页面重试。'; return; }
   const params = new URLSearchParams(location.search);
-  const state = { tab: params.get('tab') === 'characters' ? 'characters' : 'search', query: params.get('q') || '', character: params.get('role') || '', source: params.get('source') || '', costume: params.get('costume') || '', scale: params.get('scale') || '', kind: params.get('type') || '', work: params.get('work') || '', frame: params.get('frame') || '', limit: 48 };
+  const state = { tab: params.get('tab') === 'characters' ? 'characters' : 'search', query: params.get('q') || '', character: params.get('role') || '', source: params.get('source') || '', costume: params.get('costume') || '', scale: params.get('scale') || '', kind: params.get('type') || '', work: params.get('work') || '', frame: params.get('frame') || '', favoritesOnly: false, view: 'compact', limit: 48 };
+  const favorites = window.GalleryFavorites;
   const typeNames = { game: '游戏立绘', cg: '剧情 CG', title: '日文标题 / Logo', title_character: '标题人物图层', single_png: '官方单人立绘', group: '官方组合图', composite: '官方带背景图' };
   const roles = new Map(data.characters.map(c => [c.id, c]));
   const works = new Map((data.works || []).map(w => [w.id,w]));
@@ -20,6 +21,7 @@
   const records = new Map();
   let all = [...data.official], filtered = [], ready = false, toastTimer;
   let gameRecords = [], artworkRecords = [], artworkPacks = [], selectedOpened = false, displayedAsset='';
+  let previewSequence = [], featuredRecords = [], featuredInitialized = false;
   const loaded = {game:false,cg:!data.cg};
   let imageTicket = 0, availableRoles = new Set(roles.keys());
   const name = id => roles.get(id)?.display || id;
@@ -96,7 +98,7 @@
     const preview = node('button', null, 'asset-image'); preview.type = 'button'; preview.setAttribute('aria-label', '预览 ' + recordLabel(r) + ' ' + r.name);
     const badge = node('span', typeNames[r.kind], 'badge' + (isArtwork(r)?' cg':r.kind === 'game' ? '' : ' official'));
     const img = new Image(); img.alt = recordLabel(r); img.loading = 'lazy'; img.decoding = 'async'; loadImage(img, r.thumb, r.file);
-    preview.append(badge, img); preview.addEventListener('click', () => showImage(r));
+    preview.append(badge, img, node('span', '查看画面 ↗', 'image-hint')); preview.addEventListener('click', () => showImage(r));
     const detail = node('div', null, 'asset-detail');
     const title = node('h3', isTitleArt(r) ? r.titleType+(titleCast(r)?' · '+titleCast(r):'') : (r.characters || [r.character]).map(name).join(' / ')); title.title = title.textContent;
     const subtitle = node('p', r.kind === 'game' ? r.outfit : isArtwork(r) ? isTitleArt(r) ? r.gameIds.map(workName).join(' / ') : '剧情CG · '+r.name : r.label, 'asset-subtitle'); subtitle.title = subtitle.textContent;
@@ -106,10 +108,15 @@
     const actions = node('div', null, 'asset-actions'); const open = node('button', isArtwork(r) ? '查看原图 ↗' : '查看立绘 ↗'); open.type = 'button'; open.addEventListener('click', () => showImage(r));
     const pack = packIndex.get(packKey(r));
     const action = r.kind === 'game' ? link('服装包 ↓', pack.url) : isArtwork(r) ? artworkButton('PNG 原图 ↓',() => window.ArtworkDownloads.png(r)) : link('官网出处 ↗', r.sourcePage);
-    actions.append(open, action); detail.append(title, subtitle, meta, actions); card.append(preview, detail); return card;
+    actions.append(open, action); detail.append(title, subtitle, meta, actions); card.append(preview, favorites.make(r.id, recordLabel(r)), detail); return card;
   }
-  function showImage(r, update = true) {
+  function showImage(r, update = true, sequence = null) {
+    previewSequence = sequence || (state.tab === 'search' && filtered.some(item => item.id === r.id) ? filtered : [r]);
     displayedAsset=r.id;
+    const position = previewSequence.findIndex(item => item.id === r.id);
+    $('dialog-prev').disabled = position <= 0;
+    $('dialog-next').disabled = position < 0 || position >= previewSequence.length - 1;
+    $('dialog-counter').textContent = position >= 0 ? `${position + 1} / ${previewSequence.length}` : '';
     $('image-dialog').classList.toggle('artwork-dialog',isArtwork(r));
     $('dialog-title').textContent = recordLabel(r); loadImage($('dialog-image'), r.file); $('dialog-image').alt = recordLabel(r);
     const info = $('dialog-info'); info.replaceChildren(); info.append(node('p',typeNames[r.kind],'eyebrow'), node('h3', isTitleArt(r) ? r.titleType : (r.characters || [r.character]).map(name).join(' / ')), node('p', r.kind === 'game' ? r.outfit : recordLabel(r)));
@@ -132,9 +139,14 @@
       if (r.sourceAsset) actions.append(link('官网图片地址 ↗', r.sourceAsset));
     }
     const share = node('button', '复制这张图片的链接 ↗', 'text-button'); share.type = 'button'; share.addEventListener('click', () => copyLink(r.id));
-    info.append(actions, share);
+    const secondary = node('div', null, 'dialog-secondary'); secondary.append(favorites.make(r.id, recordLabel(r), true), share);
+    info.append(actions, secondary);
     if(isArtwork(r)){const status=node('p',null,'inline-download-status');status.hidden=true;status.setAttribute('role','status');info.append(status);}
     if (update) updateUrl(r.id); if (!$('image-dialog').open) $('image-dialog').showModal();
+  }
+  function movePreview(direction) {
+    const index = previewSequence.findIndex(item => item.id === displayedAsset), next = previewSequence[index + direction];
+    if (next) showImage(next, true, previewSequence);
   }
   function renderCharacter(c) {
     const card = node('article', null, 'character-card'); const img = new Image(); loadImage(img, c.thumbnail); img.alt = c.display; img.loading = 'lazy'; img.className = 'character-image';
@@ -167,13 +179,16 @@
     if (state.tab === 'characters') {
       filtered = data.characters.filter(c => !c.resourceGroup && (!state.character || c.id === state.character) && words.every(w => [c.id, c.display, ...c.aliases].join(' ').toLowerCase().includes(w)));
     } else {
-      filtered = all.filter(r => hasRole(r) && (!state.source || (state.source === 'game' ? isGameSource(r) : !isGameSource(r))) && (!state.kind || r.kind === state.kind) && (!state.work || r.gameIds.includes(state.work)) && (!state.frame || (state.frame === 'portrait' ? ['portrait','long'].includes(r.orientation) : r.orientation === state.frame)) && (!state.costume || r.kind === 'game' && hasCostume(r)) && (!state.scale || r.kind === 'game' && r.scale === state.scale) && words.every(w => r._search.includes(w)));
+      filtered = all.filter(r => (!state.favoritesOnly || favorites.has(r.id)) && hasRole(r) && (!state.source || (state.source === 'game' ? isGameSource(r) : !isGameSource(r))) && (!state.kind || r.kind === state.kind) && (!state.work || r.gameIds.includes(state.work)) && (!state.frame || (state.frame === 'portrait' ? ['portrait','long'].includes(r.orientation) : r.orientation === state.frame)) && (!state.costume || r.kind === 'game' && hasCostume(r)) && (!state.scale || r.kind === 'game' && r.scale === state.scale) && words.every(w => r._search.includes(w)));
     }
     render(); updateUrl();
   }
   function render() {
     const isCharacters = state.tab === 'characters';
     $('search-panel').hidden = isCharacters; $('characters').hidden = !isCharacters;
+    $('favorites-toggle').hidden = isCharacters; $('random-result').hidden = isCharacters; document.querySelector('.view-switch').hidden = isCharacters;
+    $('random-result').disabled = !ready || isCharacters || !filtered.length;
+    $('gallery').classList.toggle('large-view', state.view === 'large');
     document.querySelectorAll('.image-filter').forEach(el => { el.hidden = isCharacters; });
     $('role-filter').hidden = !isCharacters && state.kind === 'title';
     $('standing-note').hidden = isCharacters || !(state.source === 'official' || (state.kind && state.kind !== 'game'));
@@ -184,10 +199,19 @@
     const backgroundLink = new URL('backgrounds/', location.href); backgroundLink.searchParams.set('kind','title');backgroundLink.hash='collection';if(state.work)backgroundLink.searchParams.set('game',state.work); $('title-backgrounds-link').href=backgroundLink.href;
     $('result-count').textContent = isCharacters ? `${filtered.length} 位角色` : `${ready ? '' : '正在载入… · '}找到 ${filtered.length.toLocaleString()} 张 · 已显示 ${Math.min(state.limit, filtered.length)}`;
     $('empty').hidden = filtered.length > 0 || !ready; $('load-more').hidden = isCharacters || filtered.length <= state.limit;
+    $('empty').querySelector('h3').textContent = state.favoritesOnly && !isCharacters ? '暂时没有符合条件的收藏' : '暂时没有匹配的结果';
+    $('empty').querySelector('p').textContent = state.favoritesOnly && !isCharacters ? '点击图片右上角的 ♡ 收藏，或放宽筛选条件。' : '试试角色简称，或放宽服装、镜头条件。';
     const root = isCharacters ? $('characters') : $('gallery'); root.replaceChildren();
     const fragment = document.createDocumentFragment(); filtered.slice(0, isCharacters ? filtered.length : state.limit).forEach(r => fragment.append(isCharacters ? renderCharacter(r) : renderCard(r))); root.append(fragment);
     document.querySelectorAll('.quick-role').forEach(b => { b.hidden = !availableRoles.has(b.dataset.role); b.classList.toggle('active', b.dataset.role === state.character); b.setAttribute('aria-pressed', String(b.dataset.role === state.character)); });
     document.querySelectorAll('.quick-types button').forEach(b => { b.classList.toggle('active',b.dataset.kind === state.kind); b.setAttribute('aria-pressed',String(b.dataset.kind === state.kind)); });
+    updateFavorites();
+  }
+  function updateFavorites() {
+    $('favorites-count').textContent = favorites.count(all).toLocaleString();
+    $('favorites-toggle').classList.toggle('active', state.favoritesOnly);
+    $('favorites-toggle').setAttribute('aria-pressed', String(state.favoritesOnly));
+    favorites.refresh();
   }
   function roleOptions() {
     if (state.kind === 'title' && state.tab !== 'characters') state.character = '';
@@ -221,11 +245,44 @@
     document.querySelectorAll('.tab').forEach(el => { const active = el.dataset.tab === tab; el.classList.toggle('active', active); el.setAttribute('aria-selected', String(active)); el.tabIndex = active ? 0 : -1; });
     syncInputs();applyFilters();
   }
-  function reset() { Object.assign(state, { query: '', character: '', source: '', costume: '', scale: '', kind: '',work:'',frame:'', limit: 48 }); syncInputs(); applyFilters(); }
+  function reset() { Object.assign(state, { query: '', character: '', source: '', costume: '', scale: '', kind: '',work:'',frame:'', favoritesOnly:false, limit: 48 }); syncInputs(); applyFilters(); }
   async function copyLink(asset) {
     updateUrl(asset); const url = location.href;
     try { await navigator.clipboard.writeText(url); toast('链接已复制'); }
     catch { const input = node('input'); input.value = url; document.body.append(input); input.select(); const copied = document.execCommand('copy'); input.remove(); toast(copied ? '链接已复制' : '请复制浏览器地址栏中的链接'); }
+  }
+  function renderFeatured() {
+    const root = $('featured-grid'); root.replaceChildren();
+    featuredRecords.forEach((r, index) => {
+      const card = node('article', null, 'featured-card'), preview = node('button', null, 'featured-preview');
+      preview.type = 'button'; preview.setAttribute('aria-label', '查看 ' + recordLabel(r));
+      const img = new Image(); img.alt = ''; img.loading = 'lazy'; img.decoding = 'async'; loadImage(img, r.thumb, r.file);
+      preview.append(img, node('span', '查看画面 ↗', 'image-hint'));
+      preview.addEventListener('click', () => showImage(r, true, featuredRecords));
+      const details = node('div', null, 'featured-info');
+      details.append(node('span', String(index + 1).padStart(2, '0'), 'featured-number'), node('div', null, 'featured-name'));
+      details.lastChild.append(node('strong', (r.characters || [r.character]).map(name).join(' / ')), node('span', r.gameIds.map(workName).join(' / ')));
+      card.append(preview, favorites.make(r.id, recordLabel(r)), details); root.append(card);
+    });
+    $('discover').hidden = !featuredRecords.length; favorites.refresh();
+  }
+  function chooseFeatured(first = false) {
+    const pool = artworkRecords.filter(r => r.kind === 'cg');
+    if (!pool.length) return;
+    if (first) {
+      const ids = ['cg-2b03c3c22af2a5ce', 'cg-b60333aaa927fa00', 'cg-eaf24ad112bc8605', 'cg-8a6abc537247be82'];
+      featuredRecords = ids.map(id => pool.find(r => r.id === id)).filter(Boolean);
+    } else {
+      const shuffled = pool.slice();
+      for (let i = shuffled.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]; }
+      const scenes = new Set(); featuredRecords = [];
+      for (const r of shuffled) {
+        const key = `${r.gameIds[0]}:${r.scene}`;
+        if (scenes.has(key)) continue;
+        scenes.add(key); featuredRecords.push(r); if (featuredRecords.length === 4) break;
+      }
+    }
+    renderFeatured();
   }
   data.characters.filter(c => !c.resourceGroup).forEach(c => $('character').add(new Option(c.display, c.id)));
   data.characters.filter(c => c.resourceGroup).forEach(c => $('character').add(new Option(c.display + '（资源组）', c.id)));
@@ -240,7 +297,11 @@
   $('cg-count').textContent = data.stats.cgImages || 0; $('title-count').textContent = data.stats.titleImages || 0;
   $('character-count').textContent = data.stats.characterCount; $('tab-characters-count').textContent = data.stats.characterCount;
   const hero = [data.official.find(r => r.character === 'ルナ' && r.kind === 'single_png' && r.sourcePage.includes('2026')), data.official.find(r => r.character === '朝日' && r.kind === 'single_png')];
-  hero.forEach((r, i) => { if (r) loadImage($(i ? 'hero-right' : 'hero-left'), r.file); });
+  hero.forEach((r, i) => {
+    if (!r) return;
+    loadImage($(i ? 'hero-right' : 'hero-left'), r.file);
+    $(i ? 'hero-right-button' : 'hero-left-button').addEventListener('click', () => showImage(r, true, hero.filter(Boolean)));
+  });
   for (const id of ['ルナ', '桜小路才華', '朝日', '大蔵りそな', 'エスト']) {
     if (!roles.has(id)) continue;
     const button = node('button', name(id).replace(/^樱小路/, '').replace(/^大藏/, ''), 'quick-role'); button.type = 'button'; button.dataset.role = id; button.addEventListener('click', () => { state.character = state.character === id ? '' : id; state.costume = ''; state.limit = 48; syncInputs(); applyFilters(); }); $('quick-roles').append(button);
@@ -268,6 +329,16 @@
   $('reset').addEventListener('click', reset); $('empty-reset').addEventListener('click', reset);
   $('load-more').addEventListener('click', () => { state.limit += 48; render(); });
   $('share-search').addEventListener('click', () => copyLink());
+  $('shuffle-featured').addEventListener('click', () => chooseFeatured());
+  $('hero-random').addEventListener('click', () => { const pool = artworkRecords.filter(r => r.kind === 'cg'); if (pool.length) showImage(pool[Math.floor(Math.random() * pool.length)], true, pool); });
+  $('random-result').addEventListener('click', () => { if (state.tab === 'search' && filtered.length) showImage(filtered[Math.floor(Math.random() * filtered.length)], true, filtered); });
+  $('favorites-toggle').addEventListener('click', () => { state.favoritesOnly = !state.favoritesOnly; state.limit = 48; applyFilters(); });
+  document.querySelectorAll('[data-view]').forEach(button => button.addEventListener('click', () => {
+    state.view = button.dataset.view; document.querySelectorAll('[data-view]').forEach(item => item.setAttribute('aria-pressed', String(item === button))); render();
+  }));
+  favorites.subscribe(persisted => { if (!persisted) toast('当前浏览器无法保存收藏，刷新后会清空'); if (state.favoritesOnly && state.tab === 'search') applyFilters(); else updateFavorites(); });
+  $('dialog-prev').addEventListener('click', () => movePreview(-1)); $('dialog-next').addEventListener('click', () => movePreview(1));
+  document.addEventListener('keydown', event => { if ($('image-dialog').open && !event.altKey && !event.ctrlKey && !event.metaKey && ['ArrowLeft','ArrowRight'].includes(event.key)) { event.preventDefault(); movePreview(event.key === 'ArrowLeft' ? -1 : 1); } });
   $('close-dialog').addEventListener('click', () => $('image-dialog').close());
   $('close-downloads').addEventListener('click', () => $('download-dialog').close());
   $('download-dialog').addEventListener('click', e => { if (e.target === $('download-dialog')) { const rect = e.target.getBoundingClientRect(); if (e.clientX < rect.left || e.clientX > rect.right || e.clientY < rect.top || e.clientY > rect.bottom) e.target.close(); } });
@@ -282,6 +353,8 @@
     artworkRecords.filter(r => r.kind==='cg').forEach(r => { if(!cgSeen.has(r.character)){cgSeen.add(r.character);cgFeatured.push(r);}else cgRest.push(r); });
     all = [...data.official,...featured,...cgFeatured,...rest,...cgRest,...artworkRecords.filter(isTitleArt)];
     ready=loaded.game && loaded.cg; syncInputs();applyFilters();
+    $('hero-random').disabled = !artworkRecords.some(r => r.kind === 'cg');
+    if (loaded.cg && !featuredInitialized && artworkRecords.length) { featuredInitialized = true; chooseFeatured(true); }
     const selected=params.get('asset'); if(!selectedOpened && selected && records.has(selected)){selectedOpened=true;showImage(records.get(selected));}
   }
   function loadChunk(key,path,attempt=0) {

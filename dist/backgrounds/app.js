@@ -11,7 +11,8 @@
     data.labels.scenes['title-background']='标题背景';
   }
   const params = new URLSearchParams(location.search);
-  const state = { query: params.get('q') || '', game: params.get('game') || '', kind: params.has('kind') ? params.get('kind') : 'background', tab: params.get('tab') === 'packs' ? 'packs' : 'images', scene: params.get('scene') || '', limit: 48 };
+  const state = { query: params.get('q') || '', game: params.get('game') || '', kind: params.has('kind') ? params.get('kind') : 'background', tab: params.get('tab') === 'packs' ? 'packs' : 'images', scene: params.get('scene') || '', favoritesOnly: false, view: 'compact', limit: 48 };
+  const favorites = window.GalleryFavorites;
   const images = new Map(data.images.map(r => [r.id, r]));
   const short = text => text === data.kinds.transition ? '过场图层' : data.labels?.games?.[text] || data.labels?.scenes?.[text] || text.replace(/^\d+_/, '').replaceAll('_', ' ');
   const node = (tag, text, cls) => { const el = document.createElement(tag); if (text != null) el.textContent = text; if (cls) el.className = cls; return el; };
@@ -20,6 +21,7 @@
   const fileName = p => p.file.split('/').pop();
   const displayName = p => p.category === data.kinds.title ? '标题背景 · '+fileName(p).replace(/__[a-f0-9]{8}\.png$/i, '') : data.labels?.scenes?.[p.scene] && data.labels.scenes[p.scene] !== p.scene ? data.labels.scenes[p.scene] : fileName(p).replace(/__[a-f0-9]{8}\.png$/i, '');
   let filtered = [], busy = false, toastTimer, statusTimer, requestId = 0;
+  let previewSequence = [], displayedAsset = '', featuredRecords = [], heroRecord = null;
   if (!data.games.includes(state.game)) state.game = '';
   if (!['', 'background', ...Object.keys(data.kinds)].includes(state.kind)) state.kind = 'background';
   function categoryMatches(category) {
@@ -59,7 +61,7 @@
     const words = state.query.toLowerCase().trim().split(/\s+/).filter(Boolean);
     filtered = state.tab === 'images' ? data.images.filter(r => {
       const places = placements(r);
-      return places.length && words.every(w => [r.name, ...r.aliases, ...places.flatMap(p => [p.game, short(p.game), p.category, p.scene, short(p.scene), p.file])].join(' ').toLowerCase().includes(w));
+      return places.length && (!state.favoritesOnly || favorites.has(r.id)) && words.every(w => [r.name, ...r.aliases, ...places.flatMap(p => [p.game, short(p.game), p.category, p.scene, short(p.scene), p.file])].join(' ').toLowerCase().includes(w));
     }) : data.packs.filter(p => (!state.game || p.game === state.game) && categoryMatches(p.category) && (!state.scene || p.scene === state.scene) && words.every(w => [p.game, short(p.game), p.category, p.scene, short(p.scene), p.title, ...p.files.map(f => f.name)].join(' ').toLowerCase().includes(w)));
     render(); updateUrl();
   }
@@ -68,13 +70,13 @@
     const place = placements(r)[0] || r.placements[0];
     const card = node('article', null, 'card');
     const preview = button('', () => showImage(r), 'preview'); preview.setAttribute('aria-label', '预览 ' + displayName(place));
-    const img = new Image(); img.alt = displayName(place); img.loading = 'lazy'; img.decoding = 'async'; loadImage(img, r.thumb, r.file); preview.append(img);
+    const img = new Image(); img.alt = displayName(place); img.loading = 'lazy'; img.decoding = 'async'; loadImage(img, r.thumb, r.file); preview.append(img, node('span', '查看风景 ↗', 'image-hint'));
     const info = node('div', null, 'card-info'), title = node('h3', displayName(place)); title.title = title.textContent;
     const subtitle = node('p', short(place.game), 'card-subtitle'); subtitle.title = short(place.game);
     const meta = node('div', null, 'meta'); meta.append(node('span', `${r.width} × ${r.height}`), node('span', short(place.category)));
     if (r.alpha) meta.append(node('span', '透明图层'));
     const actions = node('div', null, 'card-actions'); actions.append(button('查看背景 ↗', () => showImage(r)), downloadButton('PNG 原图 ↓', () => downloadImage(r, place)));
-    info.append(title, subtitle, meta, actions); card.append(preview, info); return card;
+    info.append(title, subtitle, meta, actions); card.append(preview, favorites.make(r.id, displayName(place)), info); return card;
   }
   function renderPack(p) {
     const card = node('article', null, 'pack-card'), img = new Image(), r = images.get(p.files[0].image);
@@ -84,16 +86,31 @@
   }
   function render() {
     const packs = state.tab === 'packs'; $('images-panel').hidden = packs; $('packs-panel').hidden = !packs;
+    $('favorites-toggle').hidden = packs; $('random-result').hidden = packs; document.querySelector('.view-switch').hidden = packs;
+    $('random-result').disabled = packs || !filtered.length;
+    $('gallery').classList.toggle('large-view', state.view === 'large');
     document.querySelectorAll('[role="tab"]').forEach(el => { const active = el.dataset.tab === state.tab; el.classList.toggle('active', active); el.setAttribute('aria-selected', String(active)); el.tabIndex = active ? 0 : -1; });
     $('result').textContent = `${state.scene ? '场景 ' + short(state.scene) + ' · ' : ''}找到 ${filtered.length} ${packs ? '个场景包' : '张图片'} · 已显示 ${Math.min(state.limit, filtered.length)}`;
     $('empty').hidden = filtered.length > 0; $('more').hidden = filtered.length <= state.limit;
+    $('empty').querySelector('h3').textContent = state.favoritesOnly && !packs ? '暂时没有符合条件的收藏' : '暂时没有匹配的结果';
+    $('empty').querySelector('p').textContent = state.favoritesOnly && !packs ? '点击图片右上角的 ♡ 收藏，或放宽筛选条件。' : '试试场景代码，或放宽作品、分类条件。';
     document.querySelectorAll('[data-category]').forEach(el=>{const active=el.dataset.category===state.kind;el.classList.toggle('active',active);el.setAttribute('aria-pressed',String(active));});
     const root = $(packs ? 'packs' : 'gallery'), fragment = document.createDocumentFragment();
-    filtered.slice(0, state.limit).forEach(r => fragment.append(packs ? renderPack(r) : renderCard(r))); root.replaceChildren(fragment);
+    filtered.slice(0, state.limit).forEach(r => fragment.append(packs ? renderPack(r) : renderCard(r))); root.replaceChildren(fragment); updateFavorites();
+  }
+  function updateFavorites() {
+    $('favorites-count').textContent = favorites.count(data.images).toLocaleString();
+    $('favorites-toggle').classList.toggle('active', state.favoritesOnly);
+    $('favorites-toggle').setAttribute('aria-pressed', String(state.favoritesOnly)); favorites.refresh();
   }
   function switchTab(tab) { state.tab = tab; state.limit = 48; applyFilters(); }
-  function reset() { Object.assign(state, { query: '', game: '', kind: 'background', scene: '', limit: 48 }); syncInputs(); applyFilters(); }
-  function showImage(r) {
+  function reset() { Object.assign(state, { query: '', game: '', kind: 'background', scene: '', favoritesOnly: false, limit: 48 }); syncInputs(); applyFilters(); }
+  function showImage(r, sequence = null) {
+    previewSequence = sequence || (state.tab === 'images' && filtered.some(item => item.id === r.id) ? filtered : [r]);
+    displayedAsset = r.id;
+    const position = previewSequence.findIndex(item => item.id === r.id);
+    $('dialog-prev').disabled = position <= 0; $('dialog-next').disabled = position < 0 || position >= previewSequence.length - 1;
+    $('dialog-counter').textContent = position >= 0 ? `${position + 1} / ${previewSequence.length}` : '';
     const place = placements(r)[0] || r.placements[0];
     $('dialog-title').textContent = displayName(place); $('dialog-image').alt = displayName(place); loadImage($('dialog-image'), r.file);
     const info = $('dialog-info'); info.replaceChildren(node('p', `${short(place.game)} · ${short(place.category)} · ${short(place.scene)}`), node('p', `原图 ${r.width} × ${r.height} px · PNG ${size(r.originalBytes)}${r.alpha ? ' · 保留透明图层' : ''}`));
@@ -101,8 +118,12 @@
     actions.append(downloadButton('下载 PNG 原图 ↓', () => downloadImage(r, place)), button('同场景分包 →', () => {
       state.query = ''; state.game = place.game; state.kind = Object.keys(data.kinds).find(k => data.kinds[k] === place.category) || ''; state.scene = place.scene; state.limit = 48;
       $('image-dialog').close(); syncInputs(); switchTab('packs'); $('collection').scrollIntoView({ block: 'start' });
-    }), button('复制图片链接 ↗', () => share(r.id)));
+    }), button('复制图片链接 ↗', () => share(r.id)), favorites.make(r.id, displayName(place), true));
     const progress=node('p',null,'inline-download-status');progress.hidden=true;progress.setAttribute('role','status');info.append(actions,progress); updateUrl(r.id); if (!$('image-dialog').open) $('image-dialog').showModal();
+  }
+  function movePreview(direction) {
+    const index = previewSequence.findIndex(item => item.id === displayedAsset), next = previewSequence[index + direction];
+    if (next) showImage(next, previewSequence);
   }
   function originalUrl(relative, collection = 'backgrounds') {
     const local = ['localhost', '127.0.0.1', '[::1]'].includes(location.hostname) && location.pathname.includes('/dist/backgrounds/');
@@ -150,6 +171,37 @@
       status('正在生成场景 ZIP…'); saveBlob(window.BackgroundZip.make(entries), 'application/zip', p.filename);
     });
   }
+  const scenePool = data.images.filter(r => !r.alpha && r.kinds.includes('scene') && r.width >= r.height);
+  function scenePlace(r) { return r.placements.find(p => p.category === data.kinds.scene) || r.placements[0]; }
+  function setHero(r) {
+    if (!r) return; heroRecord = r;
+    const place = scenePlace(r); loadImage($('bg-hero-image'), r.file, r.thumb);
+    $('bg-hero-caption').textContent = short(place.game) + ' · ' + displayName(place);
+    $('bg-hero-preview').setAttribute('aria-label', '查看背景 ' + displayName(place));
+  }
+  function renderFeatured() {
+    const root = $('bg-featured-grid'); root.replaceChildren();
+    featuredRecords.forEach((r, index) => {
+      const place = scenePlace(r), card = node('article', null, 'featured-card'), preview = button('', () => showImage(r, featuredRecords), 'featured-preview');
+      preview.setAttribute('aria-label', '查看背景 ' + displayName(place));
+      const img = new Image(); img.alt = ''; img.loading = 'lazy'; img.decoding = 'async'; loadImage(img, r.thumb, r.file);
+      preview.append(img, node('span', '查看风景 ↗', 'image-hint'));
+      const info = node('div', null, 'featured-info'); info.append(node('span', String(index + 1).padStart(2, '0'), 'featured-number'), node('div', null, 'featured-name'));
+      info.lastChild.append(node('strong', displayName(place)), node('span', short(place.game)));
+      card.append(preview, favorites.make(r.id, displayName(place)), info); root.append(card);
+    });
+    $('bg-discover').hidden = !featuredRecords.length; favorites.refresh();
+  }
+  function chooseFeatured(first = false) {
+    const pool = scenePool.slice();
+    if (!first) for (let i = pool.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [pool[i], pool[j]] = [pool[j], pool[i]]; }
+    const scenes = new Set(); featuredRecords = [];
+    for (const r of pool) {
+      const p = scenePlace(r), key = `${p.game}:${p.scene}`;
+      if (scenes.has(key)) continue; scenes.add(key); featuredRecords.push(r); if (featuredRecords.length === 4) break;
+    }
+    renderFeatured();
+  }
   data.games.forEach(game => $('game').add(new Option(short(game), game)));
   $('updated').textContent = '更新于 ' + data.updated.replaceAll('-', '.'); $('pack-total').textContent = data.packs.length;
   $('image-total').textContent=data.images.length;$('tab-image-total').textContent=data.images.length;$('scenic-total').textContent=data.images.filter(r=>r.kinds.some(k=>['scene','large','title'].includes(k))).length;$('title-background-total').textContent=titles?.images.length || 0;
@@ -159,13 +211,26 @@
   document.querySelectorAll('[data-category]').forEach(el=>el.addEventListener('click',()=>{state.kind=el.dataset.category;state.scene='';state.limit=48;syncInputs();applyFilters();}));
   $('reset').addEventListener('click', reset); $('empty-reset').addEventListener('click', reset);
   $('more').addEventListener('click', () => { state.limit += 48; render(); }); $('share').addEventListener('click', () => share());
+  $('random-result').addEventListener('click', () => { if (state.tab === 'images' && filtered.length) showImage(filtered[Math.floor(Math.random() * filtered.length)], filtered); });
+  $('favorites-toggle').addEventListener('click', () => { state.favoritesOnly = !state.favoritesOnly; state.limit = 48; applyFilters(); });
+  document.querySelectorAll('[data-view]').forEach(button => button.addEventListener('click', () => {
+    state.view = button.dataset.view; document.querySelectorAll('[data-view]').forEach(item => item.setAttribute('aria-pressed', String(item === button))); render();
+  }));
+  favorites.subscribe(persisted => { if (!persisted) toast('当前浏览器无法保存收藏，刷新后会清空'); if (state.favoritesOnly && state.tab === 'images') applyFilters(); else updateFavorites(); });
+  $('bg-hero-preview').addEventListener('click', () => { if (heroRecord) showImage(heroRecord, scenePool); });
+  $('bg-hero-next').addEventListener('click', () => { if (scenePool.length) { const index = scenePool.indexOf(heroRecord); setHero(scenePool[(index + 1 + Math.floor(Math.random() * Math.max(1, scenePool.length - 1))) % scenePool.length]); } });
+  $('bg-random-hero').addEventListener('click', () => { if (scenePool.length) showImage(scenePool[Math.floor(Math.random() * scenePool.length)], scenePool); });
+  $('bg-shuffle-featured').addEventListener('click', () => chooseFeatured());
+  $('dialog-prev').addEventListener('click', () => movePreview(-1)); $('dialog-next').addEventListener('click', () => movePreview(1));
+  document.addEventListener('keydown', event => { if ($('image-dialog').open && !event.altKey && !event.ctrlKey && !event.metaKey && ['ArrowLeft','ArrowRight'].includes(event.key)) { event.preventDefault(); movePreview(event.key === 'ArrowLeft' ? -1 : 1); } });
   document.querySelectorAll('[role="tab"]').forEach(el => {
     el.addEventListener('click', () => switchTab(el.dataset.tab));
     el.addEventListener('keydown', e => { if (['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(e.key)) { e.preventDefault(); const next = e.key === 'Home' ? 'images' : e.key === 'End' ? 'packs' : state.tab === 'images' ? 'packs' : 'images'; switchTab(next); $('tab-' + next).focus(); } });
   });
   $('close-dialog').addEventListener('click', () => $('image-dialog').close());
-  $('image-dialog').addEventListener('close', () => { updateUrl(); $('dialog-image').removeAttribute('src'); });
+  $('image-dialog').addEventListener('close', () => { displayedAsset = ''; updateUrl(); $('dialog-image').removeAttribute('src'); });
   $('image-dialog').addEventListener('click', e => { if (e.target === $('image-dialog')) { const rect = e.target.getBoundingClientRect(); if (e.clientX < rect.left || e.clientX > rect.right || e.clientY < rect.top || e.clientY > rect.bottom) e.target.close(); } });
+  setHero(images.get('f6b4e989dcc56531') || scenePool[0]); chooseFeatured(true);
   syncInputs(); applyFilters();
   const selected = images.get(params.get('asset')); if (selected) showImage(selected);
 })();
