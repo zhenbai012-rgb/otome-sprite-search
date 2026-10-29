@@ -218,8 +218,6 @@
       description: '从熟悉的街道到安静的房间，翻开故事里的风景。', href: '#collection', loadImage,
       label: r => displayName(scenePlace(r)), code: r => r.name,
       meta: r => `${short(scenePlace(r).game)} · ${r.width} × ${r.height}`,
-      open: (r, sequence) => showImage(r, sequence),
-      random: () => showImage(scenePool[Math.floor(Math.random() * scenePool.length)], scenePool),
     });
   }
   data.games.forEach(game => $('game').add(new Option(short(game), game)));

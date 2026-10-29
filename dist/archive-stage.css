@@ -42,7 +42,7 @@
   .archive-copy {
     position: absolute;
     z-index: 2;
-    top: 22%;
+    top: 38%;
     left: 58%;
     width: min(28%, 360px);
     min-width: 250px;
@@ -53,20 +53,24 @@
   .archive-kind { margin: 0 0 8px; color: #69635f; font-size: 11px; letter-spacing: .08em; }
   .archive-name { margin: 0; font-size: clamp(23px, 2vw, 31px); font-weight: 700; letter-spacing: .03em; line-height: 1.3; }
   .archive-meta { margin: 11px 0 0; padding-top: 11px; border-top: 1px solid #91877e8a; color: #625b57; font-size: 11px; line-height: 1.5; }
-  .archive-preview {
+  .archive-fallback-art { display: none; }
+  .scene-fallback .archive-fallback-art, .scene-unavailable .archive-fallback-art {
+    position: absolute;
+    z-index: 1;
+    left: 29%;
+    top: 28%;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: min(245px, 100%);
-    height: clamp(110px, 20vh, 170px);
-    margin: 17px 0 0;
+    width: min(245px, 22vw);
+    height: clamp(130px, 22vh, 190px);
     padding: 5px;
     border: 1px solid #bdb4ac;
     background: #f5f2efdc;
     box-shadow: 0 8px 22px #76665819;
+    pointer-events: none;
   }
-  .archive-preview:hover { border-color: #746a63; }
-  .archive-preview img { display: block; width: 100%; height: 100%; object-fit: contain; }
+  .archive-fallback-art img { display: block; width: 100%; height: 100%; object-fit: contain; }
   .archive-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 22px; margin-top: 15px; }
   .archive-actions button, .archive-actions a { padding: 7px 0; border: 0; background: none; color: #302b29; font-size: 12px; font-weight: 650; }
   .archive-actions button:hover, .archive-actions a:hover { color: #9b7055; }

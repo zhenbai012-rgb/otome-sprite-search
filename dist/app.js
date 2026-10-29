@@ -300,8 +300,6 @@
       description: '翻阅角色与故事中的瞬间，找到喜欢的一张。', href: '#archive', loadImage,
       label: r => (r.characters || [r.character]).map(name).join(' / '),
       code: r => r.name, meta: r => `${workName(r.gameIds[0])} · 剧情 CG · ${r.name}`,
-      open: (r, sequence) => showImage(r, true, sequence),
-      random: () => showImage(pool[Math.floor(Math.random() * pool.length)], true, pool),
     });
   }
   data.characters.filter(c => !c.resourceGroup).forEach(c => $('character').add(new Option(c.display, c.id)));
