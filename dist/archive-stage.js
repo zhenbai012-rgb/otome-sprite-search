@@ -5,6 +5,19 @@
   if (!root) return;
   const scriptUrl = document.currentScript.src;
   const desktop = window.matchMedia('(min-width: 960px)');
+  const sceneUrl = new URL('archive-scene.js?v=25233f0bb1dd', scriptUrl);
+  let scenePreloaded = false;
+  function preloadDesktopScene() {
+    if (!desktop.matches || scenePreloaded) return;
+    scenePreloaded = true;
+    for (const path of [sceneUrl.href, 'vendor/three/three.module.min.js', 'vendor/three/three.core.min.js']) {
+      const link = document.createElement('link');
+      link.rel = 'modulepreload'; link.href = new URL(path, scriptUrl).href;
+      document.head.append(link);
+    }
+  }
+  preloadDesktopScene();
+  desktop.addEventListener('change', preloadDesktopScene);
 
   window.GalleryArchive = {
     mount(options) {
@@ -123,8 +136,7 @@
           if (!interacted && location.hash === initialHash) document.getElementById(initialHash.slice(1))?.scrollIntoView({block: 'start', behavior: 'instant'});
           interactionEvents.forEach(type => window.removeEventListener(type, noteInteraction));
         });
-        const moduleUrl = new URL('archive-scene.js?v=25233f0bb1dd', scriptUrl);
-        import(moduleUrl.href).then(module => {
+        import(sceneUrl.href).then(module => {
           scene = module.createArchiveScene(query('.archive-scene'), {
             count: records.length,
             onSelect: select,
