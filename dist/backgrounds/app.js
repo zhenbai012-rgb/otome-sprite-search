@@ -202,6 +202,26 @@
     }
     renderFeatured();
   }
+  function initDesktopArchive() {
+    const picks = [], scenes = new Set();
+    const add = r => {
+      if (!r || picks.length >= 8) return;
+      const place = scenePlace(r), key = `${place.game}:${place.scene}`;
+      if (!scenes.has(key)) { scenes.add(key); picks.push(r); }
+    };
+    add(featuredRecords[0]);
+    for (const game of data.games) if (!picks.some(r => scenePlace(r).game === game)) add(scenePool.find(r => scenePlace(r).game === game));
+    featuredRecords.slice(1).forEach(add);
+    scenePool.forEach(add);
+    window.GalleryArchive?.mount({
+      records: picks, kind: '场景背景', heading: '风景',
+      description: '从熟悉的街道到安静的房间，翻开故事里的风景。', href: '#collection', loadImage,
+      label: r => displayName(scenePlace(r)), code: r => r.name,
+      meta: r => `${short(scenePlace(r).game)} · ${r.width} × ${r.height}`,
+      open: (r, sequence) => showImage(r, sequence),
+      random: () => showImage(scenePool[Math.floor(Math.random() * scenePool.length)], scenePool),
+    });
+  }
   data.games.forEach(game => $('game').add(new Option(short(game), game)));
   $('updated').textContent = '更新于 ' + data.updated.replaceAll('-', '.'); $('pack-total').textContent = data.packs.length;
   $('image-total').textContent=data.images.length;$('tab-image-total').textContent=data.images.length;$('scenic-total').textContent=data.images.filter(r=>r.kinds.some(k=>['scene','large','title'].includes(k))).length;$('title-background-total').textContent=titles?.images.length || 0;
@@ -230,7 +250,7 @@
   $('close-dialog').addEventListener('click', () => $('image-dialog').close());
   $('image-dialog').addEventListener('close', () => { displayedAsset = ''; updateUrl(); $('dialog-image').removeAttribute('src'); });
   $('image-dialog').addEventListener('click', e => { if (e.target === $('image-dialog')) { const rect = e.target.getBoundingClientRect(); if (e.clientX < rect.left || e.clientX > rect.right || e.clientY < rect.top || e.clientY > rect.bottom) e.target.close(); } });
-  setHero(images.get('f6b4e989dcc56531') || scenePool[0]); chooseFeatured(true);
+  setHero(images.get('f6b4e989dcc56531') || scenePool[0]); chooseFeatured(true); initDesktopArchive();
   syncInputs(); applyFilters();
   const selected = images.get(params.get('asset')); if (selected) showImage(selected);
 })();

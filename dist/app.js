@@ -284,6 +284,26 @@
     }
     renderFeatured();
   }
+  function initDesktopArchive() {
+    const pool = artworkRecords.filter(r => r.kind === 'cg'), picks = [], scenes = new Set();
+    const add = r => {
+      if (!r || picks.length >= 8) return;
+      const key = `${r.gameIds[0]}:${r.scene}`;
+      if (!scenes.has(key)) { scenes.add(key); picks.push(r); }
+    };
+    add(featuredRecords[0]);
+    for (const work of works.keys()) if (!picks.some(r => r.gameIds.includes(work))) add(pool.find(r => r.gameIds.includes(work)));
+    featuredRecords.slice(1).forEach(add);
+    pool.forEach(add);
+    window.GalleryArchive?.mount({
+      records: picks, kind: '剧情 CG', heading: '画面',
+      description: '翻阅角色与故事中的瞬间，找到喜欢的一张。', href: '#archive', loadImage,
+      label: r => (r.characters || [r.character]).map(name).join(' / '),
+      code: r => r.name, meta: r => `${workName(r.gameIds[0])} · 剧情 CG · ${r.name}`,
+      open: (r, sequence) => showImage(r, true, sequence),
+      random: () => showImage(pool[Math.floor(Math.random() * pool.length)], true, pool),
+    });
+  }
   data.characters.filter(c => !c.resourceGroup).forEach(c => $('character').add(new Option(c.display, c.id)));
   data.characters.filter(c => c.resourceGroup).forEach(c => $('character').add(new Option(c.display + '（资源组）', c.id)));
   [...works.values()].forEach(w => $('work').add(new Option(w.label,w.id)));
@@ -354,7 +374,7 @@
     all = [...data.official,...featured,...cgFeatured,...rest,...cgRest,...artworkRecords.filter(isTitleArt)];
     ready=loaded.game && loaded.cg; syncInputs();applyFilters();
     $('hero-random').disabled = !artworkRecords.some(r => r.kind === 'cg');
-    if (loaded.cg && !featuredInitialized && artworkRecords.length) { featuredInitialized = true; chooseFeatured(true); }
+    if (loaded.cg && !featuredInitialized && artworkRecords.length) { featuredInitialized = true; chooseFeatured(true); initDesktopArchive(); }
     const selected=params.get('asset'); if(!selectedOpened && selected && records.has(selected)){selectedOpened=true;showImage(records.get(selected));}
   }
   function loadChunk(key,path,attempt=0) {

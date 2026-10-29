@@ -25,6 +25,7 @@ jobs:
           python3 scripts/check-artwork.py
           node --check dist/app.js
           node --check dist/experience.js
+          node --check dist/archive-stage.js
           node --check dist/artwork-downloads.js
           node --check dist/backgrounds/app.js
           node --check dist/backgrounds/zip-store.js

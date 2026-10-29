@@ -5,7 +5,7 @@ import re
 
 ROOT = Path(__file__).resolve().parents[1] / 'dist'
 
-for folder, assets in [(ROOT, ['styles.css', 'gallery-nav.css', 'experience.css', 'catalog-data.js', 'backgrounds/zip-store.js','artwork-downloads.js','experience.js','app.js']), (ROOT / 'backgrounds', ['styles.css','../gallery-nav.css','../experience.css', 'catalog.js', 'title-data.js', 'zip-store.js','../experience.js', 'app.js'])]:
+for folder, assets in [(ROOT, ['styles.css', 'gallery-nav.css', 'experience.css', 'archive-stage.css', 'catalog-data.js', 'backgrounds/zip-store.js','artwork-downloads.js','experience.js','archive-stage.js','app.js']), (ROOT / 'backgrounds', ['styles.css','../gallery-nav.css','../experience.css','../archive-stage.css', 'catalog.js', 'title-data.js', 'zip-store.js','../experience.js','../archive-stage.js', 'app.js'])]:
     path = folder / 'index.html'
     text = path.read_text(encoding='utf-8')
     for asset in assets:
