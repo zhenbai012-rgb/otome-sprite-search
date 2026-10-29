@@ -32,8 +32,10 @@ def main():
     payload=load(SITE/'cg-data.js')
     images=payload['images']
     assert len({r['id'] for r in images})==len(images)
-    assert collections.Counter(r['kind'] for r in images)=={'cg':481,'title':12,'title_character':11,'title_background':11}
-    assert len(payload['originals'])==604
+    counts=collections.Counter(r['kind'] for r in images)
+    assert counts=={'cg':catalog['stats']['cgImages'],'title':12,'title_character':11,'title_background':11}
+    assert counts['cg']>=481 and counts['cg']==payload['stats']['cgImages']==catalog['cg']['images']
+    assert len(payload['originals'])==payload['stats']['nativePngs']>=604
     originals={r['file']:r for r in payload['originals']}
     expected=set()
     for original in originals.values():
@@ -46,7 +48,8 @@ def main():
     works={w['id'] for w in catalog['works']}
     roles={c['id'] for c in catalog['characters']}
     pack_ids={p['id'] for p in payload['packs']}
-    assert len(pack_ids)==len(payload['packs'])==213
+    assert len(pack_ids)==len(payload['packs'])==payload['stats']['packs']==catalog['cg']['packs']
+    assert sum(p['kind']=='cg' for p in payload['packs'])==payload['stats']['cgPacks']
     for r in images:
         assert r['character'] in roles and set(r['characters'])<=roles
         assert set(r['gameIds'])<=works and r['gameIds']
@@ -75,13 +78,16 @@ def main():
     assert coverage==set(originals)
     luna=[r for r in images if r['kind']=='cg' and r['scene']=='lun21' and '01_近月少女的礼仪' in r['gameIds']]
     assert len(luna)==3 and all((r['width'],r['height'])==(1280,1440) for r in luna)
+    for name,role in [('miz11a','花之宮瑞穂'),('ufj38a','ユルシュール')]:
+        matches=[r for r in images if r['kind']=='cg' and r['name'].lower()==name and '01_近月少女的礼仪' in r['gameIds']]
+        assert len(matches)==1 and role in matches[0]['characters'] and (matches[0]['width'],matches[0]['height'])==(1280,720)
     jp=re.compile(r'[\u3040-\u30ff]')
     assert all(not jp.search(c['display']) for c in catalog['characters'])
     assert all(not jp.search(label) for label in catalog['variantLabels'].values())
     assert all(not jp.search(w['label']) for w in catalog['works'])
     background=load(SITE/'backgrounds/catalog.js')
     assert all(not jp.search(label) for label in background['labels']['scenes'].values())
-    assert catalog['stats']['cgImages']==481 and catalog['stats']['titleImages']==12
+    assert catalog['stats']['titleImages']==12
     assert catalog['stats']['titleCharacterImages']==11 and catalog['stats']['titleBackgroundImages']==11
     titles=load(SITE/'backgrounds/title-data.js')
     moved={r['id']:r for r in images if r['kind']=='title_background'}
@@ -108,10 +114,14 @@ def main():
     assert covered==expected
     source_index=json.loads((SITE/'backgrounds/data/sources.json').read_text(encoding='utf-8'))
     assert {r['id'] for r in source_index['images']}=={r['id'] for r in background['images']}|set(moved)
+    artwork_sources=json.loads((SITE/'data/cg-sources.json').read_text(encoding='utf-8'))
+    assert artwork_sources['stats']==payload['stats']
+    assert {r['id'] for r in artwork_sources['images']}=={r['id'] for r in images}
+    assert all(r['placements'] for r in artwork_sources['images'])
     assert all(r.get('titleType')=='人物图层' for r in images if r['kind']=='title_character')
     assert all(r.get('titleType') in ('日文Logo','标题画面') for r in images if r['kind']=='title')
     assert catalog['cg']['script'].split('?')[0]=='cg-data.js'
     assert catalog['cg']['assetBase']=='https://raw.githubusercontent.com/zhenbai012-rgb/otome-sprite-search/main/'
-    print(json.dumps({'status':'passed','cg':481,'titles':12,'titleCharacters':11,'titleBackgrounds':11,'titleBackgroundPacks':6,'originals':len(originals),'packs':len(payload['packs']),'lunaFullCanvas':'1280x1440 x3','previewAspectRatios':'passed','chineseOptionLabels':'passed'}))
+    print(json.dumps({'status':'passed','cg':counts['cg'],'titles':12,'titleCharacters':11,'titleBackgrounds':11,'titleBackgroundPacks':6,'originals':len(originals),'packs':len(payload['packs']),'lunaFullCanvas':'1280x1440 x3','previewAspectRatios':'passed','chineseOptionLabels':'passed'}))
 
 if __name__=='__main__':main()

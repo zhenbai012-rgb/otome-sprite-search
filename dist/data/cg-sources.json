@@ -1,13 +1,13 @@
 {
-  "updated": "2026-10-27",
+  "updated": "2026-10-29",
   "stats": {
-    "cgImages": 481,
+    "cgImages": 670,
     "titleImages": 12,
-    "nativePngs": 604,
-    "packs": 213,
-    "cgPacks": 207,
+    "nativePngs": 793,
+    "packs": 293,
+    "cgPacks": 287,
     "titlePacks": 6,
-    "originalBytes": 491473507,
+    "originalBytes": 675552495,
     "titleCharacterImages": 11,
     "titleBackgroundImages": 11
   },
@@ -316,6 +316,72 @@
           "role": "ルナ",
           "archive": "data2.pack",
           "resource": "画像\\ev\\lun02b.bmp",
+          "namespace": "ev"
+        }
+      ]
+    },
+    {
+      "id": "cg-a4dd5afc8704bb1e",
+      "kind": "cg",
+      "name": "lun03a",
+      "characters": [
+        "ルナ"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "a4/a4dd5afc8704bb1ef036aa348e9b2e35bd27c266b80e149f02a5e7dd82cff702.png",
+      "sha256": "fab8fb4972476c565d646b158f98aafa1e37c98e8fd072f6d0865b5988664b8c",
+      "placements": [
+        {
+          "game": "01_近月少女的礼仪",
+          "scene": "lun03",
+          "role": "ルナ",
+          "archive": "data2.pack",
+          "resource": "画像\\ev\\lun03a.bmp",
+          "namespace": "ev"
+        }
+      ]
+    },
+    {
+      "id": "cg-bb4bf9b9e159d4b6",
+      "kind": "cg",
+      "name": "lun03b",
+      "characters": [
+        "ルナ"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "bb/bb4bf9b9e159d4b63ce7e2f1c4e961e5516a39446e88c01b1c8c32a87b2066fc.png",
+      "sha256": "2f5492e6231fb43004e9c168ae3646e085a8143c43c58296a46e8f35246a05fb",
+      "placements": [
+        {
+          "game": "01_近月少女的礼仪",
+          "scene": "lun03",
+          "role": "ルナ",
+          "archive": "data2.pack",
+          "resource": "画像\\ev\\lun03b.bmp",
+          "namespace": "ev"
+        }
+      ]
+    },
+    {
+      "id": "cg-f08a243f51c7a9c8",
+      "kind": "cg",
+      "name": "lun03c",
+      "characters": [
+        "ルナ"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "f0/f08a243f51c7a9c86cbeb6ee6e7ea5e2be13c2818cf3952085b99809f0ddd9e7.png",
+      "sha256": "494f2f9ce3308ce34dad7428ea977269526f6fffde40700486890b877017885d",
+      "placements": [
+        {
+          "game": "01_近月少女的礼仪",
+          "scene": "lun03",
+          "role": "ルナ",
+          "archive": "data2.pack",
+          "resource": "画像\\ev\\lun03c.bmp",
           "namespace": "ev"
         }
       ]
@@ -673,6 +739,72 @@
       ]
     },
     {
+      "id": "cg-330053441c13b651",
+      "kind": "cg",
+      "name": "lun09a",
+      "characters": [
+        "ルナ"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "33/330053441c13b6512fc2a62785bdb027de0953fc768fee385d50bfe0a23e41ab.png",
+      "sha256": "1429d968a9718e3991f94c0bfa5c7fcdaf8d5d39b372e39b093cb3c4d44a0789",
+      "placements": [
+        {
+          "game": "01_近月少女的礼仪",
+          "scene": "lun09",
+          "role": "ルナ",
+          "archive": "data2.pack",
+          "resource": "画像\\ev\\lun09a.bmp",
+          "namespace": "ev"
+        }
+      ]
+    },
+    {
+      "id": "cg-56f12ba1b53abe02",
+      "kind": "cg",
+      "name": "lun09b",
+      "characters": [
+        "ルナ"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "56/56f12ba1b53abe0221fa52847940576dd3fb444200233a3f3602a89213c0f48d.png",
+      "sha256": "13a0d7898288becd4278cb53d6830ee1f0e013419396deced611d7a3fad079be",
+      "placements": [
+        {
+          "game": "01_近月少女的礼仪",
+          "scene": "lun09",
+          "role": "ルナ",
+          "archive": "data2.pack",
+          "resource": "画像\\ev\\lun09b.bmp",
+          "namespace": "ev"
+        }
+      ]
+    },
+    {
+      "id": "cg-d70d9151092ec33f",
+      "kind": "cg",
+      "name": "lun09c",
+      "characters": [
+        "ルナ"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "d7/d70d9151092ec33f08cdfafa37da28af230cb675baeccae31a9ff660a1adba81.png",
+      "sha256": "93ff78e01d183785a36ed3950d6432c46bc711b9f960126159d02a36d9bbacad",
+      "placements": [
+        {
+          "game": "01_近月少女的礼仪",
+          "scene": "lun09",
+          "role": "ルナ",
+          "archive": "data2.pack",
+          "resource": "画像\\ev\\lun09c.bmp",
+          "namespace": "ev"
+        }
+      ]
+    },
+    {
       "id": "cg-1db4d7cdb2183b50",
       "kind": "cg",
       "name": "lun10a",
@@ -712,6 +844,185 @@
           "role": "ルナ",
           "archive": "data2.pack",
           "resource": "画像\\ev\\lun10b.bmp",
+          "namespace": "ev"
+        }
+      ]
+    },
+    {
+      "id": "cg-f794c1a3593434c3",
+      "kind": "cg",
+      "name": "lun11a",
+      "characters": [
+        "ルナ"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "f7/f794c1a3593434c3067708ee5f728242927db6c4a2dd32e11b05875300a690df.png",
+      "sha256": "ad5b89b79ea95e4b8c4dac935e78e361a3f994f920a2c8933588618e28b6e29e",
+      "placements": [
+        {
+          "game": "01_近月少女的礼仪",
+          "scene": "lun11",
+          "role": "ルナ",
+          "archive": "data10.pack",
+          "resource": "画像\\ev\\lun11a.bmp",
+          "namespace": "ev",
+          "sourceGame": "04_近月少女的礼仪2"
+        }
+      ]
+    },
+    {
+      "id": "cg-2577d061ed7a4a20",
+      "kind": "cg",
+      "name": "lun22a",
+      "characters": [
+        "ルナ"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "25/2577d061ed7a4a2019bc515ee84d933dfc92f2395a65751c6ea6a40c2d4411b6.png",
+      "sha256": "d7ec9802bfea003fa797292b299142800cdb511f9b926515bfe8fcf807497151",
+      "placements": [
+        {
+          "game": "01_近月少女的礼仪",
+          "scene": "lun22",
+          "role": "ルナ",
+          "archive": "data2.pack",
+          "resource": "画像\\ev\\lun22a.bmp",
+          "namespace": "ev"
+        }
+      ]
+    },
+    {
+      "id": "cg-4170ef1dd69a1eca",
+      "kind": "cg",
+      "name": "lun23a",
+      "characters": [
+        "ルナ"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "41/4170ef1dd69a1eca1ca9dedd19d369ad89a986d6ccb4a2248dc58f91404dbb9d.png",
+      "sha256": "00c9448c245f16cb00a6693083e846104adc16f70cbae46ac1fc3621b1c01123",
+      "placements": [
+        {
+          "game": "01_近月少女的礼仪",
+          "scene": "lun23",
+          "role": "ルナ",
+          "archive": "data2.pack",
+          "resource": "画像\\ev\\lun23a.bmp",
+          "namespace": "ev"
+        }
+      ]
+    },
+    {
+      "id": "cg-e68f8db960c2af34",
+      "kind": "cg",
+      "name": "lun24a",
+      "characters": [
+        "ルナ"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "e6/e68f8db960c2af3485da78b4e445025784e6eca6a49394a10f1af6b1b868b265.png",
+      "sha256": "085c58f8c3ba8f3fdaa3baf0117f8024931031b19cbfc319871ca11063ad4b5d",
+      "placements": [
+        {
+          "game": "01_近月少女的礼仪",
+          "scene": "lun24",
+          "role": "ルナ",
+          "archive": "data2.pack",
+          "resource": "画像\\ev\\lun24a.bmp",
+          "namespace": "ev"
+        }
+      ]
+    },
+    {
+      "id": "cg-2aa1b136ef213b80",
+      "kind": "cg",
+      "name": "lun24b",
+      "characters": [
+        "ルナ"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "2a/2aa1b136ef213b80b2265de6b381537e4441581fd825853ab330dd3db0162580.png",
+      "sha256": "0fc1102b3a5dfe07a1e043588a29171e4804d39e7007c2bdeaa78d87e9a6f60d",
+      "placements": [
+        {
+          "game": "01_近月少女的礼仪",
+          "scene": "lun24",
+          "role": "ルナ",
+          "archive": "data2.pack",
+          "resource": "画像\\ev\\lun24b.bmp",
+          "namespace": "ev"
+        }
+      ]
+    },
+    {
+      "id": "cg-9120f697a5d506b4",
+      "kind": "cg",
+      "name": "lun24c",
+      "characters": [
+        "ルナ"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "91/9120f697a5d506b440049aa33de2050c773fc105240f659f13a0918408fdc808.png",
+      "sha256": "bad99b5e9d5fbec9711d4fa71a07b30a2a44874d2702e7e6bf3c96dfb2361342",
+      "placements": [
+        {
+          "game": "01_近月少女的礼仪",
+          "scene": "lun24",
+          "role": "ルナ",
+          "archive": "data2.pack",
+          "resource": "画像\\ev\\lun24c.bmp",
+          "namespace": "ev"
+        }
+      ]
+    },
+    {
+      "id": "cg-03976af6611b2dbd",
+      "kind": "cg",
+      "name": "lun25a",
+      "characters": [
+        "ルナ",
+        "朝日"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "03/03976af6611b2dbd11bd8caf9d9746393925e32fcf1a4db09595a2d73cef9cb0.png",
+      "sha256": "28e61f94c897e14cb227a0cf76bf6fff935a0a010fab5182fa660594f5281e0f",
+      "placements": [
+        {
+          "game": "01_近月少女的礼仪",
+          "scene": "lun25",
+          "role": "ルナ",
+          "archive": "data2.pack",
+          "resource": "画像\\ev\\lun25a.bmp",
+          "namespace": "ev"
+        }
+      ]
+    },
+    {
+      "id": "cg-48de4254e993132c",
+      "kind": "cg",
+      "name": "lun25b",
+      "characters": [
+        "ルナ",
+        "朝日"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "48/48de4254e993132cf4cc3e7294d20b173e9f30d56645d3e28ddbe2f5a02268d2.png",
+      "sha256": "b0fdbc394e2dde7dee1e55e6c7178a8788555c7e3ca2a72abcc36ba08e3dbaf0",
+      "placements": [
+        {
+          "game": "01_近月少女的礼仪",
+          "scene": "lun25",
+          "role": "ルナ",
+          "archive": "data2.pack",
+          "resource": "画像\\ev\\lun25b.bmp",
           "namespace": "ev"
         }
       ]
@@ -783,6 +1094,74 @@
       ]
     },
     {
+      "id": "cg-b483db7b63b2a3f7",
+      "kind": "cg",
+      "name": "lun37a",
+      "characters": [
+        "ルナ"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "b4/b483db7b63b2a3f748a4d67d6c712ed6fae707456fe85a313409138cd8acbc89.png",
+      "sha256": "7bde6c3989ea229f0abaaca3fa44a918b670f609d99d9357daeb6a39115728dc",
+      "placements": [
+        {
+          "game": "01_近月少女的礼仪",
+          "scene": "lun37",
+          "role": "ルナ",
+          "archive": "data12.pack",
+          "resource": "画像\\ev_after\\lun37a.bmp",
+          "namespace": "ev_after"
+        }
+      ]
+    },
+    {
+      "id": "cg-9f74b6cf6c24a946",
+      "kind": "cg",
+      "name": "lun38a",
+      "characters": [
+        "ルナ",
+        "朝日"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "9f/9f74b6cf6c24a9469fbe611738526854ead4a3d284686cce189d0b8519470f3f.png",
+      "sha256": "86599581d8f53faeec0b5711d863fdabe7b2a0d36babd02d3b3d7985f38ede82",
+      "placements": [
+        {
+          "game": "01_近月少女的礼仪",
+          "scene": "lun38",
+          "role": "ルナ",
+          "archive": "data12.pack",
+          "resource": "画像\\ev_after\\lun38a.bmp",
+          "namespace": "ev_after"
+        }
+      ]
+    },
+    {
+      "id": "cg-6e7edb5fd2bced95",
+      "kind": "cg",
+      "name": "lun38b",
+      "characters": [
+        "ルナ",
+        "朝日"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "6e/6e7edb5fd2bced95afb5d0a4fcb2e670b5a2f9217afb7c0aea6454a1ce725068.png",
+      "sha256": "c6a2bea7365a0be6c2f8595fa362b9a46f184b9f6b16577d432d79842fdc97e4",
+      "placements": [
+        {
+          "game": "01_近月少女的礼仪",
+          "scene": "lun38",
+          "role": "ルナ",
+          "archive": "data12.pack",
+          "resource": "画像\\ev_after\\lun38b.bmp",
+          "namespace": "ev_after"
+        }
+      ]
+    },
+    {
       "id": "cg-5b7de6597fc11677",
       "kind": "cg",
       "name": "min01a",
@@ -822,6 +1201,50 @@
           "role": "柳ヶ瀬湊",
           "archive": "data2.pack",
           "resource": "画像\\ev\\min01b.bmp",
+          "namespace": "ev"
+        }
+      ]
+    },
+    {
+      "id": "cg-b233bebf7acc4076",
+      "kind": "cg",
+      "name": "min02a",
+      "characters": [
+        "柳ヶ瀬湊"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "b2/b233bebf7acc4076922f12c9230419695097c32f3353a4e56c5b583de7a724d0.png",
+      "sha256": "ba1f59d5cb27c460c7e028bc631908851dddc00c30d93551f95a7c09d0ebd6cd",
+      "placements": [
+        {
+          "game": "01_近月少女的礼仪",
+          "scene": "min02",
+          "role": "柳ヶ瀬湊",
+          "archive": "data2.pack",
+          "resource": "画像\\ev\\min02a.bmp",
+          "namespace": "ev"
+        }
+      ]
+    },
+    {
+      "id": "cg-cea73a8d343cb79f",
+      "kind": "cg",
+      "name": "min02b",
+      "characters": [
+        "柳ヶ瀬湊"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "ce/cea73a8d343cb79ffb8ff8ecae7cc438741913e854359415b6afbad5aa1f77e3.png",
+      "sha256": "0d6f01e80a87f88c1de1fad87133dec2746d452e96dc4d82ebd3a539d29f4d09",
+      "placements": [
+        {
+          "game": "01_近月少女的礼仪",
+          "scene": "min02",
+          "role": "柳ヶ瀬湊",
+          "archive": "data2.pack",
+          "resource": "画像\\ev\\min02b.bmp",
           "namespace": "ev"
         }
       ]
@@ -1377,6 +1800,94 @@
       ]
     },
     {
+      "id": "cg-723a713526edc8a0",
+      "kind": "cg",
+      "name": "min10a",
+      "characters": [
+        "柳ヶ瀬湊"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "72/723a713526edc8a068659cf1e607d31d37ddfdbc614c2c30329165ef26851987.png",
+      "sha256": "1fbfb52fe2ea3f90f914e6bc4869fa4b808b4bbd1491d6538579a9fce72ea5a4",
+      "placements": [
+        {
+          "game": "01_近月少女的礼仪",
+          "scene": "min10",
+          "role": "柳ヶ瀬湊",
+          "archive": "data2.pack",
+          "resource": "画像\\ev\\min10a.bmp",
+          "namespace": "ev"
+        }
+      ]
+    },
+    {
+      "id": "cg-f016983ae3b67499",
+      "kind": "cg",
+      "name": "min10b",
+      "characters": [
+        "柳ヶ瀬湊"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "f0/f016983ae3b67499af3938a3e3a33456d1e696559a857914a3952badca448027.png",
+      "sha256": "490007a5054a8510ab44aeb980613c10df9caddf442b45719d79b928dccaa64b",
+      "placements": [
+        {
+          "game": "01_近月少女的礼仪",
+          "scene": "min10",
+          "role": "柳ヶ瀬湊",
+          "archive": "data2.pack",
+          "resource": "画像\\ev\\min10b.bmp",
+          "namespace": "ev"
+        }
+      ]
+    },
+    {
+      "id": "cg-7fb7cc460355a790",
+      "kind": "cg",
+      "name": "min10c",
+      "characters": [
+        "柳ヶ瀬湊"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "7f/7fb7cc460355a7900b079f3bda6f804007a92b0be707b605d0e8bbedd4868fdb.png",
+      "sha256": "b6daca6e97e5cef49ebde5ebd226fa0c89ce4efde3482b12a7e03bc92c008b54",
+      "placements": [
+        {
+          "game": "01_近月少女的礼仪",
+          "scene": "min10",
+          "role": "柳ヶ瀬湊",
+          "archive": "data2.pack",
+          "resource": "画像\\ev\\min10c.bmp",
+          "namespace": "ev"
+        }
+      ]
+    },
+    {
+      "id": "cg-1a87e95942235405",
+      "kind": "cg",
+      "name": "min10d",
+      "characters": [
+        "柳ヶ瀬湊"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "1a/1a87e95942235405f63f842a8519ca09abcbe0b4b44b7da1e4bfb7fcd345bed2.png",
+      "sha256": "4d7dfb4d7531a3e9a877710c6357706f0834c5ee762e01fa9ba5a7c5e7a70798",
+      "placements": [
+        {
+          "game": "01_近月少女的礼仪",
+          "scene": "min10",
+          "role": "柳ヶ瀬湊",
+          "archive": "data2.pack",
+          "resource": "画像\\ev\\min10d.bmp",
+          "namespace": "ev"
+        }
+      ]
+    },
+    {
       "id": "cg-a80b3889649561c1",
       "kind": "cg",
       "name": "min11a",
@@ -1438,6 +1949,72 @@
           "role": "柳ヶ瀬湊",
           "archive": "data2.pack",
           "resource": "画像\\ev\\min11c.bmp",
+          "namespace": "ev"
+        }
+      ]
+    },
+    {
+      "id": "cg-1b6b742f3d929ee0",
+      "kind": "cg",
+      "name": "min21a",
+      "characters": [
+        "柳ヶ瀬湊"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "1b/1b6b742f3d929ee0f6a23abf847c8eb05121a02d96563842a87c62fcab5a174f.png",
+      "sha256": "1feca2a4efebef82ea879afaa05a0a220fd2682a71c2fa7dfcb4236d117259cd",
+      "placements": [
+        {
+          "game": "01_近月少女的礼仪",
+          "scene": "min21",
+          "role": "柳ヶ瀬湊",
+          "archive": "data2.pack",
+          "resource": "画像\\ev\\min21a.bmp",
+          "namespace": "ev"
+        }
+      ]
+    },
+    {
+      "id": "cg-912142677e1eaab0",
+      "kind": "cg",
+      "name": "min21b",
+      "characters": [
+        "柳ヶ瀬湊"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "91/912142677e1eaab0c942ce2dd7c781161e16d56a6f7251b55c565e8d23e5e708.png",
+      "sha256": "a85ee3457b32bcb7afbe7f407a6b8e5f287f638c148d1de05cd611fa6bafe374",
+      "placements": [
+        {
+          "game": "01_近月少女的礼仪",
+          "scene": "min21",
+          "role": "柳ヶ瀬湊",
+          "archive": "data2.pack",
+          "resource": "画像\\ev\\min21b.bmp",
+          "namespace": "ev"
+        }
+      ]
+    },
+    {
+      "id": "cg-9dc8ab76c30bd229",
+      "kind": "cg",
+      "name": "min22a",
+      "characters": [
+        "柳ヶ瀬湊"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "9d/9dc8ab76c30bd2295a47e4311700e0ad166401984965fbcc40ef3612c9c73bef.png",
+      "sha256": "7bdb8457f8d9dc971e86ce3199e97381da000a0aeca42fd709f4af04f9bf1d2f",
+      "placements": [
+        {
+          "game": "01_近月少女的礼仪",
+          "scene": "min22",
+          "role": "柳ヶ瀬湊",
+          "archive": "data2.pack",
+          "resource": "画像\\ev\\min22a.bmp",
           "namespace": "ev"
         }
       ]
@@ -1597,6 +2174,72 @@
       ]
     },
     {
+      "id": "cg-c509f53a7ea7703f",
+      "kind": "cg",
+      "name": "min38a",
+      "characters": [
+        "柳ヶ瀬湊"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "c5/c509f53a7ea7703f2ea2262bc832b80948d302796864a6702c55e08ea9d6e7dc.png",
+      "sha256": "b252caf07c0c98f363f0ff4778467da9ba65eac6adc7461183bf021004055a94",
+      "placements": [
+        {
+          "game": "01_近月少女的礼仪",
+          "scene": "min38",
+          "role": "柳ヶ瀬湊",
+          "archive": "data12.pack",
+          "resource": "画像\\ev_after\\min38a.bmp",
+          "namespace": "ev_after"
+        }
+      ]
+    },
+    {
+      "id": "cg-9df6d3f13e0e6490",
+      "kind": "cg",
+      "name": "min38b",
+      "characters": [
+        "柳ヶ瀬湊"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "9d/9df6d3f13e0e6490309b50b081258afb31665677b0c2356868bc922b5490e9ef.png",
+      "sha256": "1d485280d5a85be8b10375dd1195b0e46105efbefa6e6fb5c8b779228c83d6cf",
+      "placements": [
+        {
+          "game": "01_近月少女的礼仪",
+          "scene": "min38",
+          "role": "柳ヶ瀬湊",
+          "archive": "data12.pack",
+          "resource": "画像\\ev_after\\min38b.bmp",
+          "namespace": "ev_after"
+        }
+      ]
+    },
+    {
+      "id": "cg-01462843cd2359e1",
+      "kind": "cg",
+      "name": "min38c",
+      "characters": [
+        "柳ヶ瀬湊"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "01/01462843cd2359e182629dc2951e88ace6b31ff184900c521cc7ec3ab8ae0a42.png",
+      "sha256": "478d76bacf495a6ce6cfc8cc6c201e9046f8276922debda6388f3336712b242d",
+      "placements": [
+        {
+          "game": "01_近月少女的礼仪",
+          "scene": "min38",
+          "role": "柳ヶ瀬湊",
+          "archive": "data12.pack",
+          "resource": "画像\\ev_after\\min38c.bmp",
+          "namespace": "ev_after"
+        }
+      ]
+    },
+    {
       "id": "cg-e0b6d93058bd02a8",
       "kind": "cg",
       "name": "miz01a",
@@ -1615,6 +2258,710 @@
           "archive": "data2.pack",
           "resource": "画像\\ev\\miz01a.bmp",
           "namespace": "ev"
+        }
+      ]
+    },
+    {
+      "id": "cg-3aa771da000b0043",
+      "kind": "cg",
+      "name": "miz04a",
+      "characters": [
+        "花之宮瑞穂"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "3a/3aa771da000b004347d9871dee6f61821fab41e6534fb8f2eac5421cfe9561a9.png",
+      "sha256": "aa3b4caa479bd534f35a1ceb4292c6ba37467f57c6d432759dc8643025eb6577",
+      "placements": [
+        {
+          "game": "01_近月少女的礼仪",
+          "scene": "miz04",
+          "role": "花之宮瑞穂",
+          "archive": "data2.pack",
+          "resource": "画像\\ev\\miz04a.bmp",
+          "namespace": "ev"
+        }
+      ]
+    },
+    {
+      "id": "cg-0e874a838b26765d",
+      "kind": "cg",
+      "name": "miz04b",
+      "characters": [
+        "花之宮瑞穂"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "0e/0e874a838b26765d59cede8bc3f4f8772e743813d6d100059cdf3813cb17031e.png",
+      "sha256": "bc3d875fe00bc21bf6eb72c079426ae8eabeb37caa5135fb5fb4e1017558b52b",
+      "placements": [
+        {
+          "game": "01_近月少女的礼仪",
+          "scene": "miz04",
+          "role": "花之宮瑞穂",
+          "archive": "data2.pack",
+          "resource": "画像\\ev\\miz04b.bmp",
+          "namespace": "ev"
+        }
+      ]
+    },
+    {
+      "id": "cg-97512e05e392a9a7",
+      "kind": "cg",
+      "name": "miz04c",
+      "characters": [
+        "花之宮瑞穂"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "97/97512e05e392a9a74d0e797bf4342ff390ffd6cdc5f6ac8aaadc76e4e46e404d.png",
+      "sha256": "ebab277a405b481d9ff26ccd64e77b07f03fdcbc287212168f8ccbe57baccc16",
+      "placements": [
+        {
+          "game": "01_近月少女的礼仪",
+          "scene": "miz04",
+          "role": "花之宮瑞穂",
+          "archive": "data2.pack",
+          "resource": "画像\\ev\\miz04c.bmp",
+          "namespace": "ev"
+        }
+      ]
+    },
+    {
+      "id": "cg-636c9a04ad7deccd",
+      "kind": "cg",
+      "name": "miz04d",
+      "characters": [
+        "花之宮瑞穂"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "63/636c9a04ad7deccd942225ab5c1c5cf461d09bf6a18aea1eb424c5c808a2495f.png",
+      "sha256": "91e7d229cdfc05aacf84e567f27aac9caf413de70a16e8180899756945ab847f",
+      "placements": [
+        {
+          "game": "01_近月少女的礼仪",
+          "scene": "miz04",
+          "role": "花之宮瑞穂",
+          "archive": "data2.pack",
+          "resource": "画像\\ev\\miz04d.bmp",
+          "namespace": "ev"
+        }
+      ]
+    },
+    {
+      "id": "cg-abf90acfb75e1112",
+      "kind": "cg",
+      "name": "miz05a",
+      "characters": [
+        "花之宮瑞穂"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "ab/abf90acfb75e1112358354f2f22e1f96e32a28c9540eb100f93d151298a296b1.png",
+      "sha256": "8875512296fd40b019893775355a72f6897b2811f530bca5f342bccd43ca0a11",
+      "placements": [
+        {
+          "game": "01_近月少女的礼仪",
+          "scene": "miz05",
+          "role": "花之宮瑞穂",
+          "archive": "data2.pack",
+          "resource": "画像\\ev\\miz05a.bmp",
+          "namespace": "ev"
+        }
+      ]
+    },
+    {
+      "id": "cg-02a4d47396fa32da",
+      "kind": "cg",
+      "name": "miz05b",
+      "characters": [
+        "花之宮瑞穂"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "02/02a4d47396fa32dae1b20119e708a6b8449a2ef424b534e1ab6ef8c81d4a853a.png",
+      "sha256": "c32060363e97acc2e87e7f7cf909ec22c353056d74aa710cf10c437fbf738f7d",
+      "placements": [
+        {
+          "game": "01_近月少女的礼仪",
+          "scene": "miz05",
+          "role": "花之宮瑞穂",
+          "archive": "data2.pack",
+          "resource": "画像\\ev\\miz05b.bmp",
+          "namespace": "ev"
+        }
+      ]
+    },
+    {
+      "id": "cg-14dc6c79c79a5b86",
+      "kind": "cg",
+      "name": "miz05c",
+      "characters": [
+        "花之宮瑞穂"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "14/14dc6c79c79a5b866d0b0876ad5f21ca8b0dbc9a24cf2bd41b50c1b8755f0d49.png",
+      "sha256": "5b4bf94b596c66e30d68dbc9c30b643928886bb22cf41742d77e5fafb9a16b58",
+      "placements": [
+        {
+          "game": "01_近月少女的礼仪",
+          "scene": "miz05",
+          "role": "花之宮瑞穂",
+          "archive": "data2.pack",
+          "resource": "画像\\ev\\miz05c.bmp",
+          "namespace": "ev"
+        }
+      ]
+    },
+    {
+      "id": "cg-96d3ddd3ef1ec946",
+      "kind": "cg",
+      "name": "miz07a",
+      "characters": [
+        "花之宮瑞穂"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "96/96d3ddd3ef1ec946fab2ca0cc1eb65884180440fbe1df20565c153c436e0c72c.png",
+      "sha256": "b576bce27e77c6613fa2a9943b23c2a1e24a9272f13f6cc03c80463e1c1dd167",
+      "placements": [
+        {
+          "game": "01_近月少女的礼仪",
+          "scene": "miz07",
+          "role": "花之宮瑞穂",
+          "archive": "data2.pack",
+          "resource": "画像\\ev\\miz07a.bmp",
+          "namespace": "ev"
+        }
+      ]
+    },
+    {
+      "id": "cg-24de597c97a1d68f",
+      "kind": "cg",
+      "name": "miz07b",
+      "characters": [
+        "花之宮瑞穂"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "24/24de597c97a1d68fd68493a0728c13db0815721dec702ae2119166387d4917f7.png",
+      "sha256": "f77e37e03d99636a9569f174b0a8dd9388e6e92671ae359186e7e9f9ebf94a66",
+      "placements": [
+        {
+          "game": "01_近月少女的礼仪",
+          "scene": "miz07",
+          "role": "花之宮瑞穂",
+          "archive": "data2.pack",
+          "resource": "画像\\ev\\miz07b.bmp",
+          "namespace": "ev"
+        }
+      ]
+    },
+    {
+      "id": "cg-1a04e40542bc4fa3",
+      "kind": "cg",
+      "name": "miz07c",
+      "characters": [
+        "花之宮瑞穂"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "1a/1a04e40542bc4fa32849a6a085d36162537657b3014aeda018e1a1ab9f6a2418.png",
+      "sha256": "9d0f5affda10c314b836919b29e8fe5dc9dace286c4a6913b87fb8b62323557e",
+      "placements": [
+        {
+          "game": "01_近月少女的礼仪",
+          "scene": "miz07",
+          "role": "花之宮瑞穂",
+          "archive": "data2.pack",
+          "resource": "画像\\ev\\miz07c.bmp",
+          "namespace": "ev"
+        }
+      ]
+    },
+    {
+      "id": "cg-d05a05fb3407f339",
+      "kind": "cg",
+      "name": "miz08a",
+      "characters": [
+        "花之宮瑞穂"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "d0/d05a05fb3407f339672cc1481d9f35b6530d078982a9d394c71202ee417726da.png",
+      "sha256": "fdc90561eae1f5b045c6fa5034334ace5161ab8abb7b27548784d109c8b9907c",
+      "placements": [
+        {
+          "game": "01_近月少女的礼仪",
+          "scene": "miz08",
+          "role": "花之宮瑞穂",
+          "archive": "data2.pack",
+          "resource": "画像\\ev\\miz08a.bmp",
+          "namespace": "ev"
+        }
+      ]
+    },
+    {
+      "id": "cg-77a80fab55e4d0cd",
+      "kind": "cg",
+      "name": "miz08b",
+      "characters": [
+        "花之宮瑞穂"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "77/77a80fab55e4d0cd7df1d734260ec0f12c7ed120219ca9e745b1adcf07efbcb3.png",
+      "sha256": "9e7d99fe00e95717a0a379b430f8f7c7c40103484338800fbe94fb7f4f848ba3",
+      "placements": [
+        {
+          "game": "01_近月少女的礼仪",
+          "scene": "miz08",
+          "role": "花之宮瑞穂",
+          "archive": "data2.pack",
+          "resource": "画像\\ev\\miz08b.bmp",
+          "namespace": "ev"
+        }
+      ]
+    },
+    {
+      "id": "cg-11c4ce3ab9a99d48",
+      "kind": "cg",
+      "name": "miz08c",
+      "characters": [
+        "花之宮瑞穂"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "11/11c4ce3ab9a99d48793451607035f451ddaaf7b0ac3c6cea4918d774e4988f30.png",
+      "sha256": "3599e21139cf9f5102900561133ee23f039dfe253e9e30d2e2d9f34d5c8d78bf",
+      "placements": [
+        {
+          "game": "01_近月少女的礼仪",
+          "scene": "miz08",
+          "role": "花之宮瑞穂",
+          "archive": "data2.pack",
+          "resource": "画像\\ev\\miz08c.bmp",
+          "namespace": "ev"
+        }
+      ]
+    },
+    {
+      "id": "cg-e37ce3dc2f7de6ea",
+      "kind": "cg",
+      "name": "miz08d",
+      "characters": [
+        "花之宮瑞穂"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "e3/e37ce3dc2f7de6ea65365531ff63e00642461ff8bbbb5885088731246a3feb4a.png",
+      "sha256": "2c11be1cd7ed247c0677d931f97fb69a129bb83422aaffb7d89b9d60bd760740",
+      "placements": [
+        {
+          "game": "01_近月少女的礼仪",
+          "scene": "miz08",
+          "role": "花之宮瑞穂",
+          "archive": "data2.pack",
+          "resource": "画像\\ev\\miz08d.bmp",
+          "namespace": "ev"
+        }
+      ]
+    },
+    {
+      "id": "cg-9df7ca9a89aa3d3f",
+      "kind": "cg",
+      "name": "miz09a",
+      "characters": [
+        "花之宮瑞穂"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "9d/9df7ca9a89aa3d3f7ef59e77cdd76ed1556c238f137724444e932bb14c53745a.png",
+      "sha256": "92c00cd88a914ba8f1a3cbaadc8d18f999f0550f27b776f994b20c13443049de",
+      "placements": [
+        {
+          "game": "01_近月少女的礼仪",
+          "scene": "miz09",
+          "role": "花之宮瑞穂",
+          "archive": "data2.pack",
+          "resource": "画像\\ev\\miz09a.bmp",
+          "namespace": "ev"
+        }
+      ]
+    },
+    {
+      "id": "cg-078caa96c0d26e67",
+      "kind": "cg",
+      "name": "miz09b",
+      "characters": [
+        "花之宮瑞穂"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "07/078caa96c0d26e67e0a42cb9782f4eae16993467d7aee6919a7bd64ec4fa9824.png",
+      "sha256": "ccdb02f9f699f92cfd3fd53aebbe2e5f0d2c56843b1cc720a107247b161b8218",
+      "placements": [
+        {
+          "game": "01_近月少女的礼仪",
+          "scene": "miz09",
+          "role": "花之宮瑞穂",
+          "archive": "data2.pack",
+          "resource": "画像\\ev\\miz09b.bmp",
+          "namespace": "ev"
+        }
+      ]
+    },
+    {
+      "id": "cg-0377fb3a7274be34",
+      "kind": "cg",
+      "name": "miz09c",
+      "characters": [
+        "花之宮瑞穂"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "03/0377fb3a7274be3487eb18ae4a632be7c9a69445b121f06366e7b0bd6537303c.png",
+      "sha256": "e08f43f986157ff2a72ccb9eb06b8097d723a7621f0ed6e709ac77bbb324cf61",
+      "placements": [
+        {
+          "game": "01_近月少女的礼仪",
+          "scene": "miz09",
+          "role": "花之宮瑞穂",
+          "archive": "data2.pack",
+          "resource": "画像\\ev\\miz09c.bmp",
+          "namespace": "ev"
+        }
+      ]
+    },
+    {
+      "id": "cg-7114eb27544c1a4b",
+      "kind": "cg",
+      "name": "miz10a",
+      "characters": [
+        "花之宮瑞穂"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "71/7114eb27544c1a4bdf4f0d05beb96a24f134c3ddd83b415475496ad6ca7d21d2.png",
+      "sha256": "61c9bb0b7c52c673d70c9a43fbff5e352634600c6ee66f8f15151d9d715ad8d6",
+      "placements": [
+        {
+          "game": "01_近月少女的礼仪",
+          "scene": "miz10",
+          "role": "花之宮瑞穂",
+          "archive": "data2.pack",
+          "resource": "画像\\ev\\miz10a.bmp",
+          "namespace": "ev"
+        }
+      ]
+    },
+    {
+      "id": "cg-e25375759dc29f4b",
+      "kind": "cg",
+      "name": "miz10b",
+      "characters": [
+        "花之宮瑞穂"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "e2/e25375759dc29f4b004f133bf94d9889ea5ddd785d5c8f0d53e3d8ab29c4f1b2.png",
+      "sha256": "3effa534c9604f3139762072982360ba700e86bbb080969498eb269a39fc503a",
+      "placements": [
+        {
+          "game": "01_近月少女的礼仪",
+          "scene": "miz10",
+          "role": "花之宮瑞穂",
+          "archive": "data2.pack",
+          "resource": "画像\\ev\\miz10b.bmp",
+          "namespace": "ev"
+        }
+      ]
+    },
+    {
+      "id": "cg-a653df635e2cff5e",
+      "kind": "cg",
+      "name": "miz10c",
+      "characters": [
+        "花之宮瑞穂"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "a6/a653df635e2cff5e9884e3e574d72c7d8cfbe09d21087b06775403a46c2867be.png",
+      "sha256": "678e00b74d59d2d704036143b97c6b89d3c07a641deafbb7ff9e9700cdaf888f",
+      "placements": [
+        {
+          "game": "01_近月少女的礼仪",
+          "scene": "miz10",
+          "role": "花之宮瑞穂",
+          "archive": "data2.pack",
+          "resource": "画像\\ev\\miz10c.bmp",
+          "namespace": "ev"
+        }
+      ]
+    },
+    {
+      "id": "cg-b60333aaa927fa00",
+      "kind": "cg",
+      "name": "miz11a",
+      "characters": [
+        "花之宮瑞穂"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "b6/b60333aaa927fa001670223582d33d190b9312fd4d6a86e5a0a05defe8c272b7.png",
+      "sha256": "92865d3050be50aa2fed681d5dbed109a038dda166b2983ca90478fbed3f470b",
+      "placements": [
+        {
+          "game": "01_近月少女的礼仪",
+          "scene": "miz11",
+          "role": "花之宮瑞穂",
+          "archive": "data2.pack",
+          "resource": "画像\\ev\\miz11a.bmp",
+          "namespace": "ev"
+        }
+      ]
+    },
+    {
+      "id": "cg-abf4c3776c5c61f8",
+      "kind": "cg",
+      "name": "miz11b",
+      "characters": [
+        "花之宮瑞穂"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "ab/abf4c3776c5c61f84558ddbe9d057ec99b8a15c19c35cff6e6d8725c4fe524c6.png",
+      "sha256": "384b7eeebb23aea642bb73db511864d30d71053bca1d604743deef39a6cb5c19",
+      "placements": [
+        {
+          "game": "01_近月少女的礼仪",
+          "scene": "miz11",
+          "role": "花之宮瑞穂",
+          "archive": "data2.pack",
+          "resource": "画像\\ev\\miz11b.bmp",
+          "namespace": "ev"
+        }
+      ]
+    },
+    {
+      "id": "cg-40163bf2e979cca2",
+      "kind": "cg",
+      "name": "miz11c",
+      "characters": [
+        "花之宮瑞穂"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "40/40163bf2e979cca284a67dc739f500ba0db3243e342e596e64d7392db2198bd0.png",
+      "sha256": "a6c7a3bfecb4fc5372ee56ea460c9d6ac2b868fedd531c0ed9c5bdc70c1933a3",
+      "placements": [
+        {
+          "game": "01_近月少女的礼仪",
+          "scene": "miz11",
+          "role": "花之宮瑞穂",
+          "archive": "data2.pack",
+          "resource": "画像\\ev\\miz11c.bmp",
+          "namespace": "ev"
+        }
+      ]
+    },
+    {
+      "id": "cg-0f80baf0b3758f02",
+      "kind": "cg",
+      "name": "miz12a",
+      "characters": [
+        "花之宮瑞穂"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "0f/0f80baf0b3758f02385e91fabbd2ab2123be3f8c4cd54eb6a3cb44ba982b45c1.png",
+      "sha256": "b1e9309eab91dba201840306a4881770fcd6708428e95f57e727aa64b66051fe",
+      "placements": [
+        {
+          "game": "01_近月少女的礼仪",
+          "scene": "miz12",
+          "role": "花之宮瑞穂",
+          "archive": "data2.pack",
+          "resource": "画像\\ev\\miz12a.bmp",
+          "namespace": "ev"
+        }
+      ]
+    },
+    {
+      "id": "cg-3189b06efa04f105",
+      "kind": "cg",
+      "name": "miz12b",
+      "characters": [
+        "花之宮瑞穂"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "31/3189b06efa04f105dafdc2ebe1f6f1936c3276cf8e8287ae8bd45d3b8a525f35.png",
+      "sha256": "147a7afd8ac30a2bb4a3fb8b3b26ef2e821f9e1670c01905fa598288bea6d388",
+      "placements": [
+        {
+          "game": "01_近月少女的礼仪",
+          "scene": "miz12",
+          "role": "花之宮瑞穂",
+          "archive": "data2.pack",
+          "resource": "画像\\ev\\miz12b.bmp",
+          "namespace": "ev"
+        }
+      ]
+    },
+    {
+      "id": "cg-31964762fd4cc7f3",
+      "kind": "cg",
+      "name": "miz12c",
+      "characters": [
+        "花之宮瑞穂"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "31/31964762fd4cc7f3c88c02b2d2e16e0c27aa13ee337c90bc79b5c0b8019045fd.png",
+      "sha256": "551a6f7ad09034d8f561f443f470a6f170831c51300ff00a0c6431e415d54853",
+      "placements": [
+        {
+          "game": "01_近月少女的礼仪",
+          "scene": "miz12",
+          "role": "花之宮瑞穂",
+          "archive": "data2.pack",
+          "resource": "画像\\ev\\miz12c.bmp",
+          "namespace": "ev"
+        }
+      ]
+    },
+    {
+      "id": "cg-613c7a8407f9703f",
+      "kind": "cg",
+      "name": "miz13a",
+      "characters": [
+        "花之宮瑞穂"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "61/613c7a8407f9703fa88120bc0e16e8883692f0f712344d15837b60904ecb0804.png",
+      "sha256": "557ad6beb2d76ceec826f87436cd9696af7ab272a3fec7b38381ad4e44dba2ab",
+      "placements": [
+        {
+          "game": "01_近月少女的礼仪",
+          "scene": "miz13",
+          "role": "花之宮瑞穂",
+          "archive": "data2.pack",
+          "resource": "画像\\ev\\miz13a.bmp",
+          "namespace": "ev"
+        }
+      ]
+    },
+    {
+      "id": "cg-a76d9aefcb5d7b13",
+      "kind": "cg",
+      "name": "miz13b",
+      "characters": [
+        "花之宮瑞穂"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "a7/a76d9aefcb5d7b138c8dd4ae9d956aaafc49fcc2b198ece18dd5ad30ff1c2d6b.png",
+      "sha256": "28f7a4b7f1e6dd25e98f5e65d38c039e1325cde552c6d209e06e9c7e05c16c4e",
+      "placements": [
+        {
+          "game": "01_近月少女的礼仪",
+          "scene": "miz13",
+          "role": "花之宮瑞穂",
+          "archive": "data2.pack",
+          "resource": "画像\\ev\\miz13b.bmp",
+          "namespace": "ev"
+        }
+      ]
+    },
+    {
+      "id": "cg-af9e1e34ef4b0b58",
+      "kind": "cg",
+      "name": "miz21a",
+      "characters": [
+        "花之宮瑞穂"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "af/af9e1e34ef4b0b5865fdf86388231065583b1ad4d24cfa5660bd98337420d1d0.png",
+      "sha256": "8fa8b146307e1291d64a2e003b72ac9f931ecd1f2af80b85cd33bd3d61400a48",
+      "placements": [
+        {
+          "game": "01_近月少女的礼仪",
+          "scene": "miz21",
+          "role": "花之宮瑞穂",
+          "archive": "data2.pack",
+          "resource": "画像\\ev\\miz21a.bmp",
+          "namespace": "ev"
+        }
+      ]
+    },
+    {
+      "id": "cg-7ec0c8003327562c",
+      "kind": "cg",
+      "name": "miz21b",
+      "characters": [
+        "花之宮瑞穂"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "7e/7ec0c8003327562cc1acc2c40a16927eff875fe9f7032ba23dbaa495ec564a74.png",
+      "sha256": "e2bf4134a8d4a5cafe8809bbfd9e8989e3a53ea650f07c3b0ef5ff8ef952f322",
+      "placements": [
+        {
+          "game": "01_近月少女的礼仪",
+          "scene": "miz21",
+          "role": "花之宮瑞穂",
+          "archive": "data2.pack",
+          "resource": "画像\\ev\\miz21b.bmp",
+          "namespace": "ev"
+        }
+      ]
+    },
+    {
+      "id": "cg-b8986ba38df4223e",
+      "kind": "cg",
+      "name": "miz34a",
+      "characters": [
+        "花之宮瑞穂"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "b8/b8986ba38df4223e4ba5340e72aa0932f87dbcaaf7b5fb79e1c3f6868ce6565b.png",
+      "sha256": "7ebb07acf5d5370023a05098638b0f7c4a81b60234225a5eaaa13c1febbdc09a",
+      "placements": [
+        {
+          "game": "01_近月少女的礼仪",
+          "scene": "miz34",
+          "role": "花之宮瑞穂",
+          "archive": "data12.pack",
+          "resource": "画像\\ev_after\\miz34a.bmp",
+          "namespace": "ev_after"
+        }
+      ]
+    },
+    {
+      "id": "cg-e242446f9385173c",
+      "kind": "cg",
+      "name": "miz34b",
+      "characters": [
+        "花之宮瑞穂"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "e2/e242446f9385173c5e45c068369429ca0b0df049db006fd300155d2a624e12a4.png",
+      "sha256": "c8740ad0fb76129419bbeb04dc7564487ce1b42db4a0653aea01eb5ba869f638",
+      "placements": [
+        {
+          "game": "01_近月少女的礼仪",
+          "scene": "miz34",
+          "role": "花之宮瑞穂",
+          "archive": "data12.pack",
+          "resource": "画像\\ev_after\\miz34b.bmp",
+          "namespace": "ev_after"
         }
       ]
     },
@@ -1718,6 +3065,50 @@
           "role": "ユルシュール",
           "archive": "data9.pack",
           "resource": "画像\\ev\\ufj04b.bmp",
+          "namespace": "ev"
+        }
+      ]
+    },
+    {
+      "id": "cg-44ca8b2d546c333c",
+      "kind": "cg",
+      "name": "ufj05a",
+      "characters": [
+        "ユルシュール"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "44/44ca8b2d546c333c2c88bb4a69e0e1f8c778c48c1c9b78bff47daac0d590bd4e.png",
+      "sha256": "4225112331d29b4a77a3c4ced64289926528aa77c26af2f0fb7c477811ffe188",
+      "placements": [
+        {
+          "game": "01_近月少女的礼仪",
+          "scene": "ufj05",
+          "role": "ユルシュール",
+          "archive": "data2.pack",
+          "resource": "画像\\ev\\ufj05a.bmp",
+          "namespace": "ev"
+        }
+      ]
+    },
+    {
+      "id": "cg-50c58fc4f31c43fe",
+      "kind": "cg",
+      "name": "ufj05b",
+      "characters": [
+        "ユルシュール"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "50/50c58fc4f31c43fe14c7073c69debde82286f875ea043d78cb0eaca8d01ada62.png",
+      "sha256": "d19ccdc307e753898ab391cdf16b11997401d70f7c7a5d3ba08754e0f14654fb",
+      "placements": [
+        {
+          "game": "01_近月少女的礼仪",
+          "scene": "ufj05",
+          "role": "ユルシュール",
+          "archive": "data2.pack",
+          "resource": "画像\\ev\\ufj05b.bmp",
           "namespace": "ev"
         }
       ]
@@ -1965,6 +3356,118 @@
       ]
     },
     {
+      "id": "cg-28f4a6f5d2874892",
+      "kind": "cg",
+      "name": "ufj19a",
+      "characters": [
+        "ユルシュール",
+        "朝日"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "28/28f4a6f5d287489207082d4fee17de0754e562303a19d7ec64c9b2fcef5e2667.png",
+      "sha256": "574293f87c6d01ecce25268b3c754a1801bfcb582e3efaa696632e4fbf1cddd7",
+      "placements": [
+        {
+          "game": "01_近月少女的礼仪",
+          "scene": "ufj19",
+          "role": "ユルシュール",
+          "archive": "data2.pack",
+          "resource": "画像\\ev\\ufj19a.bmp",
+          "namespace": "ev"
+        }
+      ]
+    },
+    {
+      "id": "cg-f1b1addf3cf9bc0c",
+      "kind": "cg",
+      "name": "ufj19b",
+      "characters": [
+        "ユルシュール",
+        "朝日"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "f1/f1b1addf3cf9bc0c435f11ea50ea8f88bee56cb22395575a6fd1d97eedb3ee79.png",
+      "sha256": "66fbb6b0e2c0e8bf860e4128f7853a2c75bf9f3e70368120d969cdf175aa315e",
+      "placements": [
+        {
+          "game": "01_近月少女的礼仪",
+          "scene": "ufj19",
+          "role": "ユルシュール",
+          "archive": "data2.pack",
+          "resource": "画像\\ev\\ufj19b.bmp",
+          "namespace": "ev"
+        }
+      ]
+    },
+    {
+      "id": "cg-796b0178698c3f9c",
+      "kind": "cg",
+      "name": "ufj20a",
+      "characters": [
+        "ユルシュール"
+      ],
+      "width": 1480,
+      "height": 720,
+      "original": "79/796b0178698c3f9c64358255e14bf309e3f895fe6cd4871c83541f18c8b36ea6.png",
+      "sha256": "6c3148ed0118b5b14d7e8b3c2ff621af9cdefadb6354b441206e7b63706f5db4",
+      "placements": [
+        {
+          "game": "01_近月少女的礼仪",
+          "scene": "ufj20",
+          "role": "ユルシュール",
+          "archive": "data2.pack",
+          "resource": "画像\\ev\\ufj20a.bmp",
+          "namespace": "ev"
+        }
+      ]
+    },
+    {
+      "id": "cg-19f1968fe27090fb",
+      "kind": "cg",
+      "name": "ufj20b",
+      "characters": [
+        "ユルシュール"
+      ],
+      "width": 1480,
+      "height": 720,
+      "original": "19/19f1968fe27090fb47871b820dd018330cc7a793972e61168b7c8a44cae0aaef.png",
+      "sha256": "78e9e44a3362b798c12f24fdd6976efb56758b95c65fc4bffb0adcf5b7d4c3ff",
+      "placements": [
+        {
+          "game": "01_近月少女的礼仪",
+          "scene": "ufj20",
+          "role": "ユルシュール",
+          "archive": "data2.pack",
+          "resource": "画像\\ev\\ufj20b.bmp",
+          "namespace": "ev"
+        }
+      ]
+    },
+    {
+      "id": "cg-a40ed919ea6a1412",
+      "kind": "cg",
+      "name": "ufj20c",
+      "characters": [
+        "ユルシュール"
+      ],
+      "width": 1480,
+      "height": 720,
+      "original": "a4/a40ed919ea6a1412f532b0ca6ce917138ea05b2d1cbe3ee0692d1635a320eb4f.png",
+      "sha256": "6329a8d651719dfabb3100f5f7ffd64437dbc27e8a64a02bb477b512ce636ccd",
+      "placements": [
+        {
+          "game": "01_近月少女的礼仪",
+          "scene": "ufj20",
+          "role": "ユルシュール",
+          "archive": "data2.pack",
+          "resource": "画像\\ev\\ufj20c.bmp",
+          "namespace": "ev"
+        }
+      ]
+    },
+    {
       "id": "cg-80544e7f2d6e055c",
       "kind": "cg",
       "name": "ufj21a",
@@ -2136,6 +3639,94 @@
           "role": "ユルシュール",
           "archive": "data12.pack",
           "resource": "画像\\ev_after\\ufj37a.bmp",
+          "namespace": "ev_after"
+        }
+      ]
+    },
+    {
+      "id": "cg-eaf24ad112bc8605",
+      "kind": "cg",
+      "name": "ufj38a",
+      "characters": [
+        "ユルシュール"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "ea/eaf24ad112bc860521040fe3957bdf2582accba161462dcce55a09da0a8c9675.png",
+      "sha256": "208f4b9aa5d719022466b2840102381dcade523ae43c881fa7996124ec0b5d7a",
+      "placements": [
+        {
+          "game": "01_近月少女的礼仪",
+          "scene": "ufj38",
+          "role": "ユルシュール",
+          "archive": "data12.pack",
+          "resource": "画像\\ev_after\\ufj38a.bmp",
+          "namespace": "ev_after"
+        }
+      ]
+    },
+    {
+      "id": "cg-978679ab9376c905",
+      "kind": "cg",
+      "name": "ufj38b",
+      "characters": [
+        "ユルシュール"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "97/978679ab9376c905b83707810b576ae4341537059b34b4b7df28d38c85b7a519.png",
+      "sha256": "bedce4b7073a670f3630051a6fac24bb519f61d3ce4756a5ef35374caf39ab5f",
+      "placements": [
+        {
+          "game": "01_近月少女的礼仪",
+          "scene": "ufj38",
+          "role": "ユルシュール",
+          "archive": "data12.pack",
+          "resource": "画像\\ev_after\\ufj38b.bmp",
+          "namespace": "ev_after"
+        }
+      ]
+    },
+    {
+      "id": "cg-a7172476c5d7dc0e",
+      "kind": "cg",
+      "name": "ufj38c",
+      "characters": [
+        "ユルシュール"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "a7/a7172476c5d7dc0ea84cb0278a8f96d13a6c90d7f4b702e974e307bce28bfdd0.png",
+      "sha256": "3ae01eef40ab6bd15a10765ddd74d5097456ebb3ed11e736da0d16e804d1e886",
+      "placements": [
+        {
+          "game": "01_近月少女的礼仪",
+          "scene": "ufj38",
+          "role": "ユルシュール",
+          "archive": "data12.pack",
+          "resource": "画像\\ev_after\\ufj38c.bmp",
+          "namespace": "ev_after"
+        }
+      ]
+    },
+    {
+      "id": "cg-913e01115d3fa1e5",
+      "kind": "cg",
+      "name": "ufj38d",
+      "characters": [
+        "ユルシュール"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "91/913e01115d3fa1e58d8d1faeb7b18b61ad481d578cd125d8e19fe5c2c2c7bfa3.png",
+      "sha256": "41f4b7fd93a62415687b47c078e86eb20b63813ab8bbf0edd9289d563a59dbf9",
+      "placements": [
+        {
+          "game": "01_近月少女的礼仪",
+          "scene": "ufj38",
+          "role": "ユルシュール",
+          "archive": "data12.pack",
+          "resource": "画像\\ev_after\\ufj38d.bmp",
           "namespace": "ev_after"
         }
       ]
@@ -2405,6 +3996,28 @@
       ]
     },
     {
+      "id": "cg-00397eacd848ba1b",
+      "kind": "cg",
+      "name": "zzz39a",
+      "characters": [
+        "作品素材"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "00/00397eacd848ba1b70f5eefe4748cf1f099fad09356d31ac17358ee20933a8c3.png",
+      "sha256": "bbaf497f04158979d9059dc0d04e99c0fa767e216e97d48ca9f4a04623bf4b40",
+      "placements": [
+        {
+          "game": "01_近月少女的礼仪",
+          "scene": "zzz39",
+          "role": "作品素材",
+          "archive": "data12.pack",
+          "resource": "画像\\ev_after\\zzz39a.bmp",
+          "namespace": "ev_after"
+        }
+      ]
+    },
+    {
       "id": "cg-645c7f92e20cb619",
       "kind": "cg",
       "name": "asa32a",
@@ -2467,6 +4080,29 @@
           "archive": "data2.pack",
           "resource": "画像\\ev_oto\\bnp01a.bmp",
           "namespace": "ev_oto"
+        }
+      ]
+    },
+    {
+      "id": "cg-f4c6e09bb418d374",
+      "kind": "cg",
+      "name": "bnp01a",
+      "characters": [
+        "エッテ"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "f4/f4c6e09bb418d3749d2fb8c3c51e4dd0165f9339684e04e067f221bc9fdfd13c.png",
+      "sha256": "a6b335e17d408595aa12e8380ad4d92ab72f3ead64fbf43f1a7f84abdbf9b002",
+      "placements": [
+        {
+          "game": "02_少女理论_Ecole_de_Paris",
+          "scene": "bnp01",
+          "role": "エッテ",
+          "archive": "data12.pack",
+          "resource": "画像\\ev\\bnp01a.bmp",
+          "namespace": "ev",
+          "sourceGame": "01_近月少女的礼仪"
         }
       ]
     },
@@ -2845,6 +4481,28 @@
       ]
     },
     {
+      "id": "cg-675cef9d53bea5d7",
+      "kind": "cg",
+      "name": "bnp17a",
+      "characters": [
+        "エッテ"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "67/675cef9d53bea5d7d9e695232f7af0f21058415b9e8261d024e256f151d4dc65.png",
+      "sha256": "6a499593ea0c93101cc152f981b3df2d69ffeb7a3aef118714b79767d9c26ed2",
+      "placements": [
+        {
+          "game": "02_少女理论_Ecole_de_Paris",
+          "scene": "bnp17",
+          "role": "エッテ",
+          "archive": "data2.pack",
+          "resource": "画像\\ev_oto\\bnp17a.bmp",
+          "namespace": "ev_oto"
+        }
+      ]
+    },
+    {
       "id": "cg-5b0ad839a23455da",
       "kind": "cg",
       "name": "bnp18a",
@@ -2907,6 +4565,29 @@
           "archive": "data2.pack",
           "resource": "画像\\ev_oto\\lun39b.bmp",
           "namespace": "ev_oto"
+        }
+      ]
+    },
+    {
+      "id": "cg-7dcb9f67d860ab89",
+      "kind": "cg",
+      "name": "mer01a",
+      "characters": [
+        "メリル"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "7d/7dcb9f67d860ab89725a6f1f348b0634dd9f08221ede3a08bd04ba8d472cde49.png",
+      "sha256": "dc98f88ad6e7b3c5c23e485e983eeed292a237f7b20d0ab0bda7882c921fadd7",
+      "placements": [
+        {
+          "game": "02_少女理论_Ecole_de_Paris",
+          "scene": "mer01",
+          "role": "メリル",
+          "archive": "data12.pack",
+          "resource": "画像\\ev\\mer01a.bmp",
+          "namespace": "ev",
+          "sourceGame": "01_近月少女的礼仪"
         }
       ]
     },
@@ -3527,6 +5208,94 @@
       ]
     },
     {
+      "id": "cg-a577fb861be53787",
+      "kind": "cg",
+      "name": "mer19a",
+      "characters": [
+        "メリル"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "a5/a577fb861be53787fe00d95f62d8f27840fc8302fe5958557d9e201c00eb9846.png",
+      "sha256": "f2106d7a6ab784c5b3814810fbc2510358c3866c80da3af8cd6bd66abced7680",
+      "placements": [
+        {
+          "game": "02_少女理论_Ecole_de_Paris",
+          "scene": "mer19",
+          "role": "メリル",
+          "archive": "data2.pack",
+          "resource": "画像\\ev_oto\\mer19a.bmp",
+          "namespace": "ev_oto"
+        }
+      ]
+    },
+    {
+      "id": "cg-38cfb0adf9678a66",
+      "kind": "cg",
+      "name": "mer19b",
+      "characters": [
+        "メリル"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "38/38cfb0adf9678a66493cff79dbcd519eb8c925b02f96d8c67707b189e45a38df.png",
+      "sha256": "12fcf636d24c27d5b4a3f8e70870742ee5a066e586aebe40363d35426c7768ad",
+      "placements": [
+        {
+          "game": "02_少女理论_Ecole_de_Paris",
+          "scene": "mer19",
+          "role": "メリル",
+          "archive": "data2.pack",
+          "resource": "画像\\ev_oto\\mer19b.bmp",
+          "namespace": "ev_oto"
+        }
+      ]
+    },
+    {
+      "id": "cg-5bd617560587501c",
+      "kind": "cg",
+      "name": "mer19c",
+      "characters": [
+        "メリル"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "5b/5bd617560587501c0201e5abd2f3b3915ca614c63e94804b8cb8bb51ab5f6130.png",
+      "sha256": "37556b6cffb096e46c07f60d63ad5c7932c88da121436fde7e2844ce0d154d6c",
+      "placements": [
+        {
+          "game": "02_少女理论_Ecole_de_Paris",
+          "scene": "mer19",
+          "role": "メリル",
+          "archive": "data2.pack",
+          "resource": "画像\\ev_oto\\mer19c.bmp",
+          "namespace": "ev_oto"
+        }
+      ]
+    },
+    {
+      "id": "cg-347ee30e7bd6fb54",
+      "kind": "cg",
+      "name": "mer20a",
+      "characters": [
+        "メリル"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "34/347ee30e7bd6fb5420b4a700295b77a6975be67de001731a5bc2c08a89990eb5.png",
+      "sha256": "3b63710704e13a722ab7ebd6f4efbecf86480fba1961f82265af4e1465838137",
+      "placements": [
+        {
+          "game": "02_少女理论_Ecole_de_Paris",
+          "scene": "mer20",
+          "role": "メリル",
+          "archive": "data2.pack",
+          "resource": "画像\\ev_oto\\mer20a.bmp",
+          "namespace": "ev_oto"
+        }
+      ]
+    },
+    {
       "id": "cg-d4122abb91860444",
       "kind": "cg",
       "name": "res01a",
@@ -3725,6 +5494,29 @@
       ]
     },
     {
+      "id": "cg-174ac50af015c3e1",
+      "kind": "cg",
+      "name": "res05b_l",
+      "characters": [
+        "大蔵りそな"
+      ],
+      "width": 2560,
+      "height": 1440,
+      "original": "17/174ac50af015c3e17e39ad80c1ef1188242c71bae94ce7082d32cda2feb15fdf.png",
+      "sha256": "c4d842b1a2a6d308216ccf18ccbc4d350042e1ba1f848c476c7ac906f8c1e6ca",
+      "placements": [
+        {
+          "game": "02_少女理论_Ecole_de_Paris",
+          "scene": "res05",
+          "role": "大蔵りそな",
+          "archive": "Data2.pack",
+          "resource": "画像\\ev_oto\\res05b_l.png",
+          "namespace": "ev_oto",
+          "sourceGame": "03_少女理论_Belle_Epoque"
+        }
+      ]
+    },
+    {
       "id": "cg-f212f3f58f5fd8f3",
       "kind": "cg",
       "name": "res05c",
@@ -3742,6 +5534,51 @@
           "role": "大蔵りそな",
           "archive": "data2.pack",
           "resource": "画像\\ev_oto\\res05c.bmp",
+          "namespace": "ev_oto"
+        }
+      ]
+    },
+    {
+      "id": "cg-7c05552fec242761",
+      "kind": "cg",
+      "name": "res05c_l",
+      "characters": [
+        "大蔵りそな"
+      ],
+      "width": 2560,
+      "height": 1440,
+      "original": "7c/7c05552fec24276106b2cf0084b9bda7131ac968e79987aa8fc0974c87545e50.png",
+      "sha256": "31c6f22a665deffe50ad3b0a6ce8edb57e6309bfdcb08a0c31e0d4615d42ec24",
+      "placements": [
+        {
+          "game": "02_少女理论_Ecole_de_Paris",
+          "scene": "res05",
+          "role": "大蔵りそな",
+          "archive": "Data2.pack",
+          "resource": "画像\\ev_oto\\res05c_l.png",
+          "namespace": "ev_oto",
+          "sourceGame": "03_少女理论_Belle_Epoque"
+        }
+      ]
+    },
+    {
+      "id": "cg-6d8754149f0b553f",
+      "kind": "cg",
+      "name": "res06a",
+      "characters": [
+        "大蔵りそな"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "6d/6d8754149f0b553f6f52d21e499ad9aa5ddb52abd30dbb76322c64bbb16b339c.png",
+      "sha256": "09e127115ca755134fc39ab7283f014affd11f3c700782b8828d90106477ca00",
+      "placements": [
+        {
+          "game": "02_少女理论_Ecole_de_Paris",
+          "scene": "res06",
+          "role": "大蔵りそな",
+          "archive": "data2.pack",
+          "resource": "画像\\ev_oto\\res06a.bmp",
           "namespace": "ev_oto"
         }
       ]
@@ -3769,23 +5606,23 @@
       ]
     },
     {
-      "id": "cg-6d8754149f0b553f",
+      "id": "cg-174d18a0fce2bd11",
       "kind": "cg",
-      "name": "res06a",
+      "name": "res06b",
       "characters": [
         "大蔵りそな"
       ],
       "width": 1280,
       "height": 720,
-      "original": "6d/6d8754149f0b553f6f52d21e499ad9aa5ddb52abd30dbb76322c64bbb16b339c.png",
-      "sha256": "09e127115ca755134fc39ab7283f014affd11f3c700782b8828d90106477ca00",
+      "original": "17/174d18a0fce2bd11d4f12083cccb972195deb4bc84a6df03839bf8d418be2d44.png",
+      "sha256": "88e0c649d00af97f85cbffa65777ae2363b65955492454e652d498e7784af578",
       "placements": [
         {
           "game": "02_少女理论_Ecole_de_Paris",
           "scene": "res06",
           "role": "大蔵りそな",
           "archive": "data2.pack",
-          "resource": "画像\\ev_oto\\res06a.bmp",
+          "resource": "画像\\ev_oto\\res06b.bmp",
           "namespace": "ev_oto"
         }
       ]
@@ -3807,28 +5644,6 @@
           "scene": "res06",
           "role": "大蔵りそな",
           "archive": "data10.pack",
-          "resource": "画像\\ev_oto\\res06b.bmp",
-          "namespace": "ev_oto"
-        }
-      ]
-    },
-    {
-      "id": "cg-174d18a0fce2bd11",
-      "kind": "cg",
-      "name": "res06b",
-      "characters": [
-        "大蔵りそな"
-      ],
-      "width": 1280,
-      "height": 720,
-      "original": "17/174d18a0fce2bd11d4f12083cccb972195deb4bc84a6df03839bf8d418be2d44.png",
-      "sha256": "88e0c649d00af97f85cbffa65777ae2363b65955492454e652d498e7784af578",
-      "placements": [
-        {
-          "game": "02_少女理论_Ecole_de_Paris",
-          "scene": "res06",
-          "role": "大蔵りそな",
-          "archive": "data2.pack",
           "resource": "画像\\ev_oto\\res06b.bmp",
           "namespace": "ev_oto"
         }
@@ -3879,6 +5694,28 @@
       ]
     },
     {
+      "id": "cg-850a08d66a06d39a",
+      "kind": "cg",
+      "name": "res06d",
+      "characters": [
+        "大蔵りそな"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "85/850a08d66a06d39a03a2df2a893a5a5fd318202efcc66182713b3a98a33e7e20.png",
+      "sha256": "abb126a8d4f4b1a64311fe43cac43bb4ad9ee7ac52ae04d82db0a1e2747fce43",
+      "placements": [
+        {
+          "game": "02_少女理论_Ecole_de_Paris",
+          "scene": "res06",
+          "role": "大蔵りそな",
+          "archive": "data2.pack",
+          "resource": "画像\\ev_oto\\res06d.bmp",
+          "namespace": "ev_oto"
+        }
+      ]
+    },
+    {
       "id": "cg-a925c720805e6810",
       "kind": "cg",
       "name": "res06d",
@@ -3901,23 +5738,67 @@
       ]
     },
     {
-      "id": "cg-850a08d66a06d39a",
+      "id": "cg-7a0b9beb7e3f64c4",
       "kind": "cg",
-      "name": "res06d",
+      "name": "res12a",
       "characters": [
         "大蔵りそな"
       ],
       "width": 1280,
       "height": 720,
-      "original": "85/850a08d66a06d39a03a2df2a893a5a5fd318202efcc66182713b3a98a33e7e20.png",
-      "sha256": "abb126a8d4f4b1a64311fe43cac43bb4ad9ee7ac52ae04d82db0a1e2747fce43",
+      "original": "7a/7a0b9beb7e3f64c418d1f9e46ef8271eafc3f608c653c9782b9ec0e5617bf77e.png",
+      "sha256": "2a43d17a2b8f8df11d965721ca1b523868afe9a07fd0f01e7679c4e2b82afee4",
       "placements": [
         {
           "game": "02_少女理论_Ecole_de_Paris",
-          "scene": "res06",
+          "scene": "res12",
           "role": "大蔵りそな",
           "archive": "data2.pack",
-          "resource": "画像\\ev_oto\\res06d.bmp",
+          "resource": "画像\\ev_oto\\res12a.bmp",
+          "namespace": "ev_oto"
+        }
+      ]
+    },
+    {
+      "id": "cg-1f2e2904c151e8f8",
+      "kind": "cg",
+      "name": "res12b",
+      "characters": [
+        "大蔵りそな"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "1f/1f2e2904c151e8f8e790973282fb21323ef7cb6dd733e5b69b3770df8ebb2efb.png",
+      "sha256": "41ba61666940b199c49926bc0f3656dad4926be951e3235db0fbf75d75c47568",
+      "placements": [
+        {
+          "game": "02_少女理论_Ecole_de_Paris",
+          "scene": "res12",
+          "role": "大蔵りそな",
+          "archive": "data2.pack",
+          "resource": "画像\\ev_oto\\res12b.bmp",
+          "namespace": "ev_oto"
+        }
+      ]
+    },
+    {
+      "id": "cg-19f4753e70ebcca1",
+      "kind": "cg",
+      "name": "res12c",
+      "characters": [
+        "大蔵りそな"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "19/19f4753e70ebcca1fc71191d178b5e5187284d03dba81a9a597ff73a36513aef.png",
+      "sha256": "a0d400533a4eb0d6434fe5f10addc328008d8d847f300c7606d4da06627dc688",
+      "placements": [
+        {
+          "game": "02_少女理论_Ecole_de_Paris",
+          "scene": "res12",
+          "role": "大蔵りそな",
+          "archive": "data2.pack",
+          "resource": "画像\\ev_oto\\res12c.bmp",
           "namespace": "ev_oto"
         }
       ]
@@ -4050,6 +5931,226 @@
           "role": "大蔵りそな",
           "archive": "data2.pack",
           "resource": "画像\\ev_oto\\res15a.bmp",
+          "namespace": "ev_oto"
+        }
+      ]
+    },
+    {
+      "id": "cg-41e2a66dc64868bc",
+      "kind": "cg",
+      "name": "res16a",
+      "characters": [
+        "大蔵りそな"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "41/41e2a66dc64868bc3a0f4a9ed72dd48fa1e99e320bab3ef778a73a49758352a4.png",
+      "sha256": "0ceffb401a332e9dbfd33945ecab840881ddeb9082ddb9392b201b094570c6af",
+      "placements": [
+        {
+          "game": "02_少女理论_Ecole_de_Paris",
+          "scene": "res16",
+          "role": "大蔵りそな",
+          "archive": "data2.pack",
+          "resource": "画像\\ev_oto\\res16a.bmp",
+          "namespace": "ev_oto"
+        }
+      ]
+    },
+    {
+      "id": "cg-0c67b5d7dfb65920",
+      "kind": "cg",
+      "name": "res16b",
+      "characters": [
+        "大蔵りそな"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "0c/0c67b5d7dfb659209158309a628c8497b03644a9d705b931bc418696bb9a5658.png",
+      "sha256": "69c8bb8c9678553307164cb410475d3adbb5a3035d6c36a5640f2f2e6003dac0",
+      "placements": [
+        {
+          "game": "02_少女理论_Ecole_de_Paris",
+          "scene": "res16",
+          "role": "大蔵りそな",
+          "archive": "data2.pack",
+          "resource": "画像\\ev_oto\\res16b.bmp",
+          "namespace": "ev_oto"
+        }
+      ]
+    },
+    {
+      "id": "cg-0f9c3507343ad493",
+      "kind": "cg",
+      "name": "res16c",
+      "characters": [
+        "大蔵りそな"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "0f/0f9c3507343ad493944747b0884ed36677cddbfda80dc20bcaa5a41737da62b6.png",
+      "sha256": "5f73e0ede5dd3a20cc0a3c352a70b08ae7709e0d7f02d2a789d6ea13ada1387b",
+      "placements": [
+        {
+          "game": "02_少女理论_Ecole_de_Paris",
+          "scene": "res16",
+          "role": "大蔵りそな",
+          "archive": "data2.pack",
+          "resource": "画像\\ev_oto\\res16c.bmp",
+          "namespace": "ev_oto"
+        }
+      ]
+    },
+    {
+      "id": "cg-52838c8cc8c3fc66",
+      "kind": "cg",
+      "name": "res16d",
+      "characters": [
+        "大蔵りそな"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "52/52838c8cc8c3fc669f22a48837f26ead644d31c5dbf9a014c358671019be6a4d.png",
+      "sha256": "f99553e392697f29305cc2d52c6167bd813d2f605b96e745879c9017a9645c72",
+      "placements": [
+        {
+          "game": "02_少女理论_Ecole_de_Paris",
+          "scene": "res16",
+          "role": "大蔵りそな",
+          "archive": "data2.pack",
+          "resource": "画像\\ev_oto\\res16d.bmp",
+          "namespace": "ev_oto"
+        }
+      ]
+    },
+    {
+      "id": "cg-bd15215ef39ceffc",
+      "kind": "cg",
+      "name": "zzz32a",
+      "characters": [
+        "作品素材"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "bd/bd15215ef39ceffc9c2b4f75b5c6076fd0928b69a1597ba064150e2439a7d1a0.png",
+      "sha256": "7a35f1f574d569d65f164ffef7493ef3209633d6061788fb7a12adb2d73bd0a3",
+      "placements": [
+        {
+          "game": "02_少女理论_Ecole_de_Paris",
+          "scene": "zzz32",
+          "role": "作品素材",
+          "archive": "data2.pack",
+          "resource": "画像\\ev_oto\\zzz32a.bmp",
+          "namespace": "ev_oto"
+        }
+      ]
+    },
+    {
+      "id": "cg-aed8a2526fe3f0db",
+      "kind": "cg",
+      "name": "zzz33a",
+      "characters": [
+        "作品素材"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "ae/aed8a2526fe3f0db5a0a922019a74e9f447e796c6b0e0c2218a2c494670d5e0d.png",
+      "sha256": "6eae974ec8ae4727c3fed851a764aa63c42b012d67797f4c1e30d9c8e2dbc4fd",
+      "placements": [
+        {
+          "game": "02_少女理论_Ecole_de_Paris",
+          "scene": "zzz33",
+          "role": "作品素材",
+          "archive": "data2.pack",
+          "resource": "画像\\ev_oto\\zzz33a.bmp",
+          "namespace": "ev_oto"
+        }
+      ]
+    },
+    {
+      "id": "cg-9094951416c10c92",
+      "kind": "cg",
+      "name": "zzz33b",
+      "characters": [
+        "作品素材"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "90/9094951416c10c9294f33e8d175b1e0af1b4ad7a623c043868ac2ee5155ca5db.png",
+      "sha256": "4140da81e2159349535a9bdd13f48dc15d911b05f27183f369f901109049287e",
+      "placements": [
+        {
+          "game": "02_少女理论_Ecole_de_Paris",
+          "scene": "zzz33",
+          "role": "作品素材",
+          "archive": "data2.pack",
+          "resource": "画像\\ev_oto\\zzz33b.bmp",
+          "namespace": "ev_oto"
+        }
+      ]
+    },
+    {
+      "id": "cg-cb6300e17a8d9dfc",
+      "kind": "cg",
+      "name": "zzz34a",
+      "characters": [
+        "作品素材"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "cb/cb6300e17a8d9dfcd6c9f89f4651b468a17a0a4142e58846c2d569bcd2f6471e.png",
+      "sha256": "f1497ece4345ea0c13c9cda4a48bc96c60fc17bbaa09c8790b99f4e5eb30318b",
+      "placements": [
+        {
+          "game": "02_少女理论_Ecole_de_Paris",
+          "scene": "zzz34",
+          "role": "作品素材",
+          "archive": "data2.pack",
+          "resource": "画像\\ev_oto\\zzz34a.bmp",
+          "namespace": "ev_oto"
+        }
+      ]
+    },
+    {
+      "id": "cg-320b37c2060ef4b5",
+      "kind": "cg",
+      "name": "zzz34b",
+      "characters": [
+        "作品素材"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "32/320b37c2060ef4b5aa9d278c521c3e2322cc869ffdfee17e465018d2104b1010.png",
+      "sha256": "32f4b6a7aa6daf6f38e319d6b953a01d5e4d5a6d1b71c9a5e67508e0603bfd0c",
+      "placements": [
+        {
+          "game": "02_少女理论_Ecole_de_Paris",
+          "scene": "zzz34",
+          "role": "作品素材",
+          "archive": "data2.pack",
+          "resource": "画像\\ev_oto\\zzz34b.bmp",
+          "namespace": "ev_oto"
+        }
+      ]
+    },
+    {
+      "id": "cg-4a2c4dae7083ab48",
+      "kind": "cg",
+      "name": "zzz35a",
+      "characters": [
+        "作品素材"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "4a/4a2c4dae7083ab48626f402e67731b1052b3d39d3b2dee1bfcaa753b1e73ee71.png",
+      "sha256": "f12c7c30c8b308c7d46f1b229bfdf5d1007916babf2600242e51f46ba50824a3",
+      "placements": [
+        {
+          "game": "02_少女理论_Ecole_de_Paris",
+          "scene": "zzz35",
+          "role": "作品素材",
+          "archive": "data2.pack",
+          "resource": "画像\\ev_oto\\zzz35a.bmp",
           "namespace": "ev_oto"
         }
       ]
@@ -4205,6 +6306,248 @@
           "archive": "data2.pack",
           "resource": "画像\\ev_oto\\zzz38e.bmp",
           "namespace": "ev_oto"
+        }
+      ]
+    },
+    {
+      "id": "cg-177a0badaffa5c5b",
+      "kind": "cg",
+      "name": "2016ap_01a",
+      "characters": [
+        "朝日"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "17/177a0badaffa5c5b311a5300bab99c6ba27f29281d8bdcf399d4bdd5716f7ce5.png",
+      "sha256": "08b8084872afdfa5117844bef27e4e57d19202cd4696a392328b2b755c9c3637",
+      "placements": [
+        {
+          "game": "03_少女理论_Belle_Epoque",
+          "scene": "2016ap_01",
+          "role": "朝日",
+          "archive": "Data2.pack",
+          "resource": "画像\\ev_oto_af\\2016ap_01a.bmp",
+          "namespace": "ev_oto_af"
+        }
+      ]
+    },
+    {
+      "id": "cg-f7e48793ccef7cb5",
+      "kind": "cg",
+      "name": "2016ap_01a_l",
+      "characters": [
+        "朝日"
+      ],
+      "width": 2560,
+      "height": 1440,
+      "original": "f7/f7e48793ccef7cb5462dd43e2395787c5250ff4b01a7a9622e2dd0c4cbe1ff53.png",
+      "sha256": "edf4588039f0cd93d3b3d67c7fa716549c3a20fddb1533947ac8353072bc3fd9",
+      "placements": [
+        {
+          "game": "03_少女理论_Belle_Epoque",
+          "scene": "2016ap_01",
+          "role": "朝日",
+          "archive": "Data2.pack",
+          "resource": "画像\\ev_oto_af\\2016ap_01a_l.png",
+          "namespace": "ev_oto_af"
+        }
+      ]
+    },
+    {
+      "id": "cg-72fd763b21be8069",
+      "kind": "cg",
+      "name": "2016ap_01b",
+      "characters": [
+        "朝日"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "72/72fd763b21be80699ccf999be21be442e77806e4c0119cb0fa2d02ac60ee07d3.png",
+      "sha256": "ce2e6217279ea22b18e0c8c4081d274b7a53eff3ca5e56fe98ee0f4fa7155c78",
+      "placements": [
+        {
+          "game": "03_少女理论_Belle_Epoque",
+          "scene": "2016ap_01",
+          "role": "朝日",
+          "archive": "Data2.pack",
+          "resource": "画像\\ev_oto_af\\2016ap_01b.bmp",
+          "namespace": "ev_oto_af"
+        }
+      ]
+    },
+    {
+      "id": "cg-ab24cbf27568dda7",
+      "kind": "cg",
+      "name": "2016ap_01b_l",
+      "characters": [
+        "朝日"
+      ],
+      "width": 2560,
+      "height": 1440,
+      "original": "ab/ab24cbf27568dda709fd3e2a9fef55d50c318f7a1d0f5984f055c860a5710996.png",
+      "sha256": "0400d404513d6b19129833b0c615dc04cb1deddbd6030c1e3e27cdcb9692022e",
+      "placements": [
+        {
+          "game": "03_少女理论_Belle_Epoque",
+          "scene": "2016ap_01",
+          "role": "朝日",
+          "archive": "Data2.pack",
+          "resource": "画像\\ev_oto_af\\2016ap_01b_l.png",
+          "namespace": "ev_oto_af"
+        }
+      ]
+    },
+    {
+      "id": "cg-97afd2fa95895381",
+      "kind": "cg",
+      "name": "2016ap_01c",
+      "characters": [
+        "朝日"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "97/97afd2fa95895381d7a0c71dba6304b90ac2430bf9d8c0c0de20149876d1ba70.png",
+      "sha256": "6036df9f26cbc54c4f10bb58f060fc2c3ae407413442898ecb8bca032361d6d9",
+      "placements": [
+        {
+          "game": "03_少女理论_Belle_Epoque",
+          "scene": "2016ap_01",
+          "role": "朝日",
+          "archive": "Data2.pack",
+          "resource": "画像\\ev_oto_af\\2016ap_01c.bmp",
+          "namespace": "ev_oto_af"
+        }
+      ]
+    },
+    {
+      "id": "cg-4a941c517dd2d53b",
+      "kind": "cg",
+      "name": "2016ap_01d",
+      "characters": [
+        "朝日"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "4a/4a941c517dd2d53b5097445d91d5db52204b153cd291523b0e042c15e5bf7c59.png",
+      "sha256": "1d4f05395332ef1be58a55f1f404316124b07f731db7465f8ad75ae4d5e62f0c",
+      "placements": [
+        {
+          "game": "03_少女理论_Belle_Epoque",
+          "scene": "2016ap_01",
+          "role": "朝日",
+          "archive": "Data2.pack",
+          "resource": "画像\\ev_oto_af\\2016ap_01d.bmp",
+          "namespace": "ev_oto_af"
+        }
+      ]
+    },
+    {
+      "id": "cg-9c03eb59b424a24c",
+      "kind": "cg",
+      "name": "2016ap_02a",
+      "characters": [
+        "作品素材"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "9c/9c03eb59b424a24c18263fccf50d49291df347e992ea63aff79d79d83d224f70.png",
+      "sha256": "bdfdc0568f8a4d847e2c1429ce57fffccc578f0f6833b830f3ea90da6035196d",
+      "placements": [
+        {
+          "game": "03_少女理论_Belle_Epoque",
+          "scene": "2016ap_02",
+          "role": "作品素材",
+          "archive": "Data2.pack",
+          "resource": "画像\\ev_oto_af\\2016ap_02a.bmp",
+          "namespace": "ev_oto_af"
+        }
+      ]
+    },
+    {
+      "id": "cg-d55be7c89f02f507",
+      "kind": "cg",
+      "name": "2016ap_02a_l",
+      "characters": [
+        "作品素材"
+      ],
+      "width": 2560,
+      "height": 1440,
+      "original": "d5/d55be7c89f02f507226dd069ceac0e18b6ce00efe38aae9a5ba173b3c7ea100b.png",
+      "sha256": "de480d41a16e769b6f104e99d882e91962c6024204d6b7fa1823cb7370b1c30d",
+      "placements": [
+        {
+          "game": "03_少女理论_Belle_Epoque",
+          "scene": "2016ap_02",
+          "role": "作品素材",
+          "archive": "Data2.pack",
+          "resource": "画像\\ev_oto_af\\2016ap_02a_l.png",
+          "namespace": "ev_oto_af"
+        }
+      ]
+    },
+    {
+      "id": "cg-d44541fca9ffeb13",
+      "kind": "cg",
+      "name": "2016ap_03a",
+      "characters": [
+        "朝日"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "d4/d44541fca9ffeb13bf7d07ecee6e1232193bf94d284cbe77ed3726e4debc9eb5.png",
+      "sha256": "1d194af9a10187970d85f777ad75f0143b0d89bd77232637f5c45bdf58394599",
+      "placements": [
+        {
+          "game": "03_少女理论_Belle_Epoque",
+          "scene": "2016ap_03",
+          "role": "朝日",
+          "archive": "Data2.pack",
+          "resource": "画像\\ev_oto_af\\2016ap_03a.bmp",
+          "namespace": "ev_oto_af"
+        }
+      ]
+    },
+    {
+      "id": "cg-773deed8bede3411",
+      "kind": "cg",
+      "name": "2016ap_03a_l",
+      "characters": [
+        "朝日"
+      ],
+      "width": 2560,
+      "height": 1440,
+      "original": "77/773deed8bede34110249ddab4efb69d10195fd174808b73364806e1127b76586.png",
+      "sha256": "2c2a9589b3ed7362684945c31ccc046439c715d4d4ea07906900b43aaa27783b",
+      "placements": [
+        {
+          "game": "03_少女理论_Belle_Epoque",
+          "scene": "2016ap_03",
+          "role": "朝日",
+          "archive": "Data2.pack",
+          "resource": "画像\\ev_oto_af\\2016ap_03a_l.png",
+          "namespace": "ev_oto_af"
+        }
+      ]
+    },
+    {
+      "id": "cg-33de4a573693d26d",
+      "kind": "cg",
+      "name": "2016ap_04a",
+      "characters": [
+        "作品素材"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "33/33de4a573693d26ded5bf12d643816ca023e52f19e242290a8f27ab4d16f122f.png",
+      "sha256": "3bc4e89b8620eedba7bae102f07229a33d548abf569672e79f3bfeaaa440d4e9",
+      "placements": [
+        {
+          "game": "03_少女理论_Belle_Epoque",
+          "scene": "2016ap_04",
+          "role": "作品素材",
+          "archive": "Data2.pack",
+          "resource": "画像\\ev_oto_af\\2016ap_04a.bmp",
+          "namespace": "ev_oto_af"
         }
       ]
     },
@@ -4891,6 +7234,182 @@
       ]
     },
     {
+      "id": "cg-9c857ccfde16667f",
+      "kind": "cg",
+      "name": "bnp47a",
+      "characters": [
+        "エッテ"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "9c/9c857ccfde16667f08e2007ee70abe04f99263a9c86f06b23b2d6b4b58b60189.png",
+      "sha256": "ac92664af98eb674152c5eaecb0319ed28a1b37532f411a9c27cfee637322f89",
+      "placements": [
+        {
+          "game": "03_少女理论_Belle_Epoque",
+          "scene": "bnp47",
+          "role": "エッテ",
+          "archive": "Data2.pack",
+          "resource": "画像\\ev_oto_af\\bnp47a.bmp",
+          "namespace": "ev_oto_af"
+        }
+      ]
+    },
+    {
+      "id": "cg-70f411506a41c83f",
+      "kind": "cg",
+      "name": "bnp54a",
+      "characters": [
+        "エッテ"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "70/70f411506a41c83fb555224586b30e83c6c80c08a4e0703a60a8fa2c4857cdb9.png",
+      "sha256": "d46801a29e50a114ca81e9a37952abbf0cd7738a25e197df5dee788f2ae03dcf",
+      "placements": [
+        {
+          "game": "03_少女理论_Belle_Epoque",
+          "scene": "bnp54",
+          "role": "エッテ",
+          "archive": "Data2.pack",
+          "resource": "画像\\ev_oto_af\\bnp54a.bmp",
+          "namespace": "ev_oto_af"
+        }
+      ]
+    },
+    {
+      "id": "cg-6cae319d5f5f79a3",
+      "kind": "cg",
+      "name": "bnp54b",
+      "characters": [
+        "エッテ"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "6c/6cae319d5f5f79a3394b022034fca1416c0929301fc835eb2515707e0b1b3772.png",
+      "sha256": "8d21c51c54fb5d2b5c0aa4d63ec5076d161945615d276bb353e07d2b2c0e6be2",
+      "placements": [
+        {
+          "game": "03_少女理论_Belle_Epoque",
+          "scene": "bnp54",
+          "role": "エッテ",
+          "archive": "Data2.pack",
+          "resource": "画像\\ev_oto_af\\bnp54b.bmp",
+          "namespace": "ev_oto_af"
+        }
+      ]
+    },
+    {
+      "id": "cg-cdd4046bcb9dd677",
+      "kind": "cg",
+      "name": "bnp54c",
+      "characters": [
+        "エッテ"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "cd/cdd4046bcb9dd677c6fe82b62a72140166ac4905b16bfca8462af840e03834fb.png",
+      "sha256": "cadd5775dab2d3edc92947e4c0a8806faa4e76ce50b4e11a3222781debeefd54",
+      "placements": [
+        {
+          "game": "03_少女理论_Belle_Epoque",
+          "scene": "bnp54",
+          "role": "エッテ",
+          "archive": "Data2.pack",
+          "resource": "画像\\ev_oto_af\\bnp54c.bmp",
+          "namespace": "ev_oto_af"
+        }
+      ]
+    },
+    {
+      "id": "cg-6da3587be3bbf37d",
+      "kind": "cg",
+      "name": "bnp54d",
+      "characters": [
+        "エッテ"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "6d/6da3587be3bbf37d8fe39f77bd4ea589744a9ddbe22a7869bd76b1d00bdb0efd.png",
+      "sha256": "9a69b0266fd44d2fbbfa50e2911ae856b13f3dbde667bc95d355a56696881c3a",
+      "placements": [
+        {
+          "game": "03_少女理论_Belle_Epoque",
+          "scene": "bnp54",
+          "role": "エッテ",
+          "archive": "Data2.pack",
+          "resource": "画像\\ev_oto_af\\bnp54d.bmp",
+          "namespace": "ev_oto_af"
+        }
+      ]
+    },
+    {
+      "id": "cg-41305afb2c257f8f",
+      "kind": "cg",
+      "name": "bnp54e",
+      "characters": [
+        "エッテ"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "41/41305afb2c257f8f5afdbd7a5dd9f1b264033a2e6af744f909572c4ee1bac571.png",
+      "sha256": "2bbc331e3bbb70866ebd1ccd3955a2a215459ca37163cb5951a45f9f3fe2afcc",
+      "placements": [
+        {
+          "game": "03_少女理论_Belle_Epoque",
+          "scene": "bnp54",
+          "role": "エッテ",
+          "archive": "Data2.pack",
+          "resource": "画像\\ev_oto_af\\bnp54e.bmp",
+          "namespace": "ev_oto_af"
+        }
+      ]
+    },
+    {
+      "id": "cg-05e19979db9749aa",
+      "kind": "cg",
+      "name": "bnp54f",
+      "characters": [
+        "エッテ"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "05/05e19979db9749aa7ab1e7678ca2200e04afdbc3c71226d90ad44116fc0dc024.png",
+      "sha256": "783bb84ced445f4c8646886913485eeb96eaca584f6fe85cfbbbe84f6774e15a",
+      "placements": [
+        {
+          "game": "03_少女理论_Belle_Epoque",
+          "scene": "bnp54",
+          "role": "エッテ",
+          "archive": "Data2.pack",
+          "resource": "画像\\ev_oto_af\\bnp54f.bmp",
+          "namespace": "ev_oto_af"
+        }
+      ]
+    },
+    {
+      "id": "cg-843fc28ddac380f2",
+      "kind": "cg",
+      "name": "bnp55a",
+      "characters": [
+        "エッテ"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "84/843fc28ddac380f2bca222da180f09f05fdfb5ae85021a5602f7c292eb5cb14e.png",
+      "sha256": "115975937d0c779f675148742f3de05e2227e0ae9cc07cd5178002bbc3daf487",
+      "placements": [
+        {
+          "game": "03_少女理论_Belle_Epoque",
+          "scene": "bnp55",
+          "role": "エッテ",
+          "archive": "Data2.pack",
+          "resource": "画像\\ev_oto_af\\bnp55a.bmp",
+          "namespace": "ev_oto_af"
+        }
+      ]
+    },
+    {
       "id": "cg-f91a5247196c8b50",
       "kind": "cg",
       "name": "mer31a",
@@ -5084,6 +7603,72 @@
           "role": "メリル",
           "archive": "Data2.pack",
           "resource": "画像\\ev_oto_af\\mer39a.bmp",
+          "namespace": "ev_oto_af"
+        }
+      ]
+    },
+    {
+      "id": "cg-9d70d29d3450d2f0",
+      "kind": "cg",
+      "name": "mer40a",
+      "characters": [
+        "メリル"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "9d/9d70d29d3450d2f0b2e7761774482210ccf9af5eef77c7b2eab2ec6e6ba86c0f.png",
+      "sha256": "ba9b548efa464b2ab3d980bc8f02cd83baee1f6a739d0e4ced69b031c0609526",
+      "placements": [
+        {
+          "game": "03_少女理论_Belle_Epoque",
+          "scene": "mer40",
+          "role": "メリル",
+          "archive": "Data2.pack",
+          "resource": "画像\\ev_oto_af\\mer40a.bmp",
+          "namespace": "ev_oto_af"
+        }
+      ]
+    },
+    {
+      "id": "cg-e867a7cee534dc39",
+      "kind": "cg",
+      "name": "mer40b",
+      "characters": [
+        "メリル"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "e8/e867a7cee534dc39c445cb9bb0257807b591b217cf8d17dc7265020c68cf945a.png",
+      "sha256": "c261216f0d3e85e3e94d18fbf5868bfd0c5a50084211dc1ced3362d4e995230a",
+      "placements": [
+        {
+          "game": "03_少女理论_Belle_Epoque",
+          "scene": "mer40",
+          "role": "メリル",
+          "archive": "Data2.pack",
+          "resource": "画像\\ev_oto_af\\mer40b.bmp",
+          "namespace": "ev_oto_af"
+        }
+      ]
+    },
+    {
+      "id": "cg-735cb0916a876a33",
+      "kind": "cg",
+      "name": "mer40c",
+      "characters": [
+        "メリル"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "73/735cb0916a876a334a927c638384287ee72f63bee898273519b6ca205e8b264a.png",
+      "sha256": "4c42c0dffe650c23ab9e8a54fa49a4947ffa34c60ab9c2a563ac187e67240153",
+      "placements": [
+        {
+          "game": "03_少女理论_Belle_Epoque",
+          "scene": "mer40",
+          "role": "メリル",
+          "archive": "Data2.pack",
+          "resource": "画像\\ev_oto_af\\mer40c.bmp",
           "namespace": "ev_oto_af"
         }
       ]
@@ -5304,6 +7889,28 @@
           "role": "大蔵りそな",
           "archive": "Data2.pack",
           "resource": "画像\\ev_oto_af\\res39d.bmp",
+          "namespace": "ev_oto_af"
+        }
+      ]
+    },
+    {
+      "id": "cg-2b2717052eb11513",
+      "kind": "cg",
+      "name": "res40a",
+      "characters": [
+        "大蔵りそな"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "2b/2b2717052eb115139a73bc9fe930187ec8bd3067ae8c44d283b1f482264b5c0f.png",
+      "sha256": "72e2a0d8d8e626cfb3a8365102f2e3e48c513d94aaaa075e34cf007ede183f13",
+      "placements": [
+        {
+          "game": "03_少女理论_Belle_Epoque",
+          "scene": "res40",
+          "role": "大蔵りそな",
+          "archive": "Data2.pack",
+          "resource": "画像\\ev_oto_af\\res40a.bmp",
           "namespace": "ev_oto_af"
         }
       ]
@@ -6211,6 +8818,94 @@
       ]
     },
     {
+      "id": "cg-9c97e3c9bdc219ea",
+      "kind": "cg",
+      "name": "est09a",
+      "characters": [
+        "エスト"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "9c/9c97e3c9bdc219ea4f4115fc5b2b6138d4ae182298294f02ce46f86c0254606e.png",
+      "sha256": "3c1d364e2c056773c240e5e1724df879ca6770bd484cc88049315f2e5cf9904f",
+      "placements": [
+        {
+          "game": "04_近月少女的礼仪2",
+          "scene": "est09",
+          "role": "エスト",
+          "archive": "data2.pack",
+          "resource": "画像\\ev_2nd\\est09a.png",
+          "namespace": "ev_2nd"
+        }
+      ]
+    },
+    {
+      "id": "cg-a1253e3a34b795ba",
+      "kind": "cg",
+      "name": "est09b",
+      "characters": [
+        "エスト"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "a1/a1253e3a34b795bab082668cdb585723472ad70e79df414d6027f231a7469548.png",
+      "sha256": "1c2be700f5c223cfae064d436adf5e2fce8f1db5ab10e74abe741b93f927393e",
+      "placements": [
+        {
+          "game": "04_近月少女的礼仪2",
+          "scene": "est09",
+          "role": "エスト",
+          "archive": "data2.pack",
+          "resource": "画像\\ev_2nd\\est09b.png",
+          "namespace": "ev_2nd"
+        }
+      ]
+    },
+    {
+      "id": "cg-022e901bd5211376",
+      "kind": "cg",
+      "name": "est09c",
+      "characters": [
+        "エスト"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "02/022e901bd52113768c1ea86a3b6cc672401cc09d3998002dc6882d55921e78be.png",
+      "sha256": "1fbe177a3097f50b53e29ffb95f4c29476cc5ed74e429b3379cf2bc5cc15ce67",
+      "placements": [
+        {
+          "game": "04_近月少女的礼仪2",
+          "scene": "est09",
+          "role": "エスト",
+          "archive": "data2.pack",
+          "resource": "画像\\ev_2nd\\est09c.png",
+          "namespace": "ev_2nd"
+        }
+      ]
+    },
+    {
+      "id": "cg-349b927cc5300206",
+      "kind": "cg",
+      "name": "est09c",
+      "characters": [
+        "エスト"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "34/349b927cc530020642dbdb911e5fc0c941e1f84de8542f99c465b2f59b10cc45.png",
+      "sha256": "6528e168b56bd36f481ffac3b03a17020a5048e6d6ce0e34a2b3325dc476284d",
+      "placements": [
+        {
+          "game": "04_近月少女的礼仪2",
+          "scene": "est09",
+          "role": "エスト",
+          "archive": "data16.pack",
+          "resource": "画像\\ev_2nd\\est09c.png",
+          "namespace": "ev_2nd"
+        }
+      ]
+    },
+    {
       "id": "cg-35340a9152e836ff",
       "kind": "cg",
       "name": "est13a",
@@ -6382,6 +9077,138 @@
           "role": "エスト",
           "archive": "data2.pack",
           "resource": "画像\\ev_2nd\\est14b.png",
+          "namespace": "ev_2nd"
+        }
+      ]
+    },
+    {
+      "id": "cg-2fa6b30594538a6b",
+      "kind": "cg",
+      "name": "est15a",
+      "characters": [
+        "エスト"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "2f/2fa6b30594538a6bf8d775155c548e1b7be057de376cdfa1690941705a0586c6.png",
+      "sha256": "cec38b42bce6fe618b30609b32ce9151a2d018868ae420af7673584e5e89081f",
+      "placements": [
+        {
+          "game": "04_近月少女的礼仪2",
+          "scene": "est15",
+          "role": "エスト",
+          "archive": "data11.pack",
+          "resource": "画像\\ev_2nd\\est15a.png",
+          "namespace": "ev_2nd"
+        }
+      ]
+    },
+    {
+      "id": "cg-6573e9eb4d31d8c4",
+      "kind": "cg",
+      "name": "est15a",
+      "characters": [
+        "エスト"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "65/6573e9eb4d31d8c47bd3e4c80bd64725ecfdee879aeb18f216110287d612ff78.png",
+      "sha256": "4779d8d0ce81863a3e2edc431054047199bd9aa3a1f3b6982bb3f58b57a8de4a",
+      "placements": [
+        {
+          "game": "04_近月少女的礼仪2",
+          "scene": "est15",
+          "role": "エスト",
+          "archive": "data2.pack",
+          "resource": "画像\\ev_2nd\\est15a.png",
+          "namespace": "ev_2nd"
+        }
+      ]
+    },
+    {
+      "id": "cg-b493633639cf7692",
+      "kind": "cg",
+      "name": "est15b",
+      "characters": [
+        "エスト"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "b4/b493633639cf7692b3a8878aff9ffbb6bf19feb1d9ad2353d53c72dd2df0e2e0.png",
+      "sha256": "9fe846a0aeb633e092f21f13825d91e867802c46f280d8d04197ffeba62af4c4",
+      "placements": [
+        {
+          "game": "04_近月少女的礼仪2",
+          "scene": "est15",
+          "role": "エスト",
+          "archive": "data2.pack",
+          "resource": "画像\\ev_2nd\\est15b.png",
+          "namespace": "ev_2nd"
+        }
+      ]
+    },
+    {
+      "id": "cg-e3bee6e6ff8bad06",
+      "kind": "cg",
+      "name": "est15b",
+      "characters": [
+        "エスト"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "e3/e3bee6e6ff8bad06e1b8883f16d3d2b53e1e184803b4870333e5e12593f6a85c.png",
+      "sha256": "1517d63bfab12a5bb000f446eaa55f1d142a783774c18cc3d74dc438f52dd96e",
+      "placements": [
+        {
+          "game": "04_近月少女的礼仪2",
+          "scene": "est15",
+          "role": "エスト",
+          "archive": "data11.pack",
+          "resource": "画像\\ev_2nd\\est15b.png",
+          "namespace": "ev_2nd"
+        }
+      ]
+    },
+    {
+      "id": "cg-8ec53788fb2ed8b4",
+      "kind": "cg",
+      "name": "est15c",
+      "characters": [
+        "エスト"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "8e/8ec53788fb2ed8b424532efdcc58d3f02a6e4d18f303bde42ad8500eb093ebe2.png",
+      "sha256": "77e0ec2101952d4b64621f17ad1301d4b74ca0f903231d88a61308e85714f791",
+      "placements": [
+        {
+          "game": "04_近月少女的礼仪2",
+          "scene": "est15",
+          "role": "エスト",
+          "archive": "data11.pack",
+          "resource": "画像\\ev_2nd\\est15c.png",
+          "namespace": "ev_2nd"
+        }
+      ]
+    },
+    {
+      "id": "cg-99dc6203043d6fe5",
+      "kind": "cg",
+      "name": "est15c",
+      "characters": [
+        "エスト"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "99/99dc6203043d6fe50be49dddee7b1b18bf0cf9277bccc67de893c547045b6cf8.png",
+      "sha256": "c6772cbce61ec8951ea7ea29566312e1ca2111c782d32f41c6461718e9511336",
+      "placements": [
+        {
+          "game": "04_近月少女的礼仪2",
+          "scene": "est15",
+          "role": "エスト",
+          "archive": "data2.pack",
+          "resource": "画像\\ev_2nd\\est15c.png",
           "namespace": "ev_2nd"
         }
       ]
@@ -6761,28 +9588,6 @@
       ]
     },
     {
-      "id": "cg-afc468a0942a1123",
-      "kind": "cg",
-      "name": "lum03b",
-      "characters": [
-        "大蔵ルミネ"
-      ],
-      "width": 1280,
-      "height": 720,
-      "original": "af/afc468a0942a1123d4fc34eb76256277602c73e96072a0fe9e5e78a1a2c2d5a9.png",
-      "sha256": "1699e7a98d02859d4b71ea6eb3844320d27a369399a8e3fafea84dffe32f35bd",
-      "placements": [
-        {
-          "game": "04_近月少女的礼仪2",
-          "scene": "lum03",
-          "role": "大蔵ルミネ",
-          "archive": "data11.pack",
-          "resource": "画像\\ev_2nd\\lum03b.png",
-          "namespace": "ev_2nd"
-        }
-      ]
-    },
-    {
       "id": "cg-1da15fbc22ed9dc0",
       "kind": "cg",
       "name": "lum03b",
@@ -6805,23 +9610,23 @@
       ]
     },
     {
-      "id": "cg-f3c138af0e47a2d4",
+      "id": "cg-afc468a0942a1123",
       "kind": "cg",
-      "name": "lum03c",
+      "name": "lum03b",
       "characters": [
         "大蔵ルミネ"
       ],
       "width": 1280,
       "height": 720,
-      "original": "f3/f3c138af0e47a2d47067f1da8766f342e2b6aa75e79a2433e8908ea5b22b45f8.png",
-      "sha256": "16da127f1a85e0b057babc49f8bf6109aee7e5a21d1ffddb75fe156b6639478c",
+      "original": "af/afc468a0942a1123d4fc34eb76256277602c73e96072a0fe9e5e78a1a2c2d5a9.png",
+      "sha256": "1699e7a98d02859d4b71ea6eb3844320d27a369399a8e3fafea84dffe32f35bd",
       "placements": [
         {
           "game": "04_近月少女的礼仪2",
           "scene": "lum03",
           "role": "大蔵ルミネ",
           "archive": "data11.pack",
-          "resource": "画像\\ev_2nd\\lum03c.png",
+          "resource": "画像\\ev_2nd\\lum03b.png",
           "namespace": "ev_2nd"
         }
       ]
@@ -6849,6 +9654,28 @@
       ]
     },
     {
+      "id": "cg-f3c138af0e47a2d4",
+      "kind": "cg",
+      "name": "lum03c",
+      "characters": [
+        "大蔵ルミネ"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "f3/f3c138af0e47a2d47067f1da8766f342e2b6aa75e79a2433e8908ea5b22b45f8.png",
+      "sha256": "16da127f1a85e0b057babc49f8bf6109aee7e5a21d1ffddb75fe156b6639478c",
+      "placements": [
+        {
+          "game": "04_近月少女的礼仪2",
+          "scene": "lum03",
+          "role": "大蔵ルミネ",
+          "archive": "data11.pack",
+          "resource": "画像\\ev_2nd\\lum03c.png",
+          "namespace": "ev_2nd"
+        }
+      ]
+    },
+    {
       "id": "cg-53bc84fa4829e837",
       "kind": "cg",
       "name": "lum04a",
@@ -6866,6 +9693,72 @@
           "role": "大蔵ルミネ",
           "archive": "data2.pack",
           "resource": "画像\\ev_2nd\\lum04a.png",
+          "namespace": "ev_2nd"
+        }
+      ]
+    },
+    {
+      "id": "cg-0dc1cf0287517fb0",
+      "kind": "cg",
+      "name": "lum05a",
+      "characters": [
+        "大蔵ルミネ"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "0d/0dc1cf0287517fb01be79ca0b3b570e5a96a088e0aaca227ea95e7c076914899.png",
+      "sha256": "708b9fb01c9ce92aa68422e3db6800a5f91e51919ad1232b30b81fde42247a47",
+      "placements": [
+        {
+          "game": "04_近月少女的礼仪2",
+          "scene": "lum05",
+          "role": "大蔵ルミネ",
+          "archive": "data2.pack",
+          "resource": "画像\\ev_2nd\\lum05a.png",
+          "namespace": "ev_2nd"
+        }
+      ]
+    },
+    {
+      "id": "cg-84a16864c23ea65b",
+      "kind": "cg",
+      "name": "lum05b",
+      "characters": [
+        "大蔵ルミネ"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "84/84a16864c23ea65b4e6f37c8ecb8161b99559d3f94409ae02b4d9e603fb35c30.png",
+      "sha256": "759e87a40c1bd2ac704b8bd7b1e829516e354bdae5a4c148c4fa070c301f23e4",
+      "placements": [
+        {
+          "game": "04_近月少女的礼仪2",
+          "scene": "lum05",
+          "role": "大蔵ルミネ",
+          "archive": "data2.pack",
+          "resource": "画像\\ev_2nd\\lum05b.png",
+          "namespace": "ev_2nd"
+        }
+      ]
+    },
+    {
+      "id": "cg-2970a0ce93a7dfe7",
+      "kind": "cg",
+      "name": "lum05c",
+      "characters": [
+        "大蔵ルミネ"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "29/2970a0ce93a7dfe77f0990ef54f9c5b1279c3aec2ab3e55a2b9a241a49b5583e.png",
+      "sha256": "18fb3ae1f7f5ad9bd4c12970a61e5539f2dc416c83492547469c43c17821a352",
+      "placements": [
+        {
+          "game": "04_近月少女的礼仪2",
+          "scene": "lum05",
+          "role": "大蔵ルミネ",
+          "archive": "data2.pack",
+          "resource": "画像\\ev_2nd\\lum05c.png",
           "namespace": "ev_2nd"
         }
       ]
@@ -7069,28 +9962,6 @@
       ]
     },
     {
-      "id": "cg-7e27bba22a4d3fb0",
-      "kind": "cg",
-      "name": "lum19a",
-      "characters": [
-        "大蔵ルミネ"
-      ],
-      "width": 1280,
-      "height": 720,
-      "original": "7e/7e27bba22a4d3fb097a403de27f16cf86be4875ecaf54aa99334fbb702074754.png",
-      "sha256": "6c1631d2d6f93d6eca704329a54aaf5f4880887011d4cf1e53fd96636a082650",
-      "placements": [
-        {
-          "game": "04_近月少女的礼仪2",
-          "scene": "lum19",
-          "role": "大蔵ルミネ",
-          "archive": "data11.pack",
-          "resource": "画像\\ev_2nd\\lum19a.png",
-          "namespace": "ev_2nd"
-        }
-      ]
-    },
-    {
       "id": "cg-0a8beddda9822be1",
       "kind": "cg",
       "name": "lum19a",
@@ -7113,23 +9984,23 @@
       ]
     },
     {
-      "id": "cg-daad2b0339560c80",
+      "id": "cg-7e27bba22a4d3fb0",
       "kind": "cg",
-      "name": "lum19b",
+      "name": "lum19a",
       "characters": [
         "大蔵ルミネ"
       ],
       "width": 1280,
       "height": 720,
-      "original": "da/daad2b0339560c802302028c958eb47f0c57a82bfa2c4a06fcf1e8529e75ebb2.png",
-      "sha256": "530c1e368b9aa718bb3401b3b6e2f38b767f39873858135a1199a99fbdfddadb",
+      "original": "7e/7e27bba22a4d3fb097a403de27f16cf86be4875ecaf54aa99334fbb702074754.png",
+      "sha256": "6c1631d2d6f93d6eca704329a54aaf5f4880887011d4cf1e53fd96636a082650",
       "placements": [
         {
           "game": "04_近月少女的礼仪2",
           "scene": "lum19",
           "role": "大蔵ルミネ",
           "archive": "data11.pack",
-          "resource": "画像\\ev_2nd\\lum19b.png",
+          "resource": "画像\\ev_2nd\\lum19a.png",
           "namespace": "ev_2nd"
         }
       ]
@@ -7151,6 +10022,28 @@
           "scene": "lum19",
           "role": "大蔵ルミネ",
           "archive": "data2.pack",
+          "resource": "画像\\ev_2nd\\lum19b.png",
+          "namespace": "ev_2nd"
+        }
+      ]
+    },
+    {
+      "id": "cg-daad2b0339560c80",
+      "kind": "cg",
+      "name": "lum19b",
+      "characters": [
+        "大蔵ルミネ"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "da/daad2b0339560c802302028c958eb47f0c57a82bfa2c4a06fcf1e8529e75ebb2.png",
+      "sha256": "530c1e368b9aa718bb3401b3b6e2f38b767f39873858135a1199a99fbdfddadb",
+      "placements": [
+        {
+          "game": "04_近月少女的礼仪2",
+          "scene": "lum19",
+          "role": "大蔵ルミネ",
+          "archive": "data11.pack",
           "resource": "画像\\ev_2nd\\lum19b.png",
           "namespace": "ev_2nd"
         }
@@ -7197,6 +10090,272 @@
           "archive": "data2.pack",
           "resource": "画像\\ev_2nd\\lum19c.png",
           "namespace": "ev_2nd"
+        }
+      ]
+    },
+    {
+      "id": "cg-ca58b0dd4b3e3230",
+      "kind": "cg",
+      "name": "lum20a",
+      "characters": [
+        "大蔵ルミネ"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "ca/ca58b0dd4b3e323092b0c12393ce2ff4b9288bd560df6bc2e15219c519265444.png",
+      "sha256": "dcc9f2349cc5732eca94992caaccc28da44b1b9909bbfd9dfb7bc1017db3082f",
+      "placements": [
+        {
+          "game": "04_近月少女的礼仪2",
+          "scene": "lum20",
+          "role": "大蔵ルミネ",
+          "archive": "data11.pack",
+          "resource": "画像\\ev_2nd\\lum20a.png",
+          "namespace": "ev_2nd"
+        }
+      ]
+    },
+    {
+      "id": "cg-e514e5e5dd8403e1",
+      "kind": "cg",
+      "name": "lum20a",
+      "characters": [
+        "大蔵ルミネ"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "e5/e514e5e5dd8403e15bd096995d6caaccd11b966a09417b05d3e5c5d2525992a6.png",
+      "sha256": "56644cbcf7db1e871aa4d116f7dade1dbbd807947c302bfc2029f40ce3af3e1e",
+      "placements": [
+        {
+          "game": "04_近月少女的礼仪2",
+          "scene": "lum20",
+          "role": "大蔵ルミネ",
+          "archive": "data2.pack",
+          "resource": "画像\\ev_2nd\\lum20a.png",
+          "namespace": "ev_2nd"
+        }
+      ]
+    },
+    {
+      "id": "cg-3ee08d7a0a7e51be",
+      "kind": "cg",
+      "name": "lum20b",
+      "characters": [
+        "大蔵ルミネ"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "3e/3ee08d7a0a7e51be5e1c511d30cba557a4201b8516fe4fd76125380dd7edaec8.png",
+      "sha256": "577cf56bf11bd744c56317dc4d0b594826068d9bbbb2440589975198e792011c",
+      "placements": [
+        {
+          "game": "04_近月少女的礼仪2",
+          "scene": "lum20",
+          "role": "大蔵ルミネ",
+          "archive": "data2.pack",
+          "resource": "画像\\ev_2nd\\lum20b.png",
+          "namespace": "ev_2nd"
+        }
+      ]
+    },
+    {
+      "id": "cg-5cfe67666be88a3c",
+      "kind": "cg",
+      "name": "lum20b",
+      "characters": [
+        "大蔵ルミネ"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "5c/5cfe67666be88a3c6b45dd053fd931aaa9299f6d2350ddc285c18a66ce004062.png",
+      "sha256": "456d9f80bef9ac94bfc3cec474e80734dfb1df77db1fc04efe16ed2720475a3f",
+      "placements": [
+        {
+          "game": "04_近月少女的礼仪2",
+          "scene": "lum20",
+          "role": "大蔵ルミネ",
+          "archive": "data11.pack",
+          "resource": "画像\\ev_2nd\\lum20b.png",
+          "namespace": "ev_2nd"
+        }
+      ]
+    },
+    {
+      "id": "cg-88b83081508365a3",
+      "kind": "cg",
+      "name": "lum20c",
+      "characters": [
+        "大蔵ルミネ"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "88/88b83081508365a3db9202c13d621de7f4c8170bfe783c41ce2053179ed43297.png",
+      "sha256": "9589040df4b31ae3064cd3353a4d0f09bec27cfadbdf96b2d3f57b3e59dbc6fa",
+      "placements": [
+        {
+          "game": "04_近月少女的礼仪2",
+          "scene": "lum20",
+          "role": "大蔵ルミネ",
+          "archive": "data2.pack",
+          "resource": "画像\\ev_2nd\\lum20c.png",
+          "namespace": "ev_2nd"
+        }
+      ]
+    },
+    {
+      "id": "cg-db4ff08e109f6960",
+      "kind": "cg",
+      "name": "lum20c",
+      "characters": [
+        "大蔵ルミネ"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "db/db4ff08e109f6960a9a6d23c01e7ba280b6b1fd4ff6ce0358d6f1b9001cfeb90.png",
+      "sha256": "ad1fd5fd258cacda849812f7d9fc3aa882d5ecd942932f4a7df64b664ef1324c",
+      "placements": [
+        {
+          "game": "04_近月少女的礼仪2",
+          "scene": "lum20",
+          "role": "大蔵ルミネ",
+          "archive": "data11.pack",
+          "resource": "画像\\ev_2nd\\lum20c.png",
+          "namespace": "ev_2nd"
+        }
+      ]
+    },
+    {
+      "id": "cg-8fcfb3f64bc824dc",
+      "kind": "cg",
+      "name": "lun51a",
+      "characters": [
+        "ルナ"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "8f/8fcfb3f64bc824dca7859362a9768da55754544cba54c424a0bc561af950030e.png",
+      "sha256": "9f39bb3914fe4c6624cd468d655d8751198775d955f5a0d7144e45e5792340b2",
+      "placements": [
+        {
+          "game": "04_近月少女的礼仪2",
+          "scene": "lun51",
+          "role": "ルナ",
+          "archive": "data10.pack",
+          "resource": "画像\\ev_after\\lun51a.png",
+          "namespace": "ev_after"
+        }
+      ]
+    },
+    {
+      "id": "cg-abfef1e131951b71",
+      "kind": "cg",
+      "name": "lun51b",
+      "characters": [
+        "ルナ"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "ab/abfef1e131951b7123b9313bcde0ccce59938c50cc2fc9e10eea4793c9584fa7.png",
+      "sha256": "fe5a865fdbb6642dce44b25fb20945cd9d989b402547e2d14bc1d93b9644f69f",
+      "placements": [
+        {
+          "game": "04_近月少女的礼仪2",
+          "scene": "lun51",
+          "role": "ルナ",
+          "archive": "data10.pack",
+          "resource": "画像\\ev_after\\lun51b.png",
+          "namespace": "ev_after"
+        }
+      ]
+    },
+    {
+      "id": "cg-3e1ca5a2d07e28a0",
+      "kind": "cg",
+      "name": "lun51c",
+      "characters": [
+        "ルナ"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "3e/3e1ca5a2d07e28a0e777cdc1e67d324b5a01b32c8b168e2a3ae82f82f78ada3d.png",
+      "sha256": "ef412d1200990970cb2ffb27292a6d5f4d7c88bdfc044acd3ec1e0859e8d573e",
+      "placements": [
+        {
+          "game": "04_近月少女的礼仪2",
+          "scene": "lun51",
+          "role": "ルナ",
+          "archive": "data10.pack",
+          "resource": "画像\\ev_after\\lun51c.png",
+          "namespace": "ev_after"
+        }
+      ]
+    },
+    {
+      "id": "cg-a2da822d10ca5e8d",
+      "kind": "cg",
+      "name": "lun52a",
+      "characters": [
+        "ルナ"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "a2/a2da822d10ca5e8d980e0e8cc04a478d26c271ecc291db145a4147a2a82abeac.png",
+      "sha256": "18f9a630c5e0a16149d11ccce50d75bab5c9a3f410e8fa608388810902b135db",
+      "placements": [
+        {
+          "game": "04_近月少女的礼仪2",
+          "scene": "lun52",
+          "role": "ルナ",
+          "archive": "data10.pack",
+          "resource": "画像\\ev_after\\lun52a.png",
+          "namespace": "ev_after"
+        }
+      ]
+    },
+    {
+      "id": "cg-1b826867a5f88cd1",
+      "kind": "cg",
+      "name": "lun53a",
+      "characters": [
+        "ルナ",
+        "ユルシュール"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "1b/1b826867a5f88cd1265165e7710d0fb3d1e1778f186e4ee7bea053dc022cfc92.png",
+      "sha256": "7ff50410908a5017df175c91f88995298f09629eedf4b753e74e16b5fba31ee4",
+      "placements": [
+        {
+          "game": "04_近月少女的礼仪2",
+          "scene": "lun53",
+          "role": "ルナ",
+          "archive": "data10.pack",
+          "resource": "画像\\ev_after\\lun53a.png",
+          "namespace": "ev_after"
+        }
+      ]
+    },
+    {
+      "id": "cg-e7f2103b0ee5e819",
+      "kind": "cg",
+      "name": "lun53a",
+      "characters": [
+        "ルナ",
+        "ユルシュール"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "e7/e7f2103b0ee5e8193c75a331efb39eb354ebfb14f124719b87ebe640bc10adca.png",
+      "sha256": "3114b6044f06e5acd9b2de838ef0a1eb67e9f3e06c3c70f785ef7c7e62fffee1",
+      "placements": [
+        {
+          "game": "04_近月少女的礼仪2",
+          "scene": "lun53",
+          "role": "ルナ",
+          "archive": "data11.pack",
+          "resource": "画像\\ev_after\\lun53a.png",
+          "namespace": "ev_after"
         }
       ]
     },
@@ -7663,6 +10822,28 @@
       ]
     },
     {
+      "id": "cg-f9eaa649978ce7bb",
+      "kind": "cg",
+      "name": "par21a",
+      "characters": [
+        "銀条春心"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "f9/f9eaa649978ce7bb0978028a92a03126dbd3b0874b95536fa68baeb6fe7b1e8b.png",
+      "sha256": "e6198683e81576f8fa462bd8207d527d9d7742568109a6f10e1f54fb7e932e4c",
+      "placements": [
+        {
+          "game": "04_近月少女的礼仪2",
+          "scene": "par21",
+          "role": "銀条春心",
+          "archive": "data2.pack",
+          "resource": "画像\\ev_2nd\\par21a.png",
+          "namespace": "ev_2nd"
+        }
+      ]
+    },
+    {
       "id": "cg-1f6d002b6af3dbca",
       "kind": "cg",
       "name": "sai01a",
@@ -7746,6 +10927,72 @@
           "role": "桜小路才華",
           "archive": "data2.pack",
           "resource": "画像\\ev_2nd\\sai03b.png",
+          "namespace": "ev_2nd"
+        }
+      ]
+    },
+    {
+      "id": "cg-9af91a2f222f9cf2",
+      "kind": "cg",
+      "name": "sai04a",
+      "characters": [
+        "桜小路才華"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "9a/9af91a2f222f9cf27453053ec452906d8d954812098a29538a1c29fb4a7a4f6b.png",
+      "sha256": "37332b54e9deb94a4df0c5cf6109984be256a2bd139b741021137f6958c2c10a",
+      "placements": [
+        {
+          "game": "04_近月少女的礼仪2",
+          "scene": "sai04",
+          "role": "桜小路才華",
+          "archive": "data2.pack",
+          "resource": "画像\\ev_2nd\\sai04a.png",
+          "namespace": "ev_2nd"
+        }
+      ]
+    },
+    {
+      "id": "cg-00943f677bc6f14d",
+      "kind": "cg",
+      "name": "sai04b",
+      "characters": [
+        "桜小路才華"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "00/00943f677bc6f14dc21d543f4c3d89283a11351ccc97a0359ed87c10cc95a3f8.png",
+      "sha256": "5bf5cbf7dff11de5db9fd64f9d9795829facea5a6cfd8c7ac964903630d69e08",
+      "placements": [
+        {
+          "game": "04_近月少女的礼仪2",
+          "scene": "sai04",
+          "role": "桜小路才華",
+          "archive": "data2.pack",
+          "resource": "画像\\ev_2nd\\sai04b.png",
+          "namespace": "ev_2nd"
+        }
+      ]
+    },
+    {
+      "id": "cg-af20d1d1b084d6f2",
+      "kind": "cg",
+      "name": "sai04c",
+      "characters": [
+        "桜小路才華"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "af/af20d1d1b084d6f2178c52b9416175641dafe03533fb8910bef1e58098176757.png",
+      "sha256": "19ce08c28cc716a66f82d96ae9262fd54479ebc30d985ad6a09e6eb54ec2b9b3",
+      "placements": [
+        {
+          "game": "04_近月少女的礼仪2",
+          "scene": "sai04",
+          "role": "桜小路才華",
+          "archive": "data2.pack",
+          "resource": "画像\\ev_2nd\\sai04c.png",
           "namespace": "ev_2nd"
         }
       ]
@@ -7993,23 +11240,23 @@
       ]
     },
     {
-      "id": "cg-80a51134a2408966",
+      "id": "cg-a654531f3adaf41f",
       "kind": "cg",
-      "name": "sak17a",
+      "name": "sak06a",
       "characters": [
         "八日堂朔莉"
       ],
       "width": 1280,
       "height": 720,
-      "original": "80/80a51134a240896601cad74d6ebe20d4f892627d408cd27f8f4eb07811e94581.png",
-      "sha256": "d31f7d45705a4ad8949261ded4f803f3d0d54a15f581a9451477b5459bd0531e",
+      "original": "a6/a654531f3adaf41fcd00db08082972f9335ca1e5ad7a56ffd28b73f6726aafb6.png",
+      "sha256": "24e610caa33e9b5e8dd1f03ec8a3731e00188803b3b0e9733f21a4d402065dbe",
       "placements": [
         {
           "game": "04_近月少女的礼仪2",
-          "scene": "sak17",
+          "scene": "sak06",
           "role": "八日堂朔莉",
-          "archive": "data11.pack",
-          "resource": "画像\\ev_2nd\\sak17a.png",
+          "archive": "data2.pack",
+          "resource": "画像\\ev_2nd\\sak06a.png",
           "namespace": "ev_2nd"
         }
       ]
@@ -8031,6 +11278,28 @@
           "scene": "sak17",
           "role": "八日堂朔莉",
           "archive": "data2.pack",
+          "resource": "画像\\ev_2nd\\sak17a.png",
+          "namespace": "ev_2nd"
+        }
+      ]
+    },
+    {
+      "id": "cg-80a51134a2408966",
+      "kind": "cg",
+      "name": "sak17a",
+      "characters": [
+        "八日堂朔莉"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "80/80a51134a240896601cad74d6ebe20d4f892627d408cd27f8f4eb07811e94581.png",
+      "sha256": "d31f7d45705a4ad8949261ded4f803f3d0d54a15f581a9451477b5459bd0531e",
+      "placements": [
+        {
+          "game": "04_近月少女的礼仪2",
+          "scene": "sak17",
+          "role": "八日堂朔莉",
+          "archive": "data11.pack",
           "resource": "画像\\ev_2nd\\sak17a.png",
           "namespace": "ev_2nd"
         }
@@ -8169,6 +11438,94 @@
       ]
     },
     {
+      "id": "cg-2c8f6fd2bec9704d",
+      "kind": "cg",
+      "name": "sak25a",
+      "characters": [
+        "八日堂朔莉"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "2c/2c8f6fd2bec9704d12d907a8013be7d75a5cf40f4e6ac23a8328506cd1e8dbba.png",
+      "sha256": "51b5ec181a67ec8141d7d341336074fff7997a5df1db33058b47dad50d4da6f3",
+      "placements": [
+        {
+          "game": "04_近月少女的礼仪2",
+          "scene": "sak25",
+          "role": "八日堂朔莉",
+          "archive": "data11.pack",
+          "resource": "画像\\ev_2nd\\sak25a.png",
+          "namespace": "ev_2nd"
+        }
+      ]
+    },
+    {
+      "id": "cg-a7f09b72000f8405",
+      "kind": "cg",
+      "name": "sak25a",
+      "characters": [
+        "八日堂朔莉"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "a7/a7f09b72000f84052d0a2fca769221963c8f6a46cea2b2ece26e7afb3140a9c9.png",
+      "sha256": "ebf63dbe46aa19feae9be74996b2a91e1180c666c224a6c096b7aaf93285a092",
+      "placements": [
+        {
+          "game": "04_近月少女的礼仪2",
+          "scene": "sak25",
+          "role": "八日堂朔莉",
+          "archive": "data2.pack",
+          "resource": "画像\\ev_2nd\\sak25a.png",
+          "namespace": "ev_2nd"
+        }
+      ]
+    },
+    {
+      "id": "cg-0cf30ab2d9d3cc07",
+      "kind": "cg",
+      "name": "sak25b",
+      "characters": [
+        "八日堂朔莉"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "0c/0cf30ab2d9d3cc07ac4d7d0ac7f258d97c60610e78316aa759d1771acc26c86f.png",
+      "sha256": "6b7620d13a518b567a76882a9fe8a9b0cbcfacc12bd30987195943e95b45376b",
+      "placements": [
+        {
+          "game": "04_近月少女的礼仪2",
+          "scene": "sak25",
+          "role": "八日堂朔莉",
+          "archive": "data2.pack",
+          "resource": "画像\\ev_2nd\\sak25b.png",
+          "namespace": "ev_2nd"
+        }
+      ]
+    },
+    {
+      "id": "cg-1e5897abcbf94a4e",
+      "kind": "cg",
+      "name": "sak25b",
+      "characters": [
+        "八日堂朔莉"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "1e/1e5897abcbf94a4e8d19dfeb233af18a7dc53a68605de84c9331d210698aef13.png",
+      "sha256": "a2c14626c220d4c39f20d6f2473044a94316c5c89ab66696ba84317fc49969bb",
+      "placements": [
+        {
+          "game": "04_近月少女的礼仪2",
+          "scene": "sak25",
+          "role": "八日堂朔莉",
+          "archive": "data11.pack",
+          "resource": "画像\\ev_2nd\\sak25b.png",
+          "namespace": "ev_2nd"
+        }
+      ]
+    },
+    {
       "id": "cg-8f174bdc91141e56",
       "kind": "cg",
       "name": "xxx01a",
@@ -8213,28 +11570,6 @@
       ]
     },
     {
-      "id": "cg-ad71cc5ecb39abae",
-      "kind": "cg",
-      "name": "xxx02a",
-      "characters": [
-        "作品素材"
-      ],
-      "width": 1280,
-      "height": 720,
-      "original": "ad/ad71cc5ecb39abae2264a80601570030dd06bf02c2c563edba8958fddcb36596.png",
-      "sha256": "a516023c2169adc581c3e3bf20c4997d9b4fb07e4d479a0f07d283a86e33a72d",
-      "placements": [
-        {
-          "game": "04_近月少女的礼仪2",
-          "scene": "xxx02",
-          "role": "作品素材",
-          "archive": "data11.pack",
-          "resource": "画像\\ev_2nd\\xxx02a.png",
-          "namespace": "ev_2nd"
-        }
-      ]
-    },
-    {
       "id": "cg-6826386599360118",
       "kind": "cg",
       "name": "xxx02a",
@@ -8251,6 +11586,28 @@
           "scene": "xxx02",
           "role": "作品素材",
           "archive": "data2.pack",
+          "resource": "画像\\ev_2nd\\xxx02a.png",
+          "namespace": "ev_2nd"
+        }
+      ]
+    },
+    {
+      "id": "cg-ad71cc5ecb39abae",
+      "kind": "cg",
+      "name": "xxx02a",
+      "characters": [
+        "作品素材"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "ad/ad71cc5ecb39abae2264a80601570030dd06bf02c2c563edba8958fddcb36596.png",
+      "sha256": "a516023c2169adc581c3e3bf20c4997d9b4fb07e4d479a0f07d283a86e33a72d",
+      "placements": [
+        {
+          "game": "04_近月少女的礼仪2",
+          "scene": "xxx02",
+          "role": "作品素材",
+          "archive": "data11.pack",
           "resource": "画像\\ev_2nd\\xxx02a.png",
           "namespace": "ev_2nd"
         }
@@ -8318,6 +11675,28 @@
           "role": "作品素材",
           "archive": "data2.pack",
           "resource": "画像\\ev_2nd\\xxx04a.png",
+          "namespace": "ev_2nd"
+        }
+      ]
+    },
+    {
+      "id": "cg-65e11eb2a22a407f",
+      "kind": "cg",
+      "name": "yyy01a",
+      "characters": [
+        "作品素材"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "65/65e11eb2a22a407f5aca7db87d13b2942b55be86c30da8f4bd6feb24bb2c9a5e.png",
+      "sha256": "e7028e1da099a78a46626b7a5db3a3602ff4a9a8a0b5748f5d899638e0d9ca57",
+      "placements": [
+        {
+          "game": "04_近月少女的礼仪2",
+          "scene": "yyy01",
+          "role": "作品素材",
+          "archive": "data2.pack",
+          "resource": "画像\\ev_2nd\\yyy01a.png",
           "namespace": "ev_2nd"
         }
       ]
@@ -8429,6 +11808,28 @@
           "archive": "data2.pack",
           "resource": "画像\\ev_2nd\\yyy06b.png",
           "namespace": "ev_2nd"
+        }
+      ]
+    },
+    {
+      "id": "cg-316b71b445e58dbe",
+      "kind": "cg",
+      "name": "zzz37b",
+      "characters": [
+        "作品素材"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "31/316b71b445e58dbe04506e6d96066ccb82cf0809e606df5e50ee55088fb3029c.png",
+      "sha256": "de82e3482d6e592150d95e0500b99829ad6adf26564eec12e12256451c6fc541",
+      "placements": [
+        {
+          "game": "04_近月少女的礼仪2",
+          "scene": "zzz37",
+          "role": "作品素材",
+          "archive": "data10.pack",
+          "resource": "画像\\ev_ap14\\zzz37b.png",
+          "namespace": "ev_ap14"
         }
       ]
     },
@@ -10127,6 +13528,358 @@
       ]
     },
     {
+      "id": "cg-237dfc7e90be6a86",
+      "kind": "cg",
+      "name": "atr02a",
+      "characters": [
+        "桜小路アトレ"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "23/237dfc7e90be6a86a1484a4cf7e74a714772d0d7486fc0ea5096e1a1baca6a0e.png",
+      "sha256": "c1c801a53e85316f9dcbc9b355e6d77e9e873ae0a88e87e9c8d3b5448193ff26",
+      "placements": [
+        {
+          "game": "06_近月少女的礼仪2.2",
+          "scene": "atr02",
+          "role": "桜小路アトレ",
+          "archive": "data2.pack",
+          "resource": "画像\\ev_2ndfd2\\atr02a.png",
+          "namespace": "ev_2ndfd2"
+        }
+      ]
+    },
+    {
+      "id": "cg-df9905418e76e6b0",
+      "kind": "cg",
+      "name": "atr03a",
+      "characters": [
+        "桜小路アトレ"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "df/df9905418e76e6b06d8474db5a88ec9c156cd15df048a79e39c6750663de3407.png",
+      "sha256": "56f4faa7219cbe5843595f95258507a0a9ad6be1ae4fe8446d234a9064b147a0",
+      "placements": [
+        {
+          "game": "06_近月少女的礼仪2.2",
+          "scene": "atr03",
+          "role": "桜小路アトレ",
+          "archive": "data2.pack",
+          "resource": "画像\\ev_2ndfd2\\atr03a.png",
+          "namespace": "ev_2ndfd2"
+        }
+      ]
+    },
+    {
+      "id": "cg-0451c2a14cbaee7b",
+      "kind": "cg",
+      "name": "atr03b",
+      "characters": [
+        "桜小路アトレ"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "04/0451c2a14cbaee7b11682a3ffa55a39ab463ee9ead949a8f3837415845863204.png",
+      "sha256": "b558428ea6eac6e647873bed86cec75117bcbc792e31f9fddc5ca1103f54a452",
+      "placements": [
+        {
+          "game": "06_近月少女的礼仪2.2",
+          "scene": "atr03",
+          "role": "桜小路アトレ",
+          "archive": "data2.pack",
+          "resource": "画像\\ev_2ndfd2\\atr03b.png",
+          "namespace": "ev_2ndfd2"
+        }
+      ]
+    },
+    {
+      "id": "cg-e0d8c5c9386ee709",
+      "kind": "cg",
+      "name": "atr03c",
+      "characters": [
+        "桜小路アトレ"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "e0/e0d8c5c9386ee7093ed8e926af0273ea3a83dd5fc6de850d1f29d1b3297c2095.png",
+      "sha256": "e61b4eb51b450f091d66b482124eb56754899d1de7ac21d7bfecf1469e62c48b",
+      "placements": [
+        {
+          "game": "06_近月少女的礼仪2.2",
+          "scene": "atr03",
+          "role": "桜小路アトレ",
+          "archive": "data2.pack",
+          "resource": "画像\\ev_2ndfd2\\atr03c.png",
+          "namespace": "ev_2ndfd2"
+        }
+      ]
+    },
+    {
+      "id": "cg-4086bd941959b6a8",
+      "kind": "cg",
+      "name": "atr05a",
+      "characters": [
+        "桜小路アトレ"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "40/4086bd941959b6a8815f06033dc4bd1098982e1ec2ba9d2a95d5640bf516f41c.png",
+      "sha256": "5db0dfa9f755f32c7af3d5573372c8b7c2a0e2af12b2196773dc8735c84c5099",
+      "placements": [
+        {
+          "game": "06_近月少女的礼仪2.2",
+          "scene": "atr05",
+          "role": "桜小路アトレ",
+          "archive": "data2.pack",
+          "resource": "画像\\ev_2ndfd2\\atr05a.png",
+          "namespace": "ev_2ndfd2"
+        }
+      ]
+    },
+    {
+      "id": "cg-78f3393c3049f043",
+      "kind": "cg",
+      "name": "atr05b",
+      "characters": [
+        "桜小路アトレ"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "78/78f3393c3049f043739c2fe22c04a14767e9245846a96daea234c03b3e3f7943.png",
+      "sha256": "60e31a0b9c8e362102ace1d3ab9485d7e9cc26f4c802b62fe3f772db7c4d985d",
+      "placements": [
+        {
+          "game": "06_近月少女的礼仪2.2",
+          "scene": "atr05",
+          "role": "桜小路アトレ",
+          "archive": "data2.pack",
+          "resource": "画像\\ev_2ndfd2\\atr05b.png",
+          "namespace": "ev_2ndfd2"
+        }
+      ]
+    },
+    {
+      "id": "cg-0ad026d82d15ab61",
+      "kind": "cg",
+      "name": "atr06a",
+      "characters": [
+        "桜小路アトレ"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "0a/0ad026d82d15ab6140a8ce7e308402f950e17c1b1c87ba250ea390563a79b705.png",
+      "sha256": "6ea8ea2344730f6daaf0ca55294baefb66e804205ac717f8bc9e529d9c4ca894",
+      "placements": [
+        {
+          "game": "06_近月少女的礼仪2.2",
+          "scene": "atr06",
+          "role": "桜小路アトレ",
+          "archive": "data2.pack",
+          "resource": "画像\\ev_2ndfd2\\atr06a.png",
+          "namespace": "ev_2ndfd2"
+        }
+      ]
+    },
+    {
+      "id": "cg-6cf39622b9351670",
+      "kind": "cg",
+      "name": "atr07a",
+      "characters": [
+        "桜小路アトレ"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "6c/6cf39622b9351670ab98e51cd6ade83560aa1f9948579e4ae30af7f28165f35d.png",
+      "sha256": "e5ad42ad4619bfeadb0cc7a6dea58b3cb73105e321c5de1a156059457f1bae24",
+      "placements": [
+        {
+          "game": "06_近月少女的礼仪2.2",
+          "scene": "atr07",
+          "role": "桜小路アトレ",
+          "archive": "data11.pack",
+          "resource": "画像\\ev_2ndfd2\\atr07a.png",
+          "namespace": "ev_2ndfd2"
+        }
+      ]
+    },
+    {
+      "id": "cg-de55c75a6a8847e0",
+      "kind": "cg",
+      "name": "atr07b",
+      "characters": [
+        "桜小路アトレ"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "de/de55c75a6a8847e0bb969b9aef544e6a92eed65401ebffbbc86ce02b4cc37ad6.png",
+      "sha256": "938b4cef3710a3894d32144cdc8954a744f2372b47244e0e785a87a4c8c74af8",
+      "placements": [
+        {
+          "game": "06_近月少女的礼仪2.2",
+          "scene": "atr07",
+          "role": "桜小路アトレ",
+          "archive": "data11.pack",
+          "resource": "画像\\ev_2ndfd2\\atr07b.png",
+          "namespace": "ev_2ndfd2"
+        }
+      ]
+    },
+    {
+      "id": "cg-eb196c60ab0deac6",
+      "kind": "cg",
+      "name": "atr08a",
+      "characters": [
+        "桜小路アトレ"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "eb/eb196c60ab0deac683896cae1a8907851804e075bc449e022f71dac9437bb8fe.png",
+      "sha256": "a465c29e080aee67f3d89a36d87f139cf0b0d36297ff568a33295a15adb8a0c9",
+      "placements": [
+        {
+          "game": "06_近月少女的礼仪2.2",
+          "scene": "atr08",
+          "role": "桜小路アトレ",
+          "archive": "data2.pack",
+          "resource": "画像\\ev_2ndfd2\\atr08a.png",
+          "namespace": "ev_2ndfd2"
+        }
+      ]
+    },
+    {
+      "id": "cg-b63ccf4d53e5dcb0",
+      "kind": "cg",
+      "name": "atr08b",
+      "characters": [
+        "桜小路アトレ"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "b6/b63ccf4d53e5dcb08c0470286f34c4c36390f05540c0e9522e8fc1bbd6588533.png",
+      "sha256": "b6cde5dd1315bca503f2376cdc6c216e59290f9c36cc49022291166a8942c30d",
+      "placements": [
+        {
+          "game": "06_近月少女的礼仪2.2",
+          "scene": "atr08",
+          "role": "桜小路アトレ",
+          "archive": "data2.pack",
+          "resource": "画像\\ev_2ndfd2\\atr08b.png",
+          "namespace": "ev_2ndfd2"
+        }
+      ]
+    },
+    {
+      "id": "cg-0805b710f6b1d755",
+      "kind": "cg",
+      "name": "atr09a",
+      "characters": [
+        "桜小路アトレ"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "08/0805b710f6b1d7556ec070a9a3121e0dbb0d5f43d7703e9f6bf8ed3cf05773e0.png",
+      "sha256": "68ee1422b65568d16dd107c9f968bd4dc14b5307e02d6d96bd8db5682a34b12d",
+      "placements": [
+        {
+          "game": "06_近月少女的礼仪2.2",
+          "scene": "atr09",
+          "role": "桜小路アトレ",
+          "archive": "data2.pack",
+          "resource": "画像\\ev_2ndfd2\\atr09a.png",
+          "namespace": "ev_2ndfd2"
+        }
+      ]
+    },
+    {
+      "id": "cg-46043086b4f6f9bc",
+      "kind": "cg",
+      "name": "atr18a",
+      "characters": [
+        "桜小路アトレ"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "46/46043086b4f6f9bc441c7f4105bf427ee930dcd71c57bc8980118faafc02ee65.png",
+      "sha256": "9e6a69a295faae342a855d16509764f14fab3fe34d049401487a74c200b1fafb",
+      "placements": [
+        {
+          "game": "06_近月少女的礼仪2.2",
+          "scene": "atr18",
+          "role": "桜小路アトレ",
+          "archive": "data2.pack",
+          "resource": "画像\\ev_2ndfd2\\atr18a.png",
+          "namespace": "ev_2ndfd2"
+        }
+      ]
+    },
+    {
+      "id": "cg-ee64c529db3ad654",
+      "kind": "cg",
+      "name": "atr18b",
+      "characters": [
+        "桜小路アトレ"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "ee/ee64c529db3ad654cff183da159d2123576019981c17a7bc6d73fe961fe150ab.png",
+      "sha256": "2af4124dcc50085c68d9977f24a0e0b3b5019bf98937da0250a3da84d82e489f",
+      "placements": [
+        {
+          "game": "06_近月少女的礼仪2.2",
+          "scene": "atr18",
+          "role": "桜小路アトレ",
+          "archive": "data2.pack",
+          "resource": "画像\\ev_2ndfd2\\atr18b.png",
+          "namespace": "ev_2ndfd2"
+        }
+      ]
+    },
+    {
+      "id": "cg-b95c64a446496b1f",
+      "kind": "cg",
+      "name": "atr18c",
+      "characters": [
+        "桜小路アトレ"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "b9/b95c64a446496b1f90f5016313139311b34037037ce9917c40c8744da3b4ebda.png",
+      "sha256": "6efcb4e169bcf5415662069cedc9c499b248cd2e4b97603fae2bba00424e4aa1",
+      "placements": [
+        {
+          "game": "06_近月少女的礼仪2.2",
+          "scene": "atr18",
+          "role": "桜小路アトレ",
+          "archive": "data2.pack",
+          "resource": "画像\\ev_2ndfd2\\atr18c.png",
+          "namespace": "ev_2ndfd2"
+        }
+      ]
+    },
+    {
+      "id": "cg-003731cbca9b51b3",
+      "kind": "cg",
+      "name": "atr19a",
+      "characters": [
+        "桜小路アトレ"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "00/003731cbca9b51b329c51ea6307030660b1c97c1bf72225443abf70f6fe640f8.png",
+      "sha256": "2916c074d6e9c7c948ebe74e08033342c54521e763730d3d13deca4cc88feed8",
+      "placements": [
+        {
+          "game": "06_近月少女的礼仪2.2",
+          "scene": "atr19",
+          "role": "桜小路アトレ",
+          "archive": "data2.pack",
+          "resource": "画像\\ev_2ndfd2\\atr19a.png",
+          "namespace": "ev_2ndfd2"
+        }
+      ]
+    },
+    {
       "id": "cg-06c7c5fd225babe8",
       "kind": "cg",
       "name": "lum31a",
@@ -10149,6 +13902,270 @@
       ]
     },
     {
+      "id": "cg-90f0d36cad33f44b",
+      "kind": "cg",
+      "name": "lum35a",
+      "characters": [
+        "大蔵ルミネ"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "90/90f0d36cad33f44b0b19d8e6e40d57b3b3c9b4c917692529f727ffb41ece7492.png",
+      "sha256": "c93d8e5d4250439722c8de486d3fb0cfb5cec3f7477a5a9b460fff0d723eabb3",
+      "placements": [
+        {
+          "game": "06_近月少女的礼仪2.2",
+          "scene": "lum35",
+          "role": "大蔵ルミネ",
+          "archive": "data2.pack",
+          "resource": "画像\\ev_2ndfd2\\lum35a.png",
+          "namespace": "ev_2ndfd2"
+        }
+      ]
+    },
+    {
+      "id": "cg-63986bec4624fc20",
+      "kind": "cg",
+      "name": "lum35b",
+      "characters": [
+        "大蔵ルミネ"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "63/63986bec4624fc20555f96ff3ba481ebccc54550aaaff5507be384b42bb1b5b1.png",
+      "sha256": "8c4b7f892d48a72a7678ff04c8435cc1b0b7b114314153d0714cce405b0f9f9b",
+      "placements": [
+        {
+          "game": "06_近月少女的礼仪2.2",
+          "scene": "lum35",
+          "role": "大蔵ルミネ",
+          "archive": "data2.pack",
+          "resource": "画像\\ev_2ndfd2\\lum35b.png",
+          "namespace": "ev_2ndfd2"
+        }
+      ]
+    },
+    {
+      "id": "cg-4c6279a7a3330348",
+      "kind": "cg",
+      "name": "lum35c",
+      "characters": [
+        "大蔵ルミネ"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "4c/4c6279a7a333034890e2471b80d2d2972833d675ec87047efd46ee096e2fa1cd.png",
+      "sha256": "014d0e1af841c549e0461021bbd8bbc10e25cc56fc665b3b8d4d708436a6d3a6",
+      "placements": [
+        {
+          "game": "06_近月少女的礼仪2.2",
+          "scene": "lum35",
+          "role": "大蔵ルミネ",
+          "archive": "data2.pack",
+          "resource": "画像\\ev_2ndfd2\\lum35c.png",
+          "namespace": "ev_2ndfd2"
+        }
+      ]
+    },
+    {
+      "id": "cg-420e4bf704dc7135",
+      "kind": "cg",
+      "name": "lum35d",
+      "characters": [
+        "大蔵ルミネ"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "42/420e4bf704dc7135aa2105e3d4627a78605d59f20ac058790aedd36936c0d99d.png",
+      "sha256": "d10fee765ec9ac64ac15446ff6a65c1cffe9a7b565ab4a46e37ff92803d22945",
+      "placements": [
+        {
+          "game": "06_近月少女的礼仪2.2",
+          "scene": "lum35",
+          "role": "大蔵ルミネ",
+          "archive": "data2.pack",
+          "resource": "画像\\ev_2ndfd2\\lum35d.png",
+          "namespace": "ev_2ndfd2"
+        }
+      ]
+    },
+    {
+      "id": "cg-804c58ba2c5276d1",
+      "kind": "cg",
+      "name": "lum35e",
+      "characters": [
+        "大蔵ルミネ"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "80/804c58ba2c5276d1667c3afeac0fa3dd3d6db346b61661ad7f7296d85e7070d8.png",
+      "sha256": "f1e5ccd2796ad768caa2604715dd22cccd9fabe891c4b0f1833d518d26283065",
+      "placements": [
+        {
+          "game": "06_近月少女的礼仪2.2",
+          "scene": "lum35",
+          "role": "大蔵ルミネ",
+          "archive": "data2.pack",
+          "resource": "画像\\ev_2ndfd2\\lum35e.png",
+          "namespace": "ev_2ndfd2"
+        }
+      ]
+    },
+    {
+      "id": "cg-fbf13435d245120b",
+      "kind": "cg",
+      "name": "lum42a",
+      "characters": [
+        "大蔵ルミネ"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "fb/fbf13435d245120b71a8ea183c16addfb3d4fbec937c2206f360d94997eb46b6.png",
+      "sha256": "7472d6d70be3c3601afee11a1b49575d223c9aedb083b3c1e6130b0358cb7190",
+      "placements": [
+        {
+          "game": "06_近月少女的礼仪2.2",
+          "scene": "lum42",
+          "role": "大蔵ルミネ",
+          "archive": "data2.pack",
+          "resource": "画像\\ev_2ndfd2\\lum42a.png",
+          "namespace": "ev_2ndfd2"
+        }
+      ]
+    },
+    {
+      "id": "cg-72943fc1c120e499",
+      "kind": "cg",
+      "name": "lum42b",
+      "characters": [
+        "大蔵ルミネ"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "72/72943fc1c120e499318cfb4777b4cc1357aa9724132044e1321895ad0d185b42.png",
+      "sha256": "07ac0119d6292666b8de4b097d74d4be74d5f4d15b391b342e91dd07dc5a44f6",
+      "placements": [
+        {
+          "game": "06_近月少女的礼仪2.2",
+          "scene": "lum42",
+          "role": "大蔵ルミネ",
+          "archive": "data2.pack",
+          "resource": "画像\\ev_2ndfd2\\lum42b.png",
+          "namespace": "ev_2ndfd2"
+        }
+      ]
+    },
+    {
+      "id": "cg-12f2c2023e046dfd",
+      "kind": "cg",
+      "name": "lum42c",
+      "characters": [
+        "大蔵ルミネ"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "12/12f2c2023e046dfd1b5bd19d9351e0d0fb2bb3f5c5253f6126642e982ed8f25b.png",
+      "sha256": "66df2ff4e9ac45f27ed5ff0a2c1146ef8ef255fa9b3bb09b76fe50bfa28546da",
+      "placements": [
+        {
+          "game": "06_近月少女的礼仪2.2",
+          "scene": "lum42",
+          "role": "大蔵ルミネ",
+          "archive": "data2.pack",
+          "resource": "画像\\ev_2ndfd2\\lum42c.png",
+          "namespace": "ev_2ndfd2"
+        }
+      ]
+    },
+    {
+      "id": "cg-f98d72f369648135",
+      "kind": "cg",
+      "name": "lum43a",
+      "characters": [
+        "大蔵ルミネ"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "f9/f98d72f369648135c9351aad9e6b8cf055870897722e3cb8bd60f4029f51082b.png",
+      "sha256": "d9a05aa20895ab78f8877d5a5ace1d78024b0bdc21636126231393d7873ec357",
+      "placements": [
+        {
+          "game": "06_近月少女的礼仪2.2",
+          "scene": "lum43",
+          "role": "大蔵ルミネ",
+          "archive": "data2.pack",
+          "resource": "画像\\ev_2ndfd2\\lum43a.png",
+          "namespace": "ev_2ndfd2"
+        }
+      ]
+    },
+    {
+      "id": "cg-892755ad4c19d2af",
+      "kind": "cg",
+      "name": "lum43b",
+      "characters": [
+        "大蔵ルミネ"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "89/892755ad4c19d2afb6927b086be2dbb60d90b75c82cd31659026e7df78676e01.png",
+      "sha256": "dc54b226c7099acc24ffdd58b94afba952b03a1e70ec841905dce6718c945eb1",
+      "placements": [
+        {
+          "game": "06_近月少女的礼仪2.2",
+          "scene": "lum43",
+          "role": "大蔵ルミネ",
+          "archive": "data2.pack",
+          "resource": "画像\\ev_2ndfd2\\lum43b.png",
+          "namespace": "ev_2ndfd2"
+        }
+      ]
+    },
+    {
+      "id": "cg-10893d6d33ed2dfc",
+      "kind": "cg",
+      "name": "lum43c",
+      "characters": [
+        "大蔵ルミネ"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "10/10893d6d33ed2dfc5c6f35aaef40ad0d64d06e422447d6a77c84769679641ae1.png",
+      "sha256": "de77fe760b46afc23dd39301243ed492251515c59c4a2a07711987c4ed385f03",
+      "placements": [
+        {
+          "game": "06_近月少女的礼仪2.2",
+          "scene": "lum43",
+          "role": "大蔵ルミネ",
+          "archive": "data2.pack",
+          "resource": "画像\\ev_2ndfd2\\lum43c.png",
+          "namespace": "ev_2ndfd2"
+        }
+      ]
+    },
+    {
+      "id": "cg-574261a551f159ea",
+      "kind": "cg",
+      "name": "lum44a",
+      "characters": [
+        "大蔵ルミネ"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "57/574261a551f159eab1c073f1fd838adab262b29a1228c8ac1bd146c891061909.png",
+      "sha256": "77f90f9857199d515c54cd0b83cae372af0112010fcfc7c7632e3bf675cb486e",
+      "placements": [
+        {
+          "game": "06_近月少女的礼仪2.2",
+          "scene": "lum44",
+          "role": "大蔵ルミネ",
+          "archive": "data2.pack",
+          "resource": "画像\\ev_2ndfd2\\lum44a.png",
+          "namespace": "ev_2ndfd2"
+        }
+      ]
+    },
+    {
       "id": "cg-b1aee94f04432329",
       "kind": "cg",
       "name": "sai51a",
@@ -10166,6 +14183,160 @@
           "role": "桜小路才華",
           "archive": "data2.pack",
           "resource": "画像\\ev_2ndfd2\\sai51a.png",
+          "namespace": "ev_2ndfd2"
+        }
+      ]
+    },
+    {
+      "id": "cg-c7427ed02de51291",
+      "kind": "cg",
+      "name": "sak42a",
+      "characters": [
+        "八日堂朔莉"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "c7/c7427ed02de51291a2fe7705209f2429bc60f6d74723372b5c1d934120ed5c9f.png",
+      "sha256": "f5e3fabc80c2efe9e5a3ebf2e68728d55f52a50a2fc21174e3699a4ff6e3568b",
+      "placements": [
+        {
+          "game": "06_近月少女的礼仪2.2",
+          "scene": "sak42",
+          "role": "八日堂朔莉",
+          "archive": "data2.pack",
+          "resource": "画像\\ev_2ndfd2\\sak42a.png",
+          "namespace": "ev_2ndfd2"
+        }
+      ]
+    },
+    {
+      "id": "cg-8b86adb442624f49",
+      "kind": "cg",
+      "name": "sak42b",
+      "characters": [
+        "八日堂朔莉"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "8b/8b86adb442624f493d256d43ab7e4095c1bb855c2fbcd66aeed6a5a94c4bc3da.png",
+      "sha256": "1045a48de819e1283de64cffbf81a32e680c64c35d84abeb54956f13c54456e7",
+      "placements": [
+        {
+          "game": "06_近月少女的礼仪2.2",
+          "scene": "sak42",
+          "role": "八日堂朔莉",
+          "archive": "data2.pack",
+          "resource": "画像\\ev_2ndfd2\\sak42b.png",
+          "namespace": "ev_2ndfd2"
+        }
+      ]
+    },
+    {
+      "id": "cg-0c2c8d38c4124cdc",
+      "kind": "cg",
+      "name": "sak42c",
+      "characters": [
+        "八日堂朔莉"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "0c/0c2c8d38c4124cdca94e35ec4ada75a9f7b46a623fc4c1d69acc2f68290fd0f8.png",
+      "sha256": "57c9465eea6b46a3054bcd7a6e849b30a5d8119e6bbd1a8709a7d557a764755e",
+      "placements": [
+        {
+          "game": "06_近月少女的礼仪2.2",
+          "scene": "sak42",
+          "role": "八日堂朔莉",
+          "archive": "data2.pack",
+          "resource": "画像\\ev_2ndfd2\\sak42c.png",
+          "namespace": "ev_2ndfd2"
+        }
+      ]
+    },
+    {
+      "id": "cg-85ed298e89b4092d",
+      "kind": "cg",
+      "name": "sak42d",
+      "characters": [
+        "八日堂朔莉"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "85/85ed298e89b4092d00a86e0f13ffaa7ec84de74600005cd07a655ab52c18bcbf.png",
+      "sha256": "efecee765a4f690790657c4fafdd7c1348d0ffdb5718f6141735414de8e8a06d",
+      "placements": [
+        {
+          "game": "06_近月少女的礼仪2.2",
+          "scene": "sak42",
+          "role": "八日堂朔莉",
+          "archive": "data2.pack",
+          "resource": "画像\\ev_2ndfd2\\sak42d.png",
+          "namespace": "ev_2ndfd2"
+        }
+      ]
+    },
+    {
+      "id": "cg-b400ee1a856daf54",
+      "kind": "cg",
+      "name": "sak43a",
+      "characters": [
+        "八日堂朔莉"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "b4/b400ee1a856daf547cd3c802a2f6e90db653f5841edf06510a119d3a033b1d1b.png",
+      "sha256": "e28eb2a19e68b70f0dc43930e8461360442f5a5d1cda8063b45907d35aa303d7",
+      "placements": [
+        {
+          "game": "06_近月少女的礼仪2.2",
+          "scene": "sak43",
+          "role": "八日堂朔莉",
+          "archive": "data2.pack",
+          "resource": "画像\\ev_2ndfd2\\sak43a.png",
+          "namespace": "ev_2ndfd2"
+        }
+      ]
+    },
+    {
+      "id": "cg-7307f49e863bf6fb",
+      "kind": "cg",
+      "name": "sak44a",
+      "characters": [
+        "八日堂朔莉"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "73/7307f49e863bf6fbf5ebe443b958334d278a4ccacdcd666265eb30727591f2d0.png",
+      "sha256": "48db3d8679047a8cf088d2f8fb0f910d33b5851ecd19046f279630bd61be8b00",
+      "placements": [
+        {
+          "game": "06_近月少女的礼仪2.2",
+          "scene": "sak44",
+          "role": "八日堂朔莉",
+          "archive": "data2.pack",
+          "resource": "画像\\ev_2ndfd2\\sak44a.png",
+          "namespace": "ev_2ndfd2"
+        }
+      ]
+    },
+    {
+      "id": "cg-04c2c3270547672e",
+      "kind": "cg",
+      "name": "sak45a",
+      "characters": [
+        "八日堂朔莉"
+      ],
+      "width": 1280,
+      "height": 720,
+      "original": "04/04c2c3270547672ece1417df997db282e20324c54f46747472c7256c68b153b8.png",
+      "sha256": "33087815d0ef4bd577643afdb3b0f003824e72e4ad7b631b8397deadc44ddabf",
+      "placements": [
+        {
+          "game": "06_近月少女的礼仪2.2",
+          "scene": "sak45",
+          "role": "八日堂朔莉",
+          "archive": "data2.pack",
+          "resource": "画像\\ev_2ndfd2\\sak45a.png",
           "namespace": "ev_2ndfd2"
         }
       ]
@@ -10648,8 +14819,7 @@
           ],
           "titleType": "标题背景"
         }
-      ],
-      "collection": "backgrounds"
+      ]
     },
     {
       "id": "title-c843118c9224c1b4",
@@ -10689,8 +14859,7 @@
           ],
           "titleType": "标题背景"
         }
-      ],
-      "collection": "backgrounds"
+      ]
     },
     {
       "id": "title-ba419a9ed8d5f73d",
@@ -10714,8 +14883,7 @@
           "layers": [],
           "titleType": "日文Logo"
         }
-      ],
-      "collection": "characters"
+      ]
     },
     {
       "id": "title-75172509e37d1781",
@@ -10739,8 +14907,7 @@
           "layers": [],
           "titleType": "日文Logo"
         }
-      ],
-      "collection": "characters"
+      ]
     },
     {
       "id": "title-698e83da4cb2109b",
@@ -10780,8 +14947,7 @@
           ],
           "titleType": "标题画面"
         }
-      ],
-      "collection": "characters"
+      ]
     },
     {
       "id": "title-321c161f73c814d5",
@@ -10821,8 +14987,7 @@
           ],
           "titleType": "人物图层"
         }
-      ],
-      "collection": "characters"
+      ]
     },
     {
       "id": "title-67bd890678739301",
@@ -10863,8 +15028,7 @@
           ],
           "titleType": "人物图层"
         }
-      ],
-      "collection": "characters"
+      ]
     },
     {
       "id": "title-d2b426ae4302ced3",
@@ -10904,8 +15068,7 @@
           ],
           "titleType": "日文Logo"
         }
-      ],
-      "collection": "characters"
+      ]
     },
     {
       "id": "title-13bb3ac1da229d1a",
@@ -10945,8 +15108,7 @@
           ],
           "titleType": "日文Logo"
         }
-      ],
-      "collection": "characters"
+      ]
     },
     {
       "id": "title-5f148dc6544c89ec",
@@ -10986,8 +15148,7 @@
           ],
           "titleType": "人物图层"
         }
-      ],
-      "collection": "characters"
+      ]
     },
     {
       "id": "title-1bd3ae1c5d29c234",
@@ -11027,8 +15188,7 @@
           ],
           "titleType": "人物图层"
         }
-      ],
-      "collection": "characters"
+      ]
     },
     {
       "id": "title-06b30ea76f248d4c",
@@ -11068,8 +15228,7 @@
           ],
           "titleType": "日文Logo"
         }
-      ],
-      "collection": "characters"
+      ]
     },
     {
       "id": "title-1f45f476222a5ac4",
@@ -11107,8 +15266,7 @@
           ],
           "titleType": "标题背景"
         }
-      ],
-      "collection": "backgrounds"
+      ]
     },
     {
       "id": "title-b4e7e1d30e6dd2e8",
@@ -11135,8 +15293,7 @@
           ],
           "titleType": "标题背景"
         }
-      ],
-      "collection": "backgrounds"
+      ]
     },
     {
       "id": "title-398cad09fce7e44c",
@@ -11163,8 +15320,7 @@
           ],
           "titleType": "标题背景"
         }
-      ],
-      "collection": "backgrounds"
+      ]
     },
     {
       "id": "title-5f8c36d557b9f9f5",
@@ -11191,8 +15347,7 @@
           ],
           "titleType": "日文Logo"
         }
-      ],
-      "collection": "characters"
+      ]
     },
     {
       "id": "title-a9e9b1370deba931",
@@ -11234,8 +15389,7 @@
           ],
           "titleType": "标题背景"
         }
-      ],
-      "collection": "backgrounds"
+      ]
     },
     {
       "id": "title-4b046e95539f3a29",
@@ -11276,8 +15430,7 @@
           ],
           "titleType": "人物图层"
         }
-      ],
-      "collection": "characters"
+      ]
     },
     {
       "id": "title-c871e9c212259fdf",
@@ -11319,8 +15472,7 @@
           ],
           "titleType": "标题图层"
         }
-      ],
-      "collection": "backgrounds"
+      ]
     },
     {
       "id": "title-10bee0aaacd1b0a0",
@@ -11469,8 +15621,7 @@
           ],
           "titleType": "日文Logo"
         }
-      ],
-      "collection": "characters"
+      ]
     },
     {
       "id": "title-5e1e18e4c6e4d0d9",
@@ -11497,8 +15648,7 @@
           ],
           "titleType": "日文Logo"
         }
-      ],
-      "collection": "characters"
+      ]
     },
     {
       "id": "title-dfed9452407b57db",
@@ -11526,8 +15676,7 @@
           ],
           "titleType": "日文Logo"
         }
-      ],
-      "collection": "characters"
+      ]
     },
     {
       "id": "title-b22655287e20e827",
@@ -11554,8 +15703,7 @@
           ],
           "titleType": "标题背景"
         }
-      ],
-      "collection": "backgrounds"
+      ]
     },
     {
       "id": "title-6c1a0889f61b50ee",
@@ -11584,8 +15732,7 @@
           ],
           "titleType": "人物图层"
         }
-      ],
-      "collection": "characters"
+      ]
     },
     {
       "id": "title-851305036e6ec7a6",
@@ -11627,8 +15774,7 @@
           ],
           "titleType": "日文Logo"
         }
-      ],
-      "collection": "characters"
+      ]
     },
     {
       "id": "title-7bebc6c4aae370cd",
@@ -11668,36 +15814,7 @@
           ],
           "titleType": "人物图层"
         }
-      ],
-      "collection": "characters"
-    },
-    {
-      "id": "title-8d509bf9c42428b2",
-      "kind": "title_background",
-      "name": "back",
-      "characters": [
-        "作品素材"
-      ],
-      "width": 1310,
-      "height": 1356,
-      "original": "8d/8d509bf9c42428b2f996b92fc11ab689e20d29badcffa3ed5feb80f3afaacded.png",
-      "sha256": "757911eebdb6749012bb1b6c27c8a8323850911caeae57701678acdf42b66bb5",
-      "placements": [
-        {
-          "game": "06_近月少女的礼仪2.2",
-          "sourceGame": "06_近月少女的礼仪2.2",
-          "scene": "标题与Logo",
-          "role": "作品素材",
-          "archive": "data11.pack",
-          "resource": "script\\title\\back.b",
-          "layers": [
-            "back.b",
-            "back"
-          ],
-          "titleType": "标题背景"
-        }
-      ],
-      "collection": "backgrounds"
+      ]
     },
     {
       "id": "title-4bfbbc46a373613e",
@@ -11724,8 +15841,34 @@
           ],
           "titleType": "标题背景"
         }
+      ]
+    },
+    {
+      "id": "title-8d509bf9c42428b2",
+      "kind": "title_background",
+      "name": "back",
+      "characters": [
+        "作品素材"
       ],
-      "collection": "backgrounds"
+      "width": 1310,
+      "height": 1356,
+      "original": "8d/8d509bf9c42428b2f996b92fc11ab689e20d29badcffa3ed5feb80f3afaacded.png",
+      "sha256": "757911eebdb6749012bb1b6c27c8a8323850911caeae57701678acdf42b66bb5",
+      "placements": [
+        {
+          "game": "06_近月少女的礼仪2.2",
+          "sourceGame": "06_近月少女的礼仪2.2",
+          "scene": "标题与Logo",
+          "role": "作品素材",
+          "archive": "data11.pack",
+          "resource": "script\\title\\back.b",
+          "layers": [
+            "back.b",
+            "back"
+          ],
+          "titleType": "标题背景"
+        }
+      ]
     },
     {
       "id": "title-f871f516563c0295",
@@ -11767,8 +15910,7 @@
           ],
           "titleType": "标题背景"
         }
-      ],
-      "collection": "backgrounds"
+      ]
     },
     {
       "id": "title-b0d5b8c8496f4425",
@@ -11812,8 +15954,7 @@
           ],
           "titleType": "人物图层"
         }
-      ],
-      "collection": "characters"
+      ]
     },
     {
       "id": "title-53498e116f738e55",
@@ -11853,8 +15994,7 @@
           ],
           "titleType": "人物图层"
         }
-      ],
-      "collection": "characters"
+      ]
     },
     {
       "id": "title-1d0917fcc2be9b4c",
@@ -11898,8 +16038,7 @@
           ],
           "titleType": "人物图层"
         }
-      ],
-      "collection": "characters"
+      ]
     },
     {
       "id": "title-646f56e4edd86ad8",
@@ -11939,8 +16078,7 @@
           ],
           "titleType": "人物图层"
         }
-      ],
-      "collection": "characters"
+      ]
     },
     {
       "id": "title-ac3350eecf313f00",
@@ -11980,8 +16118,7 @@
           ],
           "titleType": "日文Logo"
         }
-      ],
-      "collection": "characters"
+      ]
     }
   ]
 }
