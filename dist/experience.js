@@ -62,6 +62,7 @@
   let motion = stored === null ? !reducedMotion.matches : stored === 'on';
   let frame = 0, width = 0, height = 0, petals = [], sparkles = [], lastSparkle = 0;
   let pointer = { x: -1000, y: -1000 };
+  const desktopArchive = () => window.innerWidth >= 960 && document.body.classList.contains('archive-ready');
 
   function resize() {
     width = window.innerWidth; height = window.innerHeight;
@@ -77,7 +78,7 @@
   }
   function render(now) {
     frame = 0;
-    if (!motion || document.hidden) return;
+    if (!motion || document.hidden || desktopArchive()) return;
     context.clearRect(0, 0, width, height);
     if (pointer.x >= 0) {
       const glow = context.createRadialGradient(pointer.x, pointer.y, 0, pointer.x, pointer.y, 130);
@@ -101,7 +102,7 @@
     }
     frame = requestAnimationFrame(render);
   }
-  function start() { if (motion && !document.hidden && !frame) frame = requestAnimationFrame(render); }
+  function start() { if (motion && !document.hidden && !frame && !desktopArchive()) frame = requestAnimationFrame(render); }
   function updateMotion() {
     toggle.setAttribute('aria-pressed', String(motion));
     toggle.setAttribute('aria-label', motion ? '关闭动态背景' : '开启动态背景');
@@ -116,7 +117,7 @@
     try { localStorage.setItem(motionKey, motion ? 'on' : 'off'); } catch { /* Works for this page. */ }
     updateMotion();
   });
-  window.addEventListener('resize', resize, { passive: true });
+  window.addEventListener('resize', () => { resize(); start(); }, { passive: true });
   window.addEventListener('pointermove', event => {
     if (!motion || event.pointerType !== 'mouse') return;
     pointer = { x: event.clientX, y: event.clientY };

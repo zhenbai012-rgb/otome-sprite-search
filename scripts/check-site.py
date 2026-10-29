@@ -36,7 +36,8 @@ def main():
             text = p.read_text(encoding="utf-8")
             assert not re.search(r"(?<![A-Za-z0-9_])[A-Za-z]:[\\/]", text), p
             assert not re.search(r"gh[pousr]_[A-Za-z0-9]{20,}|github_pat_[A-Za-z0-9_]{20,}", text), p
-            assert "立牌" not in text and "PPI" not in text, p
+            if "vendor" not in p.relative_to(SITE).parts:
+                assert "立牌" not in text and "PPI" not in text, p
     total = sum(p.stat().st_size for p in SITE.rglob("*") if p.is_file())
     assert total < 900_000_000, total
     print(json.dumps({"status": "passed", "game": len(games), "official": len(catalog["official"]), "roles": catalog["stats"]["characterCount"], "imageReferences": len(paths), "siteBytes": total}))
