@@ -5,7 +5,7 @@
   if (!root) return;
   const scriptUrl = document.currentScript.src;
   const desktop = window.matchMedia('(min-width: 960px)');
-  const sceneUrl = new URL('archive-scene.js?v=89963a1eb4a1', scriptUrl);
+  const sceneUrl = new URL('archive-scene.js?v=ae699980479d', scriptUrl);
   let scenePreloaded = false;
   function preloadDesktopScene() {
     if (scenePreloaded) return;

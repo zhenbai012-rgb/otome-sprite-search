@@ -6,7 +6,6 @@ export function createArchiveScene(host, options) {
   const compact = !desktop.matches;
   const renderer = new THREE.WebGLRenderer({antialias: true, alpha: false, powerPreference: 'high-performance'});
   renderer.outputColorSpace = THREE.SRGBColorSpace;
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, compact ? 1.25 : 1.4));
   renderer.setClearColor(0xe9e2f0, 1);
   const canvas = renderer.domElement;
   canvas.setAttribute('aria-hidden', 'true');
@@ -88,9 +87,12 @@ export function createArchiveScene(host, options) {
 
   function resize() {
     const width = Math.max(1, host.clientWidth), height = Math.max(1, host.clientHeight);
-    renderer.setSize(width, height, false);
     camera.aspect = width / height;
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, desktop.matches ? 1.4 : 1.25));
+    // Match dense phone screens while keeping large tablet canvases within 3 MP.
+    const ratio = desktop.matches ? Math.min(window.devicePixelRatio || 1, 1.4)
+      : Math.min(window.devicePixelRatio || 1, 3, Math.sqrt(3_000_000 / (width * height)));
+    renderer.setPixelRatio(ratio);
+    renderer.setSize(width, height, false);
     // Keep the lifted folder at a useful touch-screen size in portrait orientation.
     camera.fov = desktop.matches ? 30 : THREE.MathUtils.radToDeg(2 * Math.atan(7.8 / (2 * 22.5 * camera.aspect)));
     camera.updateProjectionMatrix();
