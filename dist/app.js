@@ -27,7 +27,7 @@
   const name = id => roles.get(id)?.display || id;
   const safeUrl = value => { try { const u = new URL(value, location.href); return ['https:', 'http:', 'file:'].includes(u.protocol) ? u.href : ''; } catch { return ''; } };
   const imagePath = value => {
-    if (value.startsWith('cg-assets/')) {
+    if (value.startsWith('cg-assets/') && !value.startsWith('cg-assets/thumbs/')) {
       const local = ['localhost','127.0.0.1','[::1]'].includes(location.hostname) && location.pathname.includes('/dist/');
       value = local ? new URL('../'+value,location.href).href : new URL(value,data.cg.assetBase).href;
     }
@@ -42,10 +42,10 @@
     img.onerror = () => {
       failures += 1;
       if (failures > 3) { img.dataset.failed = 'true'; return; }
-      const next = failures === 3 && fallback ? fallback : path;
+      const next = fallback && failures % 2 === 1 ? fallback : path;
       setTimeout(() => {
         if (img.isConnected && img.dataset.request === ticket && img.getAttribute('src')) img.src = imagePath(next) + (next.includes('?') ? '&' : '?') + 'retry=' + failures;
-      }, failures * 900);
+      }, failures === 1 && fallback ? 150 : failures * 600);
     };
     img.onload = () => { delete img.dataset.failed; };
     img.src = imagePath(path);
@@ -118,7 +118,7 @@
     $('dialog-next').disabled = position < 0 || position >= previewSequence.length - 1;
     $('dialog-counter').textContent = position >= 0 ? `${position + 1} / ${previewSequence.length}` : '';
     $('image-dialog').classList.toggle('artwork-dialog',isArtwork(r));
-    $('dialog-title').textContent = recordLabel(r); loadImage($('dialog-image'), r.file); $('dialog-image').alt = recordLabel(r);
+    $('dialog-title').textContent = recordLabel(r); loadImage($('dialog-image'), r.file, r.thumb); $('dialog-image').alt = recordLabel(r);
     const info = $('dialog-info'); info.replaceChildren(); info.append(node('p',typeNames[r.kind],'eyebrow'), node('h3', isTitleArt(r) ? r.titleType : (r.characters || [r.character]).map(name).join(' / ')), node('p', r.kind === 'game' ? r.outfit : recordLabel(r)));
     const dl = node('dl'); const item = (k, v, cls) => { dl.append(node('dt', k), node('dd', v, cls)); };
     item('文件', r.name, 'filename'); item('原始尺寸', `${r.width} × ${r.height} px`);
@@ -149,7 +149,7 @@
     if (next) showImage(next, true, previewSequence);
   }
   function renderCharacter(c) {
-    const card = node('article', null, 'character-card'); const img = new Image(); loadImage(img, c.thumbnail); img.alt = c.display; img.loading = 'lazy'; img.className = 'character-image';
+    const card = node('article', null, 'character-card'); const img = new Image(); img.loading = 'lazy'; img.decoding = 'async'; loadImage(img, c.thumbnail); img.alt = c.display; img.className = 'character-image';
     const detail = node('div', null, 'character-detail'); detail.append(node('h3', c.display), node('p', '版本、服装与剧情片段'), node('p', `${c.gameCount.toLocaleString()} 张立绘 · ${c.cgCount || 0} 张路线CG · ${c.officialCount} 张官方素材`, 'counts'));
     const actions = node('div', null, 'character-actions'); const browse = node('button', '浏览所有立绘 →'); browse.type = 'button'; browse.addEventListener('click', () => { state.character = c.id; state.source = ''; state.costume = ''; state.scale = ''; state.kind = ''; state.query = '';state.work='';state.frame=''; syncInputs(); switchTab('search'); });
     const download = node('button', `按版本与服装下载 ↓ · ${packs.filter(p => p.character === c.id).length} 个包`); download.type = 'button'; download.addEventListener('click', () => showDownloads(c));
@@ -316,7 +316,8 @@
   const hero = [data.official.find(r => r.character === 'ルナ' && r.kind === 'single_png' && r.sourcePage.includes('2026')), data.official.find(r => r.character === '朝日' && r.kind === 'single_png')];
   hero.forEach((r, i) => {
     if (!r) return;
-    loadImage($(i ? 'hero-right' : 'hero-left'), r.file);
+    $(i ? 'hero-right' : 'hero-left').loading = 'lazy';
+    loadImage($(i ? 'hero-right' : 'hero-left'), r.thumb, r.file);
     $(i ? 'hero-right-button' : 'hero-left-button').addEventListener('click', () => showImage(r, true, hero.filter(Boolean)));
   });
   for (const id of ['ルナ', '桜小路才華', '朝日', '大蔵りそな', 'エスト']) {

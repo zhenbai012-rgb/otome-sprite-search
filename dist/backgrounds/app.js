@@ -30,6 +30,7 @@
   function placements(r) { return r.placements.filter(p => (!state.game || p.game === state.game) && categoryMatches(p.category) && (!state.scene || p.scene === state.scene)); }
   function imagePath(path) {
     if (!path.startsWith('cg-assets/'))return path;
+    if (path.startsWith('cg-assets/thumbs/')) return new URL('../' + path, location.href).href;
     const local=['localhost','127.0.0.1','[::1]'].includes(location.hostname) && location.pathname.includes('/dist/backgrounds/');
     return local ? new URL('../../'+path,location.href).href : new URL(path,data.artworkAssetBase).href;
   }
@@ -39,8 +40,8 @@
     img.onerror = () => {
       failed += 1;
       if (failed > 3) { img.dataset.failed = 'true'; return; }
-      const next = failed === 3 && fallback ? fallback : path;
-      setTimeout(() => { if (img.isConnected && img.dataset.request === ticket && img.getAttribute('src')) img.src = imagePath(next) + '?retry=' + failed; }, failed * 900);
+      const next = fallback && failed % 2 === 1 ? fallback : path;
+      setTimeout(() => { if (img.isConnected && img.dataset.request === ticket && img.getAttribute('src')) img.src = imagePath(next) + '?retry=' + failed; }, failed === 1 && fallback ? 150 : failed * 600);
     };
     img.src = imagePath(path);
   }
@@ -130,7 +131,7 @@
     $('dialog-prev').disabled = position <= 0; $('dialog-next').disabled = position < 0 || position >= previewSequence.length - 1;
     $('dialog-counter').textContent = position >= 0 ? `${position + 1} / ${previewSequence.length}` : '';
     const place = placements(r)[0] || r.placements[0];
-    $('dialog-title').textContent = displayName(place); $('dialog-image').alt = displayName(place); loadImage($('dialog-image'), r.file);
+    $('dialog-title').textContent = displayName(place); $('dialog-image').alt = displayName(place); loadImage($('dialog-image'), r.file, r.thumb);
     const info = $('dialog-info'); info.replaceChildren(node('p', `${short(place.game)} · ${short(place.category)} · ${short(place.scene)}`), node('p', `原图 ${r.width} × ${r.height} px · PNG ${size(r.originalBytes)}${r.alpha ? ' · 保留透明图层' : ''}`));
     const actions = node('div', null, 'dialog-buttons');
     actions.append(downloadButton('下载 PNG 原图 ↓', () => downloadImage(r, place)), button('同场景分包 →', () => {
@@ -193,7 +194,8 @@
   function scenePlace(r) { return r.placements.find(p => p.category === data.kinds.scene) || r.placements[0]; }
   function setHero(r) {
     if (!r) return; heroRecord = r;
-    const place = scenePlace(r); loadImage($('bg-hero-image'), r.file, r.thumb);
+    $('bg-hero-image').loading = 'lazy';
+    const place = scenePlace(r); loadImage($('bg-hero-image'), r.thumb, r.file);
     $('bg-hero-caption').textContent = short(place.game) + ' · ' + displayName(place);
     $('bg-hero-preview').setAttribute('aria-label', '查看背景 ' + displayName(place));
   }

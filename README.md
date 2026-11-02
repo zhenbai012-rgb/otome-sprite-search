@@ -8,7 +8,7 @@
 - 支持角色中文名、日文名、常用简称、服装、镜头、表情代码和文件名搜索。
 - 可分享筛选结果和单张图片的链接；手机与电脑均可使用。
 - 角色和背景页面提供动态画面、随机推荐、图片翻页、浏览密度切换和收藏。动态效果可关闭；收藏保存在当前浏览器中。
-- 桌面首页提供实时渲染的立体档案阵列，每次从剧情 CG 或场景背景中随机选出 10 张，仅预加载当前和相邻图片。预览随档案升起，可点击、拖动或使用方向键切换；图片详情和下载位于下方图库。三维效果基于 [Three.js r183](https://github.com/mrdoob/three.js/tree/r183)，许可证见 `dist/vendor/three/LICENSE.txt`；浏览器无法启用 WebGL 时保留普通浏览入口。
+- 首页提供实时渲染的立体档案阵列，每次从剧情 CG 或场景背景中随机选出 10 张，仅预加载当前和相邻缩略图。预览随档案升起，可点击、拖动或使用方向键切换；手机使用竖屏构图、滑动切图和展开式筛选，最多渲染 120 帧，离屏或切到后台时暂停。图片详情和下载位于下方图库。三维效果基于 [Three.js r183](https://github.com/mrdoob/three.js/tree/r183)，许可证见 `dist/vendor/three/LICENSE.txt`；无法启用 WebGL 时显示平面档案预览。
 - 网页使用透明 WebP 预览。原尺寸 PNG 按「角色 → 版本 → 服装」细分为 [195 个下载包](https://github.com/zhenbai012-rgb/otome-sprite-search/releases/tag/sprites-costumes-v1)，同款服装的姿态和表情差分放在一起。角色目录可逐包选择；单张预览直接链接到对应服装包。
 - 官方图片保留原始文件，并附来源页和官方图片地址；组合图单独标注。
 - 角色检索按游戏立绘、剧情 CG、日文标题 / Logo、标题人物图层及官方素材分类，同时收录 670 张经核对的剧情 CG、12 张日文标题 / Logo 和 11 张标题人物图层。CG 按路线角色整理；露骨成人 CG 不收录。
@@ -22,6 +22,7 @@
 无需安装前端依赖，也不需要账号或 API 密钥。
 
 ```sh
+python scripts/prepare-previews.py
 python -m http.server 8789
 ```
 
@@ -36,8 +37,9 @@ dist/                   可直接发布的静态网站
   index.html            页面
   app.js / styles.css   搜索逻辑与样式
   experience.js / experience.css  页面互动与视觉样式
-  archive-stage.js / archive-stage.css  桌面互动档案
-  archive-scene.js / vendor/three/  桌面三维场景及 Three.js 许可证
+  archive-stage.js / archive-stage.css  互动档案
+  archive-scene.js / vendor/three/  三维场景及 Three.js 许可证
+  mobile.css / mobile-ui.js  移动端布局、触屏筛选与滑动预览
   catalog-data.js        角色与官方素材索引
   game-data.js           游戏立绘索引
   cg-data.js             CG、日文标题与场景分包索引
@@ -61,12 +63,14 @@ scripts/                索引生成与完整性检查
 验证命令：
 
 ```sh
+python scripts/prepare-previews.py
 python scripts/check-site.py
 python scripts/check-backgrounds.py
 python scripts/check-artwork.py
 node --check dist/app.js
 node --check dist/experience.js
 node --check dist/archive-stage.js
+node --check dist/mobile-ui.js
 node --check --input-type=module < dist/archive-scene.js
 node --check dist/backgrounds/app.js
 node --check dist/backgrounds/zip-store.js

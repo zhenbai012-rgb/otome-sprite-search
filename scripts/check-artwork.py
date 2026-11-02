@@ -63,6 +63,7 @@ def main():
                 assert (w,h)==(r['previewWidth'],r['previewHeight']) and w<=1600 and h<=1600
             else:
                 assert w<=420 and h<=300
+                assert (SITE/r[key]).read_bytes()==(ROOT/r[key]).read_bytes(), r[key]
             assert abs(w*r['height']-h*r['width'])<=max(r['width'],r['height']),r['id']
     coverage=set()
     for p in payload['packs']:

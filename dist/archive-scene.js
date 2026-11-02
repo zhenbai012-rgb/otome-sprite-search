@@ -1,10 +1,12 @@
 import * as THREE from './vendor/three/three.module.min.js';
 
-/* A lightweight three-dimensional filing array for the desktop landing page. */
+/* An instanced filing array, framed for both wide and portrait screens. */
 export function createArchiveScene(host, options) {
+  const desktop = window.matchMedia('(min-width: 960px)');
+  const compact = !desktop.matches;
   const renderer = new THREE.WebGLRenderer({antialias: true, alpha: false, powerPreference: 'high-performance'});
   renderer.outputColorSpace = THREE.SRGBColorSpace;
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.4));
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, compact ? 1.25 : 1.4));
   renderer.setClearColor(0xe9e2f0, 1);
   const canvas = renderer.domElement;
   canvas.setAttribute('aria-hidden', 'true');
@@ -19,8 +21,8 @@ export function createArchiveScene(host, options) {
   sun.position.set(-8, 18, 12);
   scene.add(ambient, sun);
 
-  const columns = 11, rows = 56, total = columns * rows;
-  const columnGap = 5.05, rowGap = .62, focusColumn = 5, baseRow = 24;
+  const columns = compact ? 7 : 11, rows = compact ? 40 : 56, total = columns * rows;
+  const columnGap = 5.05, rowGap = .62, focusColumn = Math.floor(columns / 2), baseRow = compact ? 17 : 24;
   const focusRows = Math.min(4, options.count);
   const bodyGeometry = new THREE.BoxGeometry(4.8, 3.45, .30);
   const bodyMaterial = new THREE.MeshStandardMaterial({color: 0xece4f3, roughness: .82, metalness: .02});
@@ -73,22 +75,25 @@ export function createArchiveScene(host, options) {
     }
   }
   const raycaster = new THREE.Raycaster(), pointer = new THREE.Vector2();
-  const desktop = window.matchMedia('(min-width: 960px)');
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
   const frameInterval = 1000 / 120;
   let current = 0, selectedAt = 0, selectedInstance = -1, visible = true, frame = 0, last = 0, nextFrameAt = 0;
   let desiredX = 0, desiredY = 0, desiredZoom = 0, movingX = 0, movingY = 0, movingZoom = 0;
   let pointerX = 0, pointerY = 0, pointerPending = false;
-  let previewTexture = null;
+  let previewTexture = null, previewImage = null, contextLost = false;
   let drag = null;
   const wrap = (value, length) => ((value % length) + length) % length;
   const motion = () => !document.body.classList.contains('motion-off') && !reduced.matches;
-  const canDraw = () => visible && !document.hidden && desktop.matches;
+  const canDraw = () => visible && !document.hidden && !contextLost;
 
   function resize() {
     const width = Math.max(1, host.clientWidth), height = Math.max(1, host.clientHeight);
     renderer.setSize(width, height, false);
-    camera.aspect = width / height; camera.updateProjectionMatrix();
+    camera.aspect = width / height;
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, desktop.matches ? 1.4 : 1.25));
+    // Keep the lifted folder at a useful touch-screen size in portrait orientation.
+    camera.fov = desktop.matches ? 30 : THREE.MathUtils.radToDeg(2 * Math.atan(7.8 / (2 * 22.5 * camera.aspect)));
+    camera.updateProjectionMatrix();
     invalidate();
   }
   function scaleInstance(index, scale) {
@@ -113,8 +118,13 @@ export function createArchiveScene(host, options) {
     movingX += ((activeMotion ? desiredX : 0) - movingX) * blend;
     movingY += ((activeMotion ? desiredY : 0) - movingY) * blend;
     movingZoom += ((activeMotion ? desiredZoom : 0) - movingZoom) * blend;
-    camera.position.set(-23 + movingX * 1.2, 13 + movingY * .7, 18 - movingZoom);
-    camera.lookAt(0, .25, 0);
+    if (desktop.matches) {
+      camera.position.set(-23 + movingX * 1.2, 13 + movingY * .7, 18 - movingZoom);
+      camera.lookAt(0, .25, 0);
+    } else {
+      camera.position.set(-11 + movingX * .55, 10 + movingY * .35, 18 - movingZoom * .4);
+      camera.lookAt(0, 2.7, -.5);
+    }
     const focusRow = baseRow + current % focusRows, age = (now - selectedAt) / 1000;
     const nextSelected = focusColumn * rows + focusRow;
     if (nextSelected !== selectedInstance) {
@@ -160,6 +170,8 @@ export function createArchiveScene(host, options) {
   function invalidate() { if (canDraw() && !frame) frame = requestAnimationFrame(tick); }
   function setIndex(index) { current = wrap(index, options.count); selectedAt = performance.now(); invalidate(); }
   function setImage(image) {
+    if (image === previewImage) return;
+    previewImage = image;
     if (previewTexture) previewTexture.dispose();
     previewTexture = null; imagePlane.visible = false; imageMaterial.map = null;
     if (image && image.naturalWidth && image.naturalHeight) {
@@ -182,6 +194,10 @@ export function createArchiveScene(host, options) {
     canvas.setPointerCapture(event.pointerId);
   });
   canvas.addEventListener('pointermove', event => {
+    if (drag && event.pointerType !== 'mouse' && motion()) {
+      desiredX = Math.max(-1, Math.min(1, (event.clientX - drag.x) / 100));
+      desiredZoom = .5;
+    }
     if (drag && Math.abs(event.clientX - drag.lastX) > 55) {
       drag.moved = true;
       options.onSelect(current + (event.clientX < drag.lastX ? 1 : -1));
@@ -204,8 +220,8 @@ export function createArchiveScene(host, options) {
     if (index !== current) options.onSelect(index);
   });
   canvas.addEventListener('pointercancel', () => { drag = null; });
-  canvas.addEventListener('webglcontextlost', event => { event.preventDefault(); if (frame) cancelAnimationFrame(frame); frame = 0; host.classList.add('context-lost'); host.parentElement.classList.add('scene-unavailable'); });
-  canvas.addEventListener('webglcontextrestored', () => { host.classList.remove('context-lost'); host.parentElement.classList.remove('scene-unavailable'); last = 0; nextFrameAt = 0; resize(); });
+  canvas.addEventListener('webglcontextlost', event => { event.preventDefault(); contextLost = true; if (frame) cancelAnimationFrame(frame); frame = 0; host.classList.add('context-lost'); host.parentElement.classList.add('scene-unavailable'); });
+  canvas.addEventListener('webglcontextrestored', () => { contextLost = false; host.classList.remove('context-lost'); host.parentElement.classList.remove('scene-unavailable'); last = 0; nextFrameAt = 0; resize(); });
   new MutationObserver(() => { if (!motion() && frame) { cancelAnimationFrame(frame); frame = 0; } last = 0; nextFrameAt = 0; invalidate(); }).observe(document.body, {attributes: true, attributeFilter: ['class']});
   new IntersectionObserver(entries => { visible = entries[0].isIntersecting; if (!visible && frame) { cancelAnimationFrame(frame); frame = 0; } last = 0; nextFrameAt = 0; invalidate(); }, {threshold: .01}).observe(host);
   new ResizeObserver(resize).observe(host);

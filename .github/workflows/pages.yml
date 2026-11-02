@@ -20,12 +20,14 @@ jobs:
       - uses: actions/checkout@v6
       - name: Check catalog and assets
         run: |
+          python3 scripts/prepare-previews.py
           python3 scripts/check-site.py
           python3 scripts/check-backgrounds.py
           python3 scripts/check-artwork.py
           node --check dist/app.js
           node --check dist/experience.js
           node --check dist/archive-stage.js
+          node --check dist/mobile-ui.js
           node --check --input-type=module < dist/archive-scene.js
           node --check dist/artwork-downloads.js
           node --check dist/backgrounds/app.js

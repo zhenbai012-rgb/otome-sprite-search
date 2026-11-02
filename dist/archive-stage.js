@@ -1,14 +1,14 @@
-/* Desktop archive: the imagery and search data stay in the existing galleries. */
+/* Shared archive presentation; full-size images stay in the search galleries. */
 (() => {
   'use strict';
   const root = document.getElementById('desktop-archive');
   if (!root) return;
   const scriptUrl = document.currentScript.src;
   const desktop = window.matchMedia('(min-width: 960px)');
-  const sceneUrl = new URL('archive-scene.js?v=25233f0bb1dd', scriptUrl);
+  const sceneUrl = new URL('archive-scene.js?v=89963a1eb4a1', scriptUrl);
   let scenePreloaded = false;
   function preloadDesktopScene() {
-    if (!desktop.matches || scenePreloaded) return;
+    if (scenePreloaded) return;
     scenePreloaded = true;
     for (const path of [sceneUrl.href, 'vendor/three/three.module.min.js', 'vendor/three/three.core.min.js']) {
       const link = document.createElement('link');
@@ -24,7 +24,7 @@
       if (!options.records.length) return;
       let initialized = false;
       const build = () => {
-        if (!desktop.matches || initialized) return;
+        if (initialized) return;
         initialized = true;
         const pool = options.records.slice(), count = Math.min(10, pool.length), markers = [];
         for (let i = 0; i < count; i++) {
@@ -60,7 +60,8 @@
             <button class="archive-prev" type="button" aria-label="上一张">←</button>
             <div class="archive-markers" aria-label="选择推荐画面"></div>
             <button class="archive-next" type="button" aria-label="下一张">→</button>
-          </div>`;
+          </div>
+          <span class="archive-swipe" aria-hidden="true">← 滑动翻阅 →</span>`;
         const query = selector => root.querySelector(selector);
         const fallbackImage = query('.archive-fallback-art img');
         query('.archive-kind').textContent = options.kind;
@@ -71,12 +72,13 @@
           if (images.has(index)) return images.get(index);
           const record = records[index];
           const image = new Image(); image.crossOrigin = 'anonymous'; image.decoding = 'async'; image.alt = '';
+          image.fetchPriority = index === current ? 'high' : 'low';
           image.addEventListener('load', () => {
             if (index !== current) return;
             fallbackImage.src = image.currentSrc || image.src;
             if (scene) scene.setImage(image);
           });
-          images.set(index, image); imagePool.append(image); options.loadImage(image, record.file, record.thumb);
+          images.set(index, image); imagePool.append(image); options.loadImage(image, record.thumb || record.file, record.file);
           return image;
         }
         for (let i = 0; i < Math.min(10, records.length); i++) {

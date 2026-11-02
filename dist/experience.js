@@ -62,10 +62,13 @@
   let motion = stored === null ? !reducedMotion.matches : stored === 'on';
   let frame = 0, width = 0, height = 0, petals = [], sparkles = [], lastSparkle = 0;
   let pointer = { x: -1000, y: -1000 };
-  const desktopArchive = () => window.innerWidth >= 960 && document.body.classList.contains('archive-ready');
+  const desktopArchive = () => document.body.classList.contains('archive-ready');
 
   function resize() {
-    width = window.innerWidth; height = window.innerHeight;
+    const nextWidth = window.innerWidth, nextHeight = window.innerHeight;
+    // Mobile browser bars change height while scrolling; preserve the petal field.
+    if (width === nextWidth && Math.abs(height - nextHeight) < 180) return;
+    width = nextWidth; height = Math.max(nextHeight, document.documentElement.clientHeight);
     const ratio = Math.min(window.devicePixelRatio || 1, 1.5);
     canvas.width = Math.round(width * ratio); canvas.height = Math.round(height * ratio);
     context.setTransform(ratio, 0, 0, ratio, 0, 0);
