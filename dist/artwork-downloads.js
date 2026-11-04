@@ -36,7 +36,7 @@
     finally { busy = false; document.querySelectorAll('[data-artwork-download]').forEach(el => { el.disabled = false; }); }
   }
   function png(image) {
-    return job(async () => { status('正在下载完整原尺寸 PNG…'); const data = await bytes({original:image.original,bytes:image.originalBytes,sha256:image.originalSha256}); save(data,'image/png',image.name + '.png'); });
+    return job(async () => { status('正在下载完整原尺寸 PNG…'); const data = await bytes({original:image.original,bytes:image.originalBytes,sha256:image.originalSha256}); save(data,'image/png',image.downloadName || image.name + '.png'); });
   }
   function pack(item) {
     return job(async () => {

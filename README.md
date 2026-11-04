@@ -9,13 +9,36 @@
 - 可分享筛选结果和单张图片的链接；手机与电脑均可使用。
 - 角色和背景页面提供动态画面、随机推荐、图片翻页、浏览密度切换和收藏。动态效果可关闭；收藏保存在当前浏览器中。
 - 首页提供实时渲染的立体档案阵列，每次从剧情 CG 或场景背景中随机选出 10 张，仅预加载当前和相邻缩略图。预览随档案升起，可点击、拖动或使用方向键切换；手机使用竖屏构图、滑动切图和展开式筛选，最多渲染 120 帧，离屏或切到后台时暂停。图片详情和下载位于下方图库。三维效果基于 [Three.js r183](https://github.com/mrdoob/three.js/tree/r183)，许可证见 `dist/vendor/three/LICENSE.txt`；无法启用 WebGL 时显示平面档案预览。
-- 网页使用透明 WebP 预览。原尺寸 PNG 按「角色 → 版本 → 服装」细分为 [195 个下载包](https://github.com/zhenbai012-rgb/otome-sprite-search/releases/tag/sprites-costumes-v1)，同款服装的姿态和表情差分放在一起。角色目录可逐包选择；单张预览直接链接到对应服装包。
+- 网页使用透明 WebP 预览。原尺寸 PNG 按「角色 → 版本 → 服装」细分为 [195 个下载包](https://github.com/zhenbai012-rgb/otome-sprite-search/releases/tag/sprites-named-v1)，同款服装的姿态和表情差分放在一起。角色目录可逐包选择；单张预览直接链接到对应服装包。
 - 官方图片保留原始文件，并附来源页和官方图片地址；组合图单独标注。
 - 角色检索按游戏立绘、剧情 CG、日文标题 / Logo、标题人物图层及官方素材分类，同时收录 670 张经核对的剧情 CG、12 张日文标题 / Logo 和 11 张标题人物图层。CG 按路线角色整理；露骨成人 CG 不收录。
 - 新增作品、类型与画幅筛选。服装选项随角色和作品联动；服装与镜头始终可选，在 CG / 标题模式选用时自动切换到游戏立绘。角色、版本、作品与背景场景使用中文显示，原始日文名称保留为搜索别名或来源信息。
 - CG 与标题图片均保留完整原始画布。CG 按场景细分为 287 个包，六部作品各有一个标题资源包（合计 293 包），同时提供单张原尺寸 PNG。标题包包含全部 123 张原始组成图层；部分标题由多层动画构成，按原图层导出。
-- [背景图库](https://zhenbai012-rgb.github.io/otome-sprite-search/backgrounds/)收录 652 张独立图片，包含 591 张场景 / 大幅背景和 11 张标题背景。标题背景从角色检索移到此处，保留完整原图与透明图层。可按作品、类别与场景代码搜索。
-- 背景按「作品 → 类别 → 场景」细分为 459 个包（包括 6 个标题背景包）；较大的场景继续分为不超过 32 MiB 的小包。浏览器读取所选原图后生成 ZIP，包含清单与原尺寸 PNG，也可单张下载。
+- [背景图库](https://zhenbai012-rgb.github.io/otome-sprite-search/backgrounds/)收录 652 张独立图片，包含 591 张场景 / 大幅背景和 11 张标题背景。标题背景从角色检索移到此处，保留完整原图与透明图层。可按作品、地点、类别与场景名称搜索，原始代码仍可检索。
+- 背景按「作品 → 地点 → 场景」整理，新增樱公馆、巴黎街头、青山天空公寓等地点筛选；下载分为 459 个包（包括 6 个标题背景包），单包不超过 32 MiB。
+- 全站 10,751 张图片提供中文显示名与下载文件名。116 张原先归为“作品素材”的 CG 补充了经脚本与画面核对的角色。原始代码仍可搜索，旧分享链接与图片地址继续可用。
+
+## 批量命名
+
+维护 [`scripts/naming-rules.json`](scripts/naming-rules.json)，然后运行：
+
+```sh
+python scripts/name-catalog.py
+python scripts/check-naming.py
+python scripts/stamp-assets.py
+```
+
+背景按场景族设置一次名称，自动覆盖同地点的全部差分和六部作品中的引用；现有 122 个场景族。195 组立绘服装各维护一条规则，再从角色、版本、服装和差分字段生成名称，例如 `樱小路露娜_米色校服_远景_姿态01_表情01.png`。CG 使用角色与场景描述，没有确认的事件名称使用场景编号。
+
+网页、搜索、单张下载、场景包及来源清单同步更新。完整映射可下载 [`dist/data/naming-index.csv`](dist/data/naming-index.csv)，含资源 ID、中文名、下载名、作品、原始代码和资源路径。场景描述用于检索，不冒充官方 CG 标题。未确认名称的服装保留编号。
+
+存储路径与资源 ID 保持稳定。立绘服装包内使用中文文件夹与图片名；GitHub Release 的 ZIP 地址沿用 ASCII 名称。以后修改命名规则，可用已有 PNG 包重新命名，无需再次解包游戏或处理像素：
+
+```sh
+python scripts/repack-sprite-names.py INPUT_ZIP_DIRECTORY EMPTY_OUTPUT_DIRECTORY
+```
+
+该步骤复制原有 PNG 字节，核对每张图片的 SHA-256、分包归属与 ZIP 完整性，输出新的公共分包清单；重新上传后同步清单即可。
 
 ## 本地运行
 
@@ -67,6 +90,7 @@ python scripts/prepare-previews.py
 python scripts/check-site.py
 python scripts/check-backgrounds.py
 python scripts/check-artwork.py
+python scripts/check-naming.py
 node --check dist/app.js
 node --check dist/experience.js
 node --check dist/archive-stage.js

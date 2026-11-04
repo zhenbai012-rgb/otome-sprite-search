@@ -5,6 +5,7 @@ import json
 from pathlib import Path
 import re
 import struct
+from urllib.parse import quote
 
 ROOT = Path(__file__).resolve().parents[1]
 SITE = ROOT / 'dist'
@@ -40,7 +41,7 @@ def main():
         for p in r['placements']:
             safe(p['file'])
             assert p['game'] in data['games'] and p['category'] in data['kinds'].values()
-            expected[(p['game'], p['category'], p['scene'], p['file'].split('/')[-1], r['id'])] += 1
+            expected[(p['game'], p['category'], p['scene'], p.get('downloadName', p['file'].split('/')[-1]), r['id'])] += 1
     assert set((ROOT / 'originals/backgrounds').rglob('*.png')) == originals
     covered = collections.Counter()
     assert len({p['id'] for p in data['packs']}) == 453
@@ -65,7 +66,9 @@ def main():
     assert {key(p): p['count'] for p in packs} == expected_groups
     for p in packs:
         assert re.fullmatch(r'[a-f0-9]{64}', p['sha256'])
-        assert p['url'] == 'https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/sprites-costumes-v1/' + p['asset']
+        release = p.get('release', 'sprites-costumes-v1')
+        assert release in ('sprites-costumes-v1', 'sprites-named-v1')
+        assert p['url'] == 'https://github.com/zhenbai012-rgb/otome-sprite-search/releases/download/' + release + '/' + quote(p['asset'])
         assert p['asset'].endswith('.zip') and p['size'] > 0 and 'zipPath' not in p
     public = json.loads((SITE / 'data/costume-packs.json').read_text(encoding='utf-8'))
     assert public['packs'] == packs

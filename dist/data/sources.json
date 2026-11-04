@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-26",
+  "updated": "2026-11-04",
   "official": [
     {
       "id": "official-a8cf797fb3daf5eb",
@@ -30,6 +30,12 @@
           "source_asset": "https://project-navel.com/navpa2026/images/header/chara01.png",
           "source_css": "https://project-navel.com/navpa2026/css/style.css"
         }
+      ],
+      "displayName": "樱小路露娜 · 2026 蓝白演出服",
+      "downloadName": "樱小路露娜_2026 蓝白演出服.png",
+      "aliases": [
+        "navpa2026_chara01.png",
+        "露娜 · 2026 蓝白演出服"
       ]
     },
     {
@@ -61,6 +67,12 @@
           "source_asset": "https://project-navel.com/navpa2026/images/header/chara04.png",
           "source_css": "https://project-navel.com/navpa2026/css/style.css"
         }
+      ],
+      "displayName": "小仓朝日 · 2026 紫色演出服",
+      "downloadName": "小仓朝日_2026 紫色演出服.png",
+      "aliases": [
+        "navpa2026_chara04.png",
+        "小仓朝日 · 2026 紫色演出服"
       ]
     },
     {
@@ -92,6 +104,12 @@
           "source_asset": "https://project-navel.com/navpa2025/images/header/chara02.png",
           "source_css": "https://project-navel.com/navpa2025/css/style.css"
         }
+      ],
+      "displayName": "樱小路露娜 · 2025 粉白演出服",
+      "downloadName": "樱小路露娜_2025 粉白演出服.png",
+      "aliases": [
+        "navpa2025_chara02.png",
+        "露娜 · 2025 粉白演出服"
       ]
     },
     {
@@ -123,6 +141,12 @@
           "source_asset": "https://project-navel.com/navpa2024/images/common/bgill.png",
           "source_css": "https://project-navel.com/navpa2024/css/style.css"
         }
+      ],
+      "displayName": "樱小路露娜 · 2024 黑白演出服（组合图）",
+      "downloadName": "樱小路露娜_2024 黑白演出服（组合图）.png",
+      "aliases": [
+        "navpa2024_bgill.png",
+        "露娜 · 2024 黑白演出服（组合图）"
       ]
     },
     {
@@ -154,6 +178,12 @@
           "source_asset": "https://project-navel.com/navpa2023/images/common/bgill.png",
           "source_css": "https://project-navel.com/navpa2023/css/style.css"
         }
+      ],
+      "displayName": "大藏里想奈 · NavPA!!2023 紫黑舞台服｜组合全身",
+      "downloadName": "大藏里想奈_NavPA!!2023 紫黑舞台服｜组合全身.png",
+      "aliases": [
+        "navpa2023_bgill.png",
+        "NavPA!!2023 紫黑舞台服｜组合全身"
       ]
     },
     {
@@ -185,6 +215,12 @@
           "source_asset": "https://project-navel.com/navpa2023/images/common/bgill2.png",
           "source_css": "https://project-navel.com/navpa2023/css/style.css"
         }
+      ],
+      "displayName": "大藏里想奈 · NavPA!!2023 紫黑舞台服｜组合全身",
+      "downloadName": "大藏里想奈_NavPA!!2023 紫黑舞台服｜组合全身_版本02.png",
+      "aliases": [
+        "navpa2023_bgill2.png",
+        "NavPA!!2023 紫黑舞台服｜组合全身"
       ]
     },
     {
@@ -216,6 +252,12 @@
           "source_asset": "https://project-navel.com/navpa2022/images/common/bgill2.png",
           "source_css": "https://project-navel.com/navpa2022/css/style.css"
         }
+      ],
+      "displayName": "樱小路露娜 · 2022 黑色演出服（组合图）",
+      "downloadName": "樱小路露娜_2022 黑色演出服（组合图）.png",
+      "aliases": [
+        "navpa2022_bgill2.png",
+        "露娜 · 2022 黑色演出服（组合图）"
       ]
     }
   ],

@@ -34,7 +34,9 @@
     return encodeURI(value).replace(/#/g, '%23');
   };
   const titleCast = r => (r.characters || []).filter(c => c!=='作品素材').map(name).join(' / ');
-  const recordLabel = r => r.kind === 'game' ? name(r.character)+' · '+r.outfit : isTitleArt(r) ? workName(state.work && r.gameIds.includes(state.work) ? state.work : r.gameIds[0])+' · '+r.titleType+(titleCast(r)?' · '+titleCast(r):'') : r.label;
+  const recordLabel = r => r.displayName || r.label;
+  const scaleName = value => ({s:'远景',m:'中景',l:'近景'}[value] || value);
+  const differenceNumber = value => /^\d+$/.test(value) ? String(Number(value)+1).padStart(2,'0') : value;
   const node = (tag, text, cls) => { const el = document.createElement(tag); if (text != null) el.textContent = text; if (cls) el.className = cls; return el; };
   function loadImage(img, path, fallback) {
     const ticket = String(++imageTicket); img.dataset.request = ticket;
@@ -60,7 +62,7 @@
     r.gameIds ||= [...works.values()].filter(w => (r.sourceLabel || '').split(' / ').includes(w.legacyLabel)).map(w => w.id);
     const visibleWidth=r.kind==='game' ? r.webWidth || r.width : r.width, visibleHeight=r.kind==='game' ? r.webHeight || r.height : r.height;
     r.orientation ||= visibleHeight >= visibleWidth*1.5 ? 'long' : visibleHeight > visibleWidth ? 'portrait' : 'landscape';
-    r._search = [r.label, recordLabel(r), r.name, r.variant, data.variantLabels?.[r.variant], r.sourceLabel, r.costume, r.expression, ...(r.tags || []), ...r.gameIds.map(workName), ...(r.characters || [r.character]).flatMap(c => [c, name(c), ...(roles.get(c)?.aliases || [])])].filter(Boolean).join(' ').toLowerCase();
+    r._search = [r.label, recordLabel(r), r.name, r.downloadName, r.sceneName, ...(r.aliases || []), r.variant, data.variantLabels?.[r.variant], r.sourceLabel, r.costume, r.expression, ...(r.tags || []), ...r.gameIds.map(workName), ...(r.characters || [r.character]).flatMap(c => [c, name(c), ...(roles.get(c)?.aliases || [])])].filter(Boolean).join(' ').toLowerCase();
     const labels=[r.outfit,...(r.tags || [])].filter(Boolean), aliases=(r.characters || [r.character]).flatMap(c => [name(c),...(roles.get(c)?.aliases || [])]);
     r._search+=' '+aliases.flatMap(a => labels.map(t => a+t)).join(' ').toLowerCase();
     if(r.kind==='title')r._search+=' 日文标题 日文logo 原版标题 游戏标题 标题logo';
@@ -101,9 +103,9 @@
     preview.append(badge, img, node('span', '查看画面 ↗', 'image-hint')); preview.addEventListener('click', () => showImage(r));
     const detail = node('div', null, 'asset-detail');
     const title = node('h3', isTitleArt(r) ? r.titleType+(titleCast(r)?' · '+titleCast(r):'') : (r.characters || [r.character]).map(name).join(' / ')); title.title = title.textContent;
-    const subtitle = node('p', r.kind === 'game' ? r.outfit : isArtwork(r) ? isTitleArt(r) ? r.gameIds.map(workName).join(' / ') : '剧情CG · '+r.name : r.label, 'asset-subtitle'); subtitle.title = subtitle.textContent;
+    const subtitle = node('p', r.kind === 'game' ? r.outfit : isArtwork(r) ? isTitleArt(r) ? r.gameIds.map(workName).join(' / ') : r.sceneName : r.displayName, 'asset-subtitle'); subtitle.title = subtitle.textContent;
     const meta = node('div', null, 'asset-meta');
-    if (r.kind === 'game') { meta.append(node('span', `姿态 ${r.pose} · ${r.scale}`), node('span', `表情 ${r.expression}`)); }
+    if (r.kind === 'game') { meta.append(node('span', `${scaleName(r.scale)} · 姿态 ${differenceNumber(r.pose)}`), node('span', `表情 ${differenceNumber(r.expression)}`)); }
     else { meta.append(node('span', `${r.width} × ${r.height}`), node('span', isArtwork(r) ? r.orientation === 'long' ? '完整长图' : '完整画布' : r.alpha ? '透明背景' : '含背景')); }
     const actions = node('div', null, 'asset-actions'); const open = node('button', isArtwork(r) ? '查看原图 ↗' : '查看立绘 ↗'); open.type = 'button'; open.addEventListener('click', () => showImage(r));
     const pack = packIndex.get(packKey(r));
@@ -121,21 +123,21 @@
     $('dialog-title').textContent = recordLabel(r); loadImage($('dialog-image'), r.file, r.thumb); $('dialog-image').alt = recordLabel(r);
     const info = $('dialog-info'); info.replaceChildren(); info.append(node('p',typeNames[r.kind],'eyebrow'), node('h3', isTitleArt(r) ? r.titleType : (r.characters || [r.character]).map(name).join(' / ')), node('p', r.kind === 'game' ? r.outfit : recordLabel(r)));
     const dl = node('dl'); const item = (k, v, cls) => { dl.append(node('dt', k), node('dd', v, cls)); };
-    item('文件', r.name, 'filename'); item('原始尺寸', `${r.width} × ${r.height} px`);
-    if (r.kind === 'game') { item('服装', r.costume); item('姿态', `${r.pose} / ${r.scale}`); item('表情', r.expression); item('作品', r.sourceLabel); }
-    else { item('类型', typeNames[r.kind]); item('背景', r.alpha ? '透明' : '含背景'); item('来源', isArtwork(r) ? r.gameIds.map(workName).join(' / ') : r.sourceLabel); if (isArtwork(r)) item('场景',r.scene); }
+    item('文件名', r.downloadName, 'filename'); item('原始代码', r.name, 'filename'); item('原始尺寸', `${r.width} × ${r.height} px`);
+    if (r.kind === 'game') { item('服装', r.outfit); item('姿态', `${differenceNumber(r.pose)} / ${scaleName(r.scale)}`); item('表情', differenceNumber(r.expression)); item('作品', r.gameIds.map(workName).join(' / ')); }
+    else { item('类型', typeNames[r.kind]); item('背景', r.alpha ? '透明' : '含背景'); item('来源', isArtwork(r) ? r.gameIds.map(workName).join(' / ') : r.sourceLabel); if (isArtwork(r)) item('场景',r.sceneName); }
     info.append(dl);
     const actions = node('div', null, 'dialog-links');
     if (r.kind === 'game') {
       const pack = packIndex.get(packKey(r));
       info.append(node('p', `网页显示透明 WebP 预览。此包包含「${data.variantLabels?.[r.variant] || name(r.character)} · ${pack.label}」的 ${pack.count} 张原尺寸 PNG，保留姿态与表情差分。`));
-      actions.append(link(`下载该服装 PNG 包 ↓ · ${(pack.size / 1_000_000).toFixed(1)} MB`, pack.url), link('保存 WebP 预览 ↓', r.file, r.name + '.webp'));
+      actions.append(link(`下载该服装 PNG 包 ↓ · ${(pack.size / 1_000_000).toFixed(1)} MB`, pack.url), link('保存 WebP 预览 ↓', r.file, r.downloadName.replace(/\.png$/i,'.webp')));
     } else if (isArtwork(r)) {
       info.append(node('p',r.kind === 'cg' ? '保留完整原始画布，长图和差分均未裁切。场景包包含此场景的已收录差分。' : '保留日文原版标题资源的完整画布。标题包同时提供原始背景、Logo与组成图层。'));
       actions.append(artworkButton(`下载完整 PNG ↓ · ${(r.originalBytes/1_000_000).toFixed(1)} MB`,() => window.ArtworkDownloads.png(r)),artworkButton(isTitleArt(r) ? '下载标题与Logo图层包 ↓' : '下载同场景 CG 包 ↓',() => saveScene(r)),link('打开完整原尺寸图片 ↗',window.ArtworkDownloads.urlFor(r.original)));
     } else {
       if (r.notes) info.append(node('p', r.notes));
-      actions.append(link('保存原图 ↓', r.file, r.name), link('官方来源页面 ↗', r.sourcePage));
+      actions.append(link('保存原图 ↓', r.file, r.downloadName), link('官方来源页面 ↗', r.sourcePage));
       if (r.sourceAsset) actions.append(link('官网图片地址 ↗', r.sourceAsset));
     }
     const share = node('button', '复制这张图片的链接 ↗', 'text-button'); share.type = 'button'; share.addEventListener('click', () => copyLink(r.id));
@@ -245,7 +247,7 @@
     else if (loaded.game && state.costume && !outfits.has(state.costume)) state.costume = '';
     const scales = new Set(standing.filter(r=>hasCostume(r)).map(r=>r.scale));
     $('scale').replaceChildren(new Option('全部镜头',''));
-    for(const [value,label] of [['s','远景'],['m','中景'],['l','近景']]) if(!loaded.game || scales.has(value)) $('scale').add(new Option(label,value));
+    for(const [value,label] of [['s','远景'],['m','中景'],['l','近景'],['特殊','特殊镜头']]) if(!loaded.game || scales.has(value)) $('scale').add(new Option(label,value));
     if(loaded.game && state.scale && !scales.has(state.scale))state.scale='';
   }
   function syncInputs() { roleOptions();costumeOptions();for (const id of ['search', 'character', 'source', 'costume', 'scale', 'kind','work','frame']) $(id).value = state[id === 'search' ? 'query' : id]; }
@@ -298,7 +300,7 @@
       records: artworkRecords.filter(r => r.kind === 'cg'), kind: '剧情 CG', heading: '画面',
       description: '翻阅角色与故事中的瞬间，找到喜欢的一张。', href: '#archive', loadImage,
       label: r => (r.characters || [r.character]).map(name).join(' / '),
-      code: r => r.name, meta: r => `${workName(r.gameIds[0])} · 剧情 CG · ${r.name}`,
+      code: r => r.sceneName, meta: r => `${workName(r.gameIds[0])} · ${r.sceneName}`,
     });
   }
   data.characters.filter(c => !c.resourceGroup).forEach(c => $('character').add(new Option(c.display, c.id)));
@@ -306,7 +308,7 @@
   [...works.values()].forEach(w => $('work').add(new Option(w.label,w.id)));
   if (!works.has(state.work)) state.work='';
   if (!roles.has(state.character)) state.character = '';
-  [['source', ['', 'game', 'official']], ['scale', ['', 's', 'm', 'l']], ['kind', ['', ...Object.keys(typeNames)]],['frame',['','landscape','portrait','long']]].forEach(([k, values]) => { if (!values.includes(state[k])) state[k] = ''; });
+  [['source', ['', 'game', 'official']], ['scale', ['', 's', 'm', 'l', '特殊']], ['kind', ['', ...Object.keys(typeNames)]],['frame',['','landscape','portrait','long']]].forEach(([k, values]) => { if (!values.includes(state[k])) state[k] = ''; });
   if (['cg','title','title_character'].includes(state.kind)) { state.costume=''; state.scale=''; }
   if (state.kind === 'title') state.character='';
   $('updated').textContent = data.updated.replaceAll('-', '.'); $('updated').dateTime = data.updated;

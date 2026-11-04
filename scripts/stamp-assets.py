@@ -9,7 +9,7 @@ stage = ROOT / 'archive-stage.js'
 scene_digest = hashlib.sha256((ROOT / 'archive-scene.js').read_bytes()).hexdigest()[:12]
 stage_text, count = re.subn(r'archive-scene\.js(?:\?v=[a-f0-9]+)?', 'archive-scene.js?v=' + scene_digest, stage.read_text(encoding='utf-8'))
 assert count == 1, (stage, count)
-stage.write_text(stage_text, encoding='utf-8')
+stage.write_text(stage_text, encoding='utf-8', newline='\n')
 
 for folder, assets in [(ROOT, ['styles.css', 'gallery-nav.css', 'experience.css', 'archive-stage.css', 'mobile.css', 'catalog-data.js', 'backgrounds/zip-store.js','artwork-downloads.js','experience.js','archive-stage.js','app.js','mobile-ui.js']), (ROOT / 'backgrounds', ['styles.css','../gallery-nav.css','../experience.css','../archive-stage.css','../mobile.css', 'catalog.js', 'title-data.js', 'zip-store.js','../experience.js','../archive-stage.js', 'app.js','../mobile-ui.js'])]:
     path = folder / 'index.html'
@@ -18,5 +18,5 @@ for folder, assets in [(ROOT, ['styles.css', 'gallery-nav.css', 'experience.css'
         digest = hashlib.sha256((folder / asset).read_bytes()).hexdigest()[:12]
         text, count = re.subn(r'((?:src|href)=")' + re.escape(asset) + r'(?:\?v=[a-f0-9]+)?"', lambda m: m[1] + asset + '?v=' + digest + '"', text)
         assert count == 1, (path, asset, count)
-    path.write_text(text, encoding='utf-8')
+    path.write_text(text, encoding='utf-8', newline='\n')
 print('Stamped both entry pages.')

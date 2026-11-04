@@ -24,6 +24,7 @@ jobs:
           python3 scripts/check-site.py
           python3 scripts/check-backgrounds.py
           python3 scripts/check-artwork.py
+          python3 scripts/check-naming.py
           node --check dist/app.js
           node --check dist/experience.js
           node --check dist/archive-stage.js

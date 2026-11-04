@@ -102,7 +102,7 @@ def main():
             assert r[key]==source[key]
         for p in r['placements']:
             safe(p['file']);assert p['game'] in works and p['category']==titles['kinds']['title']
-            expected[(p['game'],r['id'],p['file'].split('/')[-1])]+=1
+            expected[(p['game'],r['id'],p.get('downloadName',p['file'].split('/')[-1]))]+=1
     covered=collections.Counter()
     for pack in titles['packs']:
         safe(pack['filename']);assert pack['game'] in works

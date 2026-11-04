@@ -11,23 +11,24 @@
     data.labels.scenes['title-background']='标题背景';
   }
   const params = new URLSearchParams(location.search);
-  const state = { query: params.get('q') || '', game: params.get('game') || '', kind: params.has('kind') ? params.get('kind') : 'background', tab: params.get('tab') === 'packs' ? 'packs' : 'images', scene: params.get('scene') || '', favoritesOnly: false, view: 'compact', limit: 48 };
+  const state = { query: params.get('q') || '', game: params.get('game') || '', kind: params.has('kind') ? params.get('kind') : 'background', location: params.get('place') || '', tab: params.get('tab') === 'packs' ? 'packs' : 'images', scene: params.get('scene') || '', favoritesOnly: false, view: 'compact', limit: 48 };
   const favorites = window.GalleryFavorites;
   const images = new Map(data.images.map(r => [r.id, r]));
   const short = text => text === data.kinds.transition ? '过场图层' : data.labels?.games?.[text] || data.labels?.scenes?.[text] || text.replace(/^\d+_/, '').replaceAll('_', ' ');
   const node = (tag, text, cls) => { const el = document.createElement(tag); if (text != null) el.textContent = text; if (cls) el.className = cls; return el; };
   const button = (text, action, cls) => { const el = node('button', text, cls); el.type = 'button'; el.addEventListener('click', action); return el; };
   const size = bytes => bytes < 1_000_000 ? `${Math.ceil(bytes / 1000)} KB` : `${(bytes / 1_000_000).toFixed(1)} MB`;
-  const fileName = p => p.file.split('/').pop();
-  const displayName = p => p.category === data.kinds.title ? '标题背景 · '+fileName(p).replace(/__[a-f0-9]{8}\.png$/i, '') : data.labels?.scenes?.[p.scene] && data.labels.scenes[p.scene] !== p.scene ? data.labels.scenes[p.scene] : fileName(p).replace(/__[a-f0-9]{8}\.png$/i, '');
+  const fileName = p => p.downloadName || p.file.split('/').pop();
+  const displayName = p => p.displayName || data.labels?.scenes?.[p.scene] || p.scene;
   let filtered = [], busy = false, toastTimer, statusTimer, requestId = 0;
   let previewSequence = [], displayedAsset = '', featuredRecords = [], heroRecord = null;
   if (!data.games.includes(state.game)) state.game = '';
   if (!['', 'background', ...Object.keys(data.kinds)].includes(state.kind)) state.kind = 'background';
+  if (!Object.hasOwn(data.locations, state.location)) state.location = '';
   function categoryMatches(category) {
     return !state.kind || (state.kind === 'background' ? [data.kinds.scene, data.kinds.large,data.kinds.title].includes(category) : category === data.kinds[state.kind]);
   }
-  function placements(r) { return r.placements.filter(p => (!state.game || p.game === state.game) && categoryMatches(p.category) && (!state.scene || p.scene === state.scene)); }
+  function placements(r) { return r.placements.filter(p => (!state.game || p.game === state.game) && categoryMatches(p.category) && (!state.location || p.location === state.location) && (!state.scene || p.scene === state.scene)); }
   function imagePath(path) {
     if (!path.startsWith('cg-assets/'))return path;
     if (path.startsWith('cg-assets/thumbs/')) return new URL('../' + path, location.href).href;
@@ -47,11 +48,17 @@
   }
   function updateUrl(asset) {
     const p = new URLSearchParams();
-    for (const [key, value] of [['q', state.query.trim()], ['game', state.game], ['tab', state.tab === 'packs' ? 'packs' : ''], ['scene', state.scene], ['asset', asset || '']]) if (value) p.set(key, value);
+    for (const [key, value] of [['q', state.query.trim()], ['game', state.game], ['place', state.location], ['tab', state.tab === 'packs' ? 'packs' : ''], ['scene', state.scene], ['asset', asset || '']]) if (value) p.set(key, value);
     if (state.kind !== 'background') p.set('kind', state.kind);
     history.replaceState(null, '', location.pathname + (p.size ? '?' + p.toString() : '') + location.hash);
   }
-  function syncInputs() { $('search').value = state.query; $('game').value = state.game; $('kind').value = state.kind; }
+  function syncInputs() {
+    const available = new Set(data.images.flatMap(r => r.placements.filter(p => (!state.game || p.game === state.game) && categoryMatches(p.category)).map(p => p.location)));
+    if (state.location && !available.has(state.location)) state.location = '';
+    $('location').replaceChildren(new Option('全部地点',''));
+    for (const [value,label] of Object.entries(data.locations)) if (available.has(value)) $('location').add(new Option(label,value));
+    $('search').value = state.query; $('game').value = state.game; $('kind').value = state.kind; $('location').value = state.location;
+  }
   function toast(text) { clearTimeout(toastTimer); $('toast').textContent = text; $('toast').hidden = false; toastTimer = setTimeout(() => { $('toast').hidden = true; }, 3500); }
   async function share(asset) {
     updateUrl(asset);
@@ -65,12 +72,12 @@
       const places = placements(r);
       if (!places.length) return false;
       if (!words.length) return true;
-      const text = [r.name, ...r.aliases, ...places.flatMap(p => [p.game, short(p.game), p.category, p.scene, short(p.scene), p.file])].join(' ').toLowerCase();
+      const text = [r.name, r.displayName, r.sceneName, r.downloadName, ...r.aliases, ...places.flatMap(p => [p.game, short(p.game), p.category, p.scene, short(p.scene), p.displayName, data.locations[p.location], p.downloadName, p.file])].join(' ').toLowerCase();
       return words.every(w => text.includes(w));
     }) : data.packs.filter(p => {
-      if ((state.game && p.game !== state.game) || !categoryMatches(p.category) || (state.scene && p.scene !== state.scene)) return false;
+      if ((state.game && p.game !== state.game) || !categoryMatches(p.category) || (state.location && p.location !== state.location) || (state.scene && p.scene !== state.scene)) return false;
       if (!words.length) return true;
-      const text = [p.game, short(p.game), p.category, p.scene, short(p.scene), p.title, ...p.files.map(f => f.name)].join(' ').toLowerCase();
+      const text = [p.game, short(p.game), p.category, p.scene, short(p.scene), p.title, data.locations[p.location], ...(p.aliases || []), ...p.files.flatMap(f => [f.name,f.originalName])].join(' ').toLowerCase();
       return words.every(w => text.includes(w));
     });
     render(); updateUrl();
@@ -103,7 +110,7 @@
     $('result').textContent = `${state.scene ? '场景 ' + short(state.scene) + ' · ' : ''}找到 ${filtered.length} ${packs ? '个场景包' : '张图片'} · 已显示 ${Math.min(state.limit, filtered.length)}`;
     $('empty').hidden = filtered.length > 0; $('more').hidden = filtered.length <= state.limit;
     $('empty').querySelector('h3').textContent = state.favoritesOnly && !packs ? '暂时没有符合条件的收藏' : '暂时没有匹配的结果';
-    $('empty').querySelector('p').textContent = state.favoritesOnly && !packs ? '点击图片右上角的 ♡ 收藏，或放宽筛选条件。' : '试试场景代码，或放宽作品、分类条件。';
+    $('empty').querySelector('p').textContent = state.favoritesOnly && !packs ? '点击图片右上角的 ♡ 收藏，或放宽筛选条件。' : '试试地点名称，或放宽筛选条件。';
     document.querySelectorAll('[data-category]').forEach(el=>{const active=el.dataset.category===state.kind;el.classList.toggle('active',active);el.setAttribute('aria-pressed',String(active));});
     const root = $(packs ? 'packs' : 'gallery'), fragment = document.createDocumentFragment();
     filtered.slice(0, state.limit).forEach(r => fragment.append(packs ? renderPack(r) : renderCard(r))); root.replaceChildren(fragment); updateFavorites();
@@ -123,7 +130,7 @@
     $('favorites-toggle').setAttribute('aria-pressed', String(state.favoritesOnly)); favorites.refresh();
   }
   function switchTab(tab) { state.tab = tab; state.limit = 48; applyFilters(); }
-  function reset() { Object.assign(state, { query: '', game: '', kind: 'background', scene: '', favoritesOnly: false, limit: 48 }); syncInputs(); applyFilters(); }
+  function reset() { Object.assign(state, { query: '', game: '', kind: 'background', location: '', scene: '', favoritesOnly: false, limit: 48 }); syncInputs(); applyFilters(); }
   function showImage(r, sequence = null) {
     previewSequence = sequence || (state.tab === 'images' && filtered.some(item => item.id === r.id) ? filtered : [r]);
     displayedAsset = r.id;
@@ -132,10 +139,10 @@
     $('dialog-counter').textContent = position >= 0 ? `${position + 1} / ${previewSequence.length}` : '';
     const place = placements(r)[0] || r.placements[0];
     $('dialog-title').textContent = displayName(place); $('dialog-image').alt = displayName(place); loadImage($('dialog-image'), r.file, r.thumb);
-    const info = $('dialog-info'); info.replaceChildren(node('p', `${short(place.game)} · ${short(place.category)} · ${short(place.scene)}`), node('p', `原图 ${r.width} × ${r.height} px · PNG ${size(r.originalBytes)}${r.alpha ? ' · 保留透明图层' : ''}`));
+    const info = $('dialog-info'); info.replaceChildren(node('p', `${short(place.game)} · ${short(place.category)} · ${short(place.scene)}`), node('p', fileName(place)), node('p', `原始代码 ${r.name} · ${r.width} × ${r.height} px · PNG ${size(r.originalBytes)}${r.alpha ? ' · 保留透明图层' : ''}`));
     const actions = node('div', null, 'dialog-buttons');
     actions.append(downloadButton('下载 PNG 原图 ↓', () => downloadImage(r, place)), button('同场景分包 →', () => {
-      state.query = ''; state.game = place.game; state.kind = Object.keys(data.kinds).find(k => data.kinds[k] === place.category) || ''; state.scene = place.scene; state.limit = 48;
+      state.query = ''; state.game = place.game; state.kind = Object.keys(data.kinds).find(k => data.kinds[k] === place.category) || ''; state.location = place.location; state.scene = place.scene; state.limit = 48;
       $('image-dialog').close(); syncInputs(); switchTab('packs'); $('collection').scrollIntoView({ block: 'start' });
     }), button('复制图片链接 ↗', () => share(r.id)), favorites.make(r.id, displayName(place), true));
     const progress=node('p',null,'inline-download-status');progress.hidden=true;progress.setAttribute('role','status');info.append(actions,progress); updateUrl(r.id); if (!$('image-dialog').open) $('image-dialog').showModal();
@@ -226,7 +233,7 @@
     window.GalleryArchive?.mount({
       records: scenePool, kind: '场景背景', heading: '风景',
       description: '从熟悉的街道到安静的房间，翻开故事里的风景。', href: '#collection', loadImage,
-      label: r => displayName(scenePlace(r)), code: r => r.name,
+      label: r => displayName(scenePlace(r)), code: r => short(scenePlace(r).game),
       meta: r => `${short(scenePlace(r).game)} · ${r.width} × ${r.height}`,
     });
   }
@@ -235,7 +242,7 @@
   $('image-total').textContent=data.images.length;$('tab-image-total').textContent=data.images.length;$('scenic-total').textContent=data.images.filter(r=>r.kinds.some(k=>['scene','large','title'].includes(k))).length;$('title-background-total').textContent=titles?.images.length || 0;
   document.querySelector('form').addEventListener('submit', e => e.preventDefault());
   $('search').addEventListener('input', e => { state.query = e.target.value; state.scene = ''; state.limit = 48; applyFilters(); });
-  for (const id of ['game', 'kind']) $(id).addEventListener('change', e => { state[id] = e.target.value; state.scene = ''; state.limit = 48; applyFilters(); });
+  for (const id of ['game', 'kind', 'location']) $(id).addEventListener('change', e => { state[id] = e.target.value; state.scene = ''; state.limit = 48; syncInputs(); applyFilters(); });
   document.querySelectorAll('[data-category]').forEach(el=>el.addEventListener('click',()=>{state.kind=el.dataset.category;state.scene='';state.limit=48;syncInputs();applyFilters();}));
   $('reset').addEventListener('click', reset); $('empty-reset').addEventListener('click', reset);
   $('more').addEventListener('click', appendMore); $('share').addEventListener('click', () => share());

@@ -22,7 +22,7 @@ def main():
     for r in games:
         outfits[key(r)].add(r['outfit'])
     fields = ('character', 'variant', 'costume', 'label', 'asset', 'count', 'size', 'sha256', 'url', 'display')
-    packs = [{k: p[k] for k in fields} for p in source['packs']]
+    packs = [{**{k: p[k] for k in fields}, **{k: p[k] for k in ('variantLabel', 'downloadName', 'release') if k in p}} for p in source['packs']]
     assert len(packs) == 195 and sum(p['count'] for p in packs) == len(games)
     assert {key(p) for p in packs} == set(outfits)
     counts = collections.Counter(key(r) for r in games)
@@ -31,11 +31,11 @@ def main():
         names = outfits[key(p)]
         if len(names) == 1:
             p['label'] = next(iter(names))
-    catalog['updated'] = '2026-10-27'
+    catalog['updated'] = source.get('updated', catalog['updated'])
     catalog['costumePacks'] = packs
-    (SITE / 'catalog-data.js').write_text('window.CATALOG_DATA=' + json.dumps(catalog, ensure_ascii=False, separators=(',', ':')) + ';\n', encoding='utf-8')
+    (SITE / 'catalog-data.js').write_text('window.CATALOG_DATA=' + json.dumps(catalog, ensure_ascii=False, separators=(',', ':')) + ';\n', encoding='utf-8', newline='\n')
     manifest = {'updated': catalog['updated'], 'count': len(packs), 'images': len(games), 'packs': packs}
-    (SITE / 'data/costume-packs.json').write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+    (SITE / 'data/costume-packs.json').write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + '\n', encoding='utf-8', newline='\n')
     print(json.dumps({'packs': len(packs), 'images': len(games), 'groupsVerified': True}))
 
 if __name__ == '__main__':
