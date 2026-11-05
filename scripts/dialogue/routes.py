@@ -419,6 +419,16 @@ def _walk(programs, start_program, start_index, scripts, choices_by_point, initi
                 if _conditions_consistent(effective):
                     results.append({'target': target_path, 'targetLabel': target_label, 'conditions': list(dict.fromkeys(effective)), 'viaChoices': [{'choice': key, 'option': value} for key, value in via], 'certainty': 'possible-static-path'})
                 continue
+            # Movie wrappers return through FilejumpName to <file>_end in the
+            # current route controller, just like narrative scene wrappers.
+            # Follow that explicit label instead of ending the story at the OP.
+            if target_path in scripts and re.fullmatch(r'(?:op_movie|(?:after)?ed_movie)', PurePosixPath(target_path).stem, re.I):
+                return_label = '@@' + PurePosixPath(target_path).stem.casefold() + '_end'
+                controller_path = env.get('_routefile', scripts[origin]['controller'])
+                controller = programs.get(controller_path)
+                if controller and return_label in controller.labels:
+                    push(controller.labels[return_label], p=controller_path)
+                    continue
             if target_label.casefold() == '@@orouteselect' and env.get('resultstr[0]'):
                 target_path = env.get('_routefile', scripts[origin]['controller']); target_program = programs.get(target_path)
                 for n, route in enumerate(('りそな', 'エッテ', '大蔵バッド', 'リンデバッド')):

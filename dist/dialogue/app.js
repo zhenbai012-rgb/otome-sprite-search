@@ -3,7 +3,7 @@
   const $ = id => document.getElementById(id), params = new URLSearchParams(location.search);
   const node = (tag,text,className) => { const element=document.createElement(tag);if(text!=null)element.textContent=text;if(className)element.className=className;return element; };
   const state = {query:params.get('q')||'',work:params.get('work')||'',route:params.get('route')||'',speaker:params.get('speaker')||'',language:params.get('lang')||'preferred',kind:params.get('kind')||'',mode:params.get('mode')==='exact'?'exact':'similar',breadth:params.get('breadth')==='wide'?'wide':'normal'};
-  let manifest, worker, ready=false, request=0, displayed=[], total=0, currentScene=null, currentResult=null, currentOrdinal=0, contextRadius=5, detailRequest=0, assetCache=null, toastTimer, attempted=false;
+  let manifest, worker, ready=false, request=0, displayed=[], total=0, currentScene=null, currentResult=null, currentOrdinal=0, detailRequest=0, assetCache=null, toastTimer, attempted=false, readingCache=null, readingPromise=null, matchedResult=null;
   const sceneCache=new Map(), workMap=new Map(), routeMap=new Map();
   const types=['台词','旁白','选项'];
   const languageName = language => language==='zh'?'中文':'日文';
@@ -118,35 +118,54 @@
       card.append(list);if(choice.conditions?.length)card.append(node('p',choice.conditions.join('；'),'choice-condition'));if(choice.note)card.append(node('p',choice.note,'choice-condition'));root.append(card);
     }
   }
-  function renderContext() {
-    const rows=currentScene.rows,index=rows.findIndex(row=>row[0]===currentOrdinal),root=$('context');root.replaceChildren();
-    if(index<0)return;
-    const start=Math.max(0,index-contextRadius),end=Math.min(rows.length,index+contextRadius+1);
-    for(const row of rows.slice(start,end)){
-      const p=row[3]===2?{name:'选项'}:person(currentScene,row[2]),item=node('li',null,(row[0]===currentOrdinal?'current ':'')+(row[3]===1?'narration':''));
-      const button=node('button');button.type='button';button.setAttribute('aria-label',`定位到第 ${row[0]+1} 段`);button.append(node('span',String(row[0]+1).padStart(2,'0'),'ordinal'),node('span',p.name||'旁白','speaker'));
-      const quote=node('p');quote.append(highlight(row[1]));button.append(quote);button.addEventListener('click',()=>selectLine(row[0]));item.append(button);root.append(item);
-    }
-    $('line-position').textContent=`${index+1} / ${rows.length}`;$('line-prev').disabled=index<=0;$('line-next').disabled=index>=rows.length-1;
-    $('context-more').hidden=start===0&&end===rows.length;
+  function readerRow(scene,row,result){
+    const p=row[3]===2?{name:'选项'}:person(scene,row[2]),item=node('li',null,row[3]===1?'narration':'');
+    const button=node('button');button.type='button';button.setAttribute('aria-label',`定位到第 ${row[0]+1} 段`);button.append(node('span',String(row[0]+1).padStart(2,'0'),'ordinal'),node('span',p.name||'旁白','speaker'));
+    const quote=node('p');quote.append(highlight(row[1]));button.append(quote);button.addEventListener('click',()=>reader.locate(scene,result,row[0]));item.append(button);return item;
+  }
+  function selectLine(scene,result,ordinal){
+    currentScene=scene;currentResult=result;currentOrdinal=ordinal;
+    const rows=scene.rows,index=rows.findIndex(row=>row[0]===ordinal);if(index<0)return;
+    $('scene-heading').textContent=scene.title;
+    $('scene-tags').replaceChildren(...routeLabels(scene.routes).map(label=>node('span',label)),...(scene.period?[node('span',scene.period)]:[]),node('span',languageName(result.language)));
+    $('line-position').textContent=`${index+1} / ${rows.length}`;
+    $('line-prev').disabled=false;$('line-next').disabled=false;
     const current=rows[index];renderVisual(current);renderChoices(current);
     const info=$('source-info');info.replaceChildren();
     for(const [key,value] of [['作品',workMap.get(currentResult.work).label],['路线',routeLabels(currentScene.routes).join(' / ')||'待核对'],['场景',currentScene.title],['脚本',current[8]||currentScene.script],['行号',String(current[4])],['文本',languageName(currentResult.language)],['语音编号',current[7]||'无']])info.append(node('dt',key),node('dd',value));
     updateUrl();
   }
-  function selectLine(ordinal){currentOrdinal=ordinal;renderContext();}
-  async function openScene(result) {
-    currentResult=result;currentOrdinal=result.ordinal;contextRadius=matchMedia('(max-width:700px)').matches?2:5;const ticket=++detailRequest;
+  async function loadScene(result){
+    const key=result.dataset+'/'+result.scene,spec=manifest.sceneFiles[key];
+    if(!spec)throw new Error('这处场景不在当前索引中');
+    if(!sceneCache.has(key))sceneCache.set(key,DialogueData.load(spec).catch(error=>{sceneCache.delete(key);throw error;}));
+    return sceneCache.get(key);
+  }
+  async function loadReading(){
+    if(readingCache)return readingCache;
+    if(!readingPromise)readingPromise=fetch('reading.json?v=31957393e315').then(response=>{if(!response.ok)throw new Error('前后场景未能载入，请重试');return response.json();}).then(data=>readingCache=data).catch(error=>{readingPromise=null;throw error;});
+    return readingPromise;
+  }
+  async function connectReading(){
+    const ticket=detailRequest,dataset=currentResult?.dataset;if(!dataset)return;
+    try{const data=await loadReading();if(ticket===detailRequest&&$('scene-dialog').open){reader.navigation=data.datasets[dataset];reader.boundaries();}}
+    catch(error){if(ticket===detailRequest)toast(error.message);}
+  }
+  const reader=new ContinuousReader({flow:$('text-flow'),context:$('context'),before:$('reading-before'),after:$('reading-after'),makeRow:readerRow,onSelect:selectLine,loadScene,onError:error=>toast(error.message||'文本未能载入，请重试'),retryNavigation:connectReading});
+  async function openScene(result,returning=false) {
+    currentResult={...result};currentOrdinal=result.ordinal;if(!returning)matchedResult={...result};const ticket=++detailRequest;
+    reader.close();reader.navigation=readingCache?.datasets[result.dataset]||null;
+    reader.route=state.route||((result.routes||[]).length===1&&!result.routes[0].endsWith('-common')?result.routes[0]:'');
     $('scene-content').hidden=true;$('detail-loading').hidden=false;$('detail-loading').textContent='正在读取场景';$('scene-heading').textContent=result.title||'场景';$('detail-work').textContent=workMap.get(result.work).label;
     if(!$('scene-dialog').open)$('scene-dialog').showModal();$('scene-dialog').scrollTop=0;updateUrl();
     try {
-      const key=result.dataset+'/'+result.scene, spec=result.detail||manifest.sceneFiles[key];
-      if(!spec)throw new Error('这处场景不在当前索引中');
-      if(!sceneCache.has(key))sceneCache.set(key,DialogueData.load(spec));
-      const [scene,assets]=await Promise.all([sceneCache.get(key),assetCache?Promise.resolve(assetCache):DialogueData.load(manifest.assets)]);
+      const [scene,assets]=await Promise.all([loadScene(result),assetCache?Promise.resolve(assetCache):DialogueData.load(manifest.assets)]);
       if(ticket!==detailRequest||!$('scene-dialog').open)return;
-      currentScene=scene;assetCache=assets;$('scene-heading').textContent=scene.title;$('scene-tags').replaceChildren(...routeLabels(scene.routes).map(label=>node('span',label)),...(scene.period?[node('span',scene.period)]:[]),node('span',languageName(result.language)));
-      $('detail-loading').hidden=true;$('scene-content').hidden=false;renderContext();
+      assetCache=assets;
+      if(!reader.route&&scene.routes.length===1&&!scene.routes[0].endsWith('-common'))reader.route=scene.routes[0];
+      currentResult.ordinal=scene.rows.some(row=>row[0]===result.ordinal)?result.ordinal:scene.rows[0][0];
+      const mobile=matchMedia('(max-width:700px)').matches;$('scene-content').classList.toggle('visual-hidden',mobile);$('show-visual').setAttribute('aria-expanded',String(!mobile));
+      $('detail-loading').hidden=true;$('scene-content').hidden=false;reader.reset(scene,currentResult);connectReading();
     }catch(error){sceneCache.delete(result.dataset+'/'+result.scene);$('detail-loading').textContent=error.message||'场景未能载入，请重试';}
   }
   $('filters').addEventListener('submit',event=>{event.preventDefault();search();});
@@ -156,11 +175,13 @@
   $('retry').addEventListener('click',search);
   $('more').addEventListener('click',()=>{$('more').disabled=true;worker.postMessage({type:'page',id:request,offset:displayed.length});});
   $('close').addEventListener('click',()=>$('scene-dialog').close());
-  $('scene-dialog').addEventListener('close',()=>{detailRequest++;currentResult=null;currentScene=null;updateUrl();});
+  $('scene-dialog').addEventListener('close',()=>{detailRequest++;reader.close();currentResult=null;currentScene=null;matchedResult=null;updateUrl();});
   $('scene-dialog').addEventListener('click',event=>{if(event.target===$('scene-dialog')){const rect=event.target.getBoundingClientRect();if(event.clientX<rect.left||event.clientX>rect.right||event.clientY<rect.top||event.clientY>rect.bottom)event.target.close();}});
-  $('line-prev').addEventListener('click',()=>{if(currentScene){const i=currentScene.rows.findIndex(row=>row[0]===currentOrdinal);if(i>0)selectLine(currentScene.rows[i-1][0]);}});
-  $('line-next').addEventListener('click',()=>{if(currentScene){const i=currentScene.rows.findIndex(row=>row[0]===currentOrdinal);if(i+1<currentScene.rows.length)selectLine(currentScene.rows[i+1][0]);}});
-  $('context-more').addEventListener('click',()=>{contextRadius+=10;renderContext();});
+  $('line-prev').addEventListener('click',()=>{if(currentScene)reader.step(currentScene,currentResult,currentOrdinal,-1);});
+  $('line-next').addEventListener('click',()=>{if(currentScene)reader.step(currentScene,currentResult,currentOrdinal,1);});
+  $('reading-start').addEventListener('click',()=>{if(currentScene)reader.locate(currentScene,currentResult,currentScene.rows[0][0],true);});
+  $('reading-match').addEventListener('click',()=>{if(!matchedResult)return;const block=reader.blocks.find(b=>b.scene.id===matchedResult.scene);if(block)reader.locate(block.scene,matchedResult,matchedResult.ordinal,true);else openScene(matchedResult,true);});
+  $('show-visual').addEventListener('click',()=>{const hidden=$('scene-content').classList.toggle('visual-hidden');$('show-visual').setAttribute('aria-expanded',String(!hidden));});
   $('share').addEventListener('click',async()=>{updateUrl();try{await navigator.clipboard.writeText(location.href);toast('链接已复制');}catch{toast('可复制浏览器地址栏中的链接');}});
   async function init(){
     $('submit').disabled=true;

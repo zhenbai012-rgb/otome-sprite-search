@@ -275,7 +275,8 @@ def main():
     cn_rows={(r['game'],normalize_script(r['entry'])):r for r in cn if r['entry'].lower().endswith('.s')}
     print('Parsing route controllers and translated choices',flush=True)
     native_cache=private/'route-research.json'
-    routes=json.loads(native_cache.read_text('utf8')) if native_cache.exists() else build_routes(list(native_rows.values()))
+    routes=build_routes(list(native_rows.values()))
+    dump(native_cache,routes)
     combined={**native_rows,**cn_rows}
     cn_key=sha(json.dumps([(g,p,sha(r['text'].encode())) for (g,p),r in sorted(combined.items())],ensure_ascii=False).encode()+ (Path(__file__).parent/'routes.py').read_bytes())
     cn_cache=private/'chinese-route-research.json';cn_key_file=private/'chinese-route-key.txt'
@@ -385,6 +386,8 @@ def main():
     asset_spec=artifact(assets,'dialogue-data','assets');manifest['assets']=asset_spec
     manifest['speakers']=sorted(({'id':r['id'],'name':r['name']} for r in speakers.people.values() if not r['id'].startswith('npc-')),key=lambda r:r['name'])
     dump(SITE/'dialogue/catalog.json',manifest);dump(ROOT/'dialogue-data/report.json',report)
+    from reading import write as write_reading
+    write_reading(manifest, routes)
     # Remove only obsolete, content-addressed outputs owned by this compiler.
     keep={s['repositoryPath'] for s in manifest['sceneFiles'].values()}|{d['repositoryPath'] for d in manifest['datasets']}|{asset_spec['repositoryPath']}
     for folder in [ROOT/'dialogue-data',SITE/'dialogue/data']:

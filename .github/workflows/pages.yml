@@ -30,6 +30,8 @@ jobs:
           python3 scripts/test-dialogue-compiler.py
           node scripts/test-dialogue-search.cjs
           node scripts/test-dialogue-worker.cjs
+          node scripts/test-dialogue-reading.cjs
+          node --check dist/dialogue/continuous-reader.js
           node --check dist/dialogue/app.js
           node --check dist/dialogue/search-worker.js
           node --check dist/dialogue/data-loader.js
