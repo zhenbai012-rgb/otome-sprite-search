@@ -1,6 +1,6 @@
 /* Keep corpus parsing and approximate matching off the page's rendering thread. */
 'use strict';
-importScripts('search-core.js?v=03097c70badd', 'data-loader.js?v=79b7f7e38d9f');
+importScripts('search-core.js?v=03097c70badd', 'data-loader.js?v=c467248d9563');
 let manifest, normalize, literalNormalize, serial = 0, matches = [], activeSearch = 0;
 const datasets = new Map(), pending = new Map();
 const send = (type, payload) => postMessage({type, ...payload});

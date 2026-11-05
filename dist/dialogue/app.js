@@ -171,7 +171,7 @@
       if(!manifest.speakers.some(person=>person.id===state.speaker))state.speaker='';
       if(!workMap.has(state.work))state.work='';if(!routeMap.has(state.route))state.route='';if(!['preferred','zh','ja','all'].includes(state.language))state.language='preferred';if(!['','0','1','2'].includes(state.kind))state.kind='';
       $('corpus-total').textContent=`${manifest.works.length} 部作品 · ${manifest.total.toLocaleString()} 段文本`;syncInputs();
-      worker=new Worker('search-worker.js?v=9f4199eba5c2');worker.onmessage=onWorker;worker.onerror=()=>{status('搜索未能启动，请刷新重试');$('submit').disabled=false;};worker.postMessage({type:'init',manifest});
+      worker=new Worker('search-worker.js?v=a48c9792401a');worker.onmessage=onWorker;worker.onerror=()=>{status('搜索未能启动，请刷新重试');$('submit').disabled=false;};worker.postMessage({type:'init',manifest});
       const scene=params.get('scene'),dataset=params.get('dataset');
       if(scene&&dataset&&manifest.sceneFiles[dataset+'/'+scene]){
         const spec=manifest.datasets.find(item=>item.id===dataset);const ordinal=Math.max(0,Number(params.get('line'))||0);

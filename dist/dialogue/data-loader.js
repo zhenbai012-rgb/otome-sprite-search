@@ -7,6 +7,7 @@
   }
   async function load(spec, base = location.href) {
     const paths = [spec.url, ...(spec.fallbacks || [])].filter(Boolean);
+    if(spec.repositoryPath?.startsWith('dialogue-data/')) paths.unshift('records/'+spec.repositoryPath.slice('dialogue-data/'.length));
     if (['127.0.0.1','localhost','[::1]'].includes(location.hostname) && location.pathname.includes('/dist/dialogue/') && spec.repositoryPath) paths.unshift('../../' + spec.repositoryPath);
     let last;
     for (const path of paths) {

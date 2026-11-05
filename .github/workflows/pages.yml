@@ -21,6 +21,7 @@ jobs:
       - name: Check catalog and assets
         run: |
           python3 scripts/prepare-previews.py
+          python3 scripts/prepare-dialogue-data.py
           python3 scripts/check-site.py
           python3 scripts/check-backgrounds.py
           python3 scripts/check-artwork.py

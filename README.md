@@ -53,7 +53,7 @@ python -m http.server 8789
 
 打开 <http://localhost:8789/dist/>。
 
-台词检索位于 `/dist/dialogue/`。中文索引随 Pages 发布；日文索引、场景上下文和素材目录在 `dialogue-data/` 中按需读取，带内容哈希与下载校验。匹配在浏览器的独立工作线程内进行，查询内容不上传。详情页头像缩略图与网站同源；完整头像保存在 `dialogue-assets/`，保持画布与透明通道。
+台词检索位于 `/dist/dialogue/`。中文索引随 Pages 发布；日文索引、场景上下文和素材目录保存在 `dialogue-data/`，构建时用 `python scripts/prepare-dialogue-data.py` 复制到网站内，按需读取并校验内容哈希。匹配在浏览器的独立工作线程内进行，查询内容不上传。详情页资料和头像缩略图均与网站同源；完整头像保存在 `dialogue-assets/`，保持画布与透明通道。
 
 文本整理使用 `scripts/dialogue/compile.py`，输入本地静态提取的原版和汉化文本，不运行游戏程序。按作品、语言导出的原始脚本及逐段「台词与画面.csv」保存在输入目录的 `整理文本/`，不发布未过滤的本地文本。旧版汉化资源分别用 CP932 读取引擎指令、GBK 读取译文，恢复自定义字体的姓名与语音分隔符；新版本保留 UTF-8 / UTF-16。
 
