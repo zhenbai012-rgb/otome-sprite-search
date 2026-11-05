@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="搜索近月少女的礼仪、少女理论系列台词。按作品、路线和人物查找相近片段，查看前后文、选项与对应画面。">
+  <meta name="theme-color" content="#f6f3fa"><title>台词搜索 · 近月档案</title>
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="canonical" href="https://zhenbai012-rgb.github.io/otome-sprite-search/dialogue/">
+  <link rel="stylesheet" href="../gallery-nav.css?v=6e9eb6e6a909"><link rel="stylesheet" href="styles.css?v=163848879af5">
+</head>
+<body>
+  <a class="skip" href="#search">跳到台词搜索</a>
+  <header class="topbar"><a class="brand" href="../"><span aria-hidden="true">◔</span>近月<span class="slash">/</span>台词搜索</a><a class="github" href="https://github.com/zhenbai012-rgb/otome-sprite-search" target="_blank" rel="noopener noreferrer">GitHub ↗</a></header>
+  <main>
+    <nav class="gallery-switch" aria-label="档案切换"><a href="../#archive">角色立绘</a><a href="../backgrounds/#collection">背景图库</a><a href="./" aria-current="page">台词搜索</a></nav>
+    <section class="intro"><div><p class="eyebrow">故事档案</p><h1>找到那句台词</h1><p>输入片段，查看出处、选项与画面。</p></div><p class="corpus-total" id="corpus-total">正在读取目录</p></section>
+    <form id="filters" class="filters" role="search">
+      <div class="searchbox"><label for="search" class="sr-only">搜索台词</label><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg><input id="search" type="search" maxlength="160" placeholder="记得几个词，也可以搜索…" autocomplete="off" enterkeyhint="search" required><button id="submit" type="submit">搜索 <span aria-hidden="true">↗</span></button></div>
+      <div class="filter-options">
+        <label>作品<select id="work"><option value="">六部作品</option></select></label>
+        <label>路线<select id="route"><option value="">全部路线</option></select></label>
+        <label>人物<select id="speaker"><option value="">全部人物</option></select></label>
+        <label>文本<select id="language"><option value="preferred">中文优先</option><option value="zh">中文</option><option value="ja">日文原文</option><option value="all">全部语言</option></select></label>
+        <label>范围<select id="kind"><option value="">全部文本</option><option value="0">人物台词</option><option value="1">旁白</option><option value="2">选项文字</option></select></label>
+        <button type="button" id="reset" class="text-button">重置</button>
+      </div>
+      <div class="search-options"><fieldset><legend class="sr-only">匹配方式</legend><label><input type="radio" name="mode" value="similar" checked>相近台词</label><label><input type="radio" name="mode" value="exact">精确包含</label></fieldset><label class="breadth-label">匹配范围<select id="breadth"><option value="normal">标准</option><option value="wide">更宽</option></select></label><span class="option-hint">忽略标点、全半角与简繁差异</span></div>
+    </form>
+    <div class="search-status" id="status" role="status" aria-live="polite"></div>
+    <div class="partial" id="partial" role="status" hidden><span id="partial-text"></span><button id="retry" type="button">重新载入</button></div>
+    <section aria-label="搜索结果"><div id="results" class="results"></div><div class="empty" id="empty"><span aria-hidden="true">“</span><h2>从一句话开始</h2><p>可以只输入记得的片段，也可以用空格隔开几个关键词。</p></div><button id="more" class="more" type="button" hidden>再看 50 条 ↓</button></section>
+    <footer><span>图片与文本 © Navel 等原权利人 · 非官方资料索引</span><a href="catalog.json" target="_blank" rel="noopener">索引信息 ↗</a></footer>
+  </main>
+  <dialog id="scene-dialog" aria-labelledby="scene-heading">
+    <div class="dialog-toolbar"><div><span id="detail-work"></span><h2 id="scene-heading">场景</h2></div><div class="dialog-controls"><button id="line-prev" type="button" aria-label="上一句">←</button><span id="line-position"></span><button id="line-next" type="button" aria-label="下一句">→</button><button id="share" type="button">复制链接</button><button id="close" type="button" aria-label="关闭场景">✕</button></div></div>
+    <div id="detail-loading" class="detail-loading" role="status">正在读取场景</div>
+    <div id="scene-content" class="scene-content" hidden>
+      <aside class="visual-panel"><div id="scene-tags" class="scene-tags"></div><div id="scene-picture" class="scene-picture"></div><div class="visual-caption" id="visual-caption"></div><section class="characters-section"><h3>画面中的人物</h3><div id="scene-characters" class="scene-characters"></div></section><p id="visual-note" class="visual-note" hidden></p></aside>
+      <div class="text-panel"><section class="context-section"><div class="panel-heading"><h3>前后文</h3><button id="context-more" class="text-button" type="button">展开更多</button></div><ol id="context" class="context"></ol></section><section class="choices-section"><h3>选项与分支</h3><div id="scene-choices"></div></section><details class="source-details"><summary>来源位置</summary><dl id="source-info"></dl></details></div>
+    </div>
+  </dialog>
+  <div id="toast" class="toast" role="status" hidden></div>
+  <script src="data-loader.js?v=79b7f7e38d9f" defer></script><script src="app.js?v=6915ac67ef46" defer></script>
+</body>
+</html>

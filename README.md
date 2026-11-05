@@ -17,6 +17,8 @@
 - [背景图库](https://zhenbai012-rgb.github.io/otome-sprite-search/backgrounds/)收录 652 张独立图片，包含 591 张场景 / 大幅背景和 11 张标题背景。标题背景从角色检索移到此处，保留完整原图与透明图层。可按作品、地点、类别与场景名称搜索，原始代码仍可检索。
 - 背景按「作品 → 地点 → 场景」整理，新增樱公馆、巴黎街头、青山天空公寓等地点筛选；下载分为 459 个包（包括 6 个标题背景包），单包不超过 32 MiB。
 - 全站 10,751 张图片提供中文显示名与下载文件名。116 张原先归为“作品素材”的 CG 补充了经脚本与画面核对的角色。原始代码仍可搜索，旧分享链接与图片地址继续可用。
+- [台词搜索](https://zhenbai012-rgb.github.io/otome-sprite-search/dialogue/)覆盖六部作品，提供 114,620 段中文文本与日文原文。支持片段、简繁、全半角、标点差异、少量错字与空格关键词，可按作品、路线、人物及台词 / 旁白 / 选项筛选。全部匹配位置均可分页查看。
+- 点击台词可查看前后文、作品、路线、场景标题、日期、前置选项及对应背景、立绘和头像，并分享定位到该段的链接。共通场景保留多条路线；选项追溯有条件时会标注。只排除游戏明确标记的成人区间，普通回想和同一条路线的其他剧情仍可检索。
 
 ## 批量命名
 
@@ -51,6 +53,14 @@ python -m http.server 8789
 
 打开 <http://localhost:8789/dist/>。
 
+台词检索位于 `/dist/dialogue/`。中文索引随 Pages 发布；日文索引、场景上下文和素材目录在 `dialogue-data/` 中按需读取，带内容哈希与下载校验。匹配在浏览器的独立工作线程内进行，查询内容不上传。详情页头像缩略图与网站同源；完整头像保存在 `dialogue-assets/`，保持画布与透明通道。
+
+文本整理使用 `scripts/dialogue/compile.py`，输入本地静态提取的原版和汉化文本，不运行游戏程序。按作品、语言导出的原始脚本及逐段「台词与画面.csv」保存在输入目录的 `整理文本/`，不发布未过滤的本地文本。旧版汉化资源分别用 CP932 读取引擎指令、GBK 读取译文，恢复自定义字体的姓名与语音分隔符；新版本保留 UTF-8 / UTF-16。
+
+画面由引擎资源路径、增量指令、可见性与条件分支追踪，并按最新封包的原始哈希连接到图库。无法唯一判定的分支会列出候选素材；未收录的演出图层或动态跳转会提示，详情不是游戏画面的完整重放。路线入口由控制脚本解析，前置选项不自动当作唯一攻略。
+
+简繁归一使用 [OpenCC](https://github.com/BYVoid/OpenCC) 的 `TSCharacters` 字表，原字表与 Apache 2.0 许可证保存在 `dist/vendor/opencc/`。
+
 如需本地测试背景原图和场景包，从仓库根目录运行 `python -m http.server 8791`，打开 <http://localhost:8791/dist/backgrounds/>。背景原图在 `originals/backgrounds/`，与网页预览分开保存；公开网站通过仓库原图地址读取。
 
 ## 项目结构
@@ -74,6 +84,9 @@ dist/                   可直接发布的静态网站
   data/downloads.json   原图包链接与 SHA-256
   data/costume-packs.json  195 个服装分包与 SHA-256
   backgrounds/          背景检索、WebP 预览与场景分包索引
+  dialogue/             台词页面、中文索引、匹配工作线程与头像缩略图
+dialogue-data/          日文索引、场景详情、素材映射与覆盖报告
+dialogue-assets/        台词中实际使用的完整头像预览
 originals/backgrounds/  641 张原尺寸 PNG，按内容哈希保存
 originals/cg/           CG 与标题素材的 793 张原尺寸 PNG
 cg-assets/              完整画布的 CG / 标题 WebP 预览与缩略图
@@ -91,6 +104,9 @@ python scripts/check-site.py
 python scripts/check-backgrounds.py
 python scripts/check-artwork.py
 python scripts/check-naming.py
+python scripts/check-dialogue.py
+python scripts/test-dialogue-compiler.py
+node scripts/test-dialogue-search.cjs
 node --check dist/app.js
 node --check dist/experience.js
 node --check dist/archive-stage.js

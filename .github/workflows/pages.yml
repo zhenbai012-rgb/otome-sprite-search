@@ -25,6 +25,13 @@ jobs:
           python3 scripts/check-backgrounds.py
           python3 scripts/check-artwork.py
           python3 scripts/check-naming.py
+          python3 scripts/check-dialogue.py
+          python3 scripts/test-dialogue-compiler.py
+          node scripts/test-dialogue-search.cjs
+          node scripts/test-dialogue-worker.cjs
+          node --check dist/dialogue/app.js
+          node --check dist/dialogue/search-worker.js
+          node --check dist/dialogue/data-loader.js
           node --check dist/app.js
           node --check dist/experience.js
           node --check dist/archive-stage.js
