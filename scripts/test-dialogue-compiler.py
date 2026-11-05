@@ -27,6 +27,20 @@ class CompilerTests(unittest.TestCase):
         state.feed('^chara01,show:true');self.assertEqual(state.snapshot()['characters'][0]['assetId'],'sad')
         state.feed('^include,allclear');self.assertEqual(state.snapshot()['characters'][0]['assetId'],'sad')
         state.feed('^chara01,file0:none');self.assertEqual(state.snapshot()['characters'],[])
+    def test_visual_directives_apply_before_pending_message_is_committed(self):
+        # Actual scene 02/C20_01B uses a transient white frame before this text,
+        # then restores the street and character before the message is shown.
+        result=self.parse('^bg01,file:bg/day\n【甲】\n「但是哥哥却完全没有触及这件事。」\n^bg01,file:bg/night\n^chara01,file0:a/,file1:a_,file2:s_,file3:0_,file4:0_,file5:00\n【甲】\n「随后」')
+        state=result['states'][result['rows'][0][5]]
+        self.assertEqual(state['background']['asset'],'night')
+        self.assertEqual(state['characters'][0]['asset'],'smile')
+    def test_layout_macros_alignment_and_transparency(self):
+        result=self.parse('^bg01,file:bg/day,x:640,y:360,align:center:center\n^chara01,file0:a/,file1:a_,file2:s_,file3:0_,file4:0_,file5:00,x:240,y:740,scalex:120,scaley:120,alpha:$80\n【甲】\n「左边」')
+        state=result['states'][result['rows'][0][5]]
+        self.assertEqual(state['background']['layout']['alignx'],'center')
+        self.assertEqual(state['background']['layout']['aligny'],'center')
+        self.assertEqual(state['characters'][0]['layout']['x'],'240')
+        self.assertEqual(state['characters'][0]['layout']['alpha'],'$80')
     def test_only_marked_interval_is_excluded(self):
         text='^bg01,file:bg/day\n【甲】\n「之前」\n^savefilter,1\n^bg01,file:bg/night\n【甲】\n「私有区间」\n^savefilter,0\n^bg01,file:bg/day\n【甲】\n「之后」'
         result=self.parse(text)

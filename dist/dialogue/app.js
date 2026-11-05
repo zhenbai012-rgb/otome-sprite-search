@@ -74,7 +74,20 @@
   function asset(value){return assetCache?.assets?.[assetId(value)]||null;}
   function imageUrl(value){if(['localhost','127.0.0.1'].includes(location.hostname)&&location.pathname.includes('/dist/dialogue/')){if(value?.includes('/main/dialogue-assets/'))return '../../dialogue-assets/'+value.split('/main/dialogue-assets/')[1];if(value?.includes('/otome-sprite-search/dialogue/faces/'))return 'faces/'+value.split('/otome-sprite-search/dialogue/faces/')[1];}return value;}
   function assetImage(item,className){const img=new Image();img.alt=item.label||item.name;img.loading='lazy';img.decoding='async';img.src=imageUrl(item.thumb);img.className=className||'';img.onerror=()=>{img.onerror=null;if(item.file&&imageUrl(item.file)!==img.src)img.src=imageUrl(item.file);};return img;}
-  function renderVisual(row) {
+  const sceneView=new DialogueSceneView($('game-screen'),{resolve:imageUrl});let visualStateKey='';
+  function renderVisual(row){
+    if($('scene-content').classList.contains('visual-hidden')&&!$('screen-dialog').open)return;
+    const snapshot=currentScene.states[row[5]]||{},key=currentScene.id+':'+row[5];
+    if(key!==visualStateKey){sceneView.variant=0;visualStateKey=key;}
+    const plan=sceneView.render(snapshot,assetCache?.assets||{},{work:currentResult.work,title:currentScene.title,kind:row[3],speaker:person(currentScene,row[2]),text:row[1]});
+    const select=$('screen-variant');select.replaceChildren(...Array.from({length:plan.variants},(_,i)=>new Option('画面 '+(i+1),String(i))));select.value=String(sceneView.variant);
+    $('screen-variant-label').hidden=plan.variants<2;
+    const notes=[];if(snapshot.conditional)notes.push('含分支画面');if(plan.missing.length)notes.push('部分素材未收录');else if(plan.approximate)notes.push('部分演出为静态近似');
+    $('screen-note').textContent=notes.join(' · ');$('screen-note').hidden=!notes.length;
+    $('screen-title').textContent=workMap.get(currentResult.work).short+' · '+currentScene.title;
+    if(document.querySelector('.material-details').open)renderMaterials(row);
+  }
+  function renderMaterials(row) {
     const snapshot=currentScene.states[row[5]]||{}, primary=asset(snapshot.background), picture=$('scene-picture'), caption=$('visual-caption');picture.replaceChildren();caption.replaceChildren();
     if(primary){const a=link('',primary.link);const img=assetImage(primary);img.loading='eager';a.append(img);picture.append(a);caption.append(node('span',primary.label||primary.name),link('查看素材 ↗',primary.link));if(primary.file&&primary.file!==primary.thumb){const full=new Image();full.decoding='async';full.onload=()=>{if(img.isConnected)img.src=full.src;};full.src=imageUrl(primary.file);}}
     else if(snapshot.background?.candidates?.length){
@@ -143,7 +156,7 @@
   }
   async function loadReading(){
     if(readingCache)return readingCache;
-    if(!readingPromise)readingPromise=fetch('reading.json?v=31957393e315').then(response=>{if(!response.ok)throw new Error('前后场景未能载入，请重试');return response.json();}).then(data=>readingCache=data).catch(error=>{readingPromise=null;throw error;});
+    if(!readingPromise)readingPromise=fetch('reading.json?v=97bfca2e1080').then(response=>{if(!response.ok)throw new Error('前后场景未能载入，请重试');return response.json();}).then(data=>readingCache=data).catch(error=>{readingPromise=null;throw error;});
     return readingPromise;
   }
   async function connectReading(){
@@ -175,18 +188,28 @@
   $('retry').addEventListener('click',search);
   $('more').addEventListener('click',()=>{$('more').disabled=true;worker.postMessage({type:'page',id:request,offset:displayed.length});});
   $('close').addEventListener('click',()=>$('scene-dialog').close());
-  $('scene-dialog').addEventListener('close',()=>{detailRequest++;reader.close();currentResult=null;currentScene=null;matchedResult=null;updateUrl();});
+  $('scene-dialog').addEventListener('close',()=>{if($('screen-dialog').open)$('screen-dialog').close();detailRequest++;reader.close();currentResult=null;currentScene=null;matchedResult=null;updateUrl();});
   $('scene-dialog').addEventListener('click',event=>{if(event.target===$('scene-dialog')){const rect=event.target.getBoundingClientRect();if(event.clientX<rect.left||event.clientX>rect.right||event.clientY<rect.top||event.clientY>rect.bottom)event.target.close();}});
   $('line-prev').addEventListener('click',()=>{if(currentScene)reader.step(currentScene,currentResult,currentOrdinal,-1);});
   $('line-next').addEventListener('click',()=>{if(currentScene)reader.step(currentScene,currentResult,currentOrdinal,1);});
   $('reading-start').addEventListener('click',()=>{if(currentScene)reader.locate(currentScene,currentResult,currentScene.rows[0][0],true);});
   $('reading-match').addEventListener('click',()=>{if(!matchedResult)return;const block=reader.blocks.find(b=>b.scene.id===matchedResult.scene);if(block)reader.locate(block.scene,matchedResult,matchedResult.ordinal,true);else openScene(matchedResult,true);});
-  $('show-visual').addEventListener('click',()=>{const hidden=$('scene-content').classList.toggle('visual-hidden');$('show-visual').setAttribute('aria-expanded',String(!hidden));});
+  $('show-visual').addEventListener('click',()=>{const hidden=$('scene-content').classList.toggle('visual-hidden');$('show-visual').setAttribute('aria-expanded',String(!hidden));if(!hidden&&currentScene)renderVisual(currentScene.rows.find(row=>row[0]===currentOrdinal));});
+  $('screen-variant').addEventListener('change',()=>{sceneView.setVariant(Number($('screen-variant').value));});
+  $('screen-text').addEventListener('click',()=>$('screen-text').setAttribute('aria-pressed',String(sceneView.toggleText())));
+  document.querySelector('.material-details').addEventListener('toggle',()=>{if(document.querySelector('.material-details').open&&currentScene)renderMaterials(currentScene.rows.find(row=>row[0]===currentOrdinal));});
+  $('screen-expand').addEventListener('click',()=>{$('screen-large').append($('game-screen'));$('screen-dialog').showModal();});
+  $('screen-close').addEventListener('click',()=>$('screen-dialog').close());
+  $('screen-dialog').addEventListener('close',()=>$('screen-home').append($('game-screen')));
+  $('screen-dialog').addEventListener('keydown',event=>{if(event.key==='ArrowLeft'||event.key==='ArrowRight'){event.preventDefault();if(currentScene)reader.step(currentScene,currentResult,currentOrdinal,event.key==='ArrowLeft'?-1:1);}});
+  $('screen-prev').addEventListener('click',()=>{if(currentScene)reader.step(currentScene,currentResult,currentOrdinal,-1);});
+  $('screen-next').addEventListener('click',()=>{if(currentScene)reader.step(currentScene,currentResult,currentOrdinal,1);});
   $('share').addEventListener('click',async()=>{updateUrl();try{await navigator.clipboard.writeText(location.href);toast('链接已复制');}catch{toast('可复制浏览器地址栏中的链接');}});
   async function init(){
     $('submit').disabled=true;
+    fetch('ui.json?v=c01251f0667b').then(response=>{if(!response.ok)throw new Error('ui');return response.json();}).then(data=>sceneView.setUi(data)).catch(()=>{});
     try{
-      const response=await fetch('catalog.json?v=769f162a0984');if(!response.ok)throw new Error('目录未能载入，请刷新重试');manifest=await response.json();
+      const response=await fetch('catalog.json?v=c5cc4385337f');if(!response.ok)throw new Error('目录未能载入，请刷新重试');manifest=await response.json();
       manifest.works.forEach(work=>{workMap.set(work.id,work);$('work').add(new Option(work.label,work.id));});manifest.routes.forEach(route=>routeMap.set(route.id,route));
       manifest.speakers.forEach(person=>$('speaker').add(new Option(person.name,person.id)));
       if(!manifest.speakers.some(person=>person.id===state.speaker))state.speaker='';

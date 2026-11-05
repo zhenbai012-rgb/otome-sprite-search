@@ -94,7 +94,7 @@ class VisualStateTracker:
 
     @staticmethod
     def _kind(slot):
-        return 'chara' if slot.startswith('chara') else 'face' if slot == 'face' else 'image'
+        return 'chara' if slot.startswith('chara') else slot if slot in ('face', 'camera', 'message') else 'image'
 
     def _model(self, slot):
         return self.index.model(self.game, self.namespace, self._kind(slot))
@@ -165,7 +165,7 @@ class VisualStateTracker:
             for child in includes[name]:
                 self.feed(child, source, line_number, conditional, _include_depth+1)
             return True
-        if not re.fullmatch(r'(?:bg\d+|chara\d+|face)', slot): return False
+        if not re.fullmatch(r'(?:bg\d+|ef\d+|chara\d+|face|camera|message)', slot): return False
         updates = self._expand(slot, arguments[1:]); variants = self.layers.get(slot, [self._empty(slot)])
         output = deepcopy(variants) if conditional else []
         for variant in variants:
@@ -173,6 +173,16 @@ class VisualStateTracker:
             for key, value in updates:
                 if key == 'clear' and value == 'def':
                     props = deepcopy(self._empty(slot)['properties']); variant['properties'] = props
+                elif key == 'align':
+                    axes = value.split(':')
+                    props['alignx'] = axes[0]
+                    if len(axes) > 1: props['aligny'] = axes[1]
+                elif key in ('textarea','fontsize'):
+                    axes=value.split(':')
+                    prefix='textareaw' if key=='textarea' else 'fontsizew'
+                    other='textareah' if key=='textarea' else 'fontsizeh'
+                    if axes and re.fullmatch(r'\d+(?:\.\d+)?',axes[0]):props[prefix]=axes[0]
+                    if len(axes)>1 and re.fullmatch(r'\d+(?:\.\d+)?',axes[1]):props[other]=axes[1]
                 else: props[key] = value
             if self._kind(slot) == 'chara':
                 missing = False
@@ -217,8 +227,11 @@ class VisualStateTracker:
         }
 
     def snapshot(self, include_hidden=False):
-        result = {'backgrounds': [], 'characters': [], 'face': None, 'unresolved': [], 'notes': list(self.notes), 'incomplete': self.incomplete}
+        result = {'backgrounds': [], 'characters': [], 'face': None, 'camera': None, 'message': None, 'unresolved': [], 'notes': list(self.notes), 'incomplete': self.incomplete}
         for slot, variants in sorted(self.layers.items()):
+            if slot in ('camera', 'message'):
+                result[slot] = {'properties':deepcopy(variants[0]['properties']), 'conditional':len(variants)>1}
+                continue
             alternatives = [self._materialize(slot, variant) for variant in variants]
             visible = [a for a in alternatives if a['visible']]
             if not include_hidden and not visible: continue
@@ -230,7 +243,7 @@ class VisualStateTracker:
             for alternative in visible:
                 if not alternative['assetIds']:
                     result['unresolved'].append({'slot': slot, 'resource': alternative['resource'], 'nativeExists': alternative['nativeResource'] is not None, 'dynamic': '$' in alternative['resource']})
-            if slot.startswith('bg'): result['backgrounds'].append(record)
+            if slot.startswith(('bg', 'ef')): result['backgrounds'].append(record)
             elif slot.startswith('chara'): result['characters'].append(record)
             elif slot == 'face': result['face'] = record
         return result

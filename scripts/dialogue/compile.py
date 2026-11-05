@@ -8,6 +8,7 @@ from collections import defaultdict, Counter, deque
 import argparse, csv, gzip, hashlib, json, re, unicodedata
 from routes import build_routes, normalize_script, adult_segments
 from visual_state import ArtworkResourceIndex, VisualStateTracker, split_arguments
+from engine_layout import enrich_resource, layout
 
 ROOT = Path(__file__).resolve().parents[2]
 SITE = ROOT / 'dist'
@@ -21,7 +22,7 @@ ELSE = re.compile(r'^\\else(?:\b|,)', re.I)
 END = re.compile(r'^\\end\s*(?://.*)?$', re.I)
 LABEL = re.compile(r'^@@(?!@)([^\s,]+)')
 JUMP = re.compile(r'^\\jmp,\s*(@@[^,\s]+)\s*$', re.I)
-VISUAL = re.compile(r'^\^(?:bg\d+|chara\d+|face|include)(?:,|$)', re.I)
+VISUAL = re.compile(r'^\^(?:bg\d+|ef\d+|chara\d+|face|camera|message|include)(?:,|$)', re.I)
 EXPLICIT_CHOICE = re.compile(r'手コキ|手淫|手撸|自慰|射精|精液|性交|口交|阴茎|陰茎|陰部|阴部|性器|フェラ|パイズリ',re.I)
 
 def dump(path, value):
@@ -83,16 +84,21 @@ def public_state(tracker):
     snapshot = tracker.snapshot()
     def layer(item):
         if item.get('certainty') == 'exact':
-            return {'asset':item.get('assetId'), 'raw':item.get('resource',''), 'slot':item['slot']}
-        return {'asset':None,'slot':item['slot'],'candidates':list(dict.fromkeys(a['assetId'] for a in item.get('alternatives',[]) if a.get('visible') and a.get('assetId'))), 'conditional':True}
+            return {'asset':item.get('assetId'), 'raw':item.get('resource',''), 'slot':item['slot'], 'layout':layout(item.get('properties',{}))}
+        alternatives=[{'asset':a.get('assetId'),'raw':a.get('resource',''),'visible':a.get('visible',False),'layout':layout(a.get('properties',{}))} for a in item.get('alternatives',[])]
+        return {'asset':None,'slot':item['slot'],'candidates':list(dict.fromkeys(a['asset'] for a in alternatives if a['visible'] and a['asset'])), 'conditional':True, 'alternatives':alternatives}
     # Higher priority is rendered on top. Preserve every background layer too.
     backgrounds = sorted(snapshot['backgrounds'], key=lambda a:float(a.get('properties',{}).get('pri','0').lstrip('$')) if re.fullmatch(r'\d+(?:\.\d+)?', a.get('properties',{}).get('pri','0')) else 0)
-    collected=[x for x in backgrounds if x.get('assetId') or x.get('assetIds')]
+    collected=[x for x in backgrounds if x['slot'].startswith('bg') and (x.get('assetId') or x.get('assetIds'))]
     primary=collected[-1] if collected else backgrounds[-1] if backgrounds else None
     result = {'background':layer(primary) if primary else None, 'backgrounds':[layer(x) for x in backgrounds], 'characters':[layer(x) for x in snapshot['characters']], 'face':layer(snapshot['face']) if snapshot['face'] else None}
     if any(x.get('certainty') == 'conditional' for x in backgrounds+snapshot['characters']+([snapshot['face']] if snapshot['face'] else [])): result['conditional'] = True
     if snapshot['unresolved']: result['unresolved'] = snapshot['unresolved']
     if snapshot['incomplete']: result['incomplete'] = True
+    for key in ('camera','message'):
+        if snapshot.get(key):
+            result[key]=layout(snapshot[key]['properties'])
+            if key=='message':result[key]['file']=snapshot[key]['properties'].get('file','none')
     return result
 
 def cleanup(text):
@@ -118,7 +124,9 @@ def scene_compile(row, meta, initial, speakers, choices):
         nonlocal paragraph
         if not paragraph: return
         text, who, kind, line, vid, flags = paragraph
-        state = public_state(tracker)
+        # QLIE commits the pending message after the following visual directives.
+        # The supplied reference screenshot (02/C20_01B) confirms this ordering.
+        state=public_state(tracker)
         if unknown_control: state['incomplete'] = True
         encoded = json.dumps(state,ensure_ascii=False,sort_keys=True,separators=(',', ':'))
         if encoded not in state_ids: state_ids[encoded]=len(states);states.append(state)
@@ -284,13 +292,21 @@ def main():
     dump(private/'chinese-route-research.json',cn_routes)
     cn_key_file.write_text(cn_key)
     resource=json.loads((private/'artwork-resource-map.json').read_text('utf8'))
+    enrich_resource(resource,private)
     faces=json.loads((private/'artwork-research/faces-map.json').read_text('utf8'))
     for row in faces['nativeEntries']:
         image=faces['images'][row['sha256']];key=row['game'][:2]+'|'+row['resource'].replace('\\','/').casefold()
         resource['resources'][key]={'resource':row['resource'],'assetId':image['id'],'assetIds':[image['id']],'rawSha256':row['sha256'],'archive':row['archive']}
     for image in faces['images'].values():resource['assets'][image['id']]=image
     index=ArtworkResourceIndex(resource);speakers=Speakers(catalog)
-    assets={'version':1,'assets':{key:{'name':r['name'],'label':r['name'],'kind':r['kind'],'thumb':r['thumbnail'],'file':r['preview'],'link':r['galleryUrl'],'characters':r.get('characters',[])} for key,r in resource['assets'].items()}}
+    assets={'version':1,'assets':{key:{'name':r['name'],'label':r['name'],'kind':r['kind'],'thumb':r['thumbnail'],'file':r['preview'],'link':r['galleryUrl'],'characters':r.get('characters',[]),'width':r.get('originalWidth',r.get('width')),'height':r.get('originalHeight',r.get('height'))} for key,r in resource['assets'].items()}}
+    bounds_file=private/'sprite-bounds.jsonl'
+    if bounds_file.exists():
+        for bound in map(json.loads,bounds_file.read_text('utf8').splitlines()):
+            if 'crop' in bound and bound['id'] in assets['assets']:
+                item=assets['assets'][bound['id']]
+                assert item['width']==bound['width'] and item['height']==bound['height']
+                item['crop']=bound['crop']
     asset_spec=artifact(assets,'dialogue-data','assets')
     manifest={'version':1,'works':[{'id':f'{i+1:02}','label':label,'short':SHORT[i]} for i,label in enumerate(LABELS)],'routes':[],'speakers':[],'aliases':[{'name':r['display'],'aliases':[r['id'],*r.get('aliases',[])]} for r in catalog['characters'] if not r.get('resourceGroup')], 'normalization':{'url':'normalization.json'},'assets':asset_spec,'datasets':[],'sceneFiles':{},'total':0}
     report={'version':1,'games':[],'faces':faces['stats'],'exclusion':'Only engine-marked adult intervals; ordinary flashbacks and remaining route paragraphs retained.','visualPolicy':'Exact native resource hashes; conditional states retain alternatives. Missing inherited state and uncollected resources are reported.'}

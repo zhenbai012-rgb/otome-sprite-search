@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#f6f3fa"><title>台词搜索 · 近月档案</title>
   <link rel="icon" href="../favicon.svg" type="image/svg+xml">
   <link rel="canonical" href="https://zhenbai012-rgb.github.io/otome-sprite-search/dialogue/">
-  <link rel="stylesheet" href="../gallery-nav.css?v=6e9eb6e6a909"><link rel="stylesheet" href="styles.css?v=f3a15f98ab75">
+  <link rel="stylesheet" href="../gallery-nav.css?v=6e9eb6e6a909"><link rel="stylesheet" href="styles.css?v=116b15a8f7d1">
 </head>
 <body>
   <a class="skip" href="#search">跳到台词搜索</a>
@@ -35,11 +35,12 @@
     <div class="dialog-toolbar"><div><span id="detail-work"></span><h2 id="scene-heading">场景</h2></div><div class="dialog-controls"><button id="line-prev" type="button" aria-label="上一句">↑</button><span id="line-position"></span><button id="line-next" type="button" aria-label="下一句">↓</button><button id="show-visual" type="button" aria-expanded="true" aria-controls="visual-panel">画面</button><button id="share" type="button">复制链接</button><button id="close" type="button" aria-label="关闭场景">✕</button></div></div>
     <div id="detail-loading" class="detail-loading" role="status">正在读取场景</div>
     <div id="scene-content" class="scene-content" hidden>
-      <aside id="visual-panel" class="visual-panel"><div id="scene-tags" class="scene-tags"></div><div id="scene-picture" class="scene-picture"></div><div class="visual-caption" id="visual-caption"></div><section class="characters-section"><h3>画面中的人物</h3><div id="scene-characters" class="scene-characters"></div></section><p id="visual-note" class="visual-note" hidden></p><section class="choices-section"><h3>选项与分支</h3><div id="scene-choices"></div></section><details class="source-details"><summary>来源位置</summary><dl id="source-info"></dl></details></aside>
+      <aside id="visual-panel" class="visual-panel"><div id="scene-tags" class="scene-tags"></div><div class="screen-toolbar"><span>场景预览</span><div><label id="screen-variant-label" hidden>分支 <select id="screen-variant" aria-label="画面分支"></select></label><button id="screen-text" type="button" aria-pressed="true">台词</button><button id="screen-expand" type="button">放大</button></div></div><div id="screen-home"><div id="game-screen"></div></div><p id="screen-note" class="screen-note" hidden></p><details class="material-details"><summary>画面素材</summary><div id="scene-picture" class="scene-picture"></div><div class="visual-caption" id="visual-caption"></div><section class="characters-section"><h3>人物与头像</h3><div id="scene-characters" class="scene-characters"></div></section><p id="visual-note" class="visual-note" hidden></p></details><section class="choices-section"><h3>选项与分支</h3><div id="scene-choices"></div></section><details class="source-details"><summary>来源位置</summary><dl id="source-info"></dl></details></aside>
       <div class="text-panel"><div class="panel-heading"><h3>正文</h3><div><button id="reading-start" class="text-button" type="button">本场景开头</button><button id="reading-match" class="text-button" type="button">回到原句</button></div></div><div id="text-flow" class="text-flow" tabindex="0" role="region" aria-label="连续阅读正文"><div id="reading-before" class="reading-boundary"></div><div id="context"></div><div id="reading-after" class="reading-boundary"></div></div></div>
     </div>
   </dialog>
+  <dialog id="screen-dialog" class="screen-dialog" aria-label="放大场景"><div class="screen-dialog-toolbar"><span id="screen-title"></span><div><button id="screen-prev" type="button" aria-label="画面上一句">‹</button><button id="screen-next" type="button" aria-label="画面下一句">›</button><button id="screen-close" type="button" aria-label="关闭放大画面">✕</button></div></div><div id="screen-large"></div></dialog>
   <div id="toast" class="toast" role="status" hidden></div>
-  <script src="data-loader.js?v=c467248d9563" defer></script><script src="reader-core.js?v=d6d10f0b4125" defer></script><script src="continuous-reader.js?v=49a7fd0fbd08" defer></script><script src="app.js?v=de56a3409fbb" defer></script>
+  <script src="data-loader.js?v=c467248d9563" defer></script><script src="reader-core.js?v=d6d10f0b4125" defer></script><script src="continuous-reader.js?v=49a7fd0fbd08" defer></script><script src="scene-layout.js?v=6b97deaa5e06" defer></script><script src="scene-view.js?v=e4709884be37" defer></script><script src="app.js?v=8b4ece9cb821" defer></script>
 </body>
 </html>

@@ -20,13 +20,13 @@ for dependency in ['search-core.js', 'data-loader.js']:
 worker.write_text(worker_text, encoding='utf-8', newline='\n')
 app = ROOT / 'dialogue/app.js'
 app_text = app.read_text(encoding='utf-8')
-for dependency in ['search-worker.js', 'catalog.json', 'reading.json']:
+for dependency in ['search-worker.js', 'catalog.json', 'reading.json', 'ui.json']:
     digest = hashlib.sha256((app.parent / dependency).read_bytes()).hexdigest()[:12]
     app_text, count = re.subn(re.escape(dependency) + r'(?:\?v=[a-f0-9]+)?', dependency + '?v=' + digest, app_text)
     assert count == 1, (dependency, count)
 app.write_text(app_text, encoding='utf-8', newline='\n')
 
-for folder, assets in [(ROOT, ['styles.css', 'gallery-nav.css', 'experience.css', 'archive-stage.css', 'mobile.css', 'catalog-data.js', 'backgrounds/zip-store.js','artwork-downloads.js','experience.js','archive-stage.js','app.js','mobile-ui.js']), (ROOT / 'backgrounds', ['styles.css','../gallery-nav.css','../experience.css','../archive-stage.css','../mobile.css', 'catalog.js', 'title-data.js', 'zip-store.js','../experience.js','../archive-stage.js', 'app.js','../mobile-ui.js']), (ROOT / 'dialogue', ['../gallery-nav.css', 'styles.css', 'data-loader.js', 'reader-core.js', 'continuous-reader.js', 'app.js'])]:
+for folder, assets in [(ROOT, ['styles.css', 'gallery-nav.css', 'experience.css', 'archive-stage.css', 'mobile.css', 'catalog-data.js', 'backgrounds/zip-store.js','artwork-downloads.js','experience.js','archive-stage.js','app.js','mobile-ui.js']), (ROOT / 'backgrounds', ['styles.css','../gallery-nav.css','../experience.css','../archive-stage.css','../mobile.css', 'catalog.js', 'title-data.js', 'zip-store.js','../experience.js','../archive-stage.js', 'app.js','../mobile-ui.js']), (ROOT / 'dialogue', ['../gallery-nav.css', 'styles.css', 'data-loader.js', 'reader-core.js', 'continuous-reader.js', 'scene-layout.js', 'scene-view.js', 'app.js'])]:
     path = folder / 'index.html'
     text = path.read_text(encoding='utf-8')
     for asset in assets:
