@@ -32,6 +32,8 @@ jobs:
           node scripts/test-dialogue-worker.cjs
           node scripts/test-dialogue-reading.cjs
           node scripts/test-dialogue-scene.cjs
+          node scripts/check-cg-story.cjs
+          node --check --input-type=module < dist/cg-story.js
           node --check dist/dialogue/scene-view.js
           node --check dist/dialogue/continuous-reader.js
           node --check dist/dialogue/app.js

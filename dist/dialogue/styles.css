@@ -41,3 +41,9 @@ body:has(#scene-dialog[open]){overflow:hidden}
   .visual-panel{position:absolute;inset:0;z-index:3;background:#faf8fc;border:0;padding:16px;overflow:auto}.scene-characters{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));overflow:visible}.character-card{min-width:0}.character-card img{height:130px}.scene-picture{max-height:none}
   .reading-boundary button{font-size:11px;padding:11px 9px}
 }
+.embedded-reader,.embedded-reader body{height:100%;margin:0;overflow:hidden;background:#faf8fc}
+.embedded-reader body>.topbar,.embedded-reader body>main,.embedded-reader .skip{display:none}
+.embedded-reader #scene-dialog[open]{display:flex;flex-direction:column;position:static;inset:auto;width:100%;max-width:none;height:100dvh;max-height:none;margin:0;border:0;border-radius:0;box-shadow:none;overflow:hidden}
+.embedded-reader #scene-dialog>.dialog-toolbar{flex:none;position:relative;padding:12px 16px}.embedded-reader #close{display:none}
+.embedded-reader #scene-content{flex:1;min-height:0;height:auto;overflow:hidden}.embedded-reader .visual-panel{overflow:auto;min-height:0}.embedded-reader .text-panel{min-height:0;display:flex;flex-direction:column}.embedded-reader .text-flow{flex:1;min-height:0;max-height:none;height:auto}
+@media(max-width:700px){.embedded-reader .visual-panel{position:absolute;inset:0;overflow:auto}.embedded-reader #scene-content{overflow:hidden;display:flex}.embedded-reader .text-panel{height:auto;min-height:0;flex:1}.embedded-reader .visual-hidden .visual-panel{display:none}.embedded-reader #scene-dialog>.dialog-toolbar{padding:10px}.embedded-reader .dialog-controls{max-width:190px}}

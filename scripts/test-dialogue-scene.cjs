@@ -80,6 +80,9 @@ for(const kind of [0,1]){
  assert.ok(face);assert.equal(face.x,188);assert.equal(face.y,720);assert.equal(face.ax,139);assert.equal(face.ay,220);
 }
 assert.equal(layout.plan({face:{slot:'face',alternatives:[{visible:false,asset:'portrait'}]}},portraitAssets).layers.length,0,'Keep explicit script visibility');
+const cgBranches={backgrounds:[{slot:'bg01',alternatives:[{asset:'cg-a'},{asset:'cg-b'}]}]},cgBranchAssets={'cg-a':{width:1280,height:720},'cg-b':{width:1280,height:720}};
+assert.equal(layout.preferredVariant(cgBranches,cgBranchAssets,{asset:'cg-b'}),1,'A CG link must select its actual conditional frame');
+assert.equal(layout.preferredVariant(cgBranches,cgBranchAssets,{asset:'not-in-this-frame'}),0,'Other context lines keep their regular default branch');
 assert.equal(works.size,6);assert.ok(matchedReference&&fixedApril&&checkedAfterStory&&restoredPortrait&&checkedEntrance&&natives>5000&&layers>50000&&automaticPortraits>50000);
 const ui=JSON.parse(fs.readFileSync(path.join(root,'dist/dialogue/ui.json'),'utf8')),textures=new Set();
 assert.equal(Object.keys(ui.works).length,6);

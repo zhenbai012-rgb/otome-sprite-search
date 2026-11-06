@@ -84,7 +84,11 @@
       message:snapshot.message||{}};
   }
   function preferredVariant(snapshot,assets,options={}){
-    const initial=plan(snapshot,assets,{...options,variant:0});if(initial.layers.length)return 0;
+    const initial=plan(snapshot,assets,{...options,variant:0});
+    if(options.asset){
+      for(let i=0;i<initial.variants;i++)if(plan(snapshot,assets,{...options,variant:i}).layers.some(layer=>layer.asset===options.asset))return i;
+    }
+    if(initial.layers.length)return 0;
     for(let i=1;i<initial.variants;i++)if(plan(snapshot,assets,{...options,variant:i}).layers.length)return i;
     return 0;
   }

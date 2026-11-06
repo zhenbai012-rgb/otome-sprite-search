@@ -5,6 +5,18 @@ import re
 
 ROOT = Path(__file__).resolve().parents[1] / 'dist'
 
+story = ROOT / 'cg-story.js'
+story_text = story.read_text(encoding='utf-8')
+for dependency in ['dialogue/data-loader.js', 'data/cg-story-index.json']:
+    digest = hashlib.sha256((ROOT / dependency).read_bytes()).hexdigest()[:12]
+    story_text, count = re.subn(re.escape(dependency) + r'(?:\?v=[a-f0-9]+)?', dependency + '?v=' + digest, story_text)
+    assert count == 1, (dependency, count)
+story.write_text(story_text, encoding='utf-8', newline='\n')
+gallery = ROOT / 'app.js'
+gallery_text, count = re.subn(r'cg-story\.js(?:\?v=[a-f0-9]+)?', 'cg-story.js?v=' + hashlib.sha256(story.read_bytes()).hexdigest()[:12], gallery.read_text(encoding='utf-8'))
+assert count == 1, (gallery, count)
+gallery.write_text(gallery_text, encoding='utf-8', newline='\n')
+
 stage = ROOT / 'archive-stage.js'
 scene_digest = hashlib.sha256((ROOT / 'archive-scene.js').read_bytes()).hexdigest()[:12]
 stage_text, count = re.subn(r'archive-scene\.js(?:\?v=[a-f0-9]+)?', 'archive-scene.js?v=' + scene_digest, stage.read_text(encoding='utf-8'))

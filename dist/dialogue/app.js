@@ -1,6 +1,9 @@
 (() => {
   'use strict';
   const $ = id => document.getElementById(id), params = new URLSearchParams(location.search);
+  const embedded=params.get('embed')==='cg',requestedCg=params.get('cg')||'';
+  document.documentElement.classList.toggle('embedded-reader',embedded);
+  document.querySelector('.material-details').open=embedded;
   const node = (tag,text,className) => { const element=document.createElement(tag);if(text!=null)element.textContent=text;if(className)element.className=className;return element; };
   const state = {query:params.get('q')||'',work:params.get('work')||'',route:params.get('route')||'',speaker:params.get('speaker')||'',language:params.get('lang')||'preferred',kind:params.get('kind')||'',mode:params.get('mode')==='exact'?'exact':'similar',breadth:params.get('breadth')==='wide'?'wide':'normal'};
   let manifest, worker, ready=false, request=0, displayed=[], total=0, currentScene=null, currentResult=null, currentOrdinal=0, detailRequest=0, assetCache=null, toastTimer, attempted=false, readingCache=null, readingPromise=null, matchedResult=null;
@@ -15,6 +18,7 @@
     const query=new URLSearchParams();
     for(const [key,value] of [['q',state.query.trim()],['work',state.work],['route',state.route],['speaker',state.speaker],['lang',state.language==='preferred'?'':state.language],['kind',state.kind],['mode',state.mode==='exact'?'exact':''],['breadth',state.breadth==='wide'?'wide':'']])if(value)query.set(key,value);
     if($('scene-dialog').open&&currentResult){query.set('dataset',currentResult.dataset);query.set('scene',currentResult.scene);query.set('line',String(currentOrdinal));}
+    if(embedded)query.set('embed','cg');if(requestedCg)query.set('cg',requestedCg);
     history.replaceState(null,'',location.pathname+(query.size?'?'+query:'')+location.hash);
   }
   function routeOptions() {
@@ -84,7 +88,7 @@
   function renderVisual(row){
     if($('scene-content').classList.contains('visual-hidden')&&!$('screen-dialog').open)return;
     const snapshot=currentScene.states[row[5]]||{},key=currentScene.id+':'+row[5];
-    if(key!==visualStateKey){sceneView.variant=DialogueSceneLayout.preferredVariant(snapshot,assetCache?.assets||{});visualStateKey=key;}
+    if(key!==visualStateKey){sceneView.variant=DialogueSceneLayout.preferredVariant(snapshot,assetCache?.assets||{},{asset:requestedCg});visualStateKey=key;}
     const plan=sceneView.render(snapshot,assetCache?.assets||{},{work:currentResult.work,title:currentScene.title,kind:row[3],speaker:person(currentScene,row[2]),text:row[1]});
     const select=$('screen-variant');select.replaceChildren(...Array.from({length:plan.variants},(_,i)=>new Option('画面 '+(i+1),String(i))));select.value=String(sceneView.variant);
     $('screen-variant-label').hidden=plan.variants<2;
@@ -94,18 +98,15 @@
     if(document.querySelector('.material-details').open)renderMaterials(row);
   }
   function renderMaterials(row) {
-    const snapshot=currentScene.states[row[5]]||{}, primary=asset(snapshot.background), picture=$('scene-picture'), caption=$('visual-caption');picture.replaceChildren();caption.replaceChildren();
-    if(primary){const a=link('',primary.link);const img=assetImage(primary);img.loading='eager';a.append(img);picture.append(a);caption.append(node('span',primary.label||primary.name),link('查看素材 ↗',primary.link));if(primary.file&&primary.file!==primary.thumb){const full=new Image();full.decoding='async';full.onload=()=>{if(img.isConnected)img.src=full.src;};full.src=imageUrl(primary.file);}}
-    else if(snapshot.background?.candidates?.length){
-      picture.classList.add('conditional-picture');
-      for(const id of snapshot.background.candidates){const item=asset(id);if(item){const a=link('',item.link);a.append(assetImage(item),node('span',item.name));picture.append(a);}}
-      caption.append(node('span','随分支变化的画面'));
-    }
-    else picture.append(node('div',snapshot.background?.raw?'此处的画面素材尚未收录':'此处没有可确认的背景','no-picture'));
-    if(!snapshot.background?.candidates?.length)picture.classList.remove('conditional-picture');
+    const snapshot=currentScene.states[row[5]]||{},plan=sceneView.lastPlan||DialogueSceneLayout.plan(snapshot,assetCache?.assets||{},{variant:sceneView.variant});
+    const picture=$('scene-picture'),caption=$('visual-caption'),backgrounds=plan.layers.filter(layer=>layer.kind==='background'&&layer.metadata);
+    picture.replaceChildren();caption.replaceChildren();picture.classList.toggle('conditional-picture',backgrounds.length>1);
+    for(const layer of backgrounds){const item=layer.metadata,a=link('',item.link);a.append(assetImage(item));if(backgrounds.length>1)a.append(node('span',item.label||item.name));picture.append(a);}
+    if(backgrounds.length===1){const item=backgrounds[0].metadata;caption.append(node('span',item.label||item.name),link('查看素材 ↗',item.link));}
+    if(!backgrounds.length)picture.append(node('div',snapshot.background?.raw?'此处的画面素材尚未收录':'此处没有可确认的背景','no-picture'));
     const characters=$('scene-characters');characters.replaceChildren();
     const shown=new Set();
-    for(const visible of [...(snapshot.characters||[]),...(snapshot.face?[snapshot.face]:[])])for(const id of [assetId(visible),...(visible.candidates||[])]){
+    for(const visible of plan.layers.filter(layer=>layer.kind==='character'||layer.kind==='face'))for(const id of [visible.asset]){
       const item=asset(id);if(!item||shown.has(id))continue;shown.add(id);
       const card=node('article',null,'character-card'),a=link('',item.link);a.append(assetImage(item),node('span',item.label||item.name));card.append(a);characters.append(card);
     }
@@ -176,7 +177,7 @@
     reader.close();reader.navigation=readingCache?.datasets[result.dataset]||null;
     reader.route=state.route||((result.routes||[]).length===1&&!result.routes[0].endsWith('-common')?result.routes[0]:'');
     $('scene-content').hidden=true;$('detail-loading').hidden=false;$('detail-loading').textContent='正在读取场景';$('scene-heading').textContent=result.title||'场景';$('detail-work').textContent=workMap.get(result.work).label;
-    if(!$('scene-dialog').open)$('scene-dialog').showModal();$('scene-dialog').scrollTop=0;updateUrl();
+    if(!$('scene-dialog').open){if(embedded)$('scene-dialog').show();else $('scene-dialog').showModal();}$('scene-dialog').scrollTop=0;updateUrl();
     try {
       const [scene,assets]=await Promise.all([loadScene(result),assetCache?Promise.resolve(assetCache):DialogueData.load(manifest.assets)]);
       if(ticket!==detailRequest||!$('scene-dialog').open)return;
@@ -201,7 +202,7 @@
   $('reading-start').addEventListener('click',()=>{if(currentScene)reader.locate(currentScene,currentResult,currentScene.rows[0][0],true);});
   $('reading-match').addEventListener('click',()=>{if(!matchedResult)return;const block=reader.blocks.find(b=>b.scene.id===matchedResult.scene);if(block)reader.locate(block.scene,matchedResult,matchedResult.ordinal,true);else openScene(matchedResult,true);});
   $('show-visual').addEventListener('click',()=>{const hidden=$('scene-content').classList.toggle('visual-hidden');$('show-visual').setAttribute('aria-expanded',String(!hidden));if(!hidden&&currentScene)renderVisual(currentScene.rows.find(row=>row[0]===currentOrdinal));});
-  $('screen-variant').addEventListener('change',()=>{sceneView.setVariant(Number($('screen-variant').value));});
+  $('screen-variant').addEventListener('change',()=>{sceneView.setVariant(Number($('screen-variant').value));if(document.querySelector('.material-details').open&&currentScene)renderMaterials(currentScene.rows.find(row=>row[0]===currentOrdinal));});
   $('screen-text').addEventListener('click',()=>$('screen-text').setAttribute('aria-pressed',String(sceneView.toggleText())));
   for(const prefix of ['screen','large']){
     $(prefix+'-page-prev').addEventListener('click',()=>sceneView.setPage(sceneView.page-1));
@@ -214,7 +215,7 @@
   $('screen-dialog').addEventListener('keydown',event=>{if(event.key==='PageUp'||event.key==='PageDown'){event.preventDefault();sceneView.setPage(sceneView.page+(event.key==='PageUp'?-1:1));}else if(event.key==='ArrowLeft'||event.key==='ArrowRight'){event.preventDefault();if(currentScene)reader.step(currentScene,currentResult,currentOrdinal,event.key==='ArrowLeft'?-1:1);}});
   $('screen-prev').addEventListener('click',()=>{if(currentScene)reader.step(currentScene,currentResult,currentOrdinal,-1);});
   $('screen-next').addEventListener('click',()=>{if(currentScene)reader.step(currentScene,currentResult,currentOrdinal,1);});
-  $('share').addEventListener('click',async()=>{updateUrl();try{await navigator.clipboard.writeText(location.href);toast('链接已复制');}catch{toast('可复制浏览器地址栏中的链接');}});
+  $('share').addEventListener('click',async()=>{updateUrl();const url=new URL(location.href);url.searchParams.delete('embed');try{await navigator.clipboard.writeText(url.href);toast('链接已复制');}catch{toast('可复制浏览器地址栏中的链接');}});
   async function init(){
     $('submit').disabled=true;
     fetch('ui.json?v=c01251f0667b').then(response=>{if(!response.ok)throw new Error('ui');return response.json();}).then(data=>sceneView.setUi(data)).catch(()=>{});
@@ -225,7 +226,7 @@
       if(!manifest.speakers.some(person=>person.id===state.speaker))state.speaker='';
       if(!workMap.has(state.work))state.work='';if(!routeMap.has(state.route))state.route='';if(!['preferred','zh','ja','all'].includes(state.language))state.language='preferred';if(!['','0','1','2'].includes(state.kind))state.kind='';
       $('corpus-total').textContent=`${manifest.works.length} 部作品 · ${manifest.total.toLocaleString()} 段文本`;syncInputs();
-      worker=new Worker('search-worker.js?v=a48c9792401a');worker.onmessage=onWorker;worker.onerror=()=>{status('搜索未能启动，请刷新重试');$('submit').disabled=false;};worker.postMessage({type:'init',manifest});
+      if(!embedded){worker=new Worker('search-worker.js?v=a48c9792401a');worker.onmessage=onWorker;worker.onerror=()=>{status('搜索未能启动，请刷新重试');$('submit').disabled=false;};worker.postMessage({type:'init',manifest});}
       const scene=params.get('scene'),dataset=params.get('dataset');
       if(scene&&dataset&&manifest.sceneFiles[dataset+'/'+scene]){
         const spec=manifest.datasets.find(item=>item.id===dataset);const ordinal=Math.max(0,Number(params.get('line'))||0);

@@ -2,6 +2,8 @@
 (() => {
   'use strict';
   const data = window.CATALOG_DATA;
+  const storyModuleUrl = new URL('cg-story.js?v=432aa2b91c75', document.currentScript.src);
+  const storyRoutes = new Map();
   const $ = id => document.getElementById(id);
   if (!data) { $('error').hidden = false; $('error').textContent = '索引未能载入，请刷新页面重试。'; return; }
   const params = new URLSearchParams(location.search);
@@ -69,6 +71,7 @@
     r._search+=' '+aliases.flatMap(a => labels.map(t => a+t)).join(' ').toLowerCase();
     if(r.kind==='title')r._search+=' 日文标题 日文logo 原版标题 游戏标题 标题logo';
     if(r.kind==='title_character')r._search+=' 标题人物 人物图层 标题立绘';
+    if(r.kind==='cg')r._search+=' '+(r.story?.routes||[]).map(id=>storyRoutes.get(id)||id).join(' ');
     records.set(r.id, r); return r;
   }
   all.forEach(indexRecord);
@@ -80,11 +83,12 @@
     history.replaceState(null, '', location.pathname + (p.size ? '?' + p.toString() : '') + location.hash);
   }
   function hasRole(r) { return !state.character || (r.characters || [r.character]).includes(state.character); }
+  function matchesWork(r) { return !state.work || r.gameIds.includes(state.work) || (r.kind==='cg' && (r.story?.routes||[]).some(route=>route.startsWith(state.work.slice(0,2)+'-'))); }
   function hasCostume(r, value = state.costume) { return !value || (value.startsWith('outfit:') ? r.outfit === value.slice(7) : r.costume === value); }
   function artworkButton(text,action) {
     const el = node('button',text); el.type = 'button'; el.dataset.artworkDownload = 'true'; el.disabled = window.ArtworkDownloads.isBusy(); el.addEventListener('click',action); return el;
   }
-  function packsFor(r) { return artworkPacks.filter(p => r.packIds.includes(p.id) && (!state.work || p.game === state.work)); }
+  function packsFor(r) { const available=artworkPacks.filter(p=>r.packIds.includes(p.id)),selected=available.filter(p=>!state.work||p.game===state.work);return selected.length?selected:available; }
   function showArtworkPacks(title,selected) {
     $('download-title').textContent = title+' · 完整原图分包'; $('download-summary').textContent = '按作品和场景分别下载，保留完整画布、表情差分与原始图层。';
     const root = $('download-list'); root.replaceChildren();
@@ -112,9 +116,14 @@
     const actions = node('div', null, 'asset-actions'); const open = node('button', isArtwork(r) ? '查看原图 ↗' : '查看立绘 ↗'); open.type = 'button'; open.addEventListener('click', () => showImage(r));
     const pack = packIndex.get(packKey(r));
     const action = r.kind === 'game' ? link('服装包 ↓', pack.url) : isArtwork(r) ? artworkButton('PNG 原图 ↓',() => window.ArtworkDownloads.png(r)) : link('官网出处 ↗', r.sourcePage);
-    actions.append(open, action); detail.append(title, subtitle, meta, actions); card.append(preview, favorites.make(r.id, recordLabel(r)), detail); return card;
+    actions.append(open, action); detail.append(title, subtitle, meta);
+    if(r.kind==='cg'){
+      const labels=(r.story?.routes||[]).map(id=>storyRoutes.get(id)||id),route=node('p',labels.join(' / ')||'线路待核对','asset-route');route.title=route.textContent;detail.append(route);
+    }
+    detail.append(actions); card.append(preview, favorites.make(r.id, recordLabel(r)), detail); return card;
   }
   function showImage(r, update = true, sequence = null) {
+    $('image-dialog').querySelector('.cg-reading-panel')?.remove();$('image-dialog').classList.remove('cg-reading-open');
     previewSequence = sequence || (state.tab === 'search' && filtered.some(item => item.id === r.id) ? filtered : [r]);
     displayedAsset=r.id;
     const position = previewSequence.findIndex(item => item.id === r.id);
@@ -146,6 +155,10 @@
     const secondary = node('div', null, 'dialog-secondary'); secondary.append(favorites.make(r.id, recordLabel(r), true), share);
     info.append(actions, secondary);
     if(isArtwork(r)){const status=node('p',null,'inline-download-status');status.hidden=true;status.setAttribute('role','status');info.append(status);}
+    if(r.kind==='cg'){
+      const host=node('section',null,'cg-story');info.insertBefore(host,dl);
+      import(storyModuleUrl.href).then(module=>{if(host.isConnected&&displayedAsset===r.id)module.mount(host,r,{work:state.work});}).catch(()=>{if(host.isConnected)host.append(node('p','剧情资料未能读取，请重新打开图片。'));});
+    }
     if (update) updateUrl(r.id); if (!$('image-dialog').open) $('image-dialog').showModal();
   }
   function movePreview(direction) {
@@ -183,7 +196,7 @@
     if (state.tab === 'characters') {
       filtered = data.characters.filter(c => !c.resourceGroup && (!state.character || c.id === state.character) && words.every(w => [c.id, c.display, ...c.aliases].join(' ').toLowerCase().includes(w)));
     } else {
-      filtered = all.filter(r => (!state.favoritesOnly || favorites.has(r.id)) && hasRole(r) && (!state.source || (state.source === 'game' ? isGameSource(r) : !isGameSource(r))) && (!state.kind || r.kind === state.kind) && (!state.work || r.gameIds.includes(state.work)) && (!state.frame || (state.frame === 'portrait' ? ['portrait','long'].includes(r.orientation) : r.orientation === state.frame)) && (!state.costume || r.kind === 'game' && hasCostume(r)) && (!state.scale || r.kind === 'game' && r.scale === state.scale) && words.every(w => r._search.includes(w)));
+      filtered = all.filter(r => (!state.favoritesOnly || favorites.has(r.id)) && hasRole(r) && (!state.source || (state.source === 'game' ? isGameSource(r) : !isGameSource(r))) && (!state.kind || r.kind === state.kind) && matchesWork(r) && (!state.frame || (state.frame === 'portrait' ? ['portrait','long'].includes(r.orientation) : r.orientation === state.frame)) && (!state.costume || r.kind === 'game' && hasCostume(r)) && (!state.scale || r.kind === 'game' && r.scale === state.scale) && words.every(w => r._search.includes(w)));
     }
     render(); updateUrl();
   }
@@ -232,7 +245,7 @@
   }
   function roleOptions() {
     if (state.kind === 'title' && state.tab !== 'characters') state.character = '';
-    const candidates = state.tab === 'characters' || !ready ? data.characters : all.filter(r => (!state.kind || r.kind === state.kind) && (!state.work || r.gameIds.includes(state.work)) && (!state.source || (state.source === 'game' ? isGameSource(r) : !isGameSource(r))));
+    const candidates = state.tab === 'characters' || !ready ? data.characters : all.filter(r => (!state.kind || r.kind === state.kind) && matchesWork(r) && (!state.source || (state.source === 'game' ? isGameSource(r) : !isGameSource(r))));
     availableRoles = new Set(candidates.flatMap(r => r.characters || [r.character || r.id]));
     if (ready && state.character && !availableRoles.has(state.character)) { state.character='';state.costume='';state.scale=''; }
     $('character').replaceChildren(new Option('全部角色', ''));
@@ -360,7 +373,7 @@
   $('close-dialog').addEventListener('click', () => $('image-dialog').close());
   $('close-downloads').addEventListener('click', () => $('download-dialog').close());
   $('download-dialog').addEventListener('click', e => { if (e.target === $('download-dialog')) { const rect = e.target.getBoundingClientRect(); if (e.clientX < rect.left || e.clientX > rect.right || e.clientY < rect.top || e.clientY > rect.bottom) e.target.close(); } });
-  $('image-dialog').addEventListener('close', () => { displayedAsset='';updateUrl(); $('dialog-image').removeAttribute('src'); });
+  $('image-dialog').addEventListener('close', () => { displayedAsset='';updateUrl(); $('dialog-image').removeAttribute('src');$('dialog-info').replaceChildren();$('image-dialog').querySelector('.cg-reading-panel')?.remove();$('image-dialog').classList.remove('cg-reading-open'); });
   $('image-dialog').addEventListener('click', e => { if (e.target === $('image-dialog')) { const rect = e.target.getBoundingClientRect(); if (e.clientX < rect.left || e.clientX > rect.right || e.clientY < rect.top || e.clientY > rect.bottom) e.target.close(); } });
   syncInputs(); switchTab(state.tab);
   function mergeLoaded() {
@@ -385,6 +398,7 @@
       if(key==='game'){gameRecords=window.CATALOG_GAME_DATA||[];window.CATALOG_GAME_DATA=null;gameRecords.forEach(indexRecord);}
       else {
         const payload=window.CATALOG_CG_DATA||{images:[],packs:[]};window.CATALOG_CG_DATA=null;
+        (payload.storyRoutes||[]).forEach(route=>storyRoutes.set(route.id,route.name));
         const moved=payload.images.find(r=>r.id===params.get('asset') && r.kind==='title_background');
         if(moved){const url=new URL('backgrounds/',location.href);url.searchParams.set('kind','title');url.searchParams.set('asset',moved.id);if(state.work)url.searchParams.set('game',state.work);location.replace(url.href);return;}
         artworkRecords=payload.images.filter(r=>r.kind!=='title_background');artworkPacks=payload.packs;artworkRecords.forEach(indexRecord);
