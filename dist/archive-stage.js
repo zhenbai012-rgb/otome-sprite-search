@@ -5,9 +5,9 @@
   if (!root) return;
   const scriptUrl = document.currentScript.src;
   const desktop = window.matchMedia('(min-width: 960px)');
-  const sceneUrl = new URL('archive-scene.js?v=ae699980479d', scriptUrl);
+  const sceneUrl = new URL('archive-scene.js?v=ad7399fc3930', scriptUrl);
   let scenePreloaded = false;
-  function preloadDesktopScene() {
+  function preloadScene() {
     if (scenePreloaded) return;
     scenePreloaded = true;
     for (const path of [sceneUrl.href, 'vendor/three/three.module.min.js', 'vendor/three/three.core.min.js']) {
@@ -16,10 +16,23 @@
       document.head.append(link);
     }
   }
-  preloadDesktopScene();
-  desktop.addEventListener('change', preloadDesktopScene);
+  function whenVisible(element,callback) {
+    let inView=false,done=false,observer=null;
+    function activate(){
+      if(done||!inView||document.hidden||document.querySelector('dialog[open]'))return;
+      done=true;observer?.disconnect();modalObserver.disconnect();document.removeEventListener('visibilitychange',activate);callback();
+    }
+    const modalObserver=new MutationObserver(activate);
+    document.querySelectorAll('dialog').forEach(dialog=>modalObserver.observe(dialog,{attributes:true,attributeFilter:['open']}));
+    document.addEventListener('visibilitychange',activate);
+    if ('IntersectionObserver' in window) {
+      observer=new IntersectionObserver(entries=>{inView=entries.some(entry=>entry.isIntersecting);activate();},{threshold:0});
+      observer.observe(element);
+    } else {inView=true;queueMicrotask(activate);}
+  }
 
   window.GalleryArchive = {
+    whenVisible,
     mount(options) {
       if (!options.records.length) return;
       let initialized = false;
@@ -38,7 +51,8 @@
           if (records.length > 1 && sessionStorage.getItem(key) === records[0].id) [records[0], records[1]] = [records[1], records[0]];
           sessionStorage.setItem(key, records[0].id);
         } catch (_) { /* Browsing still works when storage is unavailable. */ }
-        let current = 0, scene = null;
+        let current = 0, scene = null, inView = false, sceneModule = null, sceneLoading = false, sceneFailed = false;
+        const active = () => inView && !document.hidden && !document.querySelector('dialog[open]');
         const wrap = index => ((index % records.length) + records.length) % records.length;
         const initialHash = location.hash;
         let interacted = false;
@@ -68,6 +82,12 @@
         query('.archive-enter').href = options.href;
         const imagePool = document.createElement('div'); imagePool.hidden = true; root.append(imagePool);
         const images = new Map();
+        function updateFallback(image) {
+          if ((root.classList.contains('scene-fallback') || root.classList.contains('scene-unavailable')) && image?.complete && image.naturalWidth) {
+            const source=image.currentSrc || image.src;
+            if(fallbackImage.src!==source)fallbackImage.src=source;
+          } else fallbackImage.removeAttribute('src');
+        }
         function loadAt(index) {
           if (images.has(index)) return images.get(index);
           const record = records[index];
@@ -75,7 +95,7 @@
           image.fetchPriority = index === current ? 'high' : 'low';
           image.addEventListener('load', () => {
             if (index !== current) return;
-            fallbackImage.src = image.currentSrc || image.src;
+            updateFallback(image);
             if (scene) scene.setImage(image);
           });
           images.set(index, image); imagePool.append(image); options.loadImage(image, record.thumb || record.file, record.file);
@@ -88,7 +108,7 @@
           query('.archive-markers').append(marker); markers.push(marker);
         }
         function select(index) {
-          current = wrap(index);
+          const next=wrap(index),changed=next!==current;current=next;
           const record = records[current];
           query('.archive-name').textContent = options.label(record);
           query('.archive-meta').textContent = options.meta(record);
@@ -106,10 +126,13 @@
           for (const [cachedIndex, cachedImage] of images) {
             if (!nearby.has(cachedIndex)) { cachedImage.remove(); images.delete(cachedIndex); }
           }
-          const image = loadAt(current), ready = image.complete && image.naturalWidth > 0;
-          if (ready) fallbackImage.src = image.currentSrc || image.src; else fallbackImage.removeAttribute('src');
-          if (scene) { scene.select(current); scene.setImage(ready ? image : null); }
-          nearby.forEach(loadAt);
+          if (scene && changed) scene.select(current);
+          if (active()) {
+            const image = loadAt(current), ready = image.complete && image.naturalWidth > 0;
+            updateFallback(ready ? image : null);
+            if (scene) scene.setImage(ready ? image : null);
+            nearby.forEach(loadAt);
+          }
         }
         query('.archive-prev').addEventListener('click', () => select(current - 1));
         query('.archive-next').addEventListener('click', () => select(current + 1));
@@ -138,18 +161,34 @@
           if (!interacted && location.hash === initialHash) document.getElementById(initialHash.slice(1))?.scrollIntoView({block: 'start', behavior: 'instant'});
           interactionEvents.forEach(type => window.removeEventListener(type, noteInteraction));
         });
-        import(sceneUrl.href).then(module => {
-          scene = module.createArchiveScene(query('.archive-scene'), {
-            count: records.length,
-            onSelect: select,
-          });
-          scene.select(current);
-          const image = images.get(current);
-          if (image && image.complete && image.naturalWidth > 0) scene.setImage(image);
-          root.classList.add('scene-loaded');
-        }).catch(() => { query('.archive-scene canvas')?.remove(); root.classList.add('scene-fallback'); });
+        function fallback() {
+          sceneFailed = true; query('.archive-scene canvas')?.remove(); root.classList.add('scene-fallback');
+          updateFallback(images.get(current));
+        }
+        function wake() {
+          if (!active()) return;
+          select(current);
+          if (scene || sceneLoading || sceneFailed) return;
+          if (sceneModule) {
+            try {
+              scene = sceneModule.createArchiveScene(query('.archive-scene'), {count:records.length,onSelect:select});
+              scene.select(current); const image=images.get(current);
+              if(image?.complete && image.naturalWidth)scene.setImage(image);
+              root.classList.add('scene-loaded');
+            } catch (_) { fallback(); }
+          } else {
+            sceneLoading = true; preloadScene();
+            import(sceneUrl.href).then(module=>{sceneModule=module;sceneLoading=false;wake();}).catch(fallback);
+          }
+        }
+        if('IntersectionObserver' in window)new IntersectionObserver(entries=>{inView=entries[0].isIntersecting;wake();},{threshold:.01}).observe(root);
+        else {inView=true;wake();}
+        new MutationObserver(()=>updateFallback(images.get(current))).observe(root,{attributes:true,attributeFilter:['class']});
+        const modalObserver=new MutationObserver(wake);
+        document.querySelectorAll('dialog').forEach(dialog=>modalObserver.observe(dialog,{attributes:true,attributeFilter:['open']}));
+        document.addEventListener('visibilitychange',wake);
       };
-      desktop.addEventListener('change', build); build();
+      build();
     },
   };
 })();

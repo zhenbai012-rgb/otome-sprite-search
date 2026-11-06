@@ -5,6 +5,8 @@
   const $ = id => document.getElementById(id);
   if (!data) { $('error').hidden = false; $('error').textContent = '索引未能载入，请刷新页面重试。'; return; }
   const params = new URLSearchParams(location.search);
+  const initialSearch = ['q','role','source','costume','scale','type','work','frame','tab','asset'].some(key=>params.get(key)) || location.hash==='#archive';
+  let galleryActive = false, gameRequested = false;
   const state = { tab: params.get('tab') === 'characters' ? 'characters' : 'search', query: params.get('q') || '', character: params.get('role') || '', source: params.get('source') || '', costume: params.get('costume') || '', scale: params.get('scale') || '', kind: params.get('type') || '', work: params.get('work') || '', frame: params.get('frame') || '', favoritesOnly: false, view: 'compact', limit: 48 };
   const favorites = window.GalleryFavorites;
   const typeNames = { game: '游戏立绘', cg: '剧情 CG', title: '日文标题 / Logo', title_character: '标题人物图层', single_png: '官方单人立绘', group: '官方组合图', composite: '官方带背景图' };
@@ -199,12 +201,16 @@
     $('type-note').hidden = isCharacters || !['cg','title','title_character'].includes(state.kind);
     $('type-note').textContent = state.kind === 'cg' ? '剧情 CG 按路线角色整理，长图和差分保留完整画布。' : state.kind === 'title_character' ? '从标题画面导出的人物图层，与游戏立绘分开检索。' : '这里只显示日文 Logo 和完整标题画面；人物图层单独分类，标题背景请到背景图库查看。';
     const backgroundLink = new URL('backgrounds/', location.href); backgroundLink.searchParams.set('kind','title');backgroundLink.hash='collection';if(state.work)backgroundLink.searchParams.set('game',state.work); $('title-backgrounds-link').href=backgroundLink.href;
-    $('result-count').textContent = isCharacters ? `${filtered.length} 位角色` : `${ready ? '' : '正在载入… · '}找到 ${filtered.length.toLocaleString()} 张 · 已显示 ${Math.min(state.limit, filtered.length)}`;
+    const shown=galleryActive&&(isCharacters||ready)?Math.min(state.limit,filtered.length):0;
+    $('result-count').textContent = isCharacters ? `${filtered.length} 位角色` : `${ready ? '' : '正在载入… · '}找到 ${filtered.length.toLocaleString()} 张 · 已显示 ${shown}`;
     $('empty').hidden = filtered.length > 0 || !ready; $('load-more').hidden = isCharacters || filtered.length <= state.limit;
     $('empty').querySelector('h3').textContent = state.favoritesOnly && !isCharacters ? '暂时没有符合条件的收藏' : '暂时没有匹配的结果';
     $('empty').querySelector('p').textContent = state.favoritesOnly && !isCharacters ? '点击图片右上角的 ♡ 收藏，或放宽筛选条件。' : '试试角色简称，或放宽服装、镜头条件。';
     const root = isCharacters ? $('characters') : $('gallery'); root.replaceChildren();
-    const fragment = document.createDocumentFragment(); filtered.slice(0, isCharacters ? filtered.length : state.limit).forEach(r => fragment.append(isCharacters ? renderCharacter(r) : renderCard(r))); root.append(fragment);
+    $(isCharacters?'gallery':'characters').replaceChildren();
+    if(galleryActive&&(isCharacters||ready)){
+      const fragment = document.createDocumentFragment(); filtered.slice(0, isCharacters ? filtered.length : state.limit).forEach(r => fragment.append(isCharacters ? renderCharacter(r) : renderCard(r))); root.append(fragment);
+    }
     document.querySelectorAll('.quick-role').forEach(b => { b.hidden = !availableRoles.has(b.dataset.role); b.classList.toggle('active', b.dataset.role === state.character); b.setAttribute('aria-pressed', String(b.dataset.role === state.character)); });
     document.querySelectorAll('.quick-types button').forEach(b => { b.classList.toggle('active',b.dataset.kind === state.kind); b.setAttribute('aria-pressed',String(b.dataset.kind === state.kind)); });
     updateFavorites();
@@ -297,10 +303,9 @@
   }
   function initDesktopArchive() {
     window.GalleryArchive?.mount({
-      records: artworkRecords.filter(r => r.kind === 'cg'), kind: '剧情 CG', heading: '画面',
-      description: '翻阅角色与故事中的瞬间，找到喜欢的一张。', href: '#archive', loadImage,
+      records: artworkRecords.filter(r => r.kind === 'cg'), kind: '剧情 CG', href: '#archive', loadImage,
       label: r => (r.characters || [r.character]).map(name).join(' / '),
-      code: r => r.sceneName, meta: r => `${workName(r.gameIds[0])} · ${r.sceneName}`,
+      meta: r => `${workName(r.gameIds[0])} · ${r.sceneName}`,
     });
   }
   data.characters.filter(c => !c.resourceGroup).forEach(c => $('character').add(new Option(c.display, c.id)));
@@ -312,16 +317,9 @@
   if (['cg','title','title_character'].includes(state.kind)) { state.costume=''; state.scale=''; }
   if (state.kind === 'title') state.character='';
   $('updated').textContent = data.updated.replaceAll('-', '.'); $('updated').dateTime = data.updated;
-  $('total-count').textContent = (data.stats.gamePngs + data.official.length + (data.stats.cgImages || 0) + (data.stats.titleImages || 0) + (data.stats.titleCharacterImages || 0)).toLocaleString(); $('tab-total').textContent = $('total-count').textContent;
+  $('tab-total').textContent = (data.stats.gamePngs + data.official.length + (data.stats.cgImages || 0) + (data.stats.titleImages || 0) + (data.stats.titleCharacterImages || 0)).toLocaleString();
   $('cg-count').textContent = data.stats.cgImages || 0; $('title-count').textContent = data.stats.titleImages || 0;
-  $('character-count').textContent = data.stats.characterCount; $('tab-characters-count').textContent = data.stats.characterCount;
-  const hero = [data.official.find(r => r.character === 'ルナ' && r.kind === 'single_png' && r.sourcePage.includes('2026')), data.official.find(r => r.character === '朝日' && r.kind === 'single_png')];
-  hero.forEach((r, i) => {
-    if (!r) return;
-    $(i ? 'hero-right' : 'hero-left').loading = 'lazy';
-    loadImage($(i ? 'hero-right' : 'hero-left'), r.thumb, r.file);
-    $(i ? 'hero-right-button' : 'hero-left-button').addEventListener('click', () => showImage(r, true, hero.filter(Boolean)));
-  });
+  $('tab-characters-count').textContent = data.stats.characterCount;
   for (const id of ['ルナ', '桜小路才華', '朝日', '大蔵りそな', 'エスト']) {
     if (!roles.has(id)) continue;
     const button = node('button', name(id).replace(/^樱小路/, '').replace(/^大藏/, ''), 'quick-role'); button.type = 'button'; button.dataset.role = id; button.addEventListener('click', () => { state.character = state.character === id ? '' : id; state.costume = ''; state.limit = 48; syncInputs(); applyFilters(); }); $('quick-roles').append(button);
@@ -344,13 +342,12 @@
     el.addEventListener('click', () => switchTab(el.dataset.tab));
     el.addEventListener('keydown', e => { if (['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(e.key)) { e.preventDefault(); const next = e.key === 'Home' ? 'search' : e.key === 'End' ? 'characters' : state.tab === 'search' ? 'characters' : 'search'; switchTab(next); $('tab-' + next).focus(); } });
   });
-  $('nav-characters').addEventListener('click', () => switchTab('characters'));
-  $('collection-sprites').addEventListener('click', () => switchTab('search'));
+  $('nav-characters').addEventListener('click', () => {activateCatalog();switchTab('characters');});
+  $('collection-sprites').addEventListener('click', () => {activateCatalog();switchTab('search');});
   $('reset').addEventListener('click', reset); $('empty-reset').addEventListener('click', reset);
   $('load-more').addEventListener('click', appendMore);
   $('share-search').addEventListener('click', () => copyLink());
   $('shuffle-featured').addEventListener('click', () => chooseFeatured());
-  $('hero-random').addEventListener('click', () => { const pool = artworkRecords.filter(r => r.kind === 'cg'); if (pool.length) showImage(pool[Math.floor(Math.random() * pool.length)], true, pool); });
   $('random-result').addEventListener('click', () => { if (state.tab === 'search' && filtered.length) showImage(filtered[Math.floor(Math.random() * filtered.length)], true, filtered); });
   $('favorites-toggle').addEventListener('click', () => { state.favoritesOnly = !state.favoritesOnly; state.limit = 48; applyFilters(); });
   document.querySelectorAll('[data-view]').forEach(button => button.addEventListener('click', () => {
@@ -374,8 +371,11 @@
     artworkRecords.filter(r => r.kind==='cg').forEach(r => { if(!cgSeen.has(r.character)){cgSeen.add(r.character);cgFeatured.push(r);}else cgRest.push(r); });
     all = [...data.official,...featured,...cgFeatured,...rest,...cgRest,...artworkRecords.filter(isTitleArt)];
     ready=loaded.game && loaded.cg; syncInputs();applyFilters();
-    $('hero-random').disabled = !artworkRecords.some(r => r.kind === 'cg');
-    if (loaded.cg && !featuredInitialized && artworkRecords.length) { featuredInitialized = true; chooseFeatured(true); initDesktopArchive(); }
+    if (loaded.cg && !featuredInitialized && artworkRecords.length) {
+      featuredInitialized = true; $('discover').hidden=false;
+      window.GalleryArchive.whenVisible($('discover'),()=>{if(!featuredRecords.length)chooseFeatured(true);});
+      initDesktopArchive();
+    }
     const selected=params.get('asset'); if(!selectedOpened && selected && records.has(selected)){selectedOpened=true;showImage(records.get(selected));}
   }
   function loadChunk(key,path,attempt=0) {
@@ -398,6 +398,20 @@
     };
     document.body.append(script);
   }
-  loadChunk('game',data.gameScript);
+  function requestCatalog() {
+    if(!gameRequested){gameRequested=true;loadChunk('game',data.gameScript);}
+  }
+  function activateCatalog() {
+    if(galleryActive&&gameRequested)return;
+    galleryActive=true;requestCatalog();
+    if(ready)applyFilters();
+  }
+  window.GalleryArchive.whenVisible($('archive'),activateCatalog);
+  $('archive').addEventListener('focusin',activateCatalog,{once:true});
+  $('archive').addEventListener('pointerdown',activateCatalog,{once:true});
+  $('filters').addEventListener('change',activateCatalog,{once:true});
+  $('filters').addEventListener('input',activateCatalog,{once:true});
+  window.addEventListener('hashchange',()=>{if(location.hash==='#archive')activateCatalog();});
+  if(initialSearch)requestCatalog();
   if(data.cg)loadChunk('cg',data.cg.script);
 })();

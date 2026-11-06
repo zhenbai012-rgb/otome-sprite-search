@@ -11,6 +11,7 @@
     data.labels.scenes['title-background']='标题背景';
   }
   const params = new URLSearchParams(location.search);
+  let galleryActive = false;
   const state = { query: params.get('q') || '', game: params.get('game') || '', kind: params.has('kind') ? params.get('kind') : 'background', location: params.get('place') || '', tab: params.get('tab') === 'packs' ? 'packs' : 'images', scene: params.get('scene') || '', favoritesOnly: false, view: 'compact', limit: 48 };
   const favorites = window.GalleryFavorites;
   const images = new Map(data.images.map(r => [r.id, r]));
@@ -21,7 +22,7 @@
   const fileName = p => p.downloadName || p.file.split('/').pop();
   const displayName = p => p.displayName || data.labels?.scenes?.[p.scene] || p.scene;
   let filtered = [], busy = false, toastTimer, statusTimer, requestId = 0;
-  let previewSequence = [], displayedAsset = '', featuredRecords = [], heroRecord = null;
+  let previewSequence = [], displayedAsset = '', featuredRecords = [];
   if (!data.games.includes(state.game)) state.game = '';
   if (!['', 'background', ...Object.keys(data.kinds)].includes(state.kind)) state.kind = 'background';
   if (!Object.hasOwn(data.locations, state.location)) state.location = '';
@@ -107,13 +108,14 @@
     $('random-result').disabled = packs || !filtered.length;
     $('gallery').classList.toggle('large-view', state.view === 'large');
     document.querySelectorAll('[role="tab"]').forEach(el => { const active = el.dataset.tab === state.tab; el.classList.toggle('active', active); el.setAttribute('aria-selected', String(active)); el.tabIndex = active ? 0 : -1; });
-    $('result').textContent = `${state.scene ? '场景 ' + short(state.scene) + ' · ' : ''}找到 ${filtered.length} ${packs ? '个场景包' : '张图片'} · 已显示 ${Math.min(state.limit, filtered.length)}`;
+    $('result').textContent = `${state.scene ? '场景 ' + short(state.scene) + ' · ' : ''}找到 ${filtered.length} ${packs ? '个场景包' : '张图片'} · 已显示 ${galleryActive?Math.min(state.limit, filtered.length):0}`;
     $('empty').hidden = filtered.length > 0; $('more').hidden = filtered.length <= state.limit;
     $('empty').querySelector('h3').textContent = state.favoritesOnly && !packs ? '暂时没有符合条件的收藏' : '暂时没有匹配的结果';
     $('empty').querySelector('p').textContent = state.favoritesOnly && !packs ? '点击图片右上角的 ♡ 收藏，或放宽筛选条件。' : '试试地点名称，或放宽筛选条件。';
     document.querySelectorAll('[data-category]').forEach(el=>{const active=el.dataset.category===state.kind;el.classList.toggle('active',active);el.setAttribute('aria-pressed',String(active));});
     const root = $(packs ? 'packs' : 'gallery'), fragment = document.createDocumentFragment();
-    filtered.slice(0, state.limit).forEach(r => fragment.append(packs ? renderPack(r) : renderCard(r))); root.replaceChildren(fragment); updateFavorites();
+    if(galleryActive)filtered.slice(0, state.limit).forEach(r => fragment.append(packs ? renderPack(r) : renderCard(r)));
+    $(packs?'gallery':'packs').replaceChildren();root.replaceChildren(fragment); updateFavorites();
   }
   function appendMore() {
     const start = state.limit, packs = state.tab === 'packs';
@@ -199,13 +201,6 @@
   }
   const scenePool = data.images.filter(r => !r.alpha && r.kinds.includes('scene') && r.width >= r.height);
   function scenePlace(r) { return r.placements.find(p => p.category === data.kinds.scene) || r.placements[0]; }
-  function setHero(r) {
-    if (!r) return; heroRecord = r;
-    $('bg-hero-image').loading = 'lazy';
-    const place = scenePlace(r); loadImage($('bg-hero-image'), r.thumb, r.file);
-    $('bg-hero-caption').textContent = short(place.game) + ' · ' + displayName(place);
-    $('bg-hero-preview').setAttribute('aria-label', '查看背景 ' + displayName(place));
-  }
   function renderFeatured() {
     const root = $('bg-featured-grid'); root.replaceChildren();
     featuredRecords.forEach((r, index) => {
@@ -231,15 +226,14 @@
   }
   function initDesktopArchive() {
     window.GalleryArchive?.mount({
-      records: scenePool, kind: '场景背景', heading: '风景',
-      description: '从熟悉的街道到安静的房间，翻开故事里的风景。', href: '#collection', loadImage,
-      label: r => displayName(scenePlace(r)), code: r => short(scenePlace(r).game),
+      records: scenePool, kind: '场景背景', href: '#collection', loadImage,
+      label: r => displayName(scenePlace(r)),
       meta: r => `${short(scenePlace(r).game)} · ${r.width} × ${r.height}`,
     });
   }
   data.games.forEach(game => $('game').add(new Option(short(game), game)));
   $('updated').textContent = '更新于 ' + data.updated.replaceAll('-', '.'); $('pack-total').textContent = data.packs.length;
-  $('image-total').textContent=data.images.length;$('tab-image-total').textContent=data.images.length;$('scenic-total').textContent=data.images.filter(r=>r.kinds.some(k=>['scene','large','title'].includes(k))).length;$('title-background-total').textContent=titles?.images.length || 0;
+  $('tab-image-total').textContent=data.images.length;$('title-background-total').textContent=titles?.images.length || 0;
   document.querySelector('form').addEventListener('submit', e => e.preventDefault());
   $('search').addEventListener('input', e => { state.query = e.target.value; state.scene = ''; state.limit = 48; applyFilters(); });
   for (const id of ['game', 'kind', 'location']) $(id).addEventListener('change', e => { state[id] = e.target.value; state.scene = ''; state.limit = 48; syncInputs(); applyFilters(); });
@@ -253,9 +247,6 @@
     $('gallery').classList.toggle('large-view', state.view === 'large');
   }));
   favorites.subscribe(persisted => { if (!persisted) toast('当前浏览器无法保存收藏，刷新后会清空'); if (state.favoritesOnly && state.tab === 'images') applyFilters(); else updateFavorites(); });
-  $('bg-hero-preview').addEventListener('click', () => { if (heroRecord) showImage(heroRecord, scenePool); });
-  $('bg-hero-next').addEventListener('click', () => { if (scenePool.length) { const index = scenePool.indexOf(heroRecord); setHero(scenePool[(index + 1 + Math.floor(Math.random() * Math.max(1, scenePool.length - 1))) % scenePool.length]); } });
-  $('bg-random-hero').addEventListener('click', () => { if (scenePool.length) showImage(scenePool[Math.floor(Math.random() * scenePool.length)], scenePool); });
   $('bg-shuffle-featured').addEventListener('click', () => chooseFeatured());
   $('dialog-prev').addEventListener('click', () => movePreview(-1)); $('dialog-next').addEventListener('click', () => movePreview(1));
   document.addEventListener('keydown', event => { if ($('image-dialog').open && !event.altKey && !event.ctrlKey && !event.metaKey && ['ArrowLeft','ArrowRight'].includes(event.key)) { event.preventDefault(); movePreview(event.key === 'ArrowLeft' ? -1 : 1); } });
@@ -266,7 +257,15 @@
   $('close-dialog').addEventListener('click', () => $('image-dialog').close());
   $('image-dialog').addEventListener('close', () => { displayedAsset = ''; updateUrl(); $('dialog-image').removeAttribute('src'); });
   $('image-dialog').addEventListener('click', e => { if (e.target === $('image-dialog')) { const rect = e.target.getBoundingClientRect(); if (e.clientX < rect.left || e.clientX > rect.right || e.clientY < rect.top || e.clientY > rect.bottom) e.target.close(); } });
-  setHero(images.get('f6b4e989dcc56531') || scenePool[0]); chooseFeatured(true); initDesktopArchive();
+  $('bg-discover').hidden=false;
+  window.GalleryArchive.whenVisible($('bg-discover'),()=>{if(!featuredRecords.length)chooseFeatured(true);});
+  function activateGallery(){if(!galleryActive){galleryActive=true;applyFilters();}}
+  window.GalleryArchive.whenVisible($('collection'),activateGallery);
+  $('collection').addEventListener('focusin',activateGallery,{once:true});
+  $('collection').addEventListener('pointerdown',activateGallery,{once:true});
+  document.querySelector('form').addEventListener('change',activateGallery,{once:true});
+  document.querySelector('form').addEventListener('input',activateGallery,{once:true});
+  initDesktopArchive();
   syncInputs(); applyFilters();
   const selected = images.get(params.get('asset')); if (selected) showImage(selected);
 })();

@@ -83,7 +83,8 @@ export function createArchiveScene(host, options) {
   let drag = null;
   const wrap = (value, length) => ((value % length) + length) % length;
   const motion = () => !document.body.classList.contains('motion-off') && !reduced.matches;
-  const canDraw = () => visible && !document.hidden && !contextLost;
+  let modalOpen = Boolean(document.querySelector('dialog[open]'));
+  const canDraw = () => visible && !document.hidden && !contextLost && !modalOpen;
 
   function resize() {
     const width = Math.max(1, host.clientWidth), height = Math.max(1, host.clientHeight);
@@ -225,6 +226,12 @@ export function createArchiveScene(host, options) {
   canvas.addEventListener('webglcontextlost', event => { event.preventDefault(); contextLost = true; if (frame) cancelAnimationFrame(frame); frame = 0; host.classList.add('context-lost'); host.parentElement.classList.add('scene-unavailable'); });
   canvas.addEventListener('webglcontextrestored', () => { contextLost = false; host.classList.remove('context-lost'); host.parentElement.classList.remove('scene-unavailable'); last = 0; nextFrameAt = 0; resize(); });
   new MutationObserver(() => { if (!motion() && frame) { cancelAnimationFrame(frame); frame = 0; } last = 0; nextFrameAt = 0; invalidate(); }).observe(document.body, {attributes: true, attributeFilter: ['class']});
+  const modalObserver = new MutationObserver(() => {
+    modalOpen = Boolean(document.querySelector('dialog[open]'));
+    if (modalOpen && frame) { cancelAnimationFrame(frame); frame = 0; }
+    last = 0; nextFrameAt = 0; invalidate();
+  });
+  document.querySelectorAll('dialog').forEach(dialog => modalObserver.observe(dialog, {attributes:true,attributeFilter:['open']}));
   new IntersectionObserver(entries => { visible = entries[0].isIntersecting; if (!visible && frame) { cancelAnimationFrame(frame); frame = 0; } last = 0; nextFrameAt = 0; invalidate(); }, {threshold: .01}).observe(host);
   new ResizeObserver(resize).observe(host);
   document.addEventListener('visibilitychange', () => { if (document.hidden && frame) { cancelAnimationFrame(frame); frame = 0; } last = 0; nextFrameAt = 0; invalidate(); });
