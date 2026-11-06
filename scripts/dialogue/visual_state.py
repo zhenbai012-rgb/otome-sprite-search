@@ -111,7 +111,7 @@ class VisualStateTracker:
     def _dedupe(self, variants):
         output = {}; key_order = []
         for variant in variants:
-            key = json.dumps(variant['properties'], sort_keys=True, ensure_ascii=False)
+            key = json.dumps([variant['properties'],variant.get('_facePending')], sort_keys=True, ensure_ascii=False)
             if key not in output:
                 output[key] = variant; key_order.append(key)
             else:
@@ -189,6 +189,7 @@ class VisualStateTracker:
             for key, value in updates:
                 if key == 'clear' and value == 'def':
                     props = deepcopy(self._empty(slot)['properties']); variant['properties'] = props
+                    variant.pop('_facePending',None)
                 elif key == 'align':
                     axes = value.split(':')
                     props['alignx'] = axes[0]
@@ -200,6 +201,8 @@ class VisualStateTracker:
                     if axes and re.fullmatch(r'\d+(?:\.\d+)?',axes[0]):props[prefix]=axes[0]
                     if len(axes)>1 and re.fullmatch(r'\d+(?:\.\d+)?',axes[1]):props[other]=axes[1]
                 else: props[key] = value
+                if slot=='face' and key in ('file','id'):
+                    variant.setdefault('_facePending',{})[key]=value
             if self._kind(slot) == 'chara':
                 missing = False
                 for n in range(self._model(slot).get('fragmentCount', 8)):
@@ -216,12 +219,20 @@ class VisualStateTracker:
         """Alias for callers that name an incremental state operation apply()."""
         return self.feed(line, source, line_number, conditional)
 
-    def _materialize(self, slot, variant):
-        props = variant['properties']; kind = self._kind(slot)
+    def finish_frame(self):
+        # QLIE clears the per-message face commands after refreshing the frame.
+        for variant in self.layers.get('face',[]):
+            variant.pop('_facePending',None);variant.pop('_automaticPortrait',None)
+
+    def reference(self,slot,props):
+        kind=self._kind(slot)
         if kind == 'chara' and not props.get('file'):
             count = self._model(slot).get('fragmentCount', 8)
-            reference = ''.join(props.get('file'+str(n), '') for n in range(count) if props.get('file'+str(n), 'none') != 'none')
-        else: reference = props.get('file', '')
+            return ''.join(props.get('file'+str(n), '') for n in range(count) if props.get('file'+str(n), 'none') != 'none')
+        return props.get('file','')
+
+    def _materialize(self, slot, variant):
+        props = variant['properties']; kind = self._kind(slot);reference=self.reference(slot,props)
         has_resource = bool(reference and reference not in ('none', 'pass'))
         visible = has_resource and props.get('show', 'false') == 'true' and props.get('hide', 'false') != 'true'
         if props.get('alpha', '$FF').lstrip('$').strip('0') == '': visible = False
@@ -240,6 +251,7 @@ class VisualStateTracker:
             'properties': deepcopy(props), 'source': variant['source'],
             'conditions': list(variant['conditions']),
             'replacementAssetIds': replacements,
+            **({'automatic':True} if variant.get('_automaticPortrait') else {}),
         }
 
     def snapshot(self, include_hidden=False):

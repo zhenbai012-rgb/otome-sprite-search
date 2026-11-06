@@ -14,7 +14,7 @@ def main():
     entries=json.loads(args.entries.read_text('utf8'))
     hashjobs=json.loads((private/'artwork-research/hash-jobs.json').read_text('utf8'))
     roots={j['game'][:2]:Path(j['archive']).parent for j in hashjobs}
-    pattern=re.compile(r'^(?:avg\d*/(?:imoscripter_(?:template_)?(?:image|chara8e|face|camera|message)\.(?:s|txt)|projectsetting\.txt|projectobjects\.txt|imoscripter_include\.s)|include[^/]*/[^/]+\.txt)$',re.I)
+    pattern=re.compile(r'^(?:avg\d*/(?:imoscripter_(?:template_)?(?:image|chara8e|face|camera|message)\.(?:s|txt)|imoscripter_face_(?:repid|repfile|poslist)\.txt|projectsetting\.txt|projectobjects\.txt|imoscripter_include\.s)|include[^/]*/[^/]+\.txt)$',re.I)
     latest={}
     for row in entries:
         game=row['game'][:2];path=row['name'].replace('\\','/').lower()

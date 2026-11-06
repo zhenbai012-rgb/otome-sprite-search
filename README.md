@@ -63,6 +63,8 @@ python -m http.server 8789
 
 画面由引擎资源路径、增量指令、可见性与条件分支追踪，并按最新封包的原始哈希连接到图库。后日谈与番外同时读取 AVG2 / include2 初始化；先运行 `extract-layout-context.py --input <提取目录>` 补齐私有引擎配置，再编译文本。`map-gallery-pixels.py --input <提取目录>` 可按解码后的尺寸及 RGBA 哈希核对已有公开 CG，只有逐像素相同的资源才补上关联。文件结尾的清屏不覆盖上一句的画面，头像按脚本状态保留，不根据说话人名称或旁白额外过滤；缺少坐标时使用原版对话框的头像位置。超长台词在原对话框内分页，工具栏切换页码，放大后也可用 PageUp / PageDown；正文始终保留完整原文。
 
+自动头像读取原版 Face_RepID / Face_RepFile / Face_PosList 规则，按当前说话人和已载入立绘的服装、表情选择对应头像。场外人物的隐藏立绘也参与头像选择；自动模式下明确指定的头像优先用于当前一句，下一句恢复自动切换。按原版 disp:once / keep 控制单句与持续显示，保留已载入的头像状态。头像选择在编译时完成，浏览器直接合成已有素材。场景首句不借用下一句才出场的人物。
+
 无法唯一判定的分支会列出候选素材；尚未匹配的演出图层或动态跳转会提示，详情不是游戏画面的完整重放。路线入口由控制脚本解析，前置选项不自动当作唯一攻略。`node scripts/audit-dialogue-visuals.cjs` 可按作品统计空白预览及缺失原因。
 
 简繁归一使用 [OpenCC](https://github.com/BYVoid/OpenCC) 的 `TSCharacters` 字表，原字表与 Apache 2.0 许可证保存在 `dist/vendor/opencc/`。

@@ -9,6 +9,7 @@ import argparse, csv, gzip, hashlib, json, re, unicodedata
 from routes import build_routes, normalize_script, adult_segments
 from visual_state import ArtworkResourceIndex, VisualStateTracker, split_arguments
 from engine_layout import enrich_resource, layout
+from portraits import frame_snapshot
 
 ROOT = Path(__file__).resolve().parents[2]
 SITE = ROOT / 'dist'
@@ -67,9 +68,10 @@ def artifact(value, folder, stem, onsite=False):
 
 class Speakers:
     def __init__(self, catalog):
-        self.roles = catalog['characters']; self.lookup = {}; self.people = {}
+        self.roles = catalog['characters']; self.lookup = {}; self.people = {};self.portrait_names={}
         for role in self.roles:
             if role.get('resourceGroup'): continue
+            self.portrait_names[role['id']]=[role['id'],*role.get('aliases',[])]
             for name in [role['id'],role['display'],*role.get('aliases',[])]:
                 self.lookup[folded(name)] = {'id':role['id'],'name':role['display']}
     def get(self, raw):
@@ -80,12 +82,12 @@ class Speakers:
         result['raw'] = raw; self.people[result['id']] = result
         return result
 
-def public_state(tracker):
-    snapshot = tracker.snapshot()
+def public_state(tracker,names=None,voice=''):
+    snapshot = frame_snapshot(tracker,names or [],voice)
     def layer(item):
         if item.get('certainty') == 'exact':
-            return {'asset':item.get('assetId'), 'raw':item.get('resource',''), 'slot':item['slot'], 'layout':layout(item.get('properties',{}))}
-        alternatives=[{'asset':a.get('assetId'),'raw':a.get('resource',''),'visible':a.get('visible',False),'layout':layout(a.get('properties',{}))} for a in item.get('alternatives',[])]
+            return {'asset':item.get('assetId'), 'raw':item.get('resource',''), 'slot':item['slot'], 'layout':layout(item.get('properties',{})),**({'automatic':True} if item.get('automatic') else {})}
+        alternatives=[{'asset':a.get('assetId'),'raw':a.get('resource',''),'visible':a.get('visible',False),'layout':layout(a.get('properties',{})),**({'automatic':True} if a.get('automatic') else {})} for a in item.get('alternatives',[])]
         return {'asset':None,'slot':item['slot'],'candidates':list(dict.fromkeys(a['asset'] for a in alternatives if a['visible'] and a['asset'])), 'conditional':True, 'alternatives':alternatives}
     # Higher priority is rendered on top. Preserve every background layer too.
     backgrounds = sorted(snapshot['backgrounds'], key=lambda a:float(a.get('properties',{}).get('pri','0').lstrip('$')) if re.fullmatch(r'\d+(?:\.\d+)?', a.get('properties',{}).get('pri','0')) else 0)
@@ -126,11 +128,13 @@ def scene_compile(row, meta, initial, speakers, choices):
         text, who, kind, line, vid, flags = paragraph
         # QLIE commits the pending message after the following visual directives.
         # The supplied reference screenshot (02/C20_01B) confirms this ordering.
-        state=public_state(tracker)
+        person = speakers.get(who)
+        names=speakers.portrait_names.get(person['id'],[person['id'],*re.split('[＠@]',person['raw'])]) if kind==0 else None
+        state=public_state(tracker,names,vid)
+        tracker.finish_frame()
         if unknown_control: state['incomplete'] = True
         encoded = json.dumps(state,ensure_ascii=False,sort_keys=True,separators=(',', ':'))
         if encoded not in state_ids: state_ids[encoded]=len(states);states.append(state)
-        person = speakers.get(who)
         key = person['id']+'|'+person['raw']
         if key not in person_ids: person_ids[key]=len(people);people.append(person)
         rows.append([len(rows),cleanup(text),person_ids[key],kind,line,state_ids[encoded],flags,vid])

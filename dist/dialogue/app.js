@@ -219,7 +219,7 @@
     $('submit').disabled=true;
     fetch('ui.json?v=c01251f0667b').then(response=>{if(!response.ok)throw new Error('ui');return response.json();}).then(data=>sceneView.setUi(data)).catch(()=>{});
     try{
-      const response=await fetch('catalog.json?v=4af507c631b0');if(!response.ok)throw new Error('目录未能载入，请刷新重试');manifest=await response.json();
+      const response=await fetch('catalog.json?v=1e976b715370');if(!response.ok)throw new Error('目录未能载入，请刷新重试');manifest=await response.json();
       manifest.works.forEach(work=>{workMap.set(work.id,work);$('work').add(new Option(work.label,work.id));});manifest.routes.forEach(route=>routeMap.set(route.id,route));
       manifest.speakers.forEach(person=>$('speaker').add(new Option(person.name,person.id)));
       if(!manifest.speakers.some(person=>person.id===state.speaker))state.speaker='';

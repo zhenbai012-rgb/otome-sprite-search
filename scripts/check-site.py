@@ -39,7 +39,8 @@ def main():
             if "vendor" not in p.relative_to(SITE).parts:
                 assert "立牌" not in text and "PPI" not in text, p
     total = sum(p.stat().st_size for p in SITE.rglob("*") if p.is_file())
-    assert total < 950_000_000, total
+    # Keep below Pages' 1 GB published-site limit, including on-demand portraits.
+    assert total < 990_000_000, total
     print(json.dumps({"status": "passed", "game": len(games), "official": len(catalog["official"]), "roles": catalog["stats"]["characterCount"], "imageReferences": len(paths), "siteBytes": total}))
 
 

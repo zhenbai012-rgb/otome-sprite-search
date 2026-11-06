@@ -28,6 +28,15 @@ def enrich_resource(resource, private):
         latest[key] = priority, raw.decode(encoding, errors='replace')
     for (game, path), (_, text) in latest.items():
         context = resource['engineContext'][game]
+        namespace=path.split('/',1)[0]
+        if re.fullmatch(r'avg\d*/(?:projectsetting|imoscripter_face_(?:repid|repfile|poslist))\.txt',path):
+            rules=context.setdefault('portraits',{}).setdefault(namespace,{})
+            table={key.strip():value.strip() for key,value in re.findall(r'^\s*([^;#=\r\n]+)=(.*)$',text,re.M)}
+            if path.endswith('projectsetting.txt'):
+                rules['type']=int(table.get('FaceType','0'));rules['defaultFile']=table.get('FaceDefaultFile','')
+            else:
+                key='ids' if path.endswith('_repid.txt') else 'files' if path.endswith('_repfile.txt') else 'positions'
+                rules[key]=table
         found = re.fullmatch(r'(avg\d*)/imoscripter_template_(camera|message|image|chara8e|face)\.txt', path)
         if found:
             kind='chara' if found[2]=='chara8e' else found[2]
@@ -36,6 +45,9 @@ def enrich_resource(resource, private):
         found = re.fullmatch(r'(avg\d*)/imoscripter_(camera|message|image|chara8e|face)\.s', path)
         if found:
             kind='chara' if found[2]=='chara8e' else found[2]
+            if kind=='face':
+                block=re.search(r'^@@!Imo_Face_AutoEvent\s*$(.*?)(?=^@@|\Z)',text,re.M|re.S)
+                context.setdefault('portraits',{}).setdefault(found[1],{})['idOverride']=bool(block and '"id"' in block[1])
             label = '@@!Imo_' + ('Chara8e' if kind=='chara' else kind.capitalize()) + '_DefaultParam'
             body = re.search(r'^' + re.escape(label) + r'\s*$(.*?)(?=^@@|\Z)', text, re.S | re.M)
             if body:

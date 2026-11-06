@@ -4,7 +4,7 @@ const layout=require('../dist/dialogue/scene-layout.js'),root=path.resolve(__dir
 const manifest=JSON.parse(fs.readFileSync(path.join(root,'dist/dialogue/catalog.json'),'utf8'));
 const read=spec=>JSON.parse(zlib.gunzipSync(fs.readFileSync(path.join(root,spec.repositoryPath))));
 const assets=read(manifest.assets).assets;
-let natives=0,scenes=0,layers=0,matchedReference=false,fixedApril=false,checkedAfterStory=false,restoredPortrait=false;const works=new Set();
+let natives=0,scenes=0,layers=0,automaticPortraits=0,matchedReference=false,fixedApril=false,checkedAfterStory=false,restoredPortrait=false,checkedEntrance=false;const works=new Set();
 for(const [id,asset] of Object.entries(assets)){
  assert.ok(asset.width>0&&asset.height>0,id);
  if(asset.kind!=='game')continue;
@@ -15,6 +15,15 @@ for(const dataset of manifest.datasets){
  const data=read(dataset);works.add(data.work);
  for(const scene of data.scenes){
   const detail=read(scene.detail);scenes++;
+  for(const row of detail.rows){
+   if(row[3]!==0)continue;
+   const who=detail.speakers[row[2]],face=detail.states[row[5]].face;if(!face)continue;
+   for(const variant of face.alternatives||[face]){
+    if(!variant.automatic)continue;automaticPortraits++;
+    const cast=assets[variant.asset]?.characters||[];
+    if(cast.length&&!who.id.startsWith('npc-'))assert.ok(cast.includes(who.id),dataset.id+'/'+scene.id+':'+row[0]+' portrait belongs to '+cast+', speaker is '+who.id);
+   }
+  }
   for(const state of detail.states){
    const plan=layout.plan(state,assets,{kind:0,speaker:''});
    for(const layer of plan.layers){assert.ok(Number.isFinite(layer.x)&&Number.isFinite(layer.y)&&Number.isFinite(layer.sx)&&Number.isFinite(layer.sy));assert.ok(layer.opacity>=0&&layer.opacity<=1);assert.ok(!/NaN|Infinity/.test(layer.transform));layers++;}
@@ -31,7 +40,8 @@ for(const dataset of manifest.datasets){
   if(dataset.id==='01-zh'&&scene.id==='f23753f35e97095f'){
    const row=detail.rows.find(row=>row[1].includes('赶快从我眼前消失'));
    const plan=layout.plan(detail.states[row[5]],assets,{kind:row[3],speaker:detail.speakers[row[2]].id});
-   assert.ok(plan.layers.some(layer=>layer.slot==='bg01'&&layer.asset),'AVG2 April initialization must restore the real background');fixedApril=true;
+   assert.ok(plan.layers.some(layer=>layer.slot==='bg01'&&layer.asset),'AVG2 April initialization must restore the real background');
+   const face=plan.layers.find(layer=>layer.kind==='face');assert.equal(face.asset,'face-129374d0642c313f');assert.match(face.raw,/AEO_F_0_0_07$/);fixedApril=true;
   }
   if(dataset.id==='01-zh'&&scene.id==='35f761577c5fe7f2'){
    const row=detail.rows.find(row=>row[1].includes('对，说得太好了'));assert.ok(row);
@@ -41,7 +51,13 @@ for(const dataset of manifest.datasets){
   if(dataset.id==='04-zh'&&scene.id==='a909496a5c0e58a3'){
    const row=detail.rows.find(row=>row[0]===37),plan=layout.plan(detail.states[row[5]],assets,{kind:row[3],speaker:detail.speakers[row[2]].id});
    const face=plan.layers.find(layer=>layer.kind==='face');assert.ok(face,'Restore the portrait in the reported April scene');
-   assert.equal(face.asset,'face-d77140bd6fa83196');assert.equal(face.x,188);assert.equal(face.y,720);restoredPortrait=true;
+   assert.equal(face.asset,'face-8ff01cce7b2a8330');assert.match(face.raw,/SUR_F_0_0_05$/);assert.equal(face.x,188);assert.equal(face.y,720);restoredPortrait=true;
+  }
+  if(dataset.id==='01-zh'&&scene.id==='241d680ef49961a3'){
+   const first=detail.states[detail.rows[0][5]],second=detail.states[detail.rows[1][5]];
+   assert.equal(first.characters.length,0,'The source explicitly hides Asahi before Luna enters');
+   assert.match(first.face.raw,/ASA_F_5_0_06$/);assert.ok(first.face.automatic);
+   assert.ok(second.characters.some(layer=>/LUN_S_2_2_04$/.test(layer.raw)));assert.match(second.face.raw,/LUN_F_2_2_04$/);checkedEntrance=true;
   }
  }
 }
@@ -64,7 +80,7 @@ for(const kind of [0,1]){
  assert.ok(face);assert.equal(face.x,188);assert.equal(face.y,720);assert.equal(face.ax,139);assert.equal(face.ay,220);
 }
 assert.equal(layout.plan({face:{slot:'face',alternatives:[{visible:false,asset:'portrait'}]}},portraitAssets).layers.length,0,'Keep explicit script visibility');
-assert.equal(works.size,6);assert.ok(matchedReference&&fixedApril&&checkedAfterStory&&restoredPortrait&&natives>5000&&layers>50000);
+assert.equal(works.size,6);assert.ok(matchedReference&&fixedApril&&checkedAfterStory&&restoredPortrait&&checkedEntrance&&natives>5000&&layers>50000&&automaticPortraits>50000);
 const ui=JSON.parse(fs.readFileSync(path.join(root,'dist/dialogue/ui.json'),'utf8')),textures=new Set();
 assert.equal(Object.keys(ui.works).length,6);
 for(const work of Object.values(ui.works))for(const theme of [work,...Object.values(work.variants||{})])for(const layer of theme.layers){
@@ -76,4 +92,4 @@ for(const work of Object.values(ui.works))for(const theme of [work,...Object.val
  else throw new Error('Unexpected shared lossless texture format: '+type);
  assert.equal(w,layer.width);assert.equal(h,layer.height);assert.ok(Number.isFinite(layer.x)&&Number.isFinite(layer.y));textures.add(layer.file);
 }
-console.log(JSON.stringify({status:'passed',works:works.size,scenePayloads:scenes,nativeSpriteBounds:natives,layerPlacements:layers,referenceScreenshot:'street + Aeo + correct line',originalSharedTextures:textures.size,storedFrameImages:0}));
+console.log(JSON.stringify({status:'passed',works:works.size,scenePayloads:scenes,nativeSpriteBounds:natives,layerPlacements:layers,automaticPortraits,referenceScreenshot:'street + Aeo + correct line',originalSharedTextures:textures.size,storedFrameImages:0}));

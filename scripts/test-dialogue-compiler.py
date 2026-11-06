@@ -17,6 +17,47 @@ class CompilerTests(unittest.TestCase):
         self.speakers=Speakers({'characters':[{'id':'a','display':'甲','aliases':['甲']}]})
     def parse(self,text):
         return scene_compile({'entry':'scenario/test.s','text':text},{},VisualStateTracker(self.index,'01'),self.speakers,[])[0]
+    def enable_portraits(self):
+        for path,asset in [('a/a_f_0_0_00','face-smile'),('a/a_f_0_0_01','face-sad'),('b/b_f_0_0_00','face-b'),('b/b_s_0_0_00','body-b')]:
+            root='face' if '_f_' in path else '立ち絵'
+            self.index.resources['01|'+root+'/'+path+'.png']={'assetId':asset,'assetIds':[asset]}
+        self.index.context['01']['models']['avg|face']={'defaults':{'mode':'auto','disp':'once','show':'true','x':'188','y':'720'}}
+        self.index.context['01']['portraits']={'avg':{'type':0,'ids':{'乙':'b'},'files':{'_S_':'_F_'},'positions':{}}}
+        self.speakers=Speakers({'characters':[{'id':'a','display':'甲'},{'id':'乙','display':'乙'}]})
+    def test_hidden_character_supplies_current_portrait(self):
+        self.enable_portraits()
+        result=self.parse('^face,show:true\n【甲】\n「场外说话」\n^chara01,file0:a/,file1:a_,file2:s_,file3:0_,file4:0_,file5:01,show:false')
+        state=result['states'][result['rows'][0][5]]
+        self.assertEqual(state['characters'],[])
+        self.assertEqual(state['face']['asset'],'face-sad');self.assertTrue(state['face']['automatic'])
+    def test_portrait_switches_with_speaker_without_reusing_previous_file(self):
+        self.enable_portraits()
+        result=self.parse('^face,show:true\n^chara01,file0:a/,file1:a_,file2:s_,file3:0_,file4:0_,file5:00\n^chara02,file0:b/,file1:b_,file2:s_,file3:0_,file4:0_,file5:00\n【甲】\n「第一句」\n【乙】\n「第二句」\n【甲】\n「第三句」\n^chara01,file5:01')
+        self.assertEqual([result['states'][row[5]]['face']['asset'] for row in result['rows']],['face-smile','face-b','face-sad'])
+    def test_manual_portrait_overrides_only_its_message(self):
+        self.enable_portraits()
+        result=self.parse('^face,show:true\n^chara01,file0:a/,file1:a_,file2:s_,file3:0_,file4:0_,file5:00\n【甲】\n「指定头像」\n^face,file:b/b_f_0_0_00\n【甲】\n「恢复自动头像」\n^face,disp:keep\n保留最后实际显示的头像。')
+        self.assertEqual([result['states'][row[5]]['face']['asset'] for row in result['rows']],['face-b','face-smile','face-smile'])
+    def test_do_not_pull_next_character_into_first_message(self):
+        self.enable_portraits()
+        result=self.parse('^face,show:true\n【甲】\n「先在场外说话」\n^chara01,file0:a/,file1:a_,file2:s_,file3:0_,file4:0_,file5:00,show:false\n【乙】\n「此时出场」\n^chara02,file0:b/,file1:b_,file2:s_,file3:0_,file4:0_,file5:00')
+        states=[result['states'][row[5]] for row in result['rows']]
+        self.assertEqual(states[0]['characters'],[]);self.assertEqual(states[0]['face']['asset'],'face-smile')
+        self.assertEqual(states[1]['characters'][0]['asset'],'body-b');self.assertEqual(states[1]['face']['asset'],'face-b')
+    def test_keep_unresolved_portraits_and_explicit_hidden_state(self):
+        self.enable_portraits()
+        result=self.parse('^face,file:b/b_f_0_0_00,show:true,disp:keep\n【甲】\n「保留指定头像」\n【甲】\n「没有可用自动替换」\n【甲】\n「脚本关闭」\n^face,show:false')
+        states=[result['states'][row[5]] for row in result['rows']]
+        self.assertEqual(states[0]['face']['asset'],'face-b');self.assertEqual(states[1]['face']['asset'],'face-b');self.assertIsNone(states[2]['face'])
+    def test_native_portrait_offset_does_not_accumulate(self):
+        self.enable_portraits();self.index.context['01']['portraits']['avg']['positions']={'default':'-15,0,0'}
+        result=self.parse('^face,show:true,disp:keep\n^chara01,file0:a/,file1:a_,file2:s_,file3:0_,file4:0_,file5:00\n【甲】\n「第一句」\n【甲】\n「第二句」\n保留头像。')
+        self.assertEqual([float(result['states'][row[5]]['face']['layout']['x']) for row in result['rows']],[173,173,173])
+    def test_once_mode_uses_native_per_message_visibility(self):
+        self.enable_portraits()
+        result=self.parse('^face,show:true\n^chara01,file0:a/,file1:a_,file2:s_,file3:0_,file4:0_,file5:00\n【甲】\n「有对应头像」\n【乙】\n「原版没有载入对应角色」\n【甲】\n「重新出现」')
+        faces=[result['states'][row[5]]['face'] for row in result['rows']]
+        self.assertEqual(faces[0]['asset'],'face-smile');self.assertIsNone(faces[1]);self.assertEqual(faces[2]['asset'],'face-smile')
     def test_incremental_expression_and_visibility(self):
         state=VisualStateTracker(self.index,'01')
         state.feed('^chara01,file0:a/,file1:a_,file2:s_,file3:0_,file4:0_,file5:00')
