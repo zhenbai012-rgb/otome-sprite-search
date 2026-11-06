@@ -84,7 +84,7 @@
   function renderVisual(row){
     if($('scene-content').classList.contains('visual-hidden')&&!$('screen-dialog').open)return;
     const snapshot=currentScene.states[row[5]]||{},key=currentScene.id+':'+row[5];
-    if(key!==visualStateKey){const who=person(currentScene,row[2]);sceneView.variant=DialogueSceneLayout.preferredVariant(snapshot,assetCache?.assets||{},{kind:row[3],speaker:who.id,speakerNames:[who.name,who.raw]});visualStateKey=key;}
+    if(key!==visualStateKey){sceneView.variant=DialogueSceneLayout.preferredVariant(snapshot,assetCache?.assets||{});visualStateKey=key;}
     const plan=sceneView.render(snapshot,assetCache?.assets||{},{work:currentResult.work,title:currentScene.title,kind:row[3],speaker:person(currentScene,row[2]),text:row[1]});
     const select=$('screen-variant');select.replaceChildren(...Array.from({length:plan.variants},(_,i)=>new Option('画面 '+(i+1),String(i))));select.value=String(sceneView.variant);
     $('screen-variant-label').hidden=plan.variants<2;

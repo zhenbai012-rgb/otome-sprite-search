@@ -4,7 +4,7 @@ const layout=require('../dist/dialogue/scene-layout.js'),root=path.resolve(__dir
 const manifest=JSON.parse(fs.readFileSync(path.join(root,'dist/dialogue/catalog.json'),'utf8'));
 const read=spec=>JSON.parse(zlib.gunzipSync(fs.readFileSync(path.join(root,spec.repositoryPath))));
 const assets=read(manifest.assets).assets;
-let natives=0,scenes=0,layers=0,matchedReference=false,fixedApril=false,fixedPortrait=false;const works=new Set();
+let natives=0,scenes=0,layers=0,matchedReference=false,fixedApril=false,checkedAfterStory=false,restoredPortrait=false;const works=new Set();
 for(const [id,asset] of Object.entries(assets)){
  assert.ok(asset.width>0&&asset.height>0,id);
  if(asset.kind!=='game')continue;
@@ -24,7 +24,8 @@ for(const dataset of manifest.datasets){
    assert.ok(row);const plan=layout.plan(detail.states[row[5]],assets,{kind:row[3],speaker:detail.speakers[row[2]].id});
    const body=plan.layers.find(l=>l.slot==='chara01'),background=plan.layers.find(l=>l.slot==='bg01');
    assert.equal(body.asset,'game-367086ba5c49f835');assert.equal(body.x,640);assert.equal(body.y,740);
-   assert.equal(background.asset,'b06e60cfe2219d05');assert.ok(!plan.layers.some(l=>l.kind==='face'));
+   assert.equal(background.asset,'b06e60cfe2219d05');
+   if(detail.states[row[5]].face?.asset)assert.ok(plan.layers.some(l=>l.kind==='face'&&l.asset===detail.states[row[5]].face.asset),'Keep the script portrait during narration');
    assert.ok(body.crop[2]-body.crop[0]<body.width/2,'Use the original transparent margins, never stretch a cropped figure');matchedReference=true;
   }
   if(dataset.id==='01-zh'&&scene.id==='f23753f35e97095f'){
@@ -35,7 +36,12 @@ for(const dataset of manifest.datasets){
   if(dataset.id==='01-zh'&&scene.id==='35f761577c5fe7f2'){
    const row=detail.rows.find(row=>row[1].includes('对，说得太好了'));assert.ok(row);
    const who=detail.speakers[row[2]],plan=layout.plan(detail.states[row[5]],assets,{kind:row[3],speaker:who.id,speakerNames:[who.name,who.raw]});
-   assert.ok(plan.layers.some(layer=>layer.slot==='bg01'&&layer.asset));assert.ok(!plan.layers.some(layer=>layer.asset==='face-66bf158b8fea9720'));fixedPortrait=true;
+   assert.ok(plan.layers.some(layer=>layer.slot==='bg01'&&layer.asset));checkedAfterStory=true;
+  }
+  if(dataset.id==='04-zh'&&scene.id==='a909496a5c0e58a3'){
+   const row=detail.rows.find(row=>row[0]===37),plan=layout.plan(detail.states[row[5]],assets,{kind:row[3],speaker:detail.speakers[row[2]].id});
+   const face=plan.layers.find(layer=>layer.kind==='face');assert.ok(face,'Restore the portrait in the reported April scene');
+   assert.equal(face.asset,'face-d77140bd6fa83196');assert.equal(face.x,188);assert.equal(face.y,720);restoredPortrait=true;
   }
  }
 }
@@ -52,8 +58,13 @@ for(const text of ['「对，说得太好了。等下又会接到一些过分的
  const pages=layout.paginate(text,t=>Array.from(t).length*24,240,3);assert.equal(pages.join(''),text);assert.ok(pages.length>1);
  for(const page of pages)assert.ok(Array.from(page.replace(/\n/g,'')).length<=30);
 }
-assert.ok(!layout.portraitMatches({raw:'その他/FAC_0018',metadata:{characters:[],name:'其他人物 · 头像'}},{speaker:'大蔵りそな',speakerNames:['大藏里想奈']}));
-assert.equal(works.size,6);assert.ok(matchedReference&&fixedApril&&fixedPortrait&&natives>5000&&layers>50000);
+const portrait={slot:'face',asset:'portrait',raw:'その他/FAC_0018',layout:{mode:'auto'}},portraitAssets={portrait:{width:278,height:220,characters:[]}};
+for(const kind of [0,1]){
+ const face=layout.plan({face:portrait},portraitAssets,{kind,speaker:'大蔵りそな'}).layers.find(layer=>layer.kind==='face');
+ assert.ok(face);assert.equal(face.x,188);assert.equal(face.y,720);assert.equal(face.ax,139);assert.equal(face.ay,220);
+}
+assert.equal(layout.plan({face:{slot:'face',alternatives:[{visible:false,asset:'portrait'}]}},portraitAssets).layers.length,0,'Keep explicit script visibility');
+assert.equal(works.size,6);assert.ok(matchedReference&&fixedApril&&checkedAfterStory&&restoredPortrait&&natives>5000&&layers>50000);
 const ui=JSON.parse(fs.readFileSync(path.join(root,'dist/dialogue/ui.json'),'utf8')),textures=new Set();
 assert.equal(Object.keys(ui.works).length,6);
 for(const work of Object.values(ui.works))for(const theme of [work,...Object.values(work.variants||{})])for(const layer of theme.layers){

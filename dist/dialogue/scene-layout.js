@@ -48,23 +48,15 @@
     if(start<chars.length)pages.push(chars.slice(start).join(''));
     return pages.length?pages:[''];
   }
-  function identity(text){return String(text||'').normalize('NFKC').replace(/蔵/g,'藏').replace(/倉/g,'仓').replace(/櫻/g,'樱').replace(/[（(].*$/,'').trim();}
-  function portraitMatches(item,options){
-    const names=new Set([options.speaker,...(options.speakerNames||[])].filter(Boolean).map(identity));
-    const cast=item.metadata?.characters||[];
-    if(cast.length)return cast.some(id=>names.has(identity(id)));
-    const folder=String(item.raw||'').replace(/\\/g,'/').split('/').filter(Boolean).at(-2);
-    return [folder,item.metadata?.name?.split(' · ')[0]].some(name=>name&&names.has(identity(name)));
-  }
   function layer(record,assets,index,kind){
     const picked=choose(record,index);if(!picked)return null;
     const asset=assets[picked.asset],fill=solid(picked.raw);
     if(!asset&&!fill)return null;
     const p=picked.layout||{},width=number(asset?.width,1280),height=number(asset?.height,720);
-    const x=number(p.x,kind==='character'?640:0),y=number(p.y,kind==='character'?740:0);
+    const x=number(p.x,kind==='character'?640:kind==='face'?188:0),y=number(p.y,kind==='character'?740:kind==='face'?720:0);
     const sx=number(p.scalex,100)/100,sy=number(p.scaley,100)/100,rotation=number(p.rotz);
-    const ax=anchor(p.alignx??(kind==='character'?'center':'left'),'x')*width;
-    const ay=anchor(p.aligny??(kind==='character'?'bottom':'top'),'y')*height;
+    const ax=anchor(p.alignx??(kind==='character'||kind==='face'?'center':'left'),'x')*width;
+    const ay=anchor(p.aligny??(kind==='character'||kind==='face'?'bottom':'top'),'y')*height;
     const opacity=Math.max(0,Math.min(1,number(p.alpha,255)/255));
     const crop=asset?.crop||[0,0,width,height];
     return {asset:picked.asset||null,raw:picked.raw,metadata:asset,fill,slot:record.slot,kind,width,height,crop,x,y,sx,sy,ax,ay,rotation,opacity,
@@ -81,14 +73,8 @@
       variants=Math.max(variants,alternatives(record).length||1);
       const kind=record.slot?.startsWith('chara')?'character':record.slot==='face'?'face':'background';
       const item=layer(record,assets,index,kind);
-      if(item){
-        // Automatic portraits follow the current speaker, never stale narration.
-        if(kind==='face'&&item.mode==='auto'){
-          if(options.kind!==0)continue;
-          if(!portraitMatches(item,options))continue;
-        }
-        layers.push(item);
-      }else if(choose(record,index)&&!solid(choose(record,index).raw))missing.push(record.slot);
+      if(item)layers.push(item);
+      else if(choose(record,index)&&!solid(choose(record,index).raw))missing.push(record.slot);
     }
     layers.sort((a,b)=>a.priority-b.priority||a.slot.localeCompare(b.slot));
     const camera=snapshot.camera||{},zx=number(camera.zoomx,100)/100,zy=number(camera.zoomy,100)/100,angle=number(camera.rotz);
@@ -102,6 +88,6 @@
     for(let i=1;i<initial.variants;i++)if(plan(snapshot,assets,{...options,variant:i}).layers.length)return i;
     return 0;
   }
-  const api={number,color,anchor,solid,choose,layer,plan,paginate,portraitMatches,preferredVariant};root.DialogueSceneLayout=api;
+  const api={number,color,anchor,solid,choose,layer,plan,paginate,preferredVariant};root.DialogueSceneLayout=api;
   if(typeof module!=='undefined'&&module.exports)module.exports=api;
 })(typeof self==='undefined'?globalThis:self);

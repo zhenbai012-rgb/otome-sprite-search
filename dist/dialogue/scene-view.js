@@ -52,7 +52,7 @@
       filter.append(transfer);defs.append(filter);return 'url(#'+id+')';
     }
     render(snapshot,assets,context){
-      this.input=[snapshot,assets,context];this.lastPlan=layout.plan(snapshot,assets,{variant:this.variant,kind:context.kind,speaker:context.speaker.id,speakerNames:[context.speaker.name,...String(context.speaker.raw||'').split(/[＠@]/)]});
+      this.input=[snapshot,assets,context];this.lastPlan=layout.plan(snapshot,assets,{variant:this.variant});
       const plan=this.lastPlan,baseUi=this.ui?.works?.[context.work],style=String(plan.message.file||'').toLowerCase();
       const variant=style.includes('full')?'full':style.includes('ion')?'ion':style.includes('april')?'april':style.includes('afaf')?'afaf':'';
       const ui=baseUi?.variants?.[variant]||baseUi,key=JSON.stringify([plan,context.work,ui]);
