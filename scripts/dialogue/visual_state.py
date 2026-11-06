@@ -124,6 +124,20 @@ class VisualStateTracker:
     def _note(self, value):
         if value not in self.notes: self.notes.append(value)
 
+    def _include_name(self, value):
+        name=canonical(unquote(value))
+        if not re.match(r'^include\d*/',name):
+            suffix=self.namespace[3:] if self.namespace.startswith('avg') else ''
+            name='include'+suffix+'/'+name
+        return name[:-4] if name.endswith('.txt') else name
+
+    def flushes_text(self, line):
+        args=split_arguments(line.strip())
+        if args[0].casefold()=='^format':return any(a.casefold()=='clear:def' for a in args[1:])
+        if args[0].casefold()!='^include' or len(args)<2:return False
+        name=self._include_name(args[1])
+        return name.rsplit('/',1)[-1]=='allclear' or name in self.index.context.get(self.game,{}).get('flushIncludes',[])
+
     def _expand(self, slot, arguments, depth=0):
         if depth > 16:
             self._note('宏展开超过上限'); return []
@@ -155,10 +169,12 @@ class VisualStateTracker:
             if len(arguments) < 2: return True
             if _include_depth >= 16:
                 self._note('include 展开超过上限'); return True
-            name = canonical(unquote(arguments[1]))
-            if not name.startswith(('include/', 'include2/')):
-                name = ('include2/' if self.namespace == 'avg2' else 'include/') + name
-            if name.endswith('.txt'): name = name[:-4]
+            name = self._include_name(arguments[1])
+            # This is an engine-generated reset list; the empty allclear.txt is
+            # deliberately bypassed by Imo_Include_Excute in the actual game.
+            if name.rsplit('/',1)[-1]=='allclear':
+                for current in list(self.layers):self.feed('^'+current+',clear:def',source,line_number,conditional,_include_depth+1)
+                return True
             includes = self.index.context.get(self.game, {}).get('includes', {})
             if name not in includes:
                 self._note('未解析的视觉 include ' + name); return True

@@ -192,6 +192,7 @@ def scene_compile(row, meta, initial, speakers, choices):
         if dead: continue
         if line.casefold().startswith('\\jmp,') and not jump:unknown_control=True
         if line.lower().startswith(('\\case', '\\switch')): unknown_control=True
+        if tracker.flushes_text(line):finish()
         if VISUAL.match(line):tracker.feed(line,source=normalize_script(row['entry']),line_number=number);continue
         if marked:
             if not line.startswith(('^','\\','@','％','%','【','//',';','#')):ignored+=1
@@ -337,6 +338,7 @@ def main():
                     smeta=meta['scenes'][path];translated=choice_meta['scenes'].get(path,{})
                     prior=[end_states[p] for p in sorted(parents[path]) if p in end_states]
                     initial=VisualStateTracker.merge(prior) if prior else VisualStateTracker(index,game,namespace='avg2' if '@@@AVG2' in row['text'].upper() else 'avg')
+                    initial.namespace='avg2' if '@@@AVG2' in row['text'].upper() else 'avg'
                     compiled,end,skipped=scene_compile(row,smeta,initial,speakers,local_map[path]);end_states[path]=end;ignored+=skipped
                     if not compiled['rows']:continue
                     scene_id=sid(game,path);title=translated.get('title') or smeta['title'] or Path(path).stem;period=translated.get('date') or smeta.get('date','')

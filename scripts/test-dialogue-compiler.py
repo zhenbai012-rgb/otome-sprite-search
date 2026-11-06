@@ -25,7 +25,7 @@ class CompilerTests(unittest.TestCase):
         self.assertEqual(state.snapshot()['characters'][0]['assetId'],'sad')
         state.feed('^chara01,show:false');self.assertEqual(state.snapshot()['characters'],[])
         state.feed('^chara01,show:true');self.assertEqual(state.snapshot()['characters'][0]['assetId'],'sad')
-        state.feed('^include,allclear');self.assertEqual(state.snapshot()['characters'][0]['assetId'],'sad')
+        state.feed('^include,allclear');self.assertEqual(state.snapshot()['characters'],[])
         state.feed('^chara01,file0:none');self.assertEqual(state.snapshot()['characters'],[])
     def test_visual_directives_apply_before_pending_message_is_committed(self):
         # Actual scene 02/C20_01B uses a transient white frame before this text,
@@ -41,6 +41,18 @@ class CompilerTests(unittest.TestCase):
         self.assertEqual(state['background']['layout']['aligny'],'center')
         self.assertEqual(state['characters'][0]['layout']['x'],'240')
         self.assertEqual(state['characters'][0]['layout']['alpha'],'$80')
+    def test_final_message_is_captured_before_fileend_teardown(self):
+        self.index.context['01']['includes']['include/fileend']=['^bg01,clear:def','^chara01,clear:def']
+        self.index.context['01']['flushIncludes']=['include/fileend']
+        result=self.parse('^bg01,file:bg/day\n【甲】\n「最后一句」\n^include,fileend')
+        self.assertEqual(len(result['rows']),1)
+        self.assertEqual(result['states'][result['rows'][0][5]]['background']['asset'],'day')
+    def test_secondary_namespace_uses_its_own_initialization(self):
+        self.index.context['01']['models']['avg2|image']={'defaults':{'show':'false'},'macros':{'$reset':'show:true,x:640,y:360,align:center:center'}}
+        self.index.context['01']['includes']['include2/allset']=['^bg01,$reset']
+        state=VisualStateTracker(self.index,'01','avg2');state.feed('^include,allset');state.feed('^bg01,file:bg/day')
+        self.assertEqual(state.snapshot()['backgrounds'][0]['assetId'],'day')
+        self.assertEqual(state.snapshot()['backgrounds'][0]['properties']['x'],'640')
     def test_only_marked_interval_is_excluded(self):
         text='^bg01,file:bg/day\n【甲】\n「之前」\n^savefilter,1\n^bg01,file:bg/night\n【甲】\n「私有区间」\n^savefilter,0\n^bg01,file:bg/day\n【甲】\n「之后」'
         result=self.parse(text)

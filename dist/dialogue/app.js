@@ -74,15 +74,21 @@
   function asset(value){return assetCache?.assets?.[assetId(value)]||null;}
   function imageUrl(value){if(['localhost','127.0.0.1'].includes(location.hostname)&&location.pathname.includes('/dist/dialogue/')){if(value?.includes('/main/dialogue-assets/'))return '../../dialogue-assets/'+value.split('/main/dialogue-assets/')[1];if(value?.includes('/otome-sprite-search/dialogue/faces/'))return 'faces/'+value.split('/otome-sprite-search/dialogue/faces/')[1];}return value;}
   function assetImage(item,className){const img=new Image();img.alt=item.label||item.name;img.loading='lazy';img.decoding='async';img.src=imageUrl(item.thumb);img.className=className||'';img.onerror=()=>{img.onerror=null;if(item.file&&imageUrl(item.file)!==img.src)img.src=imageUrl(item.file);};return img;}
-  const sceneView=new DialogueSceneView($('game-screen'),{resolve:imageUrl});let visualStateKey='';
+  function screenPages({page,total,visible}){
+    for(const prefix of ['screen','large']){
+      $(prefix+'-pages').hidden=total<2||!visible;$(prefix+'-page-position').textContent=(page+1)+' / '+total;
+      $(prefix+'-page-prev').disabled=page===0;$(prefix+'-page-next').disabled=page>=total-1;
+    }
+  }
+  const sceneView=new DialogueSceneView($('game-screen'),{resolve:imageUrl,onPageChange:screenPages});let visualStateKey='';
   function renderVisual(row){
     if($('scene-content').classList.contains('visual-hidden')&&!$('screen-dialog').open)return;
     const snapshot=currentScene.states[row[5]]||{},key=currentScene.id+':'+row[5];
-    if(key!==visualStateKey){sceneView.variant=0;visualStateKey=key;}
+    if(key!==visualStateKey){const who=person(currentScene,row[2]);sceneView.variant=DialogueSceneLayout.preferredVariant(snapshot,assetCache?.assets||{},{kind:row[3],speaker:who.id,speakerNames:[who.name,who.raw]});visualStateKey=key;}
     const plan=sceneView.render(snapshot,assetCache?.assets||{},{work:currentResult.work,title:currentScene.title,kind:row[3],speaker:person(currentScene,row[2]),text:row[1]});
     const select=$('screen-variant');select.replaceChildren(...Array.from({length:plan.variants},(_,i)=>new Option('画面 '+(i+1),String(i))));select.value=String(sceneView.variant);
     $('screen-variant-label').hidden=plan.variants<2;
-    const notes=[];if(snapshot.conditional)notes.push('含分支画面');if(plan.missing.length)notes.push('部分素材未收录');else if(plan.approximate)notes.push('部分演出为静态近似');
+    const notes=[];if(snapshot.conditional)notes.push('含分支画面');if(plan.missing.length)notes.push('部分素材尚未匹配');else if(plan.approximate)notes.push('部分演出为静态近似');
     $('screen-note').textContent=notes.join(' · ');$('screen-note').hidden=!notes.length;
     $('screen-title').textContent=workMap.get(currentResult.work).short+' · '+currentScene.title;
     if(document.querySelector('.material-details').open)renderMaterials(row);
@@ -197,11 +203,15 @@
   $('show-visual').addEventListener('click',()=>{const hidden=$('scene-content').classList.toggle('visual-hidden');$('show-visual').setAttribute('aria-expanded',String(!hidden));if(!hidden&&currentScene)renderVisual(currentScene.rows.find(row=>row[0]===currentOrdinal));});
   $('screen-variant').addEventListener('change',()=>{sceneView.setVariant(Number($('screen-variant').value));});
   $('screen-text').addEventListener('click',()=>$('screen-text').setAttribute('aria-pressed',String(sceneView.toggleText())));
+  for(const prefix of ['screen','large']){
+    $(prefix+'-page-prev').addEventListener('click',()=>sceneView.setPage(sceneView.page-1));
+    $(prefix+'-page-next').addEventListener('click',()=>sceneView.setPage(sceneView.page+1));
+  }
   document.querySelector('.material-details').addEventListener('toggle',()=>{if(document.querySelector('.material-details').open&&currentScene)renderMaterials(currentScene.rows.find(row=>row[0]===currentOrdinal));});
   $('screen-expand').addEventListener('click',()=>{$('screen-large').append($('game-screen'));$('screen-dialog').showModal();});
   $('screen-close').addEventListener('click',()=>$('screen-dialog').close());
   $('screen-dialog').addEventListener('close',()=>$('screen-home').append($('game-screen')));
-  $('screen-dialog').addEventListener('keydown',event=>{if(event.key==='ArrowLeft'||event.key==='ArrowRight'){event.preventDefault();if(currentScene)reader.step(currentScene,currentResult,currentOrdinal,event.key==='ArrowLeft'?-1:1);}});
+  $('screen-dialog').addEventListener('keydown',event=>{if(event.key==='PageUp'||event.key==='PageDown'){event.preventDefault();sceneView.setPage(sceneView.page+(event.key==='PageUp'?-1:1));}else if(event.key==='ArrowLeft'||event.key==='ArrowRight'){event.preventDefault();if(currentScene)reader.step(currentScene,currentResult,currentOrdinal,event.key==='ArrowLeft'?-1:1);}});
   $('screen-prev').addEventListener('click',()=>{if(currentScene)reader.step(currentScene,currentResult,currentOrdinal,-1);});
   $('screen-next').addEventListener('click',()=>{if(currentScene)reader.step(currentScene,currentResult,currentOrdinal,1);});
   $('share').addEventListener('click',async()=>{updateUrl();try{await navigator.clipboard.writeText(location.href);toast('链接已复制');}catch{toast('可复制浏览器地址栏中的链接');}});
@@ -209,7 +219,7 @@
     $('submit').disabled=true;
     fetch('ui.json?v=c01251f0667b').then(response=>{if(!response.ok)throw new Error('ui');return response.json();}).then(data=>sceneView.setUi(data)).catch(()=>{});
     try{
-      const response=await fetch('catalog.json?v=c5cc4385337f');if(!response.ok)throw new Error('目录未能载入，请刷新重试');manifest=await response.json();
+      const response=await fetch('catalog.json?v=4af507c631b0');if(!response.ok)throw new Error('目录未能载入，请刷新重试');manifest=await response.json();
       manifest.works.forEach(work=>{workMap.set(work.id,work);$('work').add(new Option(work.label,work.id));});manifest.routes.forEach(route=>routeMap.set(route.id,route));
       manifest.speakers.forEach(person=>$('speaker').add(new Option(person.name,person.id)));
       if(!manifest.speakers.some(person=>person.id===state.speaker))state.speaker='';

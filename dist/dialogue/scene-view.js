@@ -7,11 +7,27 @@
   class SceneView{
     constructor(element,options={}){
       this.element=element;this.resolve=options.resolve||((url)=>url);this.prefix='live-scene-'+(++instances)+'-';this.cache=new Map();this.variant=0;this.textVisible=true;this.key='';this.ticket=0;
+      this.onPageChange=options.onPageChange||(()=>{});this.pages=[''];this.page=0;this.textKey='';this.measureContext=document.createElement('canvas').getContext('2d');
       element.classList.add('live-scene');element.setAttribute('role','img');
     }
     setUi(config){this.ui=config;this.key='';if(this.input)this.render(...this.input);}
     setVariant(index){this.variant=index;this.key='';if(this.input)this.render(...this.input);}
-    toggleText(){this.textVisible=!this.textVisible;this.element.classList.toggle('hide-screen-text',!this.textVisible);return this.textVisible;}
+    toggleText(){this.textVisible=!this.textVisible;this.element.classList.toggle('hide-screen-text',!this.textVisible);this.notifyPages();return this.textVisible;}
+    notifyPages(){this.onPageChange({page:this.page,total:this.pages.length,visible:this.textVisible});}
+    setPage(index){this.page=Math.max(0,Math.min(this.pages.length-1,index));if(this.text)this.text.textContent=this.pages[this.page].replace(/\n$/,'');this.notifyPages();}
+    paginateText(text,name){
+      const style=getComputedStyle(this.text),fontSize=parseFloat(style.fontSize)||24,lineHeight=parseFloat(style.lineHeight)||fontSize*1.5;
+      const heading=getComputedStyle(this.name),headingHeight=name?(parseFloat(heading.lineHeight)||30)+(parseFloat(heading.marginBottom)||0):0;
+      const maxLines=Math.max(1,Math.floor((this.textGeometry.height-headingHeight-3)/lineHeight));
+      const key=JSON.stringify([text,name,style.fontFamily,style.fontSize,maxLines,this.textGeometry.width]);
+      if(key!==this.textKey){
+        this.textKey=key;this.page=0;
+        if(this.measureContext)this.measureContext.font=`${style.fontStyle} ${style.fontWeight} ${style.fontSize} ${style.fontFamily}`;
+        const measure=value=>this.measureContext?this.measureContext.measureText(value).width:Array.from(value).length*fontSize;
+        this.pages=layout.paginate(text,measure,this.textGeometry.width-4,maxLines);
+      }
+      this.setPage(this.page);
+    }
     image(item,attributes,ticket){
       const image=svg('image',{...attributes,preserveAspectRatio:'none'}),file=this.resolve(item.file||item.thumb),thumb=this.resolve(item.thumb||item.file);
       image.dataset.asset=item.id||'';
@@ -36,7 +52,7 @@
       filter.append(transfer);defs.append(filter);return 'url(#'+id+')';
     }
     render(snapshot,assets,context){
-      this.input=[snapshot,assets,context];this.lastPlan=layout.plan(snapshot,assets,{variant:this.variant,kind:context.kind,speaker:context.speaker.id});
+      this.input=[snapshot,assets,context];this.lastPlan=layout.plan(snapshot,assets,{variant:this.variant,kind:context.kind,speaker:context.speaker.id,speakerNames:[context.speaker.name,...String(context.speaker.raw||'').split(/[＠@]/)]});
       const plan=this.lastPlan,baseUi=this.ui?.works?.[context.work],style=String(plan.message.file||'').toLowerCase();
       const variant=style.includes('full')?'full':style.includes('ion')?'ion':style.includes('april')?'april':style.includes('afaf')?'afaf':'';
       const ui=baseUi?.variants?.[variant]||baseUi,key=JSON.stringify([plan,context.work,ui]);
@@ -59,12 +75,13 @@
         screen.append(dialogue);
         plan.layers.forEach((item,index)=>{if(item.priority>1100)drawLayer(item,index);});
         const foreign=svg('foreignObject',{x:ui?.text?.x||340,y:ui?.text?.y||559,width:ui?.text?.width||875,height:variant==='full'?560:150,class:'screen-dialogue'});
+        this.textGeometry={width:Number(foreign.getAttribute('width')),height:Number(foreign.getAttribute('height'))};
         const body=document.createElement('div');body.className='screen-message';this.name=document.createElement('div');this.name.className='screen-speaker';this.text=document.createElement('div');this.text.className='screen-quote';body.append(this.name,this.text);foreign.append(body);screen.append(foreign);
-        if(!plan.layers.length){const empty=document.createElement('p');empty.className='screen-empty';empty.textContent='此处画面素材尚未收录';this.element.append(empty);}
+        if(!plan.layers.length){const empty=document.createElement('p');empty.className='screen-empty';empty.textContent=plan.missing.length?'这段图片暂未能匹配':'这段暂无可确认的画面';this.element.append(empty);}
         this.element.append(screen);this.screen=screen;
       }
       const name=context.kind===0?context.speaker.name:'';this.name.textContent=name;this.name.hidden=!name;
-      this.text.textContent=context.text;this.text.style.fontSize=Math.max(18,Math.min(40,layout.number(plan.message.fontsizew,24)))+'px';
+      this.text.style.fontSize=Math.max(18,Math.min(40,layout.number(plan.message.fontsizew,24)))+'px';this.paginateText(context.text,name);
       this.element.setAttribute('aria-label',[context.title,name,context.text].filter(Boolean).join('，'));
       this.element.dataset.approximate=String(plan.approximate);this.element.dataset.layers=String(plan.layers.length);
       return plan;

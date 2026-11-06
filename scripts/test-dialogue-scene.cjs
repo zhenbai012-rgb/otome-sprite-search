@@ -4,7 +4,7 @@ const layout=require('../dist/dialogue/scene-layout.js'),root=path.resolve(__dir
 const manifest=JSON.parse(fs.readFileSync(path.join(root,'dist/dialogue/catalog.json'),'utf8'));
 const read=spec=>JSON.parse(zlib.gunzipSync(fs.readFileSync(path.join(root,spec.repositoryPath))));
 const assets=read(manifest.assets).assets;
-let natives=0,scenes=0,layers=0,matchedReference=false;const works=new Set();
+let natives=0,scenes=0,layers=0,matchedReference=false,fixedApril=false,fixedPortrait=false;const works=new Set();
 for(const [id,asset] of Object.entries(assets)){
  assert.ok(asset.width>0&&asset.height>0,id);
  if(asset.kind!=='game')continue;
@@ -27,6 +27,16 @@ for(const dataset of manifest.datasets){
    assert.equal(background.asset,'b06e60cfe2219d05');assert.ok(!plan.layers.some(l=>l.kind==='face'));
    assert.ok(body.crop[2]-body.crop[0]<body.width/2,'Use the original transparent margins, never stretch a cropped figure');matchedReference=true;
   }
+  if(dataset.id==='01-zh'&&scene.id==='f23753f35e97095f'){
+   const row=detail.rows.find(row=>row[1].includes('赶快从我眼前消失'));
+   const plan=layout.plan(detail.states[row[5]],assets,{kind:row[3],speaker:detail.speakers[row[2]].id});
+   assert.ok(plan.layers.some(layer=>layer.slot==='bg01'&&layer.asset),'AVG2 April initialization must restore the real background');fixedApril=true;
+  }
+  if(dataset.id==='01-zh'&&scene.id==='35f761577c5fe7f2'){
+   const row=detail.rows.find(row=>row[1].includes('对，说得太好了'));assert.ok(row);
+   const who=detail.speakers[row[2]],plan=layout.plan(detail.states[row[5]],assets,{kind:row[3],speaker:who.id,speakerNames:[who.name,who.raw]});
+   assert.ok(plan.layers.some(layer=>layer.slot==='bg01'&&layer.asset));assert.ok(!plan.layers.some(layer=>layer.asset==='face-66bf158b8fea9720'));fixedPortrait=true;
+  }
  }
 }
 const sprites={a:{width:1280,height:750,crop:[415,9,865,750],kind:'game'}};
@@ -37,7 +47,13 @@ const variants={slot:'chara01',alternatives:[{visible:false},{visible:true,asset
 assert.equal(layout.layer(variants,sprites,0,'character'),null);assert.equal(layout.layer(variants,sprites,1,'character').asset,'a');
 const repeated={slot:'chara01',alternatives:[{visible:true,asset:'a',layout:{x:'640'}},{visible:true,asset:'a',layout:{x:'640'}}]};
 assert.equal(layout.plan({characters:[repeated]},sprites,{kind:0}).variants,1);
-assert.equal(works.size,6);assert.ok(matchedReference&&natives>5000&&layers>50000);
+assert.equal(layout.preferredVariant({characters:[variants]},sprites,{kind:0}),1);
+for(const text of ['「对，说得太好了。等下又会接到一些过分的命令哦，比如转三圈说『ang』。」'.repeat(12),'中文 English\n第二段\n\n「保留全部文字」'.repeat(5),'😀あいうえお東京Paris'.repeat(30)]){
+ const pages=layout.paginate(text,t=>Array.from(t).length*24,240,3);assert.equal(pages.join(''),text);assert.ok(pages.length>1);
+ for(const page of pages)assert.ok(Array.from(page.replace(/\n/g,'')).length<=30);
+}
+assert.ok(!layout.portraitMatches({raw:'その他/FAC_0018',metadata:{characters:[],name:'其他人物 · 头像'}},{speaker:'大蔵りそな',speakerNames:['大藏里想奈']}));
+assert.equal(works.size,6);assert.ok(matchedReference&&fixedApril&&fixedPortrait&&natives>5000&&layers>50000);
 const ui=JSON.parse(fs.readFileSync(path.join(root,'dist/dialogue/ui.json'),'utf8')),textures=new Set();
 assert.equal(Object.keys(ui.works).length,6);
 for(const work of Object.values(ui.works))for(const theme of [work,...Object.values(work.variants||{})])for(const layer of theme.layers){

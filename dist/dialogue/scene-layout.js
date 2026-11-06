@@ -31,6 +31,31 @@
     const variant=choices[Math.min(index,choices.length-1)];
     return variant.visible===false?null:{...record,...variant};
   }
+  function paginate(text,measure,width,maxLines){
+    const chars=Array.from(String(text)),pages=[];let start=0,line='',lines=1;
+    width=Math.max(1,width);maxLines=Math.max(1,Math.floor(maxLines));
+    for(let i=0;i<chars.length;i++){
+      const char=chars[i];
+      if(char==='\n'){
+        if(lines>=maxLines){pages.push(chars.slice(start,i+1).join(''));start=i+1;lines=1;}else lines++;
+        line='';continue;
+      }
+      if(line&&measure(line+char)>width){
+        if(lines>=maxLines){pages.push(chars.slice(start,i).join(''));start=i;lines=1;}else lines++;
+        line=char;
+      }else line+=char;
+    }
+    if(start<chars.length)pages.push(chars.slice(start).join(''));
+    return pages.length?pages:[''];
+  }
+  function identity(text){return String(text||'').normalize('NFKC').replace(/蔵/g,'藏').replace(/倉/g,'仓').replace(/櫻/g,'樱').replace(/[（(].*$/,'').trim();}
+  function portraitMatches(item,options){
+    const names=new Set([options.speaker,...(options.speakerNames||[])].filter(Boolean).map(identity));
+    const cast=item.metadata?.characters||[];
+    if(cast.length)return cast.some(id=>names.has(identity(id)));
+    const folder=String(item.raw||'').replace(/\\/g,'/').split('/').filter(Boolean).at(-2);
+    return [folder,item.metadata?.name?.split(' · ')[0]].some(name=>name&&names.has(identity(name)));
+  }
   function layer(record,assets,index,kind){
     const picked=choose(record,index);if(!picked)return null;
     const asset=assets[picked.asset],fill=solid(picked.raw);
@@ -42,7 +67,7 @@
     const ay=anchor(p.aligny??(kind==='character'?'bottom':'top'),'y')*height;
     const opacity=Math.max(0,Math.min(1,number(p.alpha,255)/255));
     const crop=asset?.crop||[0,0,width,height];
-    return {asset:picked.asset||null,metadata:asset,fill,slot:record.slot,kind,width,height,crop,x,y,sx,sy,ax,ay,rotation,opacity,
+    return {asset:picked.asset||null,raw:picked.raw,metadata:asset,fill,slot:record.slot,kind,width,height,crop,x,y,sx,sy,ax,ay,rotation,opacity,
       priority:number(p.pri,kind==='character'?500:kind==='face'?1200:0)+number(p.addpri),
       transform:`translate(${x} ${y}) rotate(${rotation}) scale(${sx} ${sy}) translate(${-ax} ${-ay})`,
       tint:color(p.mulcolor),add:color(p.addcolor,'#000000'),filter:p.imgfilter||'none',blend:p.blend||'normal',
@@ -60,8 +85,7 @@
         // Automatic portraits follow the current speaker, never stale narration.
         if(kind==='face'&&item.mode==='auto'){
           if(options.kind!==0)continue;
-          const cast=item.metadata?.characters||[];
-          if(cast.length&&options.speaker&&!cast.includes(options.speaker))continue;
+          if(!portraitMatches(item,options))continue;
         }
         layers.push(item);
       }else if(choose(record,index)&&!solid(choose(record,index).raw))missing.push(record.slot);
@@ -73,6 +97,11 @@
       approximate:Boolean(snapshot.incomplete||snapshot.conditional||missing.length||layers.some(l=>l.approximate)||number(camera.ax)||number(camera.ay)),
       message:snapshot.message||{}};
   }
-  const api={number,color,anchor,solid,choose,layer,plan};root.DialogueSceneLayout=api;
+  function preferredVariant(snapshot,assets,options={}){
+    const initial=plan(snapshot,assets,{...options,variant:0});if(initial.layers.length)return 0;
+    for(let i=1;i<initial.variants;i++)if(plan(snapshot,assets,{...options,variant:i}).layers.length)return i;
+    return 0;
+  }
+  const api={number,color,anchor,solid,choose,layer,plan,paginate,portraitMatches,preferredVariant};root.DialogueSceneLayout=api;
   if(typeof module!=='undefined'&&module.exports)module.exports=api;
 })(typeof self==='undefined'?globalThis:self);
