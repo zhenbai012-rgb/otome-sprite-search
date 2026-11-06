@@ -79,6 +79,7 @@
 .archive-ready.sprite-site #image-dialog .dialog-image{height: min(74vh, 760px);}
 .archive-ready.background-site #image-dialog .dialog-image{height: min(68vh, 760px);}
 .sprite-site .asset-image:hover img{transform: none;}}
+@media (min-width: 1101px) and (max-width: 1400px){.archive-controls{bottom:95px;}}
 @media (min-width: 960px) and (max-width: 1100px){.archive-copy{left: 60%; width: 32%;}
 .archive-controls{left: 32px; bottom: 95px; gap: 9px;}
 .archive-counter{min-width: 95px; font-size: 25px;}}
